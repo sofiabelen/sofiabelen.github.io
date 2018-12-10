@@ -3,16 +3,20 @@
         <header>
             <span class="image avatar"><img src="{{ site.baseurl }}/images/avatar.jpg" alt="" /></span>
             <h1 id="logo"><a href="{{ site.baseurl }}/">Sofia B. Lopez</a></h1>
-            <p>Learn how to make the most out of your time..<br />
+            <p>How flow can transform the way you think<br />
             </p>
         </header>
         <nav id="nav">
             <ul>
-                <li><a href="{{ site.baseurl }}/">Home</a></li>
-                <li><a href="{{ site.baseurl }}/contact">Contact</a></li>
-                <li><a href="{{ site.baseurl }}/blog">Blog</a></li>
+		{% for item in site.data.navigation %}
+			<li><a href="{{item.link}}">
+				{{ item.name }}
+			</a></li>
+		{% endfor %}
             </ul>
         </nav>
+	
+<!--
         <footer>
             <ul class="icons">
                 <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
@@ -22,5 +26,7 @@
                 <li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
             </ul>
         </footer>
+
+-->
     </section>
 
