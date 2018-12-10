@@ -413,7 +413,7 @@ $size-header: 23em;
 	.icon {
 		@include icon;
 		border-bottom: none;
-		position: relative;
+		position: sticky;
 
 		> .label {
 			display: none;
@@ -513,7 +513,7 @@ $size-header: 23em;
 				display: inline-block;
 				margin: 0 0 ($size-element-margin * 0.75) 0;
 				padding: 0.35em 0 0 3.5em;
-				position: sticky;
+				position: absolute;
 				width: 48%;
 				
 				&:before {
@@ -844,6 +844,7 @@ $size-header: 23em;
 /* Header */
 
 	#header {
+		overflow-y: scroll;
 		background: $color-header-bg;
 		color: $color-header-fg;
 		height: 100%;
@@ -906,7 +907,7 @@ $size-header: 23em;
 			bottom: 0;
 			left: 0;
 			padding: 2em;
-			position: absolute;
+			position: relative;
 			width: 100%;
 			
 			.icons {
