@@ -39,6 +39,9 @@ $size-header: 23em;
 			color: $color-accent-bg !important;
 		}
 	}
+	a:active{
+		background-color: $color-accent-bg !important;
+	}
 
 	strong, b {
 		color: $color-fg-bold;

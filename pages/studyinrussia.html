@@ -1,5 +1,6 @@
 ---
 layout: default
+permalink: /studyinrussia.html
 ---
 
 <section id="one" >
@@ -10,12 +11,7 @@ layout: default
                     <h2><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
                 </header>
                 <section class="post-content">
-                    {{ post.excerpt }}
-                </section>
-                <section class="special">
-                    <ul class="actions">
-                        <li><a href="{{ site.baseurl }}{{ post.url }}" class="button special">Read More</a></li>
-                    </ul>
+                    {{ post.content }}
                 </section>
             </article>
         {% endfor %}

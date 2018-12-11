@@ -1,0 +1,10 @@
+- name: Twitter
+  class: icon fa-twitter
+- name: Facebook
+  class: icon fa-facebook
+- name: Instagram
+  class: icon fa-instagram
+- name: Github
+  class: icon fa-github
+- name: Email
+  class: icon fa-envelope
