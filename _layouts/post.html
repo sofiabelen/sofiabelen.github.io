@@ -16,7 +16,9 @@ layout: default
 	<div class="fb-comments" data-href="http://lifelongflow.tk/" data-numposts="5"></div>
 	<!-- -->
 
-        <footer>
+	{% include relatedposts.html %}
+        
+	<footer>
             {% if page.previous %}
             <a href="{{ page.previous.url }}" class="float-left">&larr; Previous post</a> {% endif %}
             {% if page.next %}

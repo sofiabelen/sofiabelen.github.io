@@ -1,27 +1,23 @@
 ---
 layout: default
+title: Make the most out of your study time 
+subtitle: Why flow is better than happiness
+cant: 10
 ---
-
-
-<!-- One -->
-    <section id="one">
+    
+<section id="one">
         <div class="container">
             <header class="major">
-                <h2>Understanding Flow</h2>
-                <p>Why flow is the highest state of the human mind</p>
+                <h2>{{page.title}}</h2>
+		<p>{{page.subtitle}}</p>
             </header>
-                <p>For some it might be writting, solving a really hard math problem, or even
+	<p>For some it might be writting, solving a really hard math problem, or even
  engaging in a deep conversation. What all these have in common is what they trigger in each 
 persons's brain. Flow is described as the state of mind where you are concentrated in the tas
 k at hand and all your brainpower goes to performing that task. All things like surroundings 
 and distracting thoughts seem to blur in the background, so you reach maximum concentration. 
-This is why you loose track of time.</p>
+</p>
         </div>
     </section>
 
-<!-- Two -->
-    <section id="two">
-        <div class="container">
-            <h3>Recent Posts</h3>
-        </div>
-</section>
+{% include recentposts.html %}
