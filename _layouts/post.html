@@ -12,15 +12,17 @@ layout: default
             {{ content }}
         </section>
 	
-	<div class="just-comments" data-apikey="840c4ce7-16e5-4495-af6b-826e6b991cb3" ></div><script async src="https://just-comments.com/w.js"></script>
-        
+	<!-- Facebook comments -->
+	<div class="fb-comments" data-href="http://lifelongflow.tk/" data-numposts="5"></div>
+	<!-- -->
+
         <footer>
             {% if page.previous %}
             <a href="{{ page.previous.url }}" class="float-left">&larr; Previous post</a> {% endif %}
             {% if page.next %}
             <a href="{{ page.next.url }}" class="float-right">Next post &rarr;</a> {% endif %}
         </footer>
-
+	
     </div>
 
 </section>
