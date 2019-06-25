@@ -4,14 +4,6 @@ layout: blog
 permalink: /mystory.html
 tag: mystory
 ---
-The thought of starting a blog has been in the back of my mind for a long time, now that I th
-ink about it. For one thing, I enjoy writting and want to share part of my life. Though the m
-ain goal of this blog will be to connect with likeminded people, to help each other in the se
-arch and fulfillment of our passions. 
+The thought of starting a blog has been in the back of my mind for a long time, now that I think about it. For one thing, I enjoy writing and want to share part of my life. The main goal of this blog, however, is be to connect with people with common interests, to help each other in the search and fulfillment of our passions.
 
-I am a computer science student in Russia, currently living in Nizhny Novgorod. How and why I
- ended up in Russia... is also something I would like to share. I'm from Argentina, by the wa
-y, so it's probably one of the most distant places I could've choosen. Studying in a foreign 
-country, learning a language from scratch and actually taking your classes in that language..
-. is something I wouldn't have thought I'd be doing. But here I am, and I want to show you wh
-at this is really like.  
+I'm currently studying physics in Moscow. How and why I ended up in Russia... is also something I would like to share. I'm from Argentina, so it's probably one of the most distant places I could've chosen. Studying in a foreign country, learning a language from scratch and actually taking your classes in that language... is something I couldn't have imaged myself doing. But here I am, and I want to show you what this is really like.
