@@ -1,0 +1,46 @@
+\documentclass{article}
+
+\author{Sof\'ia B. L\'opez}
+\title{R\'esum\'e}
+
+\usepackage{titlesec}
+\usepackage[margin=0.7in]{geometry}
+\usepackage{xcolor}
+
+\titleformat{\section}{}{}{0em}{\filleft\huge\bfseries\lowercase}[\textcolor{mycolor}\titlerule]
+\titleformat{\subsection}[runin]{\large\bfseries}{}{0em}{}
+\titleformat{\subsubsection}[runin]{\bfseries}{}{1em}{}[\textcolor{mycolor}{---}]
+
+\renewcommand\maketitle{
+  \begin{center}
+    {\bfseries\Huge Sof\'ia B. L\'opez}
+
+    \vspace{.55em}
+    \textcolor{mygrey}{sofiabelenlopez00@gmail.com}
+    %
+    %\textcolor{mygrey}{+7 987 530 92 78}
+    %sofiabelenlopez00@gmail.com
+  \end{center}
+}
+
+\titlespacing{\subsubsection}{2em}{0.1em}{0em}
+\titlespacing{\subsection}{0em}{0.2em}{1em}
+\titlespacing{\section}{0em}{1.7em}{0em}
+
+\pagenumbering{gobble}
+\definecolor{mycolor}{HTML}{ff1744} %pink
+%\definecolor{mycolor}{HTML}{0D47A1} %blue
+%\definecolor{mycolor}{HTML}{FF5722} %orange
+%\definecolor{mycolor}{HTML}{7b1fa2} %purple
+\definecolor{mygrey}{HTML}{737373}
+%\renewcommand{\familydefault}{ttdefault}
+%\renewcommand{\ttdefault}{pcr}
+
+\begin{document}
+\maketitle
+\input{education.tex}
+\input{programming_competitions.tex}
+\input{coursework.tex}
+\input{technical_skills.tex}
+%\input{work_experience.tex}
+\end{document}
