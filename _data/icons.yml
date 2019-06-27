@@ -1,4 +1,6 @@
 - name: Github
   class: icon fa-github
+  link: https://github.com/sofiabelen
 - name: Email
   class: icon fa-envelope
+  link: mailto:sofiabelenlopez00@gmail.com
