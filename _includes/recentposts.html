@@ -1,10 +1,8 @@
 <section>
-<div class="container">
-        <div class="features">
-        {% for post in paginator.posts limit:[page.cant] offset:1 %}
-		{% include post_preview.html %}
+<header><h2>Keep reading</header></h2>
+	<div class="container"><div class="features">
+        {% for post in site.posts limit: 10 %}
+            {% include post_preview.html %}
         {% endfor %}
-        </div>
-    </div>
+	</div></div>
 </section>
-

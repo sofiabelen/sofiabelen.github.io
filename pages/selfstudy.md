@@ -2,7 +2,7 @@
 title: Why so many students hate school?
 layout: blog
 permalink: /selfstudy.html
-tag: selfstudy
+categories: selfstudy
 ---
 I know I'm not alone when I say I completely despised going to school. Why is then that we force our kids and teenagers to go through such an awful process? It's the same as being in prison, you cannot express yourself through clothing or your appearance in general, since everyone has to look the same. Although you do get to go home after so many hours, don't forget you have hours worth of homework. What if I have a hobby or different interests than what I'm being taught in school? Shouldn't I have a say in what I spend my time on? 
 

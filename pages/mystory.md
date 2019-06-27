@@ -2,7 +2,7 @@
 title: My story
 layout: blog 
 permalink: /mystory.html
-tag: mystory
+categories: mystory
 ---
 The thought of starting a blog has been in the back of my mind for a long time, now that I think about it. For one thing, I enjoy writing and want to share part of my life. The main goal of this blog, however, is be to connect with people with common interests, to help each other in the search and fulfillment of our passions.
 

@@ -12,7 +12,7 @@
         <footer>
 	<ul class="icons">
 		{% for item in site.data.icons %}
-			<li><a href="#" class="{{item.class}}"><span class="label">
+                <li><a href={{item.link}} class="{{item.class}}"><span class="label">
 			{{ item.name }}
 			</span></a></li>
 		{% endfor %}

@@ -2,7 +2,7 @@
 title: Why Russia?
 layout: blog 
 permalink: /studyinrussia.html
-tag: studyinrussia
+categories: studyinrussia
 ---
 This question comes up very often in conversations, and it's not always easy to give an answer. The reason for that is that there isn't just one answer. My partner and I had finished school and were looking for opportunities to study abroad. Australia? Nope, too expensive. Germany? Affordable education, but living costs were too high. We had basically researched most countries and had already given up on the whole idea of studying abroad. Everything was planned out to to move to Buenos Aires and study in the UBA. We're from Mendoza, a city on the west of Argentina. We didn't want to stay there because there was no Computer Science program, which is was we wanted to pursue. 
 

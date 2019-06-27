@@ -1,22 +1,13 @@
 <section>
 <header><h2>Keep reading</header></h2>
 	<div class="container"><div class="features">
-	{% for post in site.categories[page.category] %}
-	{% unless page.title == post.title %}
-	
-	{% include post_preview.html %}	
-	
-	<!--
-		<article>
-		<section class="excerpt">
-                <header>
-                    <h3><a href="{{post.link}}">{{post.title}}</a></h3>
-                </header>
-                </section>
-                <div class="clear"></div>	
-		</article>
-	-->
-	{% endunless %}
+        {% for categ in page.categories %}
+             {% for post in site.categories.[categ] %}
+             {% unless post.title == page.title %}
+             
+             {% include post_preview.html %}
+            {% endunless %}
+             {% endfor %}
         {% endfor %}
 	</div></div>
 </section>
