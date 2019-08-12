@@ -31,3 +31,5 @@ defaults:
       type: category
     values:
       layout: "category"
+
+permalink: /:categories/:title:output_ext

@@ -20,6 +20,7 @@
 	$font-weight-bold:			700;
 
 // Color.
+        $light-blue:                             #5c9bd6;
 	$color-bg:					#fff;
 	$color-fg:					#888;
 	$color-fg-bold:				#777;	
@@ -31,6 +32,8 @@
 	$color-accent-fg-light:		mix($color-accent-bg, $color-accent-fg-bold, 40%);
 
 	$color-accent2-bg:			#989898;
+        //$color-accent2-bg:		        #5c9bd6;
+
 	$color-accent2-fg-bold:		#ffffff;
 	$color-accent2-fg:			mix($color-accent2-bg, $color-accent2-fg-bold, 25%);
 	$color-accent2-fg-light:	mix($color-accent2-bg, $color-accent2-fg-bold, 40%);

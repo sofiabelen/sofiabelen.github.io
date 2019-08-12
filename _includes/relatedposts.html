@@ -1,13 +1,19 @@
+{% assign something = false %}
 <section>
 <header><h2>Keep reading</header></h2>
 	<div class="container"><div class="features">
         {% for categ in page.categories %}
              {% for post in site.categories.[categ] %}
-             {% unless post.title == page.title %}
-             
-             {% include post_preview.html %}
-            {% endunless %}
+                {% unless post.title == page.title %}
+                    {% include post_preview.html %}
+                    {% assign something = true %}
+                {% endunless %}
              {% endfor %}
         {% endfor %}
+        {% if something == false %}
+            {% for post in site.posts %}
+                {% include post_preview.html %}
+            {% endfor %}
+        {% endif %}
 	</div></div>
 </section>
