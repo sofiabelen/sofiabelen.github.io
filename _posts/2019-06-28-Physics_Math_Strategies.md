@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Bulletproof strategy for learning Physics and Math
+title: My strategy for studying physics and math
 categories: selfstudy
 ---
 Studying a subject like math or physics requires a different strategy from, let's say, learning a foreign language. [You can read my post about that here](http://justanotherstudent.tk/selfstudy/2019/06/25/foreignlanguages.html). The essence of these subjects is, in my opinion, grasping the concepts and solving problems. The problem solving aspect is the main reason I enjoy it, since it forces you to actively participate in the learning process, rather than being a passive spectator.
