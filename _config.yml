@@ -31,3 +31,5 @@ defaults:
       layout: "category"
 
 permalink: /:categories/:title:output_ext
+
+markdown: CommonMarkGhPages
