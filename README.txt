@@ -1,5 +1,3 @@
-Welcome!!
-
-This is just a the repository of the blog proyect I am starting.
+## Repository of my personal website
 
 Visit me at https://sofiabelen.github.io/
