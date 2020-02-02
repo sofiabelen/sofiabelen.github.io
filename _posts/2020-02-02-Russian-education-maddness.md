@@ -267,6 +267,6 @@ Anyway, I'd suggest you use this as your last resort.
 
 My goal this semester is to make cards as soon as I learn a new topic because it was very stressful cramming so much material in just a few days. Of course I had studied during the semester, but I only started using anki weeks before the exams. 
 
-Thanks for reading this guys! I'd really like to hear whether you found this helpful and what are your own methods for studying mathematics. Be sure to leave a comment bellow!
+Thanks for reading this guys! I'd really like to hear whether you found this helpful and what are your own methods for studying mathematics. Be sure to leave a comment bellow! Or join the discussion on [reddit](https://www.reddit.com/r/math/comments/exjpfo/international_student_surviving_in_a_russian/).
 
 Also, you can check out my deck [here](https://ankiweb.net/shared/info/1561635088). I can't promise everything is perfect, as I said, I had very little time to make this, but it can serve as guide to making your own cards. Please let me know if you find any mistakes!
