@@ -12,7 +12,9 @@
         {% endfor %}
         {% if something == false %}
             {% for post in site.posts %}
-                {% include post_preview.html %}
+                {% unless post.title == page.title %}
+                    {% include post_preview.html %}
+                {% endunless %}
             {% endfor %}
         {% endif %}
 	</div></div>
