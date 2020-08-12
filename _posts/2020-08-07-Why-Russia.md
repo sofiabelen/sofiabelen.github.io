@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Why Russia?"
-categories: studyinrussia
+categories: blog
 ---
 
 <center> <img style='height: 80%; width: 80%; object-fit: contain' src="/images/me-msu.jpg" atl="Me at MSU"> </center>

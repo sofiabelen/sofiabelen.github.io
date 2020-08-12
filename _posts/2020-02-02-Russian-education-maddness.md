@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Russian education madness: Learning more than 60 theorems with their proofs in your first semester"
-categories: selfstudy
+categories: blog
 ---
 
 <img style='height: 100%; width: 100%; object-fit: contain' src="/images/lk.jpg" atl="Laboratory Corpus MIPT.">

@@ -1,8 +1,8 @@
 - name: Home
   link: /
-- name: Self Study 
-  link: /selfstudy.html
-- name: Studying in Russia 
-  link: /studyinrussia.html
-- name: My story
-  link: /mystory.html
+- name: Blog
+  link: /blog.html
+- name: Portfolio
+  link: /portfolio.html
+- name: About
+  link: /about.html
