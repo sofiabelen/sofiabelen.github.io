@@ -1,6 +1,9 @@
 - name: Github
   class: icon fa-github
   link: https://github.com/sofiabelen
+- name: LinkedIn
+  class: icon fa-linkedin
+  link: https://www.linkedin.com/in/sofía-belén-lópez-ba7819122/
 - name: Email
   class: icon fa-envelope
   link: mailto:sofiabelenlopez00@gmail.com

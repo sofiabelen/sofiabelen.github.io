@@ -1,8 +1,9 @@
-<section>
-<header><h2>Recent posts</header></h2>
-	<div class="container"><div class="features">
-        {% for post in site.posts %}
+<section id="three">
+    <div class="container">
+        <div class="features">
+        {% for post in site.posts offset:0 %}
             {% include post_preview.html %}
         {% endfor %}
-	</div></div>
+        </div>
+    </div>
 </section>

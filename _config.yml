@@ -10,7 +10,8 @@ github_username:  sofiabelen
 # Build settings
 markdown: kramdown
 plugins:
-- jekyll-feed
+  - jekyll-feed
+  - jekyll-redirect-from
 
 sass:
     sass_dir: _sass

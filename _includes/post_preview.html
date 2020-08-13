@@ -1,17 +1,9 @@
 <article>
-<section class="excerpt">
-<header>
-	<h3><a href="{{post.url}}">{{ post.title }}</a></h3>
-</header>
-        {{ post.content | truncatewords: 50 }}
-</section>
-
-<footer>
-	<ul class="actions">
-		<li><a href="{{post.url}}" class="button">Read More</a></li>
-        </ul>
-</footer>
-
-<div class="clear"></div>
+    <a href="{{ site.baseurl }}{{ post.url }}" class="image"><img src="/images/{{ post.image }}" alt="" /></a>
+            <div class="inner">
+            <h4><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h4>
+            <p>
+                {{ post.preview }}
+            </p>
+        </div>
 </article>
-

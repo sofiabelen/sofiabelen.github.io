@@ -80,7 +80,7 @@ $size-header: 23em;
 	}
 
 	h4 {
-		font-size: 1.25em;
+		font-size: 1.50em;
 		line-height: 1.5em;
 	}
 	
@@ -533,7 +533,7 @@ $size-header: 23em;
 				display: inline-block;
 				margin: 0 0 ($size-element-margin * 0.75) 0;
 				padding: 0.35em 0 0 3.5em;
-				position: absolute;
+				position: relative;
 				width: 48%;
 				
 				&:before {
