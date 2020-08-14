@@ -256,6 +256,7 @@ PLATFORMS
 DEPENDENCIES
   github-pages
   jekyll-feed (~> 0.6)
+  jekyll-redirect-from
   jekyll-seo-tag
   jekyll-sitemap
   minima (~> 2.0)

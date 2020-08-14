@@ -1,18 +1,25 @@
 ---
 layout: default
-title: "A little about me"
-subtitle:
+title: "Hi, I'm Sofía,"
+subtitle: "a physics and math student, and a CFD enthusiast."
 ---
-    
-<section id="one">
-        <div class="container">
+<section id="one" >
+    <div class="container">
+        <article>
             <header class="major">
                 <h2>{{page.title}}</h2>
-		<p>{{page.subtitle}}</p>
+                <h3>{{page.subtitle}}</h3>
             </header>
-            <p>Hello, my name is Sofia and I'm from Mendoza, Argentina. I've been into competitive programming since the age of 15, and now, I'm studying physics and mathematics at the Moscow Institute of Physics and Technology. I'm also into languages, studied German for four years, and now I'm doing my degree in Russian. I consider myself a self-learner, and here I want to share my tips and study methods. I also write about my experience as a foreign student in this country, and my journey in choosing a career path.</p>
-        <p>I'd love for you to stick around!</p>
-        </div>
-    </section>
-
-{% include recentposts.html %}
+        </article>
+    </div>
+    <div class="container">
+        <ul class="feature-icons">
+            <li onclick="location.href='/blog/anki-vim.html';" class="fa-code">Anki and vim magic.</li>
+            <li onclick="location.href='/blog/why-russia.html';" class="fa-graduation-cap">Why Russia?</li>
+            <li onclick="location.href='/blog/foreign-Languages.html';" class="fa-language">Foreign Languages.</li>
+            <li onclick="location.href='/blog/from-programming-to-physics.html';" class="fa-coffee">From programming to physics.</li>
+            <li onclick="location.href='/blog/russian-education-madness.html';" class="fa-lightbulb-o">First semester in Phystech.</li>
+            <li onclick="location.href='/contact.html';" class="fa-envelope">Contact</li>
+        </ul>
+    </div>
+</section>
