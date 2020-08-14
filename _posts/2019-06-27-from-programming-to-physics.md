@@ -4,7 +4,7 @@ title: From programming to physics
 categories: blog
 image: "oia.jpg"
 preview: "For me, it felt like no matter how many hours I put into it or how hard I tried, I'd never be on their level. This drove me crazy, but it became my passion."
-
+description: "My reasons for studying physics instead of computer science, even though I was an ex-Olympic in programming competitions."
 ---
 The only reason I started doing competitive programming is not because I discovered it for myself, it's because I was lucky enough to have the best of teachers, who showed it to me. His name is Claudio Paz, and he's everything a teacher should be. Instead of teaching us Ms Word, as he was meant to, he asked us if we wanted to do something different. I was 15 at the time and didn't really care because I thought I'd probably hate it anyways, since it was school. I was so wrong. He taught us how to code, but not in the standard way. We were always solving problems, so learning the syntax wasn't as important as coming up with a good logical solution. I, along with anther classmate, participated in the national olympiad that year, and, being brutally honest, we didn't do well. But there was no turning back, at least for me. I knew this is what I loved doing more than anything, but seeing how good the other contestants were, was very intimidating. For me, it felt like no matter how many hours I put into it or how hard I tried, I'd never be on their level. This drove me crazy, but it became my passion.
 

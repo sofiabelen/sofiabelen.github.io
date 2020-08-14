@@ -12,6 +12,9 @@ markdown: kramdown
 plugins:
   - jekyll-feed
   - jekyll-redirect-from
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-compose
 
 sass:
     sass_dir: _sass
@@ -34,3 +37,20 @@ defaults:
 permalink: /:categories/:title:output_ext
 
 markdown: CommonMarkGhPages
+
+timezone: Europe/Moscow
+
+jekyll_compose:
+  auto_open: true
+  default_front_matter:
+    posts:
+      last_modified_at: 
+      permalink: 
+      description:
+      image:
+      published: true
+      sitemap: true
+      excerpt_separator: <!--more-->
+      categories:
+      tags:
+      preview:

@@ -33,3 +33,5 @@ gem "wdm", "~> 0.1.0" if Gem.win_platform?
 # Give your Jekyll posts and pages multiple URLs.
 # https://github.com/jekyll/jekyll-redirect-from
 gem 'jekyll-redirect-from'
+
+gem 'jekyll-compose', group: [:jekyll_plugins]

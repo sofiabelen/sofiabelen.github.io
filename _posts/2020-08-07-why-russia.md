@@ -6,6 +6,7 @@ image: "me-msu-cropped.jpg"
 preview: "Only 3 days to pack and say goodbye to our family. After all those months of hard work and not knowing if we'd make it, it was hard to believe we were actually going to Russia."
 redirect_from:
   - /studyinrussia/Why-Russia.html
+description: "My story coming to study to Russia all the way from Argentina."
 ---
 
 <center> <img style='height: 80%; width: 80%; object-fit: contain' src="/images/me-msu.jpg" atl="Me at MSU"> </center>

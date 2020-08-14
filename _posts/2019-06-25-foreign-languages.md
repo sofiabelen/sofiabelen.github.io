@@ -4,6 +4,7 @@ title: My approach to learning a foreign language
 categories: blog
 image: "rabbit-anki.png"
 preview: "Don't rely on your memory for learning vocab. There's an algorithm for that."
+description: "Tutorial on how I use anki and spaced repetition to study foreign languages."
 ---
 
 <center> <img style='height: 100%; width: 100%; object-fit: contain' src="/images/rabbit-anki.png" atl="Anki Flashcard"> </center>

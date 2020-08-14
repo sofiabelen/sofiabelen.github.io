@@ -6,6 +6,7 @@ image: "lk-cropped.jpg"
 preview: "How to survive in a Russian university as a foreign student."
 redirect_from:
   - /selfstudy/Russian-education-maddness.html
+description: "My first semester in a Russian university. How anki flashcards helped me study over 60 theorems with their proofs for final exam."
 ---
 
 <img style='height: 100%; width: 100%; object-fit: contain' src="/images/lk.jpg" atl="Laboratory Corpus MIPT.">
