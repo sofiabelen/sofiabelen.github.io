@@ -1,6 +1,6 @@
 ---
 layout: post
-title: From Programming to Physics
+title: My Journey from Competitive Programming into Computational Physics
 categories: blog
 image: "oia.jpg"
 preview: "For me, it felt like no matter how many hours I put into it or how hard I tried, I'd never be on their level. This drove me crazy, but it became my passion."
@@ -42,5 +42,9 @@ Now, I had to decide if I still wanted to study Computer Science. I spent many h
 After a month of working through Irodov's problems, I was considering a career in physics. The main turn off was that I wasn't sure if would enjoy doing research. The fact that a physics degree is so general is a double-edged sword. It opens many doors, but it's up to you to go the extra mile to specialize. This sounded promising, so I decided to take on the challenge.
 
 As I'm writing this, I have no regrets. I think I just found the perfect field that combines programming and physics: computational physics. More specifically, computational fluid dynamics.
+
+<center> 
+<img style='height: 40%; width: 40%; object-fit: contain' src="/images/computational-physics.svg" atl="Computational Physics">
+</center>
 
 I hope my story can serve as an inspiration to others who are choosing career paths, I wish you the best of lucks! Remember to keep exploring new areas, even if it seems completely different from what you are currently doing.
