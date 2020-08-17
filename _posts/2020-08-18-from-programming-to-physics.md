@@ -1,13 +1,13 @@
 ---
 layout: post
-title: From programming to physics
+title: From Programming to Physics
 categories: blog
 image: "oia.jpg"
 preview: "For me, it felt like no matter how many hours I put into it or how hard I tried, I'd never be on their level. This drove me crazy, but it became my passion."
 description: "My reasons for studying physics instead of computer science, even though I was an ex-Olympic in programming competitions."
 ---
 
-During high school, I was lucky enough to have the best of teachers, and he introduced me to competitive programming. His name is Claudio Paz, and he's everything a teacher should be. Instead of teaching us Ms Word, as he was meant to, he asked us if we wanted to do something different. I was 15 at the time and didn't really care because I thought I'd probably hate it anyways, since it was school. I was so wrong. He taught us how to code, but not in the standard way. We were given new problems every week, and then we'd discuss approaches together. Coming up with a solution was the hard part, and we learned syntax along the way. The coolest part was learning a new type of logical reasoning that I had never used before.
+During high school, I was lucky enough to have the best of teachers, and he introduced me to competitive programming. His name is Claudio Paz, and he's everything a teacher should be. Instead of teaching us Ms Word, as he was meant to, he asked us if we wanted to do something different. I was 15 at the time and didn't really care because I thought I'd probably hate it anyways, since it was school. I was so wrong. He taught us how to code, but not in the standard way. We were given new problems every week, and then we'd discuss approaches together. Coming up with a solution was the hard part, and we learned syntax along the way. The coolest part was learning a new type of logical reasoning that I wasn't used to.
 
 <center> 
 <figure style='padding: 30px'>
