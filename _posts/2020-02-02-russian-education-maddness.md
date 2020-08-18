@@ -2,11 +2,12 @@
 layout: post
 title: "Russian education madness: Learning more than 60 theorems with their proofs in your first semester"
 categories: blog
-image: "lk-cropped.jpg"
+image: /images/mipt2.jpg
 preview: "How to survive in a Russian university as a foreign student."
 redirect_from:
   - /selfstudy/Russian-education-maddness.html
 description: "My first semester in a Russian university. How anki flashcards helped me study over 60 theorems with their proofs for final exam."
+thumbnail: lk-cropped.jpg
 ---
 
 <img style='height: 100%; width: 100%; object-fit: contain' src="/images/lk.jpg" atl="Laboratory Corpus MIPT.">
