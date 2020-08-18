@@ -47,7 +47,6 @@ jekyll_compose:
       last_modified_at: 
       permalink: 
       description:
-      image:
       published: true
       sitemap: true
       excerpt_separator: <!--more-->

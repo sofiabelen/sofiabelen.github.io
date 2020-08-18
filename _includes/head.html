@@ -4,6 +4,10 @@
     <!-- SEO tags -->
     {% seo %}
 
+    {% if page.thumbnail %}
+      <meta property="og:image" content="/images/{{ page.thumbnail }}">
+    {% endif %}
+
     <title>Sofía Belén López</title>
     <link rel="shortcut icon" type="image/png" 
           href="{{ "/images/favicon.png"  | absolute_url }}">
