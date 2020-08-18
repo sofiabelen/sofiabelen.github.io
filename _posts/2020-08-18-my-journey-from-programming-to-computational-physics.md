@@ -35,7 +35,7 @@ Fast forward a couple of years, my passion for competitive programming never wen
 
 > The "aha" moment after cracking a problem, or the dark process of reading through it and not even knowing where to start. It was a déjà vu.
 
-Now, I had to decide if I still wanted to study Computer Science. I spent many hours researching career options but didn't find anything like what I wanted to do. Building useful stuff sounds cool, but what I truly enjoyed was problem solving. So, maybe I could go into research? Though I wasn't sure that was my thing.
+Now, I had to decide if I still wanted to study Computer Science. I spent many hours researching career options but didn't find anything like what I wanted to do. Building useful stuff sounds cool, but what I truly enjoyed was problem solving. So, maybe I could go into research?
 
 <a href="https://www.amazon.com/Problems-general-physics-I-Irodov/dp/5030008004"><img style='padding: 15px; height: 25%; width: 25%; object-fit: contain' align="right" src="/images/irodov.jpg" atl="Problems in General Physics by i.e. Irodov"></a>This is when I discovered the Irodov books and realized solving physics problems was so similar to competitive programming. The "aha" moment after cracking a problem, or the dark process of reading through it and not even knowing where to start. It was a déjà vu.
 
