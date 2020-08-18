@@ -2,7 +2,7 @@
 layout: post
 title: My Journey from Competitive Programming into Computational Physics
 categories: blog
-image: /images/symposium.jpg
+image: /images/argentina-team-ioi.jpg
 preview: "For me, it felt like no matter how many hours I put into it or how hard I tried, I'd never be on their level. This drove me crazy, but it became my passion."
 description: "My Journey from Competitive Programming into Computational Physics."
 thumbnail: oia.jpg
