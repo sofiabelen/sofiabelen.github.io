@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Why Russia?"
+title: "My Story Coming to Study to Russia all the Way from Argentina"
 categories: blog
 image: /images/me-msu-cropped.jpg
 preview: "Only 3 days to pack and say goodbye to our family. After all those months of hard work and not knowing if we'd make it, it was hard to believe we were actually going to Russia."
@@ -10,7 +10,9 @@ description: "My story coming to study to Russia all the way from Argentina."
 thumbnail: me-msu-cropped.jpg
 ---
 
-<center> <img style='height: 80%; width: 80%; object-fit: contain' src="/images/me-msu.jpg" atl="Me at MSU"> </center>
+<center> <img style='padding-bottom: 30px; height: 80%; width: 80%; object-fit: contain' src="/images/me-msu.jpg" atl="Me at MSU"> </center>
+
+## Why Russia?
 
 This question comes up very often in conversations, and it's not always easy to give an answer. The reason for that is that there isn't just one answer. My partner and I had finished school and were looking for opportunities to study abroad. Australia? Nope, too expensive. Germany? Affordable education, but living costs were too high. We had basically researched most countries and had already given up on the whole idea of studying abroad. **Everything was planned out for us to move to Buenos Aires and study in the UBA.** We're from Mendoza, a city on the west of Argentina. We didn't want to stay there because there was no Computer Science program, which is was we wanted to pursue. 
 
