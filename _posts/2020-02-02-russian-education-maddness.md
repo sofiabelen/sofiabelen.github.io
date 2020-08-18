@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Russian education madness: Learning more than 60 theorems with their proofs in your first semester"
+title: "Russian Education Madness: Learning more than 60 Theorems with their Proofs in your First Semester"
 categories: blog
 image: /images/mipt2.jpg
 preview: "How to survive in a Russian university as a foreign student."
