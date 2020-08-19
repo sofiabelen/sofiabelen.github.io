@@ -1,6 +1,6 @@
 ---
 layout: post
-title: My approach to learning a foreign language
+title: A Different Approach to Foreign Languages
 categories: blog
 image: /images/rabbit-anki.png
 preview: "Don't rely on your memory for learning vocab. There's an algorithm for that."
