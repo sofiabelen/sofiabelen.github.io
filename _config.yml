@@ -4,7 +4,7 @@ email: sofiabelenlopez00@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
     Personal website.
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "https://sofiabelen.github.io/"
+url: "https://sofiabelen.github.io"
 github_username:  sofiabelen
 
 # Build settings
@@ -53,3 +53,5 @@ jekyll_compose:
       categories:
       tags:
       preview:
+
+iis_slider_array: []
