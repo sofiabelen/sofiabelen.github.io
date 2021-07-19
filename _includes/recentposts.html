@@ -1,7 +1,7 @@
 <section id="three">
     <div class="container">
         <div class="features">
-        {% for post in site.posts offset:0 %}
+        {% for post in site.categories.blog offset:0 %}
             {% include post_preview.html %}
         {% endfor %}
         </div>

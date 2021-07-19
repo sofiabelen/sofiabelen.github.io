@@ -1,0 +1,29 @@
+---
+layout: default
+comments: true
+---
+<section>
+    <div class="container">
+        <header class="major">
+            <h2>{{ page.title }}</h2>
+                <p class="post-meta" style="display: inline-block;">{{ page.date | date: "%b %-d, %Y" }}{% if page.meta %} • {{ page.meta }}{% endif %} • {% include share-buttons.html %}</p>
+        </header>
+
+        <section class="post-content">
+            {{ content }}
+        </section>
+
+    <div class="container"><div class="features">
+        {% include share-buttons.html %}
+    </div></div>
+
+<!--
+	<footer>
+            {% if page.previous %}
+            <a href="{{ page.previous.url }}" style="float: left;">&larr; Previous post</a> {% endif %}
+            {% if page.next %}
+            <a href="{{ page.next.url }}" style="float: right;">Next post &rarr;</a> {% endif %}
+        </footer>
+-->
+    </div>
+</section>

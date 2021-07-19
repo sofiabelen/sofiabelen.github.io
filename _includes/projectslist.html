@@ -1,0 +1,9 @@
+<section id="three">
+    <div class="container">
+        <div class="features">
+        {% for project in site.categories.projects %}
+            {% include project_view.html %}
+        {% endfor %}
+        </div>
+    </div>
+</section>

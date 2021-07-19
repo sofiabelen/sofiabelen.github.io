@@ -1,5 +1,5 @@
 # Site settings
-title: Sofía Belén López
+title: Sofia Belen Lopez
 email: sofiabelenlopez00@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
     Personal website.
@@ -55,3 +55,5 @@ jekyll_compose:
       preview:
 
 iis_slider_array: []
+
+encoding: utf-8

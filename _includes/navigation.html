@@ -3,7 +3,8 @@
 <nav id="nav">
 	<ul>
                 {% for item in site.data.navigation %}
-                        <li><a {% if page.url == item.link %}class="scrolly active"{% else %}class="scrolly"{% endif %}  href="{{item.link}}">
+                        <li><a {% if page.url == item.link %}class="scrolly active"{% else %}class="scrolly"{% endif %} 
+                                href="{{item.link}}">
                                 {{ item.name }}
                         </a></li>
        		{% endfor %}
