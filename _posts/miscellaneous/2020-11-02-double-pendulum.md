@@ -4,7 +4,7 @@ title: Double Pendulum in Manim
 image: /images/double-pendulum.png
 preview: "Kinematics Problem: Double Pendulum, given the angles as functions of time, made with 3Blue1Brown's animation engine, Manim."
 description: "Kinematics Problem: Double Pendulum, given the angles as functions of time, made with 3Blue1Brown's animation engine, Manim."
-thumbnail: double-pendulum.gif
+thumbnail: double-pendulum-optimized.gif
 category: miscellaneous
 ---
 
