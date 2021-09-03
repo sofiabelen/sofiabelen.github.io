@@ -14,9 +14,7 @@ I'm working on this project under the supervision of Vasily Pisarev; I'm very gr
 
 We simulate the flow of gas and liquid through a porous
 medium with the help of Darcy's law.
-
-$$\bm{v}_i = -\frac{1}{\mu_i} \hat K \cdot f_\alpha (s)
-    \cdot \nabla P$$ where $\hat K$, the specific permeability. $\mu$ is the dynamic viscosity. $\alpha$ is the phase.
+$$ c = \frac{testing}{test} $$
 
 ## What I've learned so far
 - Basic notions about multiphase flow and filtration:
