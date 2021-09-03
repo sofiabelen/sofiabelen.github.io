@@ -14,7 +14,25 @@ I'm working on this project under the supervision of Vasily Pisarev; I'm very gr
 
 We simulate the flow of gas and liquid through a porous
 medium with the help of Darcy's law.
-$$ c = \frac{testing}{test} $$
+
+$$ \vec{v_i} = -\frac{1}{\mu_i} \hat K \cdot f_\alpha (s) \cdot \nabla P$$
+
+where $\hat K$, the specific permeability,
+$\mu$ is the dynamic viscosity, $i$ is component.
+
+The continuity equation for each component becomes:
+$$\varphi \frac{\partial \rho_i}{\partial t}
+    + div (\rho_i \vec{v}_i) = 0$$ where $\rho_i = \frac{m_i}{V}$.
+
+We use the Tait equation to relate liquid density to pressure:
+$$\frac{\hat{\rho} - \rho_0}{\hat{\rho}} = C \log_{10}
+    \frac{B + P}{B + P_0}$$ where $C = 0.2105$,
+$\rho_0 = \frac{1}{67.28 \frac{m^3}{mol}}$, $P_0 = 0.1 MPa$,
+$B = 35MPa$, in the case of $C_5H_{12}$.
+
+Ideal gas equation of state:
+
+$$P = \frac{RT}{M} \hat{\rho}$$
 
 ## What I've learned so far
 - Basic notions about multiphase flow and filtration:
@@ -32,3 +50,5 @@ functors, modules.
 - Start writing documentation from the start :)
 - Write code in a more modular style even during early
 stages.
+
+[Read more](https://github.com/sofiabelen/Two-Phase-Filtration/blob/main/doc/doc.pdf) or check out the [code!](https://github.com/sofiabelen/Two-Phase-Filtration)
