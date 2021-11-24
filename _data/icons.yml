@@ -7,3 +7,6 @@
 - name: Email
   class: icon fa-envelope
   link: mailto:sofiabelenlopez00@gmail.com
+- name: Instagram
+  class: icon fa-instagram
+  link: https://www.instagram.com/sofia.b.lopez/?hl=en
