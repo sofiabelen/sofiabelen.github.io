@@ -10,3 +10,6 @@
 - name: Instagram
   class: icon fa-instagram
   link: https://www.instagram.com/sofia.b.lopez/?hl=en
+- name: RSS
+  class: icon fa-rss
+  link: /feed.xml
