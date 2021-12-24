@@ -101,7 +101,7 @@ paths.
 I have not once regretted my choice.
 
 ## Summer of Recalculating Direction
-<img style='height: 50%; width: 50%; object-fit: contain; padding: 30px' align="right" src="/images/window2.jpg" atl="Reflecting at the window">
+<img style='height: 50%; width: 50%; object-fit: contain; padding: 30px' align="right" src="/images/window-vignette.jpg" atl="Reflecting at the window">
 
 Fast forwarding a bit, the summer after the second semester,
 Santiago and I
