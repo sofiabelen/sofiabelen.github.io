@@ -8,3 +8,4 @@ thumbnail: monte-carlo-distro.gif
 category: projects
 ---
 Under construction.
+Check out the [git repo!](https://github.com/sofiabelen/Monte-Carlo-Simulation)

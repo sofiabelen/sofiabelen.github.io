@@ -27,8 +27,8 @@ opportunity. Check out my
 
 The motivation of our simulation is the technique called 
 [enhanced oil recovery](https://en.wikipedia.org/wiki/Enhanced_oil_recovery).
-Our goal is to model a 2d version of this process
-as viewed from above.
+Our goal is to model the view from above of this process
+as a 2d problem.
 
 For now, we assume that the components do not mix, but it
 is in our future perspective to model the balance of phases,
@@ -60,7 +60,7 @@ containing many pores.
 <font size="-1">
 An Overview of Oil Production Stages: Enhanced Oil Recovery Techniques and Nitrogen Injection
 Convection in Porous Media. 
-Authors: Donald A. NieldAdrian Bejan
+Authors: Donald A. Nield Adrian Bejan
 </font>
 </figcaption>
 </figure>
@@ -133,7 +133,7 @@ $s$ - saturation.
 </figure>
 </center>
 
-1. Second order finite differences method for spatial discretization using a staggered grid.
+1. Second order finite difference method for spatial discretization using a staggered grid.
 
 2. Explicit predictor-corrector method according to the Heun scheme  for time integration.
 
@@ -143,8 +143,9 @@ $s$ - saturation.
 
 1. We are given the densities $\rho_i = \rho_i(t)$.
 
-2. Finding the pressure and gas saturation using the Newton-Raphson method
-from the condition of equality of the pressure of the gas and the liquid.
+2. Finding the pressure and gas saturation using the
+Newton-Raphson method from the condition of equality
+of the pressure of the gas and the liquid:
 
 $$P = P_1 \left( \frac{\rho_1}{s} \right) 
 = P_2 \left( \frac{\rho_2}{1 - s}\right)$$
@@ -221,7 +222,7 @@ increment $P_{inlet}(t)$ linearly with time
 scheme with a collocated grid,
 so we switched to an upwind scheme with a staggered grid.
 
-## What I would do better next time
+## What I Would Do Better Next Time
 
 - Start writing documentation from the start :)
 

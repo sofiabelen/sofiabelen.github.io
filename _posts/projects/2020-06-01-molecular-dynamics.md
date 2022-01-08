@@ -7,4 +7,5 @@ description: "Molecular Dynamics Simulation using Lennard Jones Potential. Simul
 thumbnail: molecular-dynamics-simulation-optimized.gif
 category: projects
 ---
-Under construction.
+Under construction. 
+Check out the [git repo!](https://github.com/sofiabelen/Molecular-Dynamics-Lennard-Jones)
