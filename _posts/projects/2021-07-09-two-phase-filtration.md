@@ -218,9 +218,7 @@ increment $P_{inlet}(t)$ linearly with time
 </figure>
 </center>
 
-- Mass was not being conserved when using a central difference
-scheme with a collocated grid,
-so we switched to an upwind scheme with a staggered grid.
+- Switched to upwind scheme to ensure the conservation of mass.
 
 ## What I Would Do Better Next Time
 
