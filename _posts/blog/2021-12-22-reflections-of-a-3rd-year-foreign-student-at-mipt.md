@@ -75,7 +75,7 @@ However, he insisted that if I didn't devote the time for
 choosing now, I would spend the rest of my time here doing
 something I didn't like. So I went through all the options and
 the one seemed like a best fit was the 
-["Department of Computational Physics of Living Systems."](https://mipt.ru/education/chairs/phys_cond/)
+["Department of Condensed Matter and Living Systems Computational Physics."](https://mipt.ru/education/chairs/phys_cond/)
 You can watch a cool information [video](https://www.youtube.com/watch?v=Kuj4dJpfvwg)
 about the program made for newcomers.
 
