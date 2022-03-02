@@ -36,7 +36,7 @@ Contrary to what some will try to believe, we are not leaving because we don't f
 
 Basically, these are our reasons:
 
-1. Money: SWIFT is not working here anymore, so our parents can't send us money. The ruble is crashing, so the stipendium we receive from MIPT will be worth less and prices are rising. Some sites are being blocked and we have been warned that the whole internet could be turned off. This means even cryptocurrencies won't save us and we'll loose contact with our families.
+1. Money: SWIFT is not working here anymore, so our parents can't send us money. The ruble is crashing, so the stipendium we receive from MIPT will be worth less and prices are rising. Some sites are being blocked. If binance and other sites are blocked, this means even cryptocurrencies won't save us.
 
 3. Flights are being canceled and EU closed its air space for Russian airlines. We fear not being able to get out if we don't go now.
 
