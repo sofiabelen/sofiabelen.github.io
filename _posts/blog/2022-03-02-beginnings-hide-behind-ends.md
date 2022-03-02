@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Beginnings Hide Behind Ends: Leaving Russia Because of War"
-image: plane-window-cropped.jpg
+image: /images/plane-window-cropped.jpg
 thumbnail: plane-window-cropped.jpg
 categories: blog
 preview: "Life feels surreal today. Only a few days ago my biggest worry not being able to meet university deadlines, now I wake up everyday to terrifying videos and news."
