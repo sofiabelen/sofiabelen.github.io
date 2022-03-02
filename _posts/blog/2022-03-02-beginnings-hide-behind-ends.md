@@ -4,7 +4,7 @@ title: "Beginnings Hide Behind Ends: Leaving Russia Because of War"
 image: /images/plane-window-cropped.jpg
 thumbnail: plane-window-cropped.jpg
 categories: blog
-preview: "Life feels surreal today. Only a few days ago my biggest worry was not being able to meet university deadlines, now I wake up everyday to terrifying videos and news."
+preview: "Life feels surreal today. Only a few days ago my biggest worry was not being able to meet university deadlines, now I wake up everyday to terrifying videos and news of people in Ukraine being attacked, whole cities destroyed, lives torn apart."
 ---
 
 Life feels surreal today. Only a few days ago my biggest worry was not being able to meet university deadlines, now I wake up everyday to terrifying videos and news of people in Ukraine being attacked, whole cities destroyed, lives torn apart. Today is the fourth day since the start of the war, and it's truly heartbreaking to watch. There are anti-war protests going on in all major Russian cities: 'Нет войне!' they chant, which means 'No to war!' It's clear this isn't a decision made by the Russian people, but it's them that take the punishment for the actions of their leader. It saddens me greatly to see academic ties broken, Russian students and scientists abroad being expelled and fired from universities. It reminds of the Iron Curtain, or at least that's what this situation screams to me as a foreigner. I don't want to get into politics, but my heart goes out to those watching their homes turn into warzones.
