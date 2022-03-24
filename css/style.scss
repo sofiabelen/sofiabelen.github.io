@@ -1051,3 +1051,12 @@ $size-header: 23em;
 			}
 		}
 }
+
+img[alt=test] {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    align: center;
+    padding: 20px;
+    display: block;
+}

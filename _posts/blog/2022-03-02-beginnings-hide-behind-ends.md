@@ -9,15 +9,7 @@ preview: "Life feels surreal today. Only a few days ago my biggest worry was not
 
 Life feels surreal today. Only a few days ago my biggest worry was not being able to meet university deadlines, now I wake up everyday to terrifying videos and news of people in Ukraine being attacked, whole cities destroyed, lives torn apart. Today is the fourth day since the start of the war, and it's truly heartbreaking to watch. There are anti-war protests going on in all major Russian cities: 'Нет войне!' they chant, which means 'No to war!' It's clear this isn't a decision made by the Russian people, but it's them that take the punishment for the actions of their leader. It saddens me greatly to see academic ties broken, Russian students and scientists abroad being expelled and fired from universities. It reminds of the Iron Curtain, or at least that's what this situation screams to me as a foreigner. I don't want to get into politics, but my heart goes out to those watching their homes turn into warzones.
 
-![](/images/anti-war-protest.jpg)
-
-<img src="/images/anti-war-protest.jpg">
-
-<center> 
-<figure style='padding: 30px'>
-<img style='height: 80%; width: 80%; object-fit: contain' src="/images/anti-war-protest.jpg" atl="anti war protests">
-</figure>
-</center>
+![test](/images/anti-war-protest.jpg)
 
 The best word to describe the last few couple of days is uncertainty. My friends from Latin America and Syria have been having 'daily meetings' in the dorm, trying to figure out what we should do next. We have grown closer than ever. No one can concentrate on studying, even though that's what the university authorities are telling us to do. Some still go to class or to PE for the sole purpose of 'taking our mind off things.' How can it not feel surreal when my notifications in phone go like this: in one group people are discussing physics homework and, in another, footage of bombings and captured soldiers. How can they expect us to write lab reports while we have our eyes glued to Reddit and news channels in Telegram? For now, they said classes will continue as normal and online mode is highly unlikely. So, the only choice we have is to stay in Russia or take an academic leave.
 
