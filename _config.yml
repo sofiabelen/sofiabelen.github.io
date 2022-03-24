@@ -9,6 +9,9 @@ github_username:  sofiabelen
 
 # Build settings
 markdown: kramdown
+
+unsafe: true
+
 plugins:
   - jekyll-feed
   - jekyll-redirect-from
