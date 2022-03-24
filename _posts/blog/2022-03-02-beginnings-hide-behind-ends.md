@@ -11,6 +11,8 @@ Life feels surreal today. Only a few days ago my biggest worry was not being abl
 
 ![](/images/anti-war-protest.jpg)
 
+<img src="/images/anti-war-protest.jpg">
+
 <center> 
 <figure style='padding: 30px'>
 <img style='height: 80%; width: 80%; object-fit: contain' src="/images/anti-war-protest.jpg" atl="anti war protests">
