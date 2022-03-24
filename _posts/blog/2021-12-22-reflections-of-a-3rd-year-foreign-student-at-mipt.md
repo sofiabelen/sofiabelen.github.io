@@ -16,7 +16,7 @@ the first year was at about fifty percent.
 
 <center> 
 <figure style='padding: 30px'>
-<img style='height: 80%; width: 80%; object-fit: contain' src="/images/phys-film.jpg" atl="phys-film">
+<img style='height: 80%; width: 80%; object-fit: contain' src="{{ site.baseurl }}/images/phys-film.jpg" atl="phys-film">
   <figcaption>
 Photo by Александр Голодков
 (Alexander Golodkov).
