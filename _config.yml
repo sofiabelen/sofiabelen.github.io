@@ -19,6 +19,8 @@ plugins:
 sass:
     sass_dir: _sass
 
+force-https: True
+
 paginate: 6
 paginate_path: /page:num/
 
@@ -38,7 +40,7 @@ permalink: /:categories/:title:output_ext
 
 markdown: CommonMarkGhPages
 
-timezone: Europe/Moscow
+timezone: Europe/Madrid
 
 jekyll_compose:
   auto_open: true
