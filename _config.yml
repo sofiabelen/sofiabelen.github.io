@@ -10,7 +10,11 @@ github_username:  sofiabelen
 # Build settings
 markdown: kramdown
 
-unsafe: true
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
 
 plugins:
   - jekyll-feed
