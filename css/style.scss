@@ -1052,11 +1052,47 @@ $size-header: 23em;
 		}
 }
 
-img[alt=test] {
+img[alt=huge] {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    text-align: center;
+    padding: 20px;
+    display: block;
+}
+
+img[alt=large] {
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+    text-align: center;
+    padding: 20px;
+    display: block;
+}
+
+img[alt=medium] {
     width: 80%;
     height: 80%;
     object-fit: contain;
-    align: center;
+    text-align: center;
+    padding: 20px;
+    display: block;
+}
+
+img[alt=small] {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+    text-align: center;
+    padding: 20px;
+    display: block;
+}
+
+img[alt=right] {
+    width: 50%;
+    height: 50%;
+    object-fit: contain;
+    text-align: right;
     padding: 20px;
     display: block;
 }

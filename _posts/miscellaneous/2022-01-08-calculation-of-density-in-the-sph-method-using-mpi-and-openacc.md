@@ -15,17 +15,9 @@ Check out the [git repo!](https://github.com/sofiabelen/sph-parallel)
 
 ## Calculation of Density in the SPH Method
 
-<center> 
-<figure style='padding: 20px'>
-<img style='height: 90%; width: 90%; object-fit: contain' src="/images/sph.gif">
-<figcaption>
-<font size="-1">
-Comparison of the density distribution for different values
-of the $\alpha$ parameter.
-</font>
-</figcaption>
-</figure>
-</center>
+![medium](/images/sph.gif)
+*Comparison of the density distribution for different values
+of the $\alpha$ parameter.*
 
 Density formula:
 
@@ -145,31 +137,15 @@ $$S(N, P) = \frac{T_{arithm}(N, P)}{T_{paral}(N, P)}$$
 
 $$E(N, P) = \frac{S(N, P)}{P}$$
 
-<center> 
-<figure style='padding: 20px'>
-<img style='height: 90%; width: 90%; object-fit: contain' src="/images/sph-table.png">
-<figcaption>
-<font size="-1">
-Constants found through fitting.
-</font>
-</figcaption>
-</figure>
-</center>
+![medium](/images/sph-table.png)
+*Constants found through fitting.*
 
 
 ### Speedup and Efficiency
 
-<center> 
-<figure style='padding: 20px'>
-<img style='height: 90%; width: 90%; object-fit: contain' src="/images/sph-speedup-mpi.png">
-<figcaption>
-<font size="-1">
-Speedup and efficiency of the MPI
-implementation
-</font>
-</figcaption>
-</figure>
-</center>
+![medium](/images/sph-speedup-mpi.png)
+*Speedup and efficiency of the MPI
+implementation*
 
 ## OpenACC Implementation
 
@@ -206,11 +182,7 @@ implementation
 
 ### Compiling: Unified Memory
 
-<center> 
-<figure style='padding: 20px'>
-<img style='height: 90%; width: 90%; object-fit: contain' src="/images/sph-unified-memory.png">
-</figure>
-</center>
+![medium](/images/sph-unified-memory.png)
 
     pgc++ -lstdc++ -O2 -Wall -std=c++11 -acc -ta=nvidia:managed -Minfo=accel
 
@@ -225,28 +197,12 @@ on the CPU, and like GPU memory to code running on the GPU.
 
 ## Time Metrics and Comparison between MPI and OpenACC Implementations
 
-<center> 
-<figure style='padding: 20px'>
-<img style='height: 90%; width: 90%; object-fit: contain' src="/images/sph-time.png">
-<figcaption>
-<font size="-1">
-Dependence of the run time at maximum optimization for different
+![medium](/images/sph-time.png)
+*Dependence of the run time at maximum optimization for different
 values of $n_x \cdot n_z$ for MPI and OpenACC
-implementation.
-</font>
-</figcaption>
-</figure>
-</center>
+implementation.*
 
-<center> 
-<figure style='padding: 20px'>
-<img style='height: 90%; width: 90%; object-fit: contain' src="/images/sph-small-times.png">
-<figcaption>
-<font size="-1">
-Dependence of the run time at maximum optimization for small values of
+![medium](/images/sph-small-times.png)
+*Dependence of the run time at maximum optimization for small values of
 $n_x \cdot n_z$ for MPI and OpenACC
-implementation.
-</font>
-</figcaption>
-</figure>
-</center>
+implementation.*

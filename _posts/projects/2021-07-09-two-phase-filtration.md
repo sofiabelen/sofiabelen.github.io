@@ -34,18 +34,10 @@ For now, we assume that the components do not mix, but it
 is in our future perspective to model the balance of phases,
 or, in other words, a multiphase flow problem.
 
-<center> 
-<figure style='padding: 30px'>
-<img style='height: 90%; width: 90%; object-fit: contain' src="/images/enhanced-oil-recovery.png" atl="Enhanced oil recovery.">
-<figcaption>
-<font size="-1">
-An Overview of Oil Production Stages: Enhanced Oil Recovery Techniques and Nitrogen Injection
+![large](/images/enhanced-oil-recovery.png)
+*An Overview of Oil Production Stages: Enhanced Oil Recovery Techniques and Nitrogen Injection
 January 2015. International Journal of Environmental Science and Development 6(9):693-701
-DOI:10.7763/IJESD.2015.V6.682
-</font>
-</figcaption>
-</figure>
-</center>
+DOI:10.7763/IJESD.2015.V6.682*
 
 ## Flow Through a Porous Medium
 
@@ -53,18 +45,10 @@ The macroscopic flow equations are obtained
 by averaging the hydrodynamic equations on a volume,
 containing many pores.
 
-<center> 
-<figure style='padding: 30px'>
-<img style='height: 90%; width: 90%; object-fit: contain' src="/images/porous-medium.png" atl="Porous medium.">
-<figcaption>
-<font size="-1">
-An Overview of Oil Production Stages: Enhanced Oil Recovery Techniques and Nitrogen Injection
+![large](/images/porous-medium.png)
+*An Overview of Oil Production Stages: Enhanced Oil Recovery Techniques and Nitrogen Injection
 Convection in Porous Media. 
-Authors: Donald A. Nield Adrian Bejan
-</font>
-</figcaption>
-</figure>
-</center>
+Authors: Donald A. Nield Adrian Bejan*
 
 The filtration velocity $\vec v$ is defined as the average fluid
 velocity over a volume containing both solid and fluid material.
@@ -107,11 +91,7 @@ $K$ - permeability coefficient,
 $f_i(s)$ - relative phase permeability, which depends on the
 saturation (as an approximation we take $f_i(s_i) = s_i^2$),
 
-<center> 
-<figure>
-<img style='height: 60%; width: 60%; object-fit: contain' align="center" src="/images/relative-phase-permeability.svg" atl="Relative Phase Permeability.">
-</figure>
-</center>
+![small](/images/relative-phase-permeability.svg)
 
 $\mu$ - dynamic viscosity,
 
@@ -119,25 +99,18 @@ $s$ - saturation.
 
 ## Initial and Boundary Conditions
 
-<center> 
-<figure style='padding: 30px'>
-<img style='height: 60%; width: 60%; object-fit: contain' align="center" src="/images/problem-formulation.svg" atl="Problem Formulation.">
-</figure>
-</center>
+![small](/images/problem-formulation.svg)
 
 ## Methods Used
-
-<center> 
-<figure>
-<img style='height: 30%; width: 30%; object-fit: contain' align="right" src="/images/staggered-grid.png" atl="Staggered Grid.">
-</figure>
-</center>
 
 1. Second order finite difference method for spatial discretization using a staggered grid.
 
 2. Explicit predictor-corrector method according to the Heun scheme  for time integration.
 
 3. Newton-Raphson method for finding pressure and gas saturation.
+
+![small](/images/staggered-grid.png)
+*Staggered Grid.*
 
 ## Algorithm
 
@@ -158,22 +131,10 @@ $$P = P_1 \left( \frac{\rho_1}{s} \right)
 
 ## Results
 
-<center> 
-<figure style='padding: 10px'>
-<img style='height: 100%; width: 100%; object-fit: contain' src="/images/2phase-filtration-density.png" atl="Densities and Velocity field.">
-<figcaption>
-<font size="-1">
-Densities and Velocity field after 500s. The first image corresponds to Nitrogen and the second to Pentane.
-</font>
-</figcaption>
-</figure>
-</center>
+![huge](/images/2phase-filtration-density.png)
+*Densities and Velocity field after 500s. The first image corresponds to Nitrogen and the second to Pentane.*
 
-<center> 
-<figure style='padding: 30px'>
-<img style='height: 100%; width: 100%; object-fit: contain' src="/images/fluxes.gif" atl="Fluxes through the exit.">
-</figure>
-</center>
+![huge](/images/fluxes.gif)
 
 ## What I've Learned So Far
 
@@ -195,12 +156,7 @@ functors, modules.
 
 - Oscillating error resulting from the central difference scheme.
 
-<center> 
-<figure>
-<img style='height: 100%; width: 100%; object-fit: contain' src="/images/ideal-gas-filtration.png" atl="Ideas gas filtration: oscillating error because of central difference.">
-  <figcaption></figcaption>
-</figure>
-</center>
+![large](/images/ideal-gas-filtration.png)
 
 - Changing the BC in the code was inconvenient, so
 we had to automatize the process by creating a structure
@@ -211,12 +167,7 @@ on the inside was causing problems, so we had to
 increment $P_{inlet}(t)$ linearly with time
  from $P_0$ to $P_{in}$.
 
-<center> 
-<figure>
-<img style='height: 100%; width: 100%; object-fit: contain' src="/images/two-phase-densities-error.png" atl="Error due to sharp step in pressure.">
-  <figcaption></figcaption>
-</figure>
-</center>
+![huge](/images/two-phase-densities-error.png)
 
 - Switched to upwind scheme to ensure the conservation of mass.
 

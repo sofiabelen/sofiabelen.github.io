@@ -8,7 +8,7 @@ description: "Tutorial on how I use anki and spaced repetition to study foreign 
 thumbnail: rabbit-anki.png
 ---
 
-<center> <img style='height: 100%; width: 100%; object-fit: contain' src="/images/rabbit-anki.png" atl="Anki Flashcard"> </center>
+![large](/images/rabbit-anki.png)
 
 I learned English through immersion, as a kid, and some German later on, going to the Goethe Institute for 4 years. I'm currently studying physics in a Russian university, in Russian.
 
@@ -16,19 +16,19 @@ By no means do I consider myself a polyglot or something like that, considering 
 
 ## Spaced Repetition
 
-<center> <img style='height: 100%; width: 100%; object-fit: contain' src="/images/spaced-rep.png" atl="Spaced Repetition"> </center>
+![huge](/images/spaced-rep.png)
 
 Spaced repetition is basically flash cards + an algorithm that decides when you should review a certain card. I personally use anki, but there are alternatives. You can even implement this with physical cards, but I won't go into that. Anki works great because you can use it on your computer and cellphone, review cards when you have to wait in line or are on the bus. This works fine, but what I actually do is something like spaced repetition on steroids. This brings me to my second point:
 
 ## Actually writing the words by hand
 
-<center> <img style='height: 50%; width: 50%; object-fit: contain' src="/images/russian-cursive.jpg" atl="Russian Cursive"> </center>
+![small](/images/russian-cursive.jpg)
 
 This is probably the most important part of my learning routine. It'd be impossible for me to remember how to spell, let's say, *здравствуйтие*, without first writing it a few million times. Every time I'm reviewing a card, instead of just saying the word on my head, I test myself by actually writing the words down, making sure I'm spelling it correctly. When I'm feeling adventurous, I try to build a sentence with it, or look it up on sites like [reverso.context](https://context.reverso.net/translation/) if I'm not sure how to use it in a sentence. This way I make sure that I'm not only learning vocab, but I also know how to use it. Which brings me to:
 
 ## Seeing the word in context
 
-<center> <img style='height: 90%; width: 90%; object-fit: contain' src="/images/context.png" atl="Seeing the word in context"> </center>
+![large](/images/context.png)
 
 It's probably happened to you, that you remember a word because you heard it for the first time in a particular situation. Our brains are wired to remember something if it's associated with a strong emotion, since it might be vital for our survival later on. So, our job is to create as many of these powerful memories as we can. How we do that is by exposing ourselves to the target language, by reading, watching videos, or even better, interacting with others.
 

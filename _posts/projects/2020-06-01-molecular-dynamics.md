@@ -49,10 +49,24 @@ $$
 
 #### 1. Einstein's Relation
 
-![medium](/images/mean-squared-displacement.png)
-*Mean squared displacement.
+$$
+D = \frac{1}{2 N d}
+\frac{1}{t}
+\left\langle
+\sum_i \left[
+\vec{r}_i(t_0 + t) - \vec{r}_i(t_0)
+\right]^2
+\right\rangle
+$$
+where $d = 3$ - dimensions, $N$ - number of particles,
+$\vec{r}_i(t)$ - coordinate vector of the $i$-th particle
+at time $t$.
 
-The x axis corresponds to time, and the y axis to the
+![medium](/images/mean-squared-displacement.png)
+
+*Mean squared displacement.*
+
+*The x axis corresponds to time, and the y axis to the
 mean squared displacement, both in Lennard-Jones units.
 In green: linear asymptote, and in blue: parabolic
 asymptote.*
@@ -122,19 +136,11 @@ D = \frac{1}{3} \langle v \rangle \ell
 $$
 where $\ell$ is the mean free path.
 
-<center> 
-<figure style='padding: 30px'>
-<img style='height: 90%; width: 90%; object-fit: contain' src="/images/md-diff-log.png">
-<figcaption>
-<font size="-1">
-Mean free path in relation to time in double logarithmic
+![medium](/images/md-diff-log.png)
+*Mean free path in relation to time in double logarithmic
 scale. We extrapolate the linear and the parabolic
 segments and their intersection is an estimate
-for the mean free time.
-</font>
-</figcaption>
-</figure>
-</center>
+for the mean free time.*
 
 ## Results
 

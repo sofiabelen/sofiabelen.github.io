@@ -14,17 +14,11 @@ I developed dermatitis and acid reflux because of stress.
 Everyone was on the same boat. In the end, the dropout rate after
 the first year was at about fifty percent.
 
-<center> 
-<figure style='padding: 30px'>
-<img style='height: 80%; width: 80%; object-fit: contain' src="{{ site.baseurl }}/images/phys-film.jpg" atl="phys-film">
-  <figcaption>
-Photo by Александр Голодков
+![large](/images/phys-film.jpg)
+*Photo by Александр Голодков
 (Alexander Golodkov).
-Follow him 
+Follow him*
 <a href="https://www.instagram.com/agolodkov/?hl=en">@agolodkov</a>.
-</figcaption>
-</figure>
-</center>
 
 Words can't describe the relief I felt after passing my first exam,
 walking through the campus back to my dorm, now suddenly 
@@ -54,11 +48,7 @@ happened during my first winter at phystech.
 
 ## Winter of Contemplation and Choosing my Department or Кафедра
 
-<center> 
-<figure style='padding: 20px'>
-<img style='height: 100%; width: 100%' src="/images/snow.jpg" atl="Lights at MIPT.">
-</figure>
-</center>
+![large](/images/snow.jpg)
 
 The most important decision for a bachelor student at MIPT is the
 choice of your кафедра, or department. You can attend
@@ -101,8 +91,8 @@ paths.
 I have not once regretted my choice.
 
 ## Summer of Recalculating Direction
-<img style='height: 50%; width: 50%; object-fit: contain; padding: 30px' align="right" src="/images/window-vignette.jpg" atl="Reflecting at the window">
 
+![right](/images/window-vignette.jpg)
 Fast forwarding a bit, the summer after the second semester,
 Santiago and I
 didn't get a chance to go home visit our families
@@ -141,7 +131,7 @@ in other areas of my life:
 - Devoted more time to personal projects and figuring out
 what I wanted to pursue.
 
-<img style='height: 50%; width: 50%; object-fit: contain; padding: 30px' align="right" src="/images/yoga.jpg" atl="Reflecting at the window">
+![right](/images/yoga.jpg)
 
 - Went from drinking coffee several times a day to once a week
 or even once a month.
@@ -214,11 +204,9 @@ PhysTech doesn't just give you a strong preparation in the core
 subjects, but it also provides you with opportunities to
 dive deeper on topics that strike passion in you.
 
-<center style='padding 30px'>
-<img style='height: 85%; width: 85%; object-fit: contain'  src="/images/conf.jpg" atl="My report got accepted">
-<figcaption><small>When I got the email confirming that my report
-got accepted for the 64th International MIPT Scientific Conference.</small></figcaption>
-</center>
+![medium](/images/conf.jpg)
+*When I got the email confirming that my report
+got accepted for the 64th International MIPT Scientific Conference.*
 
 <p></p>
 
@@ -243,11 +231,7 @@ getting feedback on my own progress.
 
 ## Some Closing Thoughts and Next Steps
 
-<center> 
-<figure style='padding: 20px'>
-<center> <img style='height: 100%; width: 100%; object-fit: contain' src="/images/train.gif" atl="Train gif."> </center>
-</figure>
-</center>
+![large](/images/train.gif)
 
 In conclusion, during my time at PhysTech I
 have experienced burn out and

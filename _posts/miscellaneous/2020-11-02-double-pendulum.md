@@ -12,21 +12,13 @@ category: miscellaneous
 
 <br/>
 
-<center> 
-<figure style='padding: 0px'>
-<img style='height: 100%; width: 100%; object-fit: contain' src="/images/double-pendulum.gif">
-</figure>
- </center>
+![huge](/images/double-pendulum.gif)
 
 <br/>
 
 ## The Problem
 
-<center> 
-<figure style='padding: 0px'>
-<img style='height: 50%; width: 50%; object-fit: contain' src="/images/double-pendulum-diagram.png">
-</figure>
- </center>
+![small](/images/double-pendulum-diagram.png)
 
 Given the angles φ₁ and φ₂ as functions of time, we show the positions of point A and B, and also the velocity and acceleration vectors at every point in time. Also, we draw the trajectories of the instantaneous centers of zero velocity and acceleration.
 

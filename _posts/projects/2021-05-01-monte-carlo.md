@@ -132,11 +132,7 @@ before the collision. Let's introduce the
 vectors $\mathbf e$ and $\mathbf e$ as unit velocity vectors
 before and after the collision.
 
-<center> 
-<figure style='padding: 20px'>
-<img style='height: 90%; width: 90%; object-fit: contain' src="/images/velocity-vectors.png">
-</figure>
-</center>
+![large](/images/velocity-vectors.png)
 
 In case of a collision of two structureless particles, thanks
 to the conservation of angular momentum, the particles move
@@ -265,17 +261,9 @@ an electron with an atom.
 Also, electron scattering on the atoms is considered
 isotropic.
 
-<center> 
-<figure style='padding: 20px'>
-<img style='height: 90%; width: 90%; object-fit: contain' src="/images/monte-carlo-distro.gif">
-<figcaption>
-<font size="-1">
-The distribution of particle positions at different
-moments in time.
-</font>
-</figcaption>
-</figure>
-</center>
+![large](/images/monte-carlo-distro.gif)
+*The distribution of particle positions at different
+moments in time.*
 
 #### Calculation of the Diffusion Coefficient
 
@@ -285,19 +273,11 @@ $$
 L = \sqrt{6Dt}
 $$
 
-<center> 
-<figure style='padding: 20px'>
-<img style='height: 90%; width: 90%; object-fit: contain' src="/images/monte-carlo-msd.png">
-<figcaption>
-<font size="-1">
-Graphic depiction of the dependence on time of the length
+![large](/images/monte-carlo-msd.png)
+*Graphic depiction of the dependence on time of the length
 $L$ of the electron displacement vector from he starting point
 and the theoretical dependence according to the Einstein
-formula.
-</font>
-</figcaption>
-</figure>
-</center>
+formula.*
 
 #### MSD for Different Differential Electron-Scattering Cross Sections
 
@@ -325,17 +305,9 @@ $$
 We compare the results obtained with the case of
 isotropic scattering.
 
-<center> 
-<figure style='padding: 20px'>
-<img style='height: 90%; width: 90%; object-fit: contain' src="/images/monte-carlo-sigmas.png">
-<figcaption>
-<font size="-1">
-Comparison of different values of the scattering cross
-section.
-</font>
-</figcaption>
-</figure>
-</center>
+![medium](/images/monte-carlo-sigmas.png)
+*Comparison of different values of the scattering cross
+section.*
 
 #### Error Analysis
 
@@ -343,13 +315,7 @@ We verify that the error of the method is
 $ \propto \frac{1}{\sqrt{K}}$, where $K$ is the number of
 electrons.
 
-<center> 
-<figure style='padding: 20px'>
-<img style='height: 90%; width: 90%; object-fit: contain' src="/images/monte-carlo-error.png">
-<figcaption>
-</figcaption>
-</figure>
-</center>
+![large](/images/monte-carlo-error.png)
 
 ## Literature
 
