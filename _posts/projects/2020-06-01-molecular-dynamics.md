@@ -12,11 +12,7 @@ Check out the [git repo!](https://github.com/sofiabelen/Molecular-Dynamics-Lenna
 
 ## Molecular Dynamics Method and the Lennard-Jones Potential
 
-<center> 
-<figure style='padding: 30px'>
-<img style='height: 90%; width: 90%; object-fit: contain' src="/images/molecular-dynamics-simulation-optimized.gif">
-</figure>
-</center>
+![huge](/images/molecular-dynamics-simulation-optimized.gif)
 
 This is a method in which the evolution with time of a
 system of interacting particles is modelled by integrating
@@ -42,51 +38,24 @@ $$
 f = - \nabla U(r)
 $$
 
-<center>
-<img style='height: 50%; width: 50%; object-fit: contain; padding: 30px' src="/images/lennard-jones-potential.png">
-</center>
+![small](/images/lennard-jones-potential.png)
 
 ## Maxwell Distribution of Velocities' Projections
 
-<center> 
-<figure style='padding: 30px'>
-<img style='height: 90%; width: 90%; object-fit: contain' src="/images/velocities-md.svg">
-<figcaption>
-Distribution of velocities' projections in logarithmic scale. The deviation from a straight line at the end is due to the fact that our system has only a finite number of particles, and the Maxwell's distribution is true for a infinite amount.
-</figcaption>
-</figure>
-</center>
+![medium](/images/velocities-md.svg)
+*Distribution of velocities' projections in logarithmic scale. The deviation from a straight line at the end is due to the fact that our system has only a finite number of particles, and the Maxwell's distribution is true for a infinite amount.*
 
 ## 2 Methods for Calculating the Self-Diffusion Coefficient 
 
 #### 1. Einstein's Relation
 
-$$
-D = \frac{1}{2Nd}
-\frac{1}{t}
-\left\langle
-\sum_i \left[
-\vec{r}_i(t_0 + t) - \vec{r}_i(t_0)
-\right]^2
-\right\rangle
-$$
-where $d = 3$ - dimensions, $N$ - number of particles,
-$\vec{r}_i(t)$ - coordinate vector of the $i$-th particle
-at time $t$.
-
-<center> 
-<figure style='padding: 30px'>
-<img style='height: 90%; width: 90%; object-fit: contain' src="/images/mean-squared-displacement.png">
-<figcaption>
-Mean squared displacement.
+![medium](/images/mean-squared-displacement.png)
+*Mean squared displacement.
 
 The x axis corresponds to time, and the y axis to the
 mean squared displacement, both in Lennard-Jones units.
 In green: linear asymptote, and in blue: parabolic
-asymptote.
-</figcaption>
-</figure>
-</center>
+asymptote.*
 
 <table class="tablelines">
   <thead>
