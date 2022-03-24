@@ -71,24 +71,7 @@ mean squared displacement, both in Lennard-Jones units.
 In green: linear asymptote, and in blue: parabolic
 asymptote.*
 
-<table class="tablelines">
-  <thead>
-    <tr>
-      <th>1</th>
-      <th>free movement, parabolic segment</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>2</td>
-      <td>intermediate segment</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>linear segment</td>
-    </tr>
-  </tbody>
-</table>
+![huge](/images/md-table.png)
 
 By taking into account only the linear segment, and
 with the help of the least squares method, we fit it to
@@ -144,27 +127,7 @@ for the mean free time.*
 
 ## Results
 
-<table class="tablelines">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Method 1</th>
-      <th>Method 2</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Self-Diffusion Coefficient $D$</td>
-      <td>0.89</td>
-      <td>1.51</td>
-    </tr>
-    <tr>
-      <td>Mean Free Time $\tau$</td>
-      <td>1.68</td>
-      <td>0.83</td>
-    </tr>
-  </tbody>
-</table>
+![huge](/images/md-results.png)
 
 ## Conclusion
 
