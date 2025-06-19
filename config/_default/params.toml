@@ -1,5 +1,5 @@
 # Pages placed under these sections will be shown on homepage and archive page.
-mainSections = ["post"]
+mainSections = ["post", "projects"]
 # Output page's full content in RSS.
 rssFullContent = true
 favicon = "/favicon.png"

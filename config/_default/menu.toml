@@ -1,11 +1,27 @@
 # Configure main menu and social menu
-#[[main]]
-#identifier = "home"
-#name = "Home"
-#url = "/"
-#[main.params]
-#icon = "home"
-#newtab = true
+# [[main]]
+# identifier = "home"
+# name = "Home"
+# url = "/"
+# [main.params]
+# icon = "home"
+# newtab = false
+# 
+#  [[main]]
+#  identifier = "blog"
+#  name = "Blog"
+#  url = "/blog"
+#  [main.params]
+#  icon = "home"
+#  newtab = false
+# 
+#  [[main]]
+#  identifier = "projects"
+#  name = "Projects"
+#  url = "/projects"
+#  [main.params]
+#  icon = "home"
+#  newtab = false
 
 [[social]]
 identifier = "github"

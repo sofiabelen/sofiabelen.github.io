@@ -1,0 +1,59 @@
+---
+layout: project
+title: Personal i3 Window Manager Config
+image: dotfiles.png
+thumbnail: dotfiles.png
+preview: ""
+description: ""
+categories:
+    - workflow
+tags:
+    - linux
+    - dotfiles
+    - configs
+featured: false
+---
+
+> [Workflow](#workflow)
+> 
+> [Blur and Nord Colorscheme](#blur-and-nord-colorscheme)
+> 
+> [Nord Colorscheme](#nord-colorscheme)
+> 
+> [Dracula Colorscheme](#dracula-colorscheme)
+
+## Workflow
+
+* Distro: Arch Linux
+* Window Manager: i3-gaps
+* Terminal: Alacritty
+* Status bar: Polybar
+* Pdf-viewer: Zathura
+* File Manager: Vifm
+* Anki for studying
+* Vim Plugin for Latex: VimTex
+
+Check out my [dotfiles](https://github.com/sofiabelen/dotfiles).
+
+## Blur and Nord Colorscheme
+
+![huge](/images/dotfiles1.png)
+
+![huge](/images/dotfiles2.png)
+
+---
+## Nord Colorscheme
+
+![huge](/images/dotfiles3.png)
+
+![huge](/images/dotfiles4.png)
+
+---
+## Dracula Colorscheme
+
+![huge](/images/dotfiles5.png)
+
+![huge](/images/dotfiles6.png)
+
+![huge](/images/dotfiles7.png)
+
