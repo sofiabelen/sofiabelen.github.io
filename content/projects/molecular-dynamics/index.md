@@ -2,7 +2,6 @@
 title: Molecular Dynamics Simulation using Lennard-Jones Potential
 thumbnail: cover.jpg
 thumbnail: molecular-dynamics-simulation-optimized.gif
-image: molecular-dynamics-simulation-optimized.gif
 hideCover: false
 preview: "Molecular Dynamics Simulation using Lennard Jones Potential. Simulation code in C++, analysis in Python."
 description: "Molecular Dynamics Simulation using Lennard Jones Potential. Simulation code in C++, analysis in Python."
@@ -19,7 +18,7 @@ Check out the [git repo!](https://github.com/sofiabelen/Molecular-Dynamics-Lenna
 
 ## Molecular Dynamics Method and the Lennard-Jones Potential
 
-![huge](/images/molecular-dynamics-simulation-optimized.gif)
+<img style="height: 100%; width: 100%; object-fit: contain;" src="molecular-dynamics-simulation-optimized.gif" alt="">
 
 This is a method in which the evolution with time of a
 system of interacting particles is modelled by integrating
@@ -45,16 +44,20 @@ $$
 f = - \nabla U(r)
 $$
 
-![small](/images/lennard-jones-potential.png)
+<img style="height: 100%; width: 100%; object-fit: contain;" src="lennard-jones-potential.png" alt="">
 
 ## Maxwell Distribution of Velocities' Projections
 
-![medium](/images/velocities-md.svg)
-*Distribution of velocities' projections in logarithmic scale. The deviation from a straight line at the end is due to the fact that our system has only a finite number of particles, and the Maxwell's distribution is true for a infinite amount.*
+<figure>
+  <img style="height: 90%; width: 90%; object-fit: contain;" src="velocities-md.svg" alt="">
+  <figcaption style="text-align: center;">
+Distribution of velocities' projections in logarithmic scale. The deviation from a straight line at the end is due to the fact that our system has only a finite number of particles, and the Maxwell's distribution is true for a infinite amount.
+  </figcaption>
+</figure>
 
 ## 2 Methods for Calculating the Self-Diffusion Coefficient 
 
-#### 1. Einstein's Relation
+### 1. Einstein's Relation
 
 $$
 D = \frac{1}{2 N d}
@@ -69,16 +72,19 @@ where $d = 3$ - dimensions, $N$ - number of particles,
 $\vec{r}_i(t)$ - coordinate vector of the $i$-th particle
 at time $t$.
 
-![medium](/images/mean-squared-displacement.png)
+<figure>
+  <img style="height: 90%; width: 90%; object-fit: contain;" src="mean-squared-displacement.png" alt="">
+  <figcaption style="text-align: center;">
+Mean squared displacement.
 
-*Mean squared displacement.*
-
-*The x axis corresponds to time, and the y axis to the
+The x axis corresponds to time, and the y axis to the
 mean squared displacement, both in Lennard-Jones units.
 In green: linear asymptote, and in blue: parabolic
-asymptote.*
+asymptote.
+  </figcaption>
+</figure>
 
-![huge](/images/md-table.png)
+<img style="height: 100%; width: 100%; object-fit: contain;" src="md-table.png" alt="">
 
 By taking into account only the linear segment, and
 with the help of the least squares method, we fit it to
@@ -127,14 +133,19 @@ $$
 where $\ell$ is the mean free path.
 
 ![medium](/images/md-diff-log.png)
-*Mean free path in relation to time in double logarithmic
+<figure>
+  <img style="height: 90%; width: 90%; object-fit: contain;" src="md-diff-log.png" alt="">
+  <figcaption style="text-align: center;">
+Mean free path in relation to time in double logarithmic
 scale. We extrapolate the linear and the parabolic
 segments and their intersection is an estimate
-for the mean free time.*
+for the mean free time.
+  </figcaption>
+</figure>
 
 ## Results
 
-![huge](/images/md-results.png)
+<img style="height: 100%; width: 100%; object-fit: contain;" src="md-results.png" alt="">
 
 ## Conclusion
 

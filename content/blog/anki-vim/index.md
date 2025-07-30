@@ -19,8 +19,6 @@ categories:
 featured: false
 ---
 
-![medium](/images/Screenshot-Anki2.png)
-
 &nbsp;  
 ## 1. Installation
 
@@ -44,13 +42,13 @@ anki-vim DECKNAME --deckpath PATH/TO/SAVE/YOUR/DECK
 
 You should see this:
 
-![small](/images/anki-vim.png)
+![](anki-vim.png)
 
 You are now ready to start writing the content of your card! To save and finish editing the current card press *:x* or *:wq*. Keep adding as many cards as you want, and when you're done, leave the card blank and press *:q* to exit.
 
 Import to anki by selecting a deck and clicking on *Import File*, on the bottom of the screen. Select the *'raw_cards.txt'* file saved in the path that you chose earlier. Check the box *Allow HTML in field* and choose the option *Fields separated by: Tab*. Click *Import*, and you should now have your new cards in your deck!
 
-![small](/images/Screenshot-Anki5.png)
+![](Screenshot-Anki5.png)
 
 &nbsp;  
 ## 3. UltiSnips
@@ -69,7 +67,7 @@ The commands above remove the UltiSnips directory, and creates a symbolic link t
 
 ## 4. Images
 
-![medium](/images/Screenshot-Anki3.png)
+![](Screenshot-Anki3.png)
 
 Adding images is pretty straight forward. You have to save the image to *.local/share/Anki2/User\ 1/collection.media/*, and then insert it with an html tag.
 
@@ -108,7 +106,7 @@ Now you can easily paste the image name from your clipboard inside the quotation
 
 ## 5. Mathjax and CSS
 
-![medium](/images/Screenshot-Anki4.png)
+![](Screenshot-Anki4.png)
 
 I use the Dracula color scheme. Go to *Add*, *Cards*, and copy+paste the code bellow on *'Front template'*, *'Styling'*, and *'Back template'* for using mathjax and styling. Feel free to experiment and customize the css in the *'Styling'* section to achieve your desired look.
 
@@ -302,13 +300,6 @@ MathJax.Hub.Config({
 
 </details>
 
-&nbsp;  
-## Short Demo
-<div class="containervid">
-<center> <iframe class="responsive-iframe" width="560" height="315" src="https://www.youtube.com/embed/sX76jKcOPZI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </center>
-</div>
-
-&nbsp;  
 ## Share your own tips!
 
 Thank you for reading so far! I'm always looking for ways to optimize my study workflow, so please share what tools or tricks you use to make studying better. Or share with us your thoughts this vim + anki + mathjax workflow.

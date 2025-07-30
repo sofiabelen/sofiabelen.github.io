@@ -1,7 +1,6 @@
 ---
 layout: project
 title: Double Pendulum in Manim
-image: double-pendulum.gif
 thumbnail: double-pendulum.gif
 preview: "Kinematics Problem: Double Pendulum, given the angles as functions of time, made with 3Blue1Brown's animation engine, Manim."
 description: "Kinematics Problem: Double Pendulum, given the angles as functions of time, made with 3Blue1Brown's animation engine, Manim."
@@ -18,13 +17,13 @@ featured: false
 
 <br/>
 
-![huge](/images/double-pendulum.gif)
+<img style="height: 100%; width: 100%; object-fit: contain;" src="double-pendulum.gif" alt="">
 
 <br/>
 
 ## The Problem
 
-![small](/images/double-pendulum-diagram.png)
+<img style="height: 45%; width: 45%; object-fit: contain; margin: 10px;" align="right"  src="double-pendulum-diagram.png" alt="">
 
 Given the angles φ₁ and φ₂ as functions of time, we show the positions of point A and B, and also the velocity and acceleration vectors at every point in time. Also, we draw the trajectories of the instantaneous centers of zero velocity and acceleration.
 
@@ -32,7 +31,7 @@ To do this, we use the python library [SymPy](https://www.sympy.org/en/index.htm
 
 SymPy also comes in handy to output our functions as LaTeX so we can show it on the demonstration.
 
-## How to run it
+## How to Run It
 
 First you'll need to have manim installed. You can clone into the repository:
 

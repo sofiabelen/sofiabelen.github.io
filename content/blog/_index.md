@@ -1,6 +1,6 @@
 ---
 title: "Blog"
-layout: "blog"
+layout: "articledisplay"
 menu:
     main:
         weight: 3

@@ -1,7 +1,6 @@
 ---
 layout: project
 title: "Calculation of Density in the Smoothed-Particle Hydrodynamics Method Using MPI and OpenACC"
-image: sph.gif
 preview: ""
 thumbnail: sph.gif
 usemathjax: true
@@ -22,9 +21,13 @@ Check out the [git repo!](https://github.com/sofiabelen/sph-parallel)
 
 ## Calculation of Density in the SPH Method
 
-![medium](/images/sph.gif)
-*Comparison of the density distribution for different values
-of the $\alpha$ parameter.*
+<figure>
+  <img style="height: 90%; width: 90%; object-fit: contain;" src="sph.gif" alt="">
+  <figcaption style="text-align: center;">
+Comparison of the density distribution for different values
+of the $\alpha$ parameter.
+  </figcaption>
+</figure>
 
 Density formula:
 
@@ -144,52 +147,63 @@ $$S(N, P) = \frac{T_{arithm}(N, P)}{T_{paral}(N, P)}$$
 
 $$E(N, P) = \frac{S(N, P)}{P}$$
 
-![medium](/images/sph-table.png)
-*Constants found through fitting.*
-
+<figure>
+  <img style="height: 90%; width: 90%; object-fit: contain;" src="sph-table.png" alt="">
+  <figcaption style="text-align: center;">
+    Constants found through fitting.
+  </figcaption>
+</figure>
 
 ### Speedup and Efficiency
 
-![medium](/images/sph-speedup-mpi.png)
-*Speedup and efficiency of the MPI
-implementation*
+<figure>
+  <img style="height: 90%; width: 90%; object-fit: contain;" src="sph-speedup-mpi.png" alt="">
+  <figcaption style="text-align: center;">
+    Speedup and efficiency of the MPI implementation.
+  </figcaption>
+</figure>
 
 ## OpenACC Implementation
 
 ### Code
 
 ```
-        #pragma acc data copyin(data[0:N*4]) copyout(grid[0:n*n])
-        {
-            #pragma acc parallel loop
-            for (int i = 0; i < n; i++) {
-                #pragma acc loop
-                for (int j = 0; j < n; j++) {
-                    double xij = -R + (double)i / (double)(n - 1) * 2 * R;
-                    double zij = -R + (double)j / (double)(n - 1) * 2 * R;
+#pragma acc data copyin(data[0:N*4]) copyout(grid[0:n*n])
+{
+    #pragma acc parallel loop
+    for (int i = 0; i < n; i++) {
+        #pragma acc loop
+        for (int j = 0; j < n; j++) {
+            double xij = -R + (double)i / (double)(n - 1) * 2 * R;
+            double zij = -R + (double)j / (double)(n - 1) * 2 * R;
 
-                    double cell_ij = 0;
+            double cell_ij = 0;
 
-                    #pragma acc loop reduction(+:cell_ij)
-                    for (int k = 0; k < N; k++) {
-                        double x       = data[k * 4 + 0];
-                        double y       = data[k * 4 + 1];
-                        double z       = data[k * 4 + 2];
-                        double density = data[k * 4 + 3];
-                        cell_ij += density * exp(-alpha *
-                                sqrt((x - xij) * (x - xij) +
-                                     (z - zij) * (z - zij) +
-                                     (y - 0)   * (y - 0)));
-                    }
-                    grid[i * n + j] = cell_ij;
-                }
+            #pragma acc loop reduction(+:cell_ij)
+            for (int k = 0; k < N; k++) {
+                double x       = data[k * 4 + 0];
+                double y       = data[k * 4 + 1];
+                double z       = data[k * 4 + 2];
+                double density = data[k * 4 + 3];
+                cell_ij += density * exp(-alpha *
+                        sqrt((x - xij) * (x - xij) +
+                             (z - zij) * (z - zij) +
+                             (y - 0)   * (y - 0)));
             }
+            grid[i * n + j] = cell_ij;
         }
+    }
+}
 ```
 
 ### Compiling: Unified Memory
 
-![medium](/images/sph-unified-memory.png)
+<figure>
+  <img style="height: 90%; width: 90%; object-fit: contain;" src="sph-unified-memory.png" alt="">
+  <figcaption style="text-align: center;">
+    Speedup and efficiency of the MPI implementation.
+  </figcaption>
+</figure>
 
     pgc++ -lstdc++ -O2 -Wall -std=c++11 -acc -ta=nvidia:managed -Minfo=accel
 
@@ -204,13 +218,21 @@ on the CPU, and like GPU memory to code running on the GPU.
 
 ## Time Metrics and Comparison between MPI and OpenACC Implementations
 
-![medium](/images/sph-time.png)
-*Dependence of the run time at maximum optimization for different
-values of $n_x \cdot n_z$ for MPI and OpenACC
-implementation.*
+<figure>
+  <img style="height: 90%; width: 90%; object-fit: contain;" src="sph-time.png" alt="">
+  <figcaption style="text-align: center;">
+    Dependence of the run time at maximum optimization for different
+    values of $n_x \cdot n_z$ for MPI and OpenACC
+    implementation.
+  </figcaption>
+</figure>
 
-![medium](/images/sph-small-times.png)
-*Dependence of the run time at maximum optimization for small values of
-$n_x \cdot n_z$ for MPI and OpenACC
-implementation.*
+<figure>
+  <img style="height: 90%; width: 90%; object-fit: contain;" src="sph-small-times.png" alt="">
+  <figcaption style="text-align: center;">
+    Dependence of the run time at maximum optimization for small values of
+    $n_x \cdot n_z$ for MPI and OpenACC
+    implementation.
+  </figcaption>
+</figure>
 

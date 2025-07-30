@@ -1,7 +1,6 @@
 ---
 layout: project
 title: AnkiVim
-image: ankivim.png
 thumbnail: ankivim.gif
 preview: "Fork of existing project. Use vim or your favorite editor to write anki cards quickly in plain text or latex."
 description: "Fork of existing project. Use vim or your favorite editor to write anki cards quickly in plain text or latex."
@@ -15,7 +14,7 @@ categories:
 featured: false
 ---
 
-![huge](/images/ankivim.gif)
+<img style="height: 90%; width: 90%; object-fit: contain;" src="ankivim.gif" alt="">
 
 <br/>
 

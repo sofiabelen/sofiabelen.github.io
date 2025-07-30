@@ -43,10 +43,14 @@ For now, we assume that the components do not mix, but it
 is in our future perspective to model the balance of phases,
 or, in other words, a multiphase flow problem.
 
-![large](/images/enhanced-oil-recovery.png)
-*An Overview of Oil Production Stages: Enhanced Oil Recovery Techniques and Nitrogen Injection
-January 2015. International Journal of Environmental Science and Development 6(9):693-701
-DOI:10.7763/IJESD.2015.V6.682*
+<figure>
+<img style='height: 85%; width: 85%; object-fit: contain' src="enhanced-oil-recovery.png" atl="">
+<figcaption>
+An Overview of Oil Production Stages: Enhanced Oil Recovery Techniques and Nitrogen Injection January 2015.
+International Journal of Environmental Science and Development
+6(9):693-701 DOI:10.7763/IJESD.2015.V6.682
+</figcaption>
+</figure>
 
 ## Flow Through a Porous Medium
 
@@ -54,10 +58,14 @@ The macroscopic flow equations are obtained
 by averaging the hydrodynamic equations on a volume,
 containing many pores.
 
-![large](/images/porous-medium.png)
-*An Overview of Oil Production Stages: Enhanced Oil Recovery Techniques and Nitrogen Injection
+<figure>
+<img style='height: 85%; width: 85%; object-fit: contain' src="porous-medium.png" atl="">
+<figcaption>
+An Overview of Oil Production Stages: Enhanced Oil Recovery Techniques and Nitrogen Injection
 Convection in Porous Media. 
-Authors: Donald A. Nield Adrian Bejan*
+Authors: Donald A. Nield Adrian Bejan
+</figcaption>
+</figure>
 
 The filtration velocity $\vec v$ is defined as the average fluid
 velocity over a volume containing both solid and fluid material.
@@ -100,7 +108,7 @@ $K$ - permeability coefficient,
 $f_i(s)$ - relative phase permeability, which depends on the
 saturation (as an approximation we take $f_i(s_i) = s_i^2$),
 
-![small](/images/relative-phase-permeability.svg)
+<img style='height: 85%; width: 85%; object-fit: contain' src="relative-phase-permeability.svg" atl="">
 
 $\mu$ - dynamic viscosity,
 
@@ -108,7 +116,7 @@ $s$ - saturation.
 
 ## Initial and Boundary Conditions
 
-![small](/images/problem-formulation.svg)
+<img style='height: 85%; width: 85%; object-fit: contain' src="problem-formulation.svg" atl="">
 
 ## Methods Used
 
@@ -118,8 +126,12 @@ $s$ - saturation.
 
 3. Newton-Raphson method for finding pressure and gas saturation.
 
-![small](/images/staggered-grid.png)
-*Staggered Grid.*
+<figure>
+<img style='height: 85%; width: 85%; object-fit: contain' src="staggered-grid.png" atl="">
+<figcaption>
+Staggered Grid.
+</figcaption>
+</figure>
 
 ## Algorithm
 
@@ -140,10 +152,14 @@ $$P = P_1 \left( \frac{\rho_1}{s} \right)
 
 ## Results
 
-![huge](/images/2phase-filtration-density.png)
-*Densities and Velocity field after 500s. The first image corresponds to Nitrogen and the second to Pentane.*
+<figure>
+<img style='height: 100%; width: 100%; object-fit: contain' src="2phase-filtration-density.png" atl="">
+<figcaption>
+Densities and Velocity field after 500s. The first image corresponds to Nitrogen and the second to Pentane.
+</figcaption>
+</figure>
 
-![huge](/images/fluxes.gif)
+<img style='height: 100%; width: 100%; object-fit: contain' src="fluxes.gif" atl="">
 
 ## What I've Learned So Far
 
@@ -165,7 +181,7 @@ functors, modules.
 
 - Oscillating error resulting from the central difference scheme.
 
-![large](/images/ideal-gas-filtration.png)
+<img style='height: 90%; width: 90%; object-fit: contain' src="ideal-gas-filtration.png" atl="">
 
 - Changing the BC in the code was inconvenient, so
 we had to automatize the process by creating a structure
@@ -176,7 +192,7 @@ on the inside was causing problems, so we had to
 increment $P_{inlet}(t)$ linearly with time
  from $P_0$ to $P_{in}$.
 
-![huge](/images/two-phase-densities-error.png)
+<img style='height: 90%; width: 90%; object-fit: contain' src="two-phase-densities-error.png" atl="">
 
 - Switched to upwind scheme to ensure the conservation of mass.
 

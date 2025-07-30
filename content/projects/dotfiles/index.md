@@ -1,7 +1,6 @@
 ---
 layout: project
 title: Personal i3 Window Manager Config
-image: dotfiles.png
 thumbnail: dotfiles.png
 preview: ""
 description: ""
@@ -13,14 +12,6 @@ tags:
     - configs
 featured: false
 ---
-
-> [Workflow](#workflow)
-> 
-> [Blur and Nord Colorscheme](#blur-and-nord-colorscheme)
-> 
-> [Nord Colorscheme](#nord-colorscheme)
-> 
-> [Dracula Colorscheme](#dracula-colorscheme)
 
 ## Workflow
 
@@ -37,23 +28,23 @@ Check out my [dotfiles](https://github.com/sofiabelen/dotfiles).
 
 ## Blur and Nord Colorscheme
 
-![huge](/images/dotfiles1.png)
+<img style="height: 100%; width: 100%; object-fit: contain;" src="dotfiles1.png" alt="">
 
-![huge](/images/dotfiles2.png)
+<img style="height: 100%; width: 100%; object-fit: contain;" src="dotfiles2.png" alt="">
 
 ---
 ## Nord Colorscheme
 
-![huge](/images/dotfiles3.png)
+<img style="height: 100%; width: 100%; object-fit: contain;" src="dotfiles3.png" alt="">
 
-![huge](/images/dotfiles4.png)
+<img style="height: 100%; width: 100%; object-fit: contain;" src="dotfiles4.png" alt="">
 
 ---
 ## Dracula Colorscheme
 
-![huge](/images/dotfiles5.png)
+<img style="height: 100%; width: 100%; object-fit: contain;" src="dotfiles5.png" alt="">
 
-![huge](/images/dotfiles6.png)
+<img style="height: 100%; width: 100%; object-fit: contain;" src="dotfiles6.png" alt="">
 
-![huge](/images/dotfiles7.png)
+<img style="height: 100%; width: 100%; object-fit: contain;" src="dotfiles7.png" alt="">
 

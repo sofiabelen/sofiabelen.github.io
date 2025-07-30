@@ -1,6 +1,5 @@
 ---
 title: Monte Carlo Simulation of Electrons Diffusion in a Noble Gas
-image: monte-carlo-distro.gif
 thumbnail: monte-carlo-distro.gif
 preview: "Monte Carlo simulation of electrons diffusion in a noble gas under the assumption of isotropic elastic scattering of electrons on atoms."
 description: "Monte Carlo simulation of electrons diffusion in a noble gas under the assumption of isotropic elastic scattering of electrons on atoms."
@@ -138,7 +137,7 @@ before the collision. Let's introduce the
 vectors $\mathbf e$ and $\mathbf e$ as unit velocity vectors
 before and after the collision.
 
-![large](/images/velocity-vectors.png)
+![large](velocity-vectors.png)
 
 In case of a collision of two structureless particles, thanks
 to the conservation of angular momentum, the particles move
@@ -254,7 +253,7 @@ $$
 
 ## Results
 
-#### 1. Distribution Function
+### Distribution Function
 
 The simulated process is the electron diffusion from a point
 source in a noble gas characterized by the electron mean
@@ -267,11 +266,14 @@ an electron with an atom.
 Also, electron scattering on the atoms is considered
 isotropic.
 
-![large](/images/monte-carlo-distro.gif)
-*The distribution of particle positions at different
-moments in time.*
+<figure>
+<img style='height: 85%; width: 85%; object-fit: contain' src="monte-carlo-distro.gif" atl="">
+  <figcaption>
+    The distribution of particle positions at different moments in time.
+  </figcaption>
+</figure>
 
-#### Calculation of the Diffusion Coefficient
+### Calculation of the Diffusion Coefficient
 
 We verify the Stokes-Einstein law for diffusion.
 
@@ -279,13 +281,17 @@ $$
 L = \sqrt{6Dt}
 $$
 
-![large](/images/monte-carlo-msd.png)
-*Graphic depiction of the dependence on time of the length
+<figure>
+<img style='height: 85%; width: 85%; object-fit: contain' src="monte-carlo-msd.png" atl="">
+  <figcaption>
+Graphic depiction of the dependence on time of the length
 $L$ of the electron displacement vector from he starting point
 and the theoretical dependence according to the Einstein
-formula.*
+formula.
+  </figcaption>
+</figure>
 
-#### MSD for Different Differential Electron-Scattering Cross Sections
+### MSD for Different Differential Electron-Scattering Cross Sections
 
 We calculate the mean square displacement for 
 different values of differential
@@ -311,17 +317,21 @@ $$
 We compare the results obtained with the case of
 isotropic scattering.
 
-![medium](/images/monte-carlo-sigmas.png)
-*Comparison of different values of the scattering cross
-section.*
+<figure>
+<img style='height: 85%; width: 85%; object-fit: contain' src="monte-carlo-sigmas.png" atl="">
+  <figcaption>
+Comparison of different values of the scattering cross
+section.
+  </figcaption>
+</figure>
 
-#### Error Analysis
+### Error Analysis
 
 We verify that the error of the method is 
 $ \propto \frac{1}{\sqrt{K}}$, where $K$ is the number of
 electrons.
 
-![large](/images/monte-carlo-error.png)
+<img style='height: 85%; width: 85%; object-fit: contain' src="monte-carlo-error.png" atl="">
 
 ## Literature
 

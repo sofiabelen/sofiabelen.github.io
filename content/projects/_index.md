@@ -1,6 +1,6 @@
 ---
 title: "Projects"
-layout: "projects"
+layout: "articledisplay"
 menu:
     main:
         weight: 2

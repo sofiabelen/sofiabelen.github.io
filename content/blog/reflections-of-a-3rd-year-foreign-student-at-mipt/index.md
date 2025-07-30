@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Reflections of a 3rd Year Foreign Student at MIPT
-image: phys-film.jpg
 thumbnail: phys-film.jpg
 preview: "During the first 5 seconds, I had already decided this is where I wanted to be. It was the atmosphere that I fell in love with."
 date: 2021-12-22
@@ -20,11 +19,13 @@ I developed dermatitis and acid reflux because of stress.
 Everyone was on the same boat. In the end, the dropout rate after
 the first year was at about fifty percent.
 
-![large](/images/phys-film.jpg)
-*Photo by Александр Голодков
-(Alexander Golodkov).
-Follow him*
+<figure style="text-align: center;">
+<img src="phys-film.jpg" alt="Phystech student, tired." >
+  <figcaption>
+    Photo by Александр Голодков (Alexander Golodkov). Follow him
 <a href="https://www.instagram.com/agolodkov/?hl=en">@agolodkov</a>.
+  </figcaption>
+</figure>
 
 Words can't describe the relief I felt after passing my first exam,
 walking through the campus back to my dorm, now suddenly 
@@ -52,9 +53,9 @@ on the homemade diy labs that our dear general physics department
 treated us with... Nevertheless, not all was gloomy thanks to what
 happened during my first winter at phystech.
 
-## Winter of Contemplation and Choosing my Department or Кафедра
+## Winter of Contemplation and Choosing my Department (Кафедра)
 
-![large](/images/snow.jpg)
+![](snow.jpg)
 
 The most important decision for a bachelor student at MIPT is the
 choice of your кафедра, or department. You can attend
@@ -98,7 +99,7 @@ I have not once regretted my choice.
 
 ## Summer of Recalculating Direction
 
-![right](/images/window-vignette.jpg)
+<img src="window-vignette.jpg" alt="right" style="float: right; margin: 0 0 1em 1em; width: 300px;">
 Fast forwarding a bit, the summer after the second semester,
 Santiago and I
 didn't get a chance to go home visit our families
@@ -137,7 +138,7 @@ in other areas of my life:
 - Devoted more time to personal projects and figuring out
 what I wanted to pursue.
 
-![right](/images/yoga.jpg)
+<img src="yoga.jpg" alt="right" style="float: right; margin: 0 0 1em 1em; width: 300px;">
 
 - Went from drinking coffee several times a day to once a week
 or even once a month.
@@ -210,11 +211,7 @@ PhysTech doesn't just give you a strong preparation in the core
 subjects, but it also provides you with opportunities to
 dive deeper on topics that strike passion in you.
 
-![medium](/images/conf.jpg)
-*When I got the email confirming that my report
-got accepted for the 64th International MIPT Scientific Conference.*
-
-<p></p>
+{{< figure src="conf.jpg" alt="" caption="When I got the email confirming that my report got accepted for the 64th International MIPT Scientific Conference." >}}
 
 The highlight of the fourth semester was a post in Reddit
 where I asked about job perspectives in Germany in the field
@@ -237,7 +234,7 @@ getting feedback on my own progress.
 
 ## Some Closing Thoughts and Next Steps
 
-![large](/images/train.gif)
+{{< figure src="train.gif" alt="Novodachnaya station" caption="Novodachnaya: the station of Phystech students. It knows our late nights, early mornings, our hopes, our fears." >}}
 
 In conclusion, during my time at PhysTech I
 have experienced burn out and
