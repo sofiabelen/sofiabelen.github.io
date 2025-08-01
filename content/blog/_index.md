@@ -5,5 +5,5 @@ menu:
     main:
         weight: 3
         params:
-            icon: diary
+            icon: pencil
 ---
