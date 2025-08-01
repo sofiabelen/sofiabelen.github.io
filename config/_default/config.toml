@@ -27,8 +27,6 @@ pagerSize = 10
         [markup.goldmark.extensions.passthrough.delimiters]
           block = [['\[', '\]'], ['$$', '$$']]
           inline = [['$', '$']]
-[params]
-  math = true
 
 [caches]
   [caches.images]
