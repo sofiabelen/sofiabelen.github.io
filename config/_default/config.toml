@@ -1,5 +1,5 @@
 # Change baseurl before deploy
-baseurl = "https://sofiabelen.github.io"
+baseurl = "https//sofiabelen.github.io"
 languageCode = "en-us"
 title = "Sofía Belén López Vicens"
 
@@ -29,3 +29,7 @@ pagerSize = 10
           inline = [['$', '$']]
 [params]
   math = true
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
