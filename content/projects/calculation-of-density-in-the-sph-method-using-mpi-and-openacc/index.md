@@ -1,7 +1,6 @@
 ---
 layout: project
 title: "Calculation of Density in the Smoothed-Particle Hydrodynamics Method Using MPI and OpenACC"
-preview: ""
 thumbnail: sph.gif
 usemathjax: true
 categories:

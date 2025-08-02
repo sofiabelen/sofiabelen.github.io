@@ -2,7 +2,7 @@
 layout: post
 title: Reflections of a 3rd Year Foreign Student at MIPT
 thumbnail: phys-film.jpg
-preview: "During the first 5 seconds, I had already decided this is where I wanted to be. It was the atmosphere that I fell in love with."
+description: "During the first 5 seconds, I had already decided this is where I wanted to be. It was the atmosphere that I fell in love with."
 date: 2021-12-22
 categories:
     - studying abroad

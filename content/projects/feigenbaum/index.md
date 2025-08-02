@@ -1,7 +1,6 @@
 ---
 layout: project
 title: Feigenbaum Constant
-preview: "Analysis of a nonlinear logistic map. Period-doubling bifurcation points. Transition into chaos. Finding the Feigenbaum constant."
 description: "Analysis of a nonlinear logistic map. Period-doubling bifurcation points. Transition into chaos. Finding the Feigenbaum constant."
 thumbnail: feigenbaum-full.png
 category: miscellaneous

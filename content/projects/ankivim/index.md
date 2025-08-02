@@ -2,7 +2,6 @@
 layout: project
 title: AnkiVim
 thumbnail: ankivim.gif
-preview: "Fork of existing project. Use vim or your favorite editor to write anki cards quickly in plain text or latex."
 description: "Fork of existing project. Use vim or your favorite editor to write anki cards quickly in plain text or latex."
 category: miscellaneous
 tags:

@@ -3,7 +3,7 @@ layout: post
 title: "My Story Coming to Study to Russia all the Way from Argentina"
 image: me-msu.jpg
 thumbnail: me-msu.jpg
-preview: "Only 3 days to pack and say goodbye to our family. After all those months of hard work and not knowing if we'd make it, it was hard to believe we were actually going to Russia."
+description: "Only 3 days to pack and say goodbye to our family. After all those months of hard work and not knowing if we'd make it, it was hard to believe we were actually going to Russia."
 redirect_from:
   - /studyinrussia/Why-Russia.html
 date: 2020-08-07

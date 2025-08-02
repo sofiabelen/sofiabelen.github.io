@@ -3,8 +3,7 @@ layout: project
 title: "Hydrodynamics Solver: Nitrogen and Pentane Filtration"
 image: 2phase-filtration.png
 thumbnail: 2phase-filtration.png
-preview: "First time coding a CFD solver from scratch."
-description: "Hydrodynamics Solver: Ideal Gas and Pentane Filtration."
+description: "First time coding a CFD solver from scratch."
 thumbnail: 2phase-filtration.png
 category: projects
 categories:

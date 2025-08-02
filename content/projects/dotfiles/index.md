@@ -2,8 +2,6 @@
 layout: project
 title: Personal i3 Window Manager Config
 thumbnail: dotfiles.png
-preview: ""
-description: ""
 categories:
     - workflow
 tags:

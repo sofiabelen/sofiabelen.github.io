@@ -3,8 +3,7 @@ layout: post
 title: A Different Approach to Foreign Languages
 image: rabbit-anki.png
 thumbnail: fons-heijnsbroek-MyjkQ-p3zD4-unsplash.jpg
-preview: "Don't rely on your memory for learning vocab. There's an algorithm for that."
-description: "Tutorial on how I use anki and spaced repetition to study foreign languages."
+description: "Don't rely on your memory for learning vocab. There's an algorithm for that."
 date: 2019-06-25
 tags:
     - study

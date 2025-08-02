@@ -3,8 +3,7 @@ title: Molecular Dynamics Simulation using Lennard-Jones Potential
 thumbnail: cover.jpg
 thumbnail: molecular-dynamics-simulation-optimized.gif
 hideCover: false
-preview: "Molecular Dynamics Simulation using Lennard Jones Potential. Simulation code in C++, analysis in Python."
-description: "Molecular Dynamics Simulation using Lennard Jones Potential. Simulation code in C++, analysis in Python."
+description: "Simulation code in C++, analysis in Python."
 category: projects
 categories:
     - Computational Physics

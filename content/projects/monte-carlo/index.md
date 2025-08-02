@@ -1,8 +1,7 @@
 ---
 title: Monte Carlo Simulation of Electrons Diffusion in a Noble Gas
 thumbnail: monte-carlo-distro.gif
-preview: "Monte Carlo simulation of electrons diffusion in a noble gas under the assumption of isotropic elastic scattering of electrons on atoms."
-description: "Monte Carlo simulation of electrons diffusion in a noble gas under the assumption of isotropic elastic scattering of electrons on atoms."
+description: "under the assumption of isotropic elastic scattering of electrons on atoms."
 category: projects
 categories:
     - Computational Physics

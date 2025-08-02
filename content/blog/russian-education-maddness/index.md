@@ -3,10 +3,9 @@ layout: post
 title: "Russian Education Madness: Learning more than 60 Theorems with their Proofs in your First Semester"
 image: mipt2.jpg
 thumbnail: lk.jpg
-preview: "How to survive in a Russian university as a foreign student."
+description: "My first semester in a Russian university. How to survive as a foreign student."
 redirect_from:
   - /selfstudy/Russian-education-maddness.html
-description: "My first semester in a Russian university. How anki flashcards helped me study over 60 theorems alongside their proofs for the final exam."
 date: 2020-02-02
 featured: true
 categories:
