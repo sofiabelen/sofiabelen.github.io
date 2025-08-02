@@ -11,6 +11,7 @@ tags:
     - Computational Physics
     - Manim
 featured: false
+comments: true
 ---
 
 ## Made with 3Blue1Brown's animation engine: [manim](https://github.com/3b1b/manim)

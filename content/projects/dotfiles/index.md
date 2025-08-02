@@ -11,6 +11,7 @@ tags:
     - dotfiles
     - configs
 featured: false
+comments: true
 ---
 
 ## Workflow

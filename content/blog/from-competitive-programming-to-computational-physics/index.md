@@ -12,6 +12,7 @@ tags:
     - university
     - study
 featured: true
+comments: true
 ---
 
 During high school, I was lucky enough to have the best of teachers, and he introduced me to competitive programming. His name is Claudio Paz, and he's everything a teacher should be. Instead of teaching us Ms Word, as he was meant to, he asked us if we wanted to do something different. I was 15 at the time and didn't really care because I thought I'd probably hate it anyways, since it was school. I was so wrong. He taught us how to code, but not in the standard way. We were given new problems every week, and then we'd discuss approaches together. Coming up with a solution was the hard part, and we learned syntax along the way. The coolest part was learning a new type of logical reasoning that I wasn't used to.

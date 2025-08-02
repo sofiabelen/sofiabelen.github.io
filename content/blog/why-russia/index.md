@@ -13,6 +13,7 @@ categories:
     - my story
 tags:
     - studying abroad
+comments: true
 ---
 
 ## Why Russia?

@@ -10,6 +10,7 @@ tags:
     - university
     - study
 featured: false
+comments: true
 ---
 
 My first semester at MIPT felt like military training for me.

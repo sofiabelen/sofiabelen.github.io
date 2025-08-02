@@ -14,6 +14,7 @@ categories:
 tags:
     - university
     - study
+comments: true
 ---
 
 If you're a PhysTech student, you know what I'm talking about when I say the first semester is HARD. If you're also a foreign student like me, who had a year to learn the language before starting on one of the hardest universities in the world... Then I feel you. Want to know how I made it out alive the first semester? Then keep reading.

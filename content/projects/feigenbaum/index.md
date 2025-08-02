@@ -10,6 +10,7 @@ categories:
     - Python
 tags:
 featured: false
+comments: true
 ---
 
 <img style="height: 100%; width: 100%; object-fit: contain;" src="feigenbaum.png" alt="">

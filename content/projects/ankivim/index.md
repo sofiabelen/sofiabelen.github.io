@@ -12,6 +12,7 @@ categories:
     - tools
     - contribution
 featured: false
+comments: true
 ---
 
 <img style="height: 90%; width: 90%; object-fit: contain;" src="ankivim.gif" alt="">

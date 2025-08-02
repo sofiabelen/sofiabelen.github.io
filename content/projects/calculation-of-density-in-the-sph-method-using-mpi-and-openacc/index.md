@@ -12,6 +12,7 @@ tags:
     - MPI
     - OpenACC
 featured: false
+comments: true
 ---
 
 Supercomputing Modelling Final Exam Project. 

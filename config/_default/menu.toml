@@ -26,15 +26,23 @@
 [[social]]
 identifier = "github"
 name = "GitHub"
-url = "https://github.com/CaiJimmy/hugo-theme-stack"
+url = "https://github.com/sofiabelen"
 
 [social.params]
 icon = "brand-github"
 
 [[social]]
-identifier = "twitter"
-name = "Twitter"
-url = "https://twitter.com"
+identifier = "reddit"
+name = "Reddit"
+url = "https://www.reddit.com/user/Sofiabelen15"
 
 [social.params]
-icon = "brand-twitter"
+icon = "brand-reddit"
+
+[[social]]
+identifier = "linkedin"
+name = "Linkedin"
+url = "https://www.linkedin.com/in/sofiabelenlopezvicens/"
+
+[social.params]
+icon = "brand-linkedin"

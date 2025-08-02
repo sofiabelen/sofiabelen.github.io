@@ -17,6 +17,7 @@ categories:
     - tutorial
     - workflow
 featured: false
+comments: true
 ---
 
 &nbsp;  

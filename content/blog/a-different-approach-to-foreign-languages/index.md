@@ -13,6 +13,7 @@ categories:
     - tutorial
     - tools
 featured: false
+comments: true
 ---
 
 I learned English through immersion, as a kid, and some German later on, going to the Goethe Institute for 4 years. I'm currently studying physics in a Russian university, in Russian.
