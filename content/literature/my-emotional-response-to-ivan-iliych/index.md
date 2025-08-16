@@ -5,7 +5,8 @@ image: wiki-sinaloa-d8EsL8JKt9c-unsplash.jpg
 thumbnail: wiki-sinaloa-d8EsL8JKt9c-unsplash.jpg
 preview: ""
 description: ""
-date: 2025-08-17
+date: 2025-08-16
+publishDate: 2025-08-16
 featured: false
 categories:
     - literature
