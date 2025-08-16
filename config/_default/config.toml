@@ -13,8 +13,7 @@ defaultContentLanguage = "en"
 # This will make .Summary and .WordCount behave correctly for CJK languages.
 hasCJKLanguage = false
 
-# Change it to your Disqus shortname before using
-disqusShortname = "sofabelnlpez"
+disqusShortname = "sofia-belen-lopez"
 
 [pagination]
 pagerSize = 10
