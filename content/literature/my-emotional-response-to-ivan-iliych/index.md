@@ -30,7 +30,7 @@ Disclaimer: I'm not going to try and make a literary analysis of this work. That
 
 Ultimately, though, even if we have loved ones by our side, we must face death alone. Must we be "ready for when it comes"? Does it really matter? One could say, it's only some moments of extreme suffering and then it's all over, why does it matter or why should we worry so much about how death will find us?
 
-I think it has to do not with avoiding suffering in those last moments, but more so with what those last moments reveal for us. It grants us is perspective. The big picture. It brings up our most raw emotions and truest desires. I would guess. At least the thought experiment does seem to bring something valuable to the surface.
+I think it has to do not with avoiding suffering in those last moments, but more so with what those last moments reveal for us. It grants us perspective. The big picture. It brings up our most raw emotions and truest desires. I would guess. At least the thought experiment does seem to bring something valuable to the surface.
 
 Though I would also like to question the value of what this different perspective gives us. Since it comes along with so many emotions, it could be tainted or biased by fear and doubt. Let's take a snapshot of our view on life on two different scenarios:
 
