@@ -6,7 +6,7 @@ thumbnail: the-new-york-public-library-F5Q6FOdnpu4-unsplash.jpg
 preview: ""
 description: ""
 date: 2025-09-16
-publishDate: 2025-09-16
+publishDate: 2025-09-15
 featured: false
 categories:
     - literature
