@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Plato’s Republic: Book 2 – Intiution as an Antidote Against Political Propaganda"
+title: "Plato’s Republic: Book 2 – Intuition as an Antidote Against Political Propaganda"
 image: 
     birmingham-museums-trust-m8YZxdAKBv4-unsplash.jpg
 thumbnail: 
