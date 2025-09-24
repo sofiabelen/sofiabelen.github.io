@@ -10,7 +10,9 @@ publishDate: 2025-09-15
 featured: false
 categories:
     - literature
+    - philosophy
 tags:
+    - philosophy
 ---
 My previous post started with a quote from Socrates and ended with a reflection on our need for human connection. Back then, I wasn't planning on reading The Republic any time soon. That’s why I was stunned to find those same core themes popping up in my pre-reading research on Plato, and then again in the very first book:
 
@@ -84,7 +86,6 @@ One of the questions proposed in book 1 was whether it's more beneficial for the
 Photo by <a href="https://unsplash.com/@nypl?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">The New York Public Library</a> on <a href="https://unsplash.com/photos/8mjzgIEFPaM?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
   </figcaption>
 </figure>
-      
 
 My conclusion is that justice is beneficial for the individual because it's a necessary pillar for cooperation and community. This way, the individual benefits not only from the material advantage of living in a society, but also from the emotional support and sense of belonging that living in a group provides.
 
