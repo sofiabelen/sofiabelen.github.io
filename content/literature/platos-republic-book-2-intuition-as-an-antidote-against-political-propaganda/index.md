@@ -7,8 +7,8 @@ thumbnail:
     birmingham-museums-trust-m8YZxdAKBv4-unsplash.jpg
 preview: ""
 description: ""
-date: 2025-09-22
-publishDate: 2025-09-21
+date: 2025-09-24
+publishDate: 2025-09-23
 featured: false
 categories:
     - literature
