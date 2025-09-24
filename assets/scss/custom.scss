@@ -1,3 +1,34 @@
-/*
-    You can add your own custom styles here.
-*/
+.callout {
+  width: 100%;                   /* Full content width */
+  box-sizing: border-box;        /* Include padding in width */
+  border-radius: 0.25rem;        /* Stack uses subtle rounding */
+  padding: 3rem 1.25rem;         /* Consistent with Stack blockquotes */
+  margin: 1.5rem 0;              /* Vertical spacing matches Stack */
+  line-height: 1.6;              /* Match Stack spacing */
+  font-family: inherit;          /* Inherit theme font */
+}
+
+.callout-note {
+  background-color: #D8E6D8;
+  border-left: 4px solid #A3C293;
+}
+
+.callout-warning {
+  background-color: #F8D8D8;
+  border-left: 4px solid #E69A9A;
+}
+
+.callout-info {
+  background-color: #D8E4F0;
+  border-left: 4px solid #A3BFD9;
+}
+
+.callout-tip {
+  background-color: #F9E5D8;
+  border-left: 4px solid #E6B998;
+}
+
+.callout-highlight {
+  background-color: #FFF8D8;
+  border-left: 4px solid #F5E699;
+}
