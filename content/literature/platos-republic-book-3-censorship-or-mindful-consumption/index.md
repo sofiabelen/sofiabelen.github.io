@@ -28,7 +28,7 @@ Plato and Socrates didn't have the knowledge we have today on the effect that re
 
 I am not sure yet, however, whether Socrates wants to outright ban these type of material or he just wants the young guardians to not grow up with them as a source for moral and ethical guidance. There is a big difference here. From my understanding, and correct me if I'm wrong, tales such as The Iliad and The Odyssey were used as a sort of moral compass in society in the times of Socrates. They outlined what a hero ought to be like and what the gods were like and whom they favored. For a modern reader of such epic poems, it's evident why one wouldn't want them to be moral foundation of one's society. At least, we can say that it doesn't align with our current value system. One can only imagine, however, how insane it must have been in Socrates time to try to speak against essentially the moral foundation of his community. It's important to try to put this into perspective as his bold takes ultimately caused him to be sentenced to death for not recognizing the gods and corrupting the youth.
 
-### Did Socrates Try to Introduce a New Religion?
+## Did Socrates Try to Introduce a New Religion?
 <figure>
 <img style='object-fit: contain' src="Carlo_Santer-Gathering_of_the_Gods_of_Olympus.jpg" atl="">
   <figcaption>
@@ -46,7 +46,7 @@ My question is, whether after such a fundamental transformation, is he still tal
 
 From this analysis stems a much more fundamental question: what is better for society, a religion that portrays the gods as just, even when their actions speak otherwise, or one that forgoes moral claims and honestly unapologetically displays their true nature?
 
-### Censorship of Human Emotions
+## Censorship of Human Emotions
 <figure>
 <img style='object-fit: contain' src="Hamilton_Achilles_Patroclus.jpg" atl="">
   <figcaption>
@@ -73,10 +73,10 @@ There's also talk abut censorship of human emotions in ancient tells, such as th
 
 With our knowledge of modern psychology, we know that stuffing down "undesirable" emotions, such as sadness in men or anger in women, doesn't lead to happiness down the road. One could say that by suppressing the expression of the soul, one drifts farther away from one's authentic self, which can only lead to internal conflict and misery.
 
-### My Objection To Socrates' Censorship
+## My Objection To Socrates' Censorship
 Although I agree in part about the need to protect young minds from stories that instill in them fear, there's something I find troubling. The original motive of these tales is to control a society by means of shaping their belief system. Socrates objects, not because he's against the controlling of population in this way, but because he wishes to change the agenda, only to manipulate them in a different way. He doesn't want his warriors to fear death, not so they'll live a happy life, but so that they won't be afraid of battle. It's all a bit ironic, to replace one tyrant with another. 
 
-### Deeper Analysis: Censorship at the Level of the Soul
+## Deeper Analysis: Censorship at the Level of the Soul
 Alternatively, if we take the city to mean an individual, then censoring takes on a completely different meaning. Who are the guardians of the soul? If we take them to be the parts of our mind responsible for protecting us against outside threats, then what does this censoring mean for them?
 
 Could we say that we ought to protect our guardians from consuming content that will be detrimental to their job? If their job is to protect, then for that they need to keep our self-esteem high. How can we guard ourselves against the outside world if we don't value ourselves? Then, it can be said that we ought to avoid consuming content that damages our self-esteem. Fear and anxiety are also obstacles in standing up for ourselves. Then, we must carefully not to feed our minds material that fosters our insecurities, our fears and instills in us anxiety. 
