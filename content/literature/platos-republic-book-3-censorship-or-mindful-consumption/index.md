@@ -17,6 +17,8 @@ tags:
     - philosophy
 ---
 > "And what if they are to be courageous? Mustn't they also be told things that will make them fear death least? Or do you believe that anyone who has this terror in him would ever become courageous?"
+>
+> --- Socrates
 
 It was never about building the perfect city, was it? The goal was to define what justice means for the human soul. If we accept this interpretation of The Republic, then all the talk about censorship regarding ancient tells and stories could be interpreted as Plato warning us to mind what we consume, especially at a young age.
 
@@ -34,6 +36,10 @@ Gathering of the Gods of Olympus by Carlo Santner
   </figcaption>
 </figure>
 
+> Rather we should compel the poets to deny either that such deeds are theirs, or that they are children of gods, but not to say both, nor to attempt to persuade our youngsters that the gods produce evil and that heroes are no better than human beings.
+>
+> --- Socrates
+
 In The Republic, there's a bit of back and forth about the nature of the gods. Do they punish the unjust and praise the just? Or do they act according to their whims and moods, praising those whom they fancy the most and from whom they receive the better offerings? Socrates would prefer it were as first described, so in a sense he rejects the current depiction of the gods and wishes to mold it to better fit his ideal.
 
 My question is, whether after such a fundamental transformation, is he still talking about the same gods or a completely new set? Is it any better from the original one?
@@ -47,6 +53,21 @@ From this analysis stems a much more fundamental question: what is better for so
 Gavin Hamilton, Achilles Mourning Patroclus
   </figcaption>
 </figure>
+
+<blockquote class="border-l-4 border-gray-300 pl-4 italic">
+  "Then, again, we'll ask Homer and the other poets not to make Achilles, son of a goddess,
+  <br><br>
+  <span class="block text-center">
+    Now lying on his side, now again<br>
+    On his belly, and now on his side,
+  </span>
+  <br>
+  Then standing upright, roaming distraught along the shore of the unharvested sea
+  <br><br>
+  nor taking black ashes in both hands and pouring them over his head, nor crying and lamenting as much as, or in the ways, Homer made him do; [...]"
+  <br><br>
+  <div class="text-right font-semibold">— Socrates</div>
+</blockquote>
 
 There's also talk abut censorship of human emotions in ancient tells, such as the scene of Achilles grieving the death of Patroclus and the inevitable wrath that consumes him after. While reading the Iliad, this scene struck me as one of the purest expressions of human emotion. I believe there is much value in it and wouldn't want it censured. I don't argue, however, that it could serve to reach his goal of bring up the best soldiers possible. Are those guardians happy, though? Their purpose is to protect the city, but who protects them and their souls? Or must they sacrifice their humanity so that others might thrive?
 
