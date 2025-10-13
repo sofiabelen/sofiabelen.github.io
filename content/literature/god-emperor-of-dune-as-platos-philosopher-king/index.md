@@ -28,9 +28,9 @@ On my very first post on The Republic, I wrote about how, in the pursuit of know
 >
 > --- Leto II Atreides, God Emperor of Dune by Frank Herbert 
 
-My other question was whether the philosopher has a choice.
+My other question was whether the philosopher has a choice to go outside of the cave and then to return.
 
-In Herbert's universe, Leto, the God Emperor, does have a choice on whether to purse the so called Golden Path. Through his prescient vision, he sees that it's the only way for humanity to survive. However, the burden of that knowledge was forced on him. His father could've taken that role, sparing him from that fate, but he didn't. Maybe his sister could've done it as well. What I find fascinating is that in order to ensure the Golden Path, he must literally give up his humanity. He becomes a tyrant out of selflessness, embodying Plato's idea of the philosopher king. One who doesn't rule for self gratification, but makes the ultimate sacrifice for humanity: to become the villain in their story so they may be saved.
+In Herbert's universe, Leto, the God Emperor, does have a choice on whether to purse the so called Golden Path (coming back inside the cave to rule the people). Through his prescient vision, he sees that it's the only way for humanity to survive. However, the burden of that knowledge was forced on him. We could say going outside the cave was not a choice for him, he was born outside. His father could've taken that role, sparing him from that fate, but he didn't. Maybe his sister could've done it as well. What I find fascinating is that in order to ensure the Golden Path, he must literally give up his humanity. He becomes a tyrant out of selflessness, embodying Plato's idea of the philosopher king. One who doesn't rule for self gratification, but makes the ultimate sacrifice for humanity: to become the villain in their story so they may be saved.
 
 He goes on to create a whole religion, or what Plato would describe as a system of noble lies, in order to keep order and peace in his empire. 
 
