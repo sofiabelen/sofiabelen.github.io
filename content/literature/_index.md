@@ -1,5 +1,5 @@
 ---
-title: "Literature"
+title: "Essays"
 layout: "articledisplay"
 menu:
     main:

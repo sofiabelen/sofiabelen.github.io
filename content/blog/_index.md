@@ -1,5 +1,5 @@
 ---
-title: "Blog"
+title: "Life"
 layout: "articledisplay"
 menu:
     main:
