@@ -16,7 +16,8 @@ categories:
 tags:
     - philosophy
 ---
-The similarity between Frank Herbert’s God Emperor and Plato’s philosopher king is striking. It might be because I’ve been reading both at the same time, but I was amazed at how many parallels I kept stumbling upon. As I read, I tried to look for answers to a question that has always been important for me: Who is happy, the one living under illusions (ignorance is bliss) or the one who has discovered the truth (whatever that means)? There are also some other questions that stem from this core one, that I've discussed a bit in some of my previous posts, but haven't yet found an answer I'm satisfied with. Namely, in Plato's allegory of the cave, after the philosopher has come outside and seen the truth, why would she go back to the cave to lead the others? Why would the others trust or accept her as their ruler? She is alien to them now, she speaks in riddles, and so much light from the outside has blinded her to the reality of everyday life inside the cave.
+The similarity between Frank Herbert’s God Emperor and Plato’s philosopher king is striking. It might be because I’ve been reading both simultaneously, but I was amazed at how many parallels I kept stumbling upon. As I read, I tried to look for answers to a question that has always been important for me: Who is happy, the one living under illusions (ignorance is bliss) or the one who has discovered the truth (whatever that means)? There are also several other questions that stem from this core one, questions I've touched on in previous posts, but for which I have not yet found a satisfactory answer. Namely, in Plato's allegory of the cave, after the philosopher has come outside and seen the truth, why would she go back to the cave to lead the others? Why would the others trust or accept her as their ruler? She is alien to them now, she speaks in riddles, and so much light from the outside has blinded her to the reality of everyday life inside the cave.
+
 
 God Emperor of Dune has brought to life the cave allegory for me, providing possible answers to these questions, and I'm fascinated by it. 
 
@@ -28,9 +29,9 @@ On my very first post on The Republic, I wrote about how, in the pursuit of know
 >
 > --- Leto II Atreides, God Emperor of Dune by Frank Herbert 
 
-My other question was whether the philosopher has a choice to go outside of the cave and then to return.
+My other question was whether the philosopher has a choice to go outside of the cave and then return.
 
-In Herbert's universe, Leto, the God Emperor, does have a choice on whether to purse the so called Golden Path (coming back inside the cave to rule the people). Through his prescient vision, he sees that it's the only way for humanity to survive. However, the burden of that knowledge was forced on him. We could say going outside the cave was not a choice for him, he was born outside. His father could've taken that role, sparing him from that fate, but he didn't. Maybe his sister could've done it as well. What I find fascinating is that in order to ensure the Golden Path, he must literally give up his humanity. He becomes a tyrant out of selflessness, embodying Plato's idea of the philosopher king. One who doesn't rule for self gratification, but makes the ultimate sacrifice for humanity: to become the villain in their story so they may be saved.
+In Herbert's universe, Leto, the God Emperor, does have a choice whether to purse the so-called Golden Path (coming back inside the cave to rule the people). Through his prescient vision, he sees that it's the only way for humanity to survive. However, the burden of that knowledge is forced on him. One could argue that 'going outside the cave' was not a choice for him, he was born outside. His father could've taken that role, sparing him from that fate, but he didn't. Maybe his sister could've done it as well. What I find fascinating is that in order to ensure the Golden Path, he must literally give up his humanity. He becomes a tyrant out of selflessness, embodying Plato's idea of the philosopher king. One who doesn't rule for self gratification, but makes the ultimate sacrifice for humanity: to become the villain in their story so they may be saved.
 
 He goes on to create a whole religion, or what Plato would describe as a system of noble lies, in order to keep order and peace in his empire. 
 
@@ -43,9 +44,9 @@ Both the citizens and the philosopher end up trapped in their roles, prisoners o
 >
 > --- Leto II Atreides
 
-If we were talking a bad evil tyrant, one who's only looking out for himself, it's a no-brainer. No one one wants that. It's easy to agree on something like that, and there'd be no need for reflection or further discussion in that case.
+If we were talking a bad evil tyrant, one who's only looking out for himself, it's a no-brainer. No one wants that. It's easy to agree on something like that, and there'd be no need for reflection or further discussion in that case.
 
-The question here is about placing people into roles which guarantees the best for city (or empire) as a whole, not the best for one particular individual. In our case, the ruler must sacrifice so much as well, that we know (as a third person observer, not as a citizen) that they truly are doing it out of (perceived) selflessness.
+The question here is about placing people into roles which guarantees the best for city (or empire) as a whole, not for one particular individual. In this case, the ruler must sacrifice so much that we, as a third person observer, not as a citizen, recognize that they truly are acting out of (perceived) selflessness.
 
 If we’re having this discussion, I’m not even sure what the real question is. Is it an ethical one? That’s a difficult place to start, because before we can even attempt an answer, we have to decide what _ethical_ really means. Maybe instead we should ask: _Would I do it?_ Would I surrender my own humanity in order to preserve humanity itself? Could I accept immortality if it meant being cut off from the very experiences that make life meaningful: love, vulnerability, connection, purpose? Could I give all that up so that others might live on, knowing that few, if any, would ever understand my sacrifice? Could I become the villain, the necessary monster, for the sake of their survival?
 
@@ -62,9 +63,9 @@ And what about the people living under such a ruler? Would you rather be a citiz
 >
 > “Then I will not mourn for what might have been,” he said. “Yes, my love, I will share my soul with you.”
 
-One of the most touching parts of the Dune series for me so far is the relationship between Hwi and Leto. She manages to see beyond his façade of emperor, of worm, of tyrant, and to glimpse his soul. Hwi recognizes the humanity still within him. They grieve together what could've been.
+One of the most touching parts of the Dune series, for me so far, is the relationship between Hwi and Leto. She manages to see beyond his façade of emperor, of worm, of tyrant, and to glimpse his soul. Hwi recognizes the humanity still within him. They grieve together what could've been.
 
-Leto's ancestral memories were awake inside him from the womb. He was never allowed a true childhood even while he was still human. He turned into a worm before he got to grow up. He gave up experiencing human relationships, love. It is through Hwi that he comes to understand just how immense that sacrifice truly was, even though it's far too late to undo it.
+Leto's ancestral memories were awake within him from the inside womb. He was never allowed a true childhood, even while still human. He became a worm before he could grow up. He gave up experiencing human relationships and love. It is through Hwi that he comes to understand just how immense that sacrifice truly was, even though it's far too late to undo it.
 
 It is in his last moment with Hwi before his death that we, as the readers, get to witness his humanity, still alive inside him. Paradoxically, she became the temptation to stray away from the Golden Path as well as the ultimate reason to pursue it til the end. She embodied what he had set out to save in the first place. She was proof that humanity was not doomed.
 
@@ -73,7 +74,7 @@ It is in his last moment with Hwi before his death that we, as the readers, get 
 >
 > --- Leto II Atreides
 
-What mesmerized me the most was the realization that Leto intended for his reign to be a lesson for the people of the future. A lesson of what not to do, or what not to allow. I see this as part of Herbert's legacy, his message to the world. I can't help but wonder if, by painting for us a picture of a supposedly 'just city' and revealing its inherent injustices, Plato was also in fact warning us against the pursuit of such an ideal.
+What mesmerized me the most was the realization that Leto intended for his reign to be a lesson for those to come. A lesson in what not to do, or what not to permit. I see this as part of Herbert's legacy, his message to the world. I can't help but wonder whether, in painting for us a picture of a supposedly 'just city' and revealing its inherent injustices, Plato was also in fact warning us against the pursuit of such an ideal.
 
 <!--
 Herbert also taught us not to live in the past nor in the future.
