@@ -66,6 +66,8 @@ One of the most touching parts of the Dune series for me so far is the relations
 
 Leto's ancestral memories were awake inside him from the womb. He was never allowed a true childhood even while he was still human. He turned into a worm before he got to grow up. He gave up experiencing human relationships, love. It is through Hwi that he comes to understand just how immense that sacrifice truly was, even though it's far too late to undo it.
 
+It is in his last moment with Hwi before his death that we, as the readers, get to witness his humanity, still alive inside him. Paradoxically, she became the temptation to stray away from the Golden Path as well as the ultimate reason to pursue it til the end. She embodied what he had set out to save in the first place. She was proof that humanity was not doomed.
+
 ## Lessons From The God Emperor
 > Thus, I demonstrate the terrible danger of a gliding, passionless mediocrity, a movement without ambitions or aims. I show you that entire civilizations can do this thing. I give you eons of life which slips gently toward death without fuss or stirring, without even asking “Why?” I show you the false happiness and the shadow-catastrophe called Leto, the God Emperor. Now, will you learn the real happiness?
 >
