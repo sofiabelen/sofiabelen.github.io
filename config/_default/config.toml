@@ -13,7 +13,7 @@ defaultContentLanguage = "en"
 # This will make .Summary and .WordCount behave correctly for CJK languages.
 hasCJKLanguage = false
 
-disqusShortname = "sofia-belen-lopez"
+# disqusShortname = "sofia-belen-lopez"
 
 [pagination]
 pagerSize = 10
