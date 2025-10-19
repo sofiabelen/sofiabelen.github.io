@@ -7,7 +7,7 @@ preview: ""
 description: ""
 date: 2025-08-16
 publishDate: 2025-08-16
-featured: false
+featured: true
 categories:
     - literature
 tags:
