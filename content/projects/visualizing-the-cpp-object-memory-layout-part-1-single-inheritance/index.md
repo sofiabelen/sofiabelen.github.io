@@ -219,7 +219,7 @@ The reason for this is padding: extra bytes the compiler inserts to keep everyth
 
 ### Padding
 
-With a bit more pointer arithmetic, we can actually peek at those padding bytes.
+With a bit (no pun intended) more pointer arithmetic, we can actually peek at those padding bytes.
 
 <pre><code>
 Base obj bytes (annotated with padding):
@@ -450,7 +450,7 @@ We can see that the compiler emits two destructor symbols:
     <span style="filter: blur(2px)">6534:       48 8b 45 e8             mov    -0x18(%rbp),%rax</span>
     <span style="filter: blur(2px)">6538:       48 89 d7                mov    %rdx,%rdi</span>
     <span style="filter: blur(2px)">653b:       48 89 c6                mov    %rax,%rsi</span>
-# call our print function
+# calls our print function
     653e:       e8 ce 33 00 00          call   9911 &lt;void std::print&lt;&gt;(std::basic_format_string&lt;char&gt;)&gt;
 <span style="filter: blur(2px)">--</span>
     <span style="filter: blur(2px)">655d:       74 05                   je     6564 &lt;Derived::~Derived()+0x70&gt;</span>
@@ -508,7 +508,7 @@ We get our beautiful vtable:
   </figcaption>
 </figure>
 
-However, the story is not over yet. For those who like finding hidden treasure, there are a two more to be found.
+However, the story is not over yet. For those who like finding hidden treasure, there are two more to be found.
 
 ### Vtable Entries [-1] and [-2]
 
