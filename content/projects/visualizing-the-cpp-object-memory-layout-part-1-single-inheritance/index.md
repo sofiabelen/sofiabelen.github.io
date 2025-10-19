@@ -436,11 +436,11 @@ We can see that the compiler emits two destructor symbols:
     <span style="filter: blur(2px)">6507:       00 00 </span>
     <span style="filter: blur(2px)">6509:       48 89 45 f8             mov    %rax,-0x8(%rbp)</span>
     <span style="filter: blur(2px)">650d:       31 c0                   xor    %eax,%eax</span>
-# compute address of vtable
+# computes address of vtable
     650f:       48 8d 15 62 56 02 00    lea    0x25662(%rip),%rdx        # 2bb78 &lt;vtable for Derived+0x10&gt;
-# load object pointer
+# loads object pointer
     6516:       48 8b 45 d8             mov    -0x28(%rbp),%rax
-# write vtable pointer into object (vptr)
+# writes vtable pointer into object (vptr)
     651a:       48 89 10                mov    %rdx,(%rax)
     <span style="filter: blur(2px)">651d:       48 c7 45 e0 13 00 00    movq   $0x13,-0x20(%rbp)</span>
     <span style="filter: blur(2px)">6524:       00 </span>
@@ -460,19 +460,19 @@ We can see that the compiler emits two destructor symbols:
 
 
 <mark>0000000000006566 &lt;Derived::~Derived()&gt;:</mark>
-# This destructor calls the complete destructor and then frees memory
+# this destructor calls the complete destructor and then frees memory
     <span style="filter: blur(2px)">6566:       55                      push   %rbp</span>
     <span style="filter: blur(2px)">6567:       48 89 e5                mov    %rsp,%rbp</span>
     <span style="filter: blur(2px)">656a:       48 83 ec 10             sub    $0x10,%rsp</span>
     <span style="filter: blur(2px)">656e:       48 89 7d f8             mov    %rdi,-0x8(%rbp)</span>
     <span style="filter: blur(2px)">6572:       48 8b 45 f8             mov    -0x8(%rbp),%rax</span>
     <span style="filter: blur(2px)">6576:       48 89 c7                mov    %rax,%rdi</span>
-# Calls the complete destructor
+# calls the complete destructor
 <mark>    6579:       e8 76 ff ff ff          call   64f4 &lt;Derived::~Derived()&gt;</mark>
     <span style="filter: blur(2px)">657e:       48 8b 45 f8             mov    -0x8(%rbp),%rax</span>
     <span style="filter: blur(2px)">6582:       be 08 00 00 00          mov    $0x8,%esi</span>
     <span style="filter: blur(2px)">6587:       48 89 c7                mov    %rax,%rdi</span>
-# Calls the delete operator
+# calls the delete operator
 <mark>    658a:       e8 a1 dc ff ff          call   4230 &lt;operator delete(void*, unsigned long)@plt&gt;</mark>
     <span style="filter: blur(2px)">658f:       c9                      leave</span>
     <span style="filter: blur(2px)">6590:       c3                      ret</span>
