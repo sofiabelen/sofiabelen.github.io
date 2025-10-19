@@ -17,20 +17,20 @@ featured: false
 comments: true
 ---
 
-I've been struggling to understand how exactly C++ objects look like in memory. Every time I think I get it, I later came back it to it to realize that I really didn't. So, I decided to make a series of experiments to make sure that this time I really got it. Hopefully this post will be useful to you if you're like, someone who loves lots of diagrams to visualize concepts.
+I've struggled to understand the exact memory layout of C++ objects. Each time I thought I grasped it, I later came back to realize I didn't. So, I decided to make a series of experiments to make sure that this time I really got it. Hopefully this post will be useful to you if you're like me, someone who loves lots of diagrams and experiments to visualize concepts.
 
 You can find all the code and experiments on [GitHub](https://github.com/sofiabelen/visualizing-the-cpp-object-memory-layout/tree/main).
 
 ---
 
 ## Series Parts
-1. Part 1 — Single Inheritance
+1. Part 1 — Single Inheritance *(current one)*
 2. Part 2 — Multiple Non-Virtual Inheritance (Diamond Without Virtual) *(Coming soon)*
 3. Part 3 — Virtual Inheritance (Diamond With Virtual Base) *(Coming soon)*
 
 ---
 
-Before we go too far, it’s worth mentioning one important assumption:
+Before going further, it’s worth mentioning one important assumption:
 all the experiments in this series use the Itanium C++ ABI, which is what GCC and Clang follow on most platforms.
 
 The ABI (Application Binary Interface) defines things the C++ standard doesn’t, like how vtables are laid out, where the vptr lives, how virtual calls are dispatched, and how RTTI (runtime type information) works.
@@ -62,18 +62,22 @@ Let’s create a couple of objects from the classes we just defined:
 Base base {1};
 Derived derived {2, 3};
 ```
-We’ll soon see where these numbers actually live in memory.
+
+We initialize these data members so that we can later see them in memory.
 
 ## Memory Layout of Derived
 
 Because Base has a virtual function, each Base or Derived object includes a hidden pointer to the vtable (vptr), typically the first word in the object layout.
+
+Every polymorphic object (a class with at least one virtual function) contains a hidden pointer called the vptr. This pointer points to a vtable, a table of function pointers corresponding to the virtual functions of that object's dynamic type. When you call a virtual function, the program doesn’t call a fixed memory address. Instead, it looks up the correct function via the vptr. This mechanism is what allows dynamic dispatch: the program chooses the right function at runtime depending on the actual type of the object. We'll see this in action in a bit and manually trigger dynamic dispatch.
 
 So, memory for objects of type `Base` and `Derived` roughly looks like:
 
 <figure>
 <img style='height: 95%; width: 95%; object-fit: contain' src="derived-base.svg" atl="">
   <figcaption>
-Figure 1: Memory layout of an object of type Base and one of type Derived. For Derived,he layout includes the virtual function table pointer (vptr) inherited from Base, followed by the Base class data member `b_data`, and then the Derived class data member `d_data`. This shows how Derived extends Base while preserving the base subobject’s layout in memory.
+Figure 1: Memory layout of a Base object and a Derived object. The Derived layout includes the virtual function table pointer (vptr) inherited from Base, followed by the Base's `b_data`, and then Derived's `d_data`. This shows how Derived extends Base while maintaining the base subobject’s memory layout.
+
   </figcaption>
 </figure>
 
@@ -85,8 +89,8 @@ We'll review a few modern features that will come in handy. This is meant to ser
 |:--|:--|
 | [**`std::uintptr_t`**](https://en.cppreference.com/w/cpp/types/integer) | A number type that can safely hold a pointer’s value. |
 | [**`std::byte`**](https://en.cppreference.com/w/cpp/types/byte) | A special type that represents a single byte of raw memory. |
-| [**`std::span`**](https://en.cppreference.com/w/cpp/container/span) | A non-owning “view” of an array or vector — like a safe pointer + size. |
-| [**`reinterpret_cast`**](https://en.cppreference.com/w/cpp/language/reinterpret_cast) | Reinterprets raw bits as another type — used for low-level memory tricks. |
+| [**`std::span`**](https://en.cppreference.com/w/cpp/container/span) | A non-owning “view” of an array or vector (like a safe pointer + size). |
+| [**`reinterpret_cast`**](https://en.cppreference.com/w/cpp/language/reinterpret_cast) | Reinterprets raw bits as another type (used for low-level memory manipulation). |
 | [**`std::as_bytes`**](http://en.cppreference.com/w/cpp/container/span/as_bytes.html) | Obtains a view to the object representation of the elements of a span. |
 
 
@@ -115,7 +119,7 @@ Even if you cast to `char*`:
 reinterpret_cast<char*>(&derived.b_data) - reinterpret_cast<char*>(&derived)
 ```
 
-this usually works in practice (and is what people often do), but technically it's only guaranteed to be valid if the two pointers point into the same object or one past it.
+This usually works in practice (and is what people often do), but technically it's only guaranteed to be valid if the two pointers point into the same object or one past it.
 
 To stay fully defined, we can cast pointers to integers (`std::uintptr_t`) and do arithmetic there instead. We are basically doing integer math.
 
@@ -137,9 +141,7 @@ struct Field {
 };
 ```
 
-Then fill it in. The `vptr` (the virtual table pointer) isn’t visible directly, so cheat a little and assume it starts at offset 0x00.
-
-We’ll verify that later when we call functions through the vtable.
+Then fill it in. The `vptr` (the virtual table pointer) isn’t visible directly, so we cheat a little and assume it starts at offset 0x00. Don't worry, we’ll verify that this is the case by calling the functions through the vtable.
 
 ```cpp
   Field fields [] = {
@@ -174,12 +176,12 @@ void dumpLabeled(std::span<const std::byte> dataBytes,
   }
 }
 ```
-This function simply walks over the object’s bytes and prints each field’s offset, size, and raw memory contents. The formatting inside `std::print` is only for readability, don't worry too much about that part.
+This function simply walks over the object’s bytes and prints each field’s offset, size, and raw memory contents. The formatting inside `std::print` is for readability, don't worry too much about that part.
 
 Before dumping the object’s bytes, I decided to also print a few details such as the object’s address, its base pointer, and the sizes of the involved types, just to give some context.
-(The full source is on GitHub if you want to see all of it.)
+(Full source is on GitHub.)
 
-```
+<pre><code>
 sizeof(Base):    16
 sizeof(Derived): 16
 
@@ -189,28 +191,29 @@ sizeof(Derived): 16
 Base obj bytes (annotated):
 Offset  Size  Field     Bytes
 ------  ----  -----     ------
-0x00      8    vptr     d0 0b 3b 40 ad 55 00 00 
-0x08      4    b_data   01 00 00 00 
+<mark>0x00      8    vptr     d0 0b 3b 40 ad 55 00 00 </mark>
+<mark>0x08      4    b_data   01 00 00 00 </mark>
 
 Derived obj bytes (annotated):
 Offset  Size  Field     Bytes
 ------  ----  -----     ------
-0x00      8    vptr     b8 0b 3b 40 ad 55 00 00 
-0x08      4    b_data   02 00 00 00 
-0x0C      4    d_data   03 00 00 00 
+<mark>0x00      8    vptr     b8 0b 3b 40 ad 55 00 00 </mark>
+<mark>0x08      4    b_data   02 00 00 00 </mark>
+<mark>0x0C      4    d_data   03 00 00 00 </mark>
 
-Offet of Base within Derived: 0 bytes
-```
+Offset of Base within Derived: 0 bytes
+</pre></code>
+
 We can now see the object layout clearly:
 
 - the first 8 bytes are the `vptr`,
 - followed by the base class field `b_data`,
 - and then the derived class field `d_data`.
 
-For `base`, we see that the `b_data` is `1`. For `derived`, `b_data` is `2`, while `d_data` is equal to `3`.
+For `base`, we see that the `b_data` is indeed `1`, as we had initialized it. For `derived`, `b_data` is `2`, while `d_data` is equal to `3`. All looks good.
 
-The `Derived` object takes up 16 bytes in memory. It's what we’d expect: 8 bytes for the vptr and 4 bytes each for the two int members.
-But wait... shouldn’t `Base` be smaller, since it only has one int?
+The `Derived` object takes up 16 bytes in memory. It's what we’d expect: 8 bytes for the vptr and 4 bytes each for the two `int` members.
+But wait... shouldn’t `Base` be smaller, since it only has one `int`?
 
 The reason for this is padding: extra bytes the compiler inserts to keep everything properly aligned in memory.
 
@@ -218,20 +221,20 @@ The reason for this is padding: extra bytes the compiler inserts to keep everyth
 
 With a bit more pointer arithmetic, we can actually peek at those padding bytes.
 
-```
+<pre><code>
 Base obj bytes (annotated with padding):
 Offset  Size  Field     Bytes
 ------  ----  -----     ------
 0x00      8    vptr     d0 0b 3b 40 ad 55 00 00 
 0x08      4    b_data   01 00 00 00 
-0x0C      4    padding  31 7f 00 00 
-```
+<mark>0x0C      4    padding  31 7f 00 00 </mark>
+</pre></code>
 
 ## Invoking Functions Directly via Vptr
 
 Now for the fun part. I promised we would use the `vptr`, located at the start of each object, to access the virtual function and call them directly.
 
-Let's start out by making our functions print sth so that we can recognize which function has been called. We don't care about the data members for this part, so we can just get rid of them.
+Let's start out by making our functions print something so that we can recognize which function has been called. We don't care about the data members for this part, so we can just get rid of them.
 
 ```cpp
 struct Base {
@@ -268,7 +271,7 @@ void Derived_f(Derived* this);
 void Base_g(Base* this);
 ```
 
-Here we can see that it takes the `this` pointer manually. This is done automatically by the compiler, so we don't have to worry about it when calling member functions.
+Here we can see that these functions take the `this` pointer manually. This is done automatically by the compiler, so we don't have to worry about it when calling member functions.
 
 So, if we reinterpret a vtable entry as a `FnPtr`, and pass it the address of our object, we can call it directly.
 
@@ -320,33 +323,34 @@ using FnPtr = void(*)(void*);
 ### Inspecting a Vtable and Manually Triggering Virtual Dispatch
 
 We are finally ready to iterate over the vtable entries and invoke each of the virtual functions:
-```cpp
+<pre><code class="language-cpp">
 for (size_t i {}; i < 3; i++) {
   std::print("[{}] {:p}  ", i, vtable[i]);
 
   if (vtable[i] != nullptr) {
-    auto fn = reinterpret_cast<FnPtr>(vtable[i]);
-    fn(obj);
+    <mark>auto fn = reinterpret_cast<FnPtr>(vtable[i]);</mark>
+    <mark>fn(obj);</mark>
   }
   std::println();
 }
-```
+</pre></code>
+
 The output, where we can see our beautiful functions being called.
-```
+<pre><code class="language-cpp">
 vtable pointer (vptr): 0x55b010347bb8
 
  i     vtable[i]     calling funtion
 ---  -------------  ----------------
-[0] 0x55b010323370  Derived::f()
-[1] 0x55b010323318  Base::g()
-[2] 0x55b0103233c8  Derived::h()
-```
+[0] 0x55b010323370  <mark>Derived::f()</mark>
+[1] 0x55b010323318  <mark>Base::g()</mark>
+[2] 0x55b0103233c8  <mark>Derived::h()</mark>
+</pre></code>
 
 Let’s pause and recap what we’ve done so far. We accessed the first member of our polymorphic object, the `vptr` which points to the vtable. Using a few careful casts, we were able to reach the vtable itself. From there, we iterated over its entries and even called the functions directly, seeing virtual dispatch in action and proving that the first member of the object is in fact the `vptr`.
 
 ### Difference Between Deleting and Complete Object Destructors
 The next logical thing to try is to add a virtual destructor:
-```
+```cpp
 struct Base {
   virtual ~Base() {
     std::print(" Base::~Base()");
@@ -373,28 +377,28 @@ struct Derived : Base {
 ```
 
 Let's print out the first vtable element:
-```
+<pre><code>
 vtable pointer (vptr): 0x55e2d423db78
 
  i     vtable[i]     calling funtion
 ---- -------------  ----------------
-[ 0] 0x55e2d421849c  Derived::~Derived() Base::~Base()
+<mark>[ 0] 0x55e2d421849c  Derived::~Derived() Base::~Base()</mark>
 
 Derived::~Derived() Base::~Base()
-```
+</pre></code>
 
 Now that we’ve confirmed the first entry is the destructor, we can safely skip it and start iterating from index 1. This is the tricky part. I'd assumed the first element of the vtable would be the destructor, and it is. However, the second element is also a destructor!
 
 This is what happens when we try calling that second element on vtable:
 
-```
+<pre><code>
 vtable pointer (vptr): 0x56489b9b3b78
 
  i     vtable[i]     calling funtion
 ---- -------------  ----------------
-free(): invalid pointer
+<mark>free(): invalid pointer</mark>
 zsh: IOT instruction (core dumped)  ./a.out
-```
+</pre></code>
 
 So, I did some digging and I'm happy to share my findings.
 
@@ -411,7 +415,7 @@ Basically what we did earlier was to call the deleting destructor, which will **
 
 This whole thing about two different destructors got me intrigued. I've always seen in diagrams of the vtable only one entry for the destructor, never two. Or at least I don't remember hearing anything about two destructors, maybe I just missed it. What I'm trying to say is that this came as a surprise for me, so naturally I wanted to *see* these two destructors.
 
-Let's disassemble the binary
+Let's disassemble the binary:
 
 ```bash
 objdump -dC a.out | grep -A20 "Derived::~Derived"
@@ -463,10 +467,12 @@ We can see that the compiler emits two destructor symbols:
     <span style="filter: blur(2px)">656e:       48 89 7d f8             mov    %rdi,-0x8(%rbp)</span>
     <span style="filter: blur(2px)">6572:       48 8b 45 f8             mov    -0x8(%rbp),%rax</span>
     <span style="filter: blur(2px)">6576:       48 89 c7                mov    %rax,%rdi</span>
+# Calls the complete destructor
 <mark>    6579:       e8 76 ff ff ff          call   64f4 &lt;Derived::~Derived()&gt;</mark>
     <span style="filter: blur(2px)">657e:       48 8b 45 f8             mov    -0x8(%rbp),%rax</span>
     <span style="filter: blur(2px)">6582:       be 08 00 00 00          mov    $0x8,%esi</span>
     <span style="filter: blur(2px)">6587:       48 89 c7                mov    %rax,%rdi</span>
+# Calls the delete operator
 <mark>    658a:       e8 a1 dc ff ff          call   4230 &lt;operator delete(void*, unsigned long)@plt&gt;</mark>
     <span style="filter: blur(2px)">658f:       c9                      leave</span>
     <span style="filter: blur(2px)">6590:       c3                      ret</span>
@@ -494,13 +500,15 @@ Now, let's try again, skipping the first two elements.
 Derived::~Derived() Base::~Base()
 ```
 
+We get our beautiful vtable:
+
 <figure>
 <img style='height: 98%; width: 98%; object-fit: contain' src="vtable-derived-simplified.svg" atl="">
   <figcaption>
   </figcaption>
 </figure>
 
-We get our beautiful vtable, but the story is not over yet. For those who like finding hidden treasure, there are a two more to be found.
+However, the story is not over yet. For those who like finding hidden treasure, there are a two more to be found.
 
 ### Vtable Entries [-1] and [-2]
 
@@ -543,3 +551,11 @@ Here’s one final diagram (I did say there would be plenty!) that illustrates h
 </figure>
 
 Thanks for reading until the end and hope you enjoyed!
+
+## Resources for Further Reading
+
+- [What does C++ Object Layout Look Like?](https://nimrod.blog/posts/what-does-cpp-object-layout-look-like/): 
+Nimrod's Coding Lab
+    - Explains memory layouts of C++ objects with diagrams and examples.
+- [Memory Layout of C++ Object](https://dev.to/visheshpatel/memory-layout-of-c-object-1p17): Vishal Chovatiya
+    - Offers insights into how different members and inheritance affect object memory.
