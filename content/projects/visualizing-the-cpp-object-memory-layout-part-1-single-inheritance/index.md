@@ -426,8 +426,8 @@ We can see that the compiler emits two destructor symbols:
 
 <pre><code class="language-asm">
 <mark>00000000000064f4 &lt;Derived::~Derived()&gt;:</mark>
-# This destructor destroys the object but does NOT free memory
-# Only prints the message and updates the vptr (ABI housekeeping)
+# this destructor destroys the object but does NOT free memory
+# only prints the message and updates the vptr (ABI housekeeping)
     <span style="filter: blur(2px)">64f4:       55                      push   %rbp</span>
     <span style="filter: blur(2px)">64f5:       48 89 e5                mov    %rsp,%rbp</span>
     <span style="filter: blur(2px)">64f8:       48 83 ec 30             sub    $0x30,%rsp</span>
