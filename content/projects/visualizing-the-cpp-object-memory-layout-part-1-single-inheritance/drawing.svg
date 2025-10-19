@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="221.3636mm"
+   height="107.3325mm"
+   viewBox="0 0 221.3636 107.3325"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   sodipodi:docname="drawing.svg"
+   inkscape:export-filename="derived-base.svg"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.75024445"
+     inkscape:cx="624.46313"
+     inkscape:cy="-123.29315"
+     inkscape:window-width="2560"
+     inkscape:window-height="1400"
+     inkscape:window-x="0"
+     inkscape:window-y="40"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g76"
+     inkscape:export-bgcolor="#ffffff00" />
+  <defs
+     id="defs1">
+    <linearGradient
+       id="swatch25"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#6b6567;stop-opacity:1;"
+         offset="0"
+         id="stop25" />
+    </linearGradient>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-178.65157,-67.176666)">
+    <g
+       id="g4"
+       transform="translate(-81.817776,-10.227222)" />
+    <g
+       id="g5"
+       transform="translate(-81.796381,11.89656)" />
+    <g
+       id="g8-1-2"
+       transform="translate(102.36745,112.77734)" />
+    <g
+       id="g76">
+      <rect
+         style="fill:#f7c6cc;fill-opacity:0.819608;stroke-width:0.247378"
+         id="rect1"
+         width="101.46775"
+         height="107.3325"
+         x="298.54742"
+         y="67.176666" />
+      <rect
+         style="fill:#ec9aaa;fill-opacity:1;stroke-width:0.251455"
+         id="rect2"
+         width="85.300003"
+         height="60.850655"
+         x="307.42468"
+         y="82.937119" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Hack Nerd Font Mono';-inkscape-font-specification:'Hack Nerd Font Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.3;stroke-dasharray:none;stroke-opacity:1"
+         x="304.54407"
+         y="77.262131"
+         id="text3-9-6"><tspan
+           sodipodi:role="line"
+           id="tspan3-3-6"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;font-family:'Hack Nerd Font Mono';-inkscape-font-specification:'Hack Nerd Font Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.3;stroke-dasharray:none"
+           x="304.54407"
+           y="77.262131">Derived Object</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Hack Nerd Font Mono';-inkscape-font-specification:'Hack Nerd Font Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.3;stroke-dasharray:none;stroke-opacity:1"
+         x="314.03494"
+         y="92.668221"
+         id="text3-9-6-0"><tspan
+           sodipodi:role="line"
+           id="tspan3-3-6-4"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;font-family:'Hack Nerd Font Mono';-inkscape-font-specification:'Hack Nerd Font Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.3;stroke-dasharray:none"
+           x="314.03494"
+           y="92.668221">Base subobject</tspan></text>
+      <g
+         id="g5-0"
+         transform="translate(214.08495,102.2947)">
+        <g
+           id="g8-1"
+           transform="translate(58.817462,-6.1518429)" />
+        <g
+           id="g11"
+           transform="translate(-81.994197,-56.249894)">
+          <g
+             id="g8"
+             transform="translate(50.078122,2.997634)">
+            <text
+               xml:space="preserve"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Hack Nerd Font Mono';-inkscape-font-specification:'Hack Nerd Font Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.3;stroke-dasharray:none;stroke-opacity:1"
+               x="54.323559"
+               y="101.80621"
+               id="text3-9-6-0-4"
+               transform="translate(87.340874,-36.036763)"><tspan
+                 sodipodi:role="line"
+                 id="tspan3-3-6-4-1"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;font-family:'Hack Nerd Font Mono';-inkscape-font-specification:'Hack Nerd Font Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.3;stroke-dasharray:none"
+                 x="54.323559"
+                 y="101.80621">vptr</tspan></text>
+            <rect
+               style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.6;stroke-dasharray:none;stroke-opacity:1"
+               id="rect3-0"
+               width="61.53846"
+               height="19.89362"
+               x="137.16264"
+               y="97.403496"
+               transform="translate(-0.02605311,-44.332919)" />
+          </g>
+          <g
+             id="g10"
+             transform="translate(50.078122,45.466539)">
+            <text
+               xml:space="preserve"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Hack Nerd Font Mono';-inkscape-font-specification:'Hack Nerd Font Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.3;stroke-dasharray:none;stroke-opacity:1"
+               x="54.323559"
+               y="101.80621"
+               id="text3-9-6-0-4-5"
+               transform="translate(87.340874,-36.036763)"><tspan
+                 sodipodi:role="line"
+                 id="tspan3-3-6-4-1-0"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;font-family:'Hack Nerd Font Mono';-inkscape-font-specification:'Hack Nerd Font Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.3;stroke-dasharray:none"
+                 x="54.323559"
+                 y="101.80621">d_data</tspan></text>
+            <rect
+               style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.6;stroke-dasharray:none;stroke-opacity:1"
+               id="rect3-0-6"
+               width="61.53846"
+               height="19.89362"
+               x="137.16264"
+               y="97.403496"
+               transform="translate(-0.02605311,-44.332919)" />
+          </g>
+          <g
+             id="g8-5"
+             transform="translate(50.078122,24.232087)">
+            <g
+               id="g9">
+              <text
+                 xml:space="preserve"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Hack Nerd Font Mono';-inkscape-font-specification:'Hack Nerd Font Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.3;stroke-dasharray:none;stroke-opacity:1"
+                 x="54.323559"
+                 y="101.80621"
+                 id="text3-9-6-0-4-9"
+                 transform="translate(87.340874,-36.036763)"><tspan
+                   sodipodi:role="line"
+                   id="tspan3-3-6-4-1-9"
+                   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;font-family:'Hack Nerd Font Mono';-inkscape-font-specification:'Hack Nerd Font Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.3;stroke-dasharray:none"
+                   x="54.323559"
+                   y="101.80621">b_data</tspan></text>
+              <rect
+                 style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.6;stroke-dasharray:none;stroke-opacity:1"
+                 id="rect3-0-0"
+                 width="61.53846"
+                 height="19.89362"
+                 x="137.16264"
+                 y="97.403496"
+                 transform="translate(-0.02605311,-44.332919)" />
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+    <g
+       id="g8-1-0"
+       transform="translate(133.90207,90.228219)" />
+    <g
+       id="g77"
+       transform="translate(0,1.7572403)">
+      <rect
+         style="fill:#ec9aaa;fill-opacity:1;stroke-width:0.271091"
+         id="rect2-6"
+         width="85.300003"
+         height="70.725212"
+         x="178.65157"
+         y="83.723068" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Hack Nerd Font Mono';-inkscape-font-specification:'Hack Nerd Font Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.3;stroke-dasharray:none;stroke-opacity:1"
+         x="185.26184"
+         y="93.45417"
+         id="text3-9-6-0-7"><tspan
+           sodipodi:role="line"
+           id="tspan3-3-6-4-9"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;font-family:'Hack Nerd Font Mono';-inkscape-font-specification:'Hack Nerd Font Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.3;stroke-dasharray:none"
+           x="185.26184"
+           y="93.45417">Base Object</tspan></text>
+      <g
+         id="g8-10"
+         transform="translate(53.395757,49.828396)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Hack Nerd Font Mono';-inkscape-font-specification:'Hack Nerd Font Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.3;stroke-dasharray:none;stroke-opacity:1"
+           x="54.323559"
+           y="101.80621"
+           id="text3-9-6-0-4-4"
+           transform="translate(87.340874,-36.036763)"><tspan
+             sodipodi:role="line"
+             id="tspan3-3-6-4-1-8"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;font-family:'Hack Nerd Font Mono';-inkscape-font-specification:'Hack Nerd Font Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.3;stroke-dasharray:none"
+             x="54.323559"
+             y="101.80621">vptr</tspan></text>
+        <rect
+           style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.6;stroke-dasharray:none;stroke-opacity:1"
+           id="rect3-0-7"
+           width="61.53846"
+           height="19.89362"
+           x="137.16264"
+           y="97.403496"
+           transform="translate(-0.02605311,-44.332919)" />
+      </g>
+      <g
+         id="g8-5-4"
+         transform="translate(53.395757,71.062849)">
+        <g
+           id="g9-7">
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Hack Nerd Font Mono';-inkscape-font-specification:'Hack Nerd Font Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.3;stroke-dasharray:none;stroke-opacity:1"
+             x="54.323559"
+             y="101.80621"
+             id="text3-9-6-0-4-9-9"
+             transform="translate(87.340874,-36.036763)"><tspan
+               sodipodi:role="line"
+               id="tspan3-3-6-4-1-9-3"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;font-family:'Hack Nerd Font Mono';-inkscape-font-specification:'Hack Nerd Font Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.3;stroke-dasharray:none"
+               x="54.323559"
+               y="101.80621">b_data</tspan></text>
+          <rect
+             style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.6;stroke-dasharray:none;stroke-opacity:1"
+             id="rect3-0-0-9"
+             width="61.53846"
+             height="19.89362"
+             x="137.16264"
+             y="97.403496"
+             transform="translate(-0.02605311,-44.332919)" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
