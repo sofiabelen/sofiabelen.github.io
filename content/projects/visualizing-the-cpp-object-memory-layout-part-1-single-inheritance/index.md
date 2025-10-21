@@ -24,9 +24,9 @@ You can find all the code and experiments on [GitHub](https://github.com/sofiabe
 ---
 
 ## Series Parts
-1. Part 1 — Single Inheritance *(current one)*
-2. Part 2 — Multiple Non-Virtual Inheritance (Diamond Without Virtual) *(Coming soon)*
-3. Part 3 — Virtual Inheritance (Diamond With Virtual Base) *(Coming soon)*
+1. Part 1 — Single Inheritance *(current post)*
+2. Part 2 — Multiple Non-Virtual Inheritance (Diamond Without Virtual) *(coming soon)*
+3. Part 3 — Virtual Inheritance (Diamond With Virtual Base) *(coming soon)*
 
 ---
 
