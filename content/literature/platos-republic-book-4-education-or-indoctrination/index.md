@@ -24,11 +24,7 @@ This post is part of a series of my reflections as I read The Republic, one book
  As I've said before, my goal here is not make a scholarly analysis. Instead, I wish to capture my initial reaction to first coming in contact with this work and these concepts. I'm curious as to how my thought process will evolve by the end of the book.
 
 ## Series
-- [Plato’s Republic: Book 1 – Plato vs. Tolstoy on the Good Life](https://sofiabelen.github.io/literature/platos-republic-book-1-plato-vs-tolstoy-on-the-good-life/)
-- [Plato’s Republic: Book 2 – Intuition as an Antidote Against Political Propaganda](https://sofiabelen.github.io/literature/platos-republic-book-2-intuition-as-an-antidote-against-political-propaganda/)
-- [Plato’s Republic: Book 3 – Was Plato Advocating Censorship or Simply Urging Caution in What We Consume?](https://sofiabelen.github.io/literature/platos-republic-book-3-censorship-or-mindful-consumption/)
-- [Plato’s Republic: Book 3 – The Illusions of Self and Free Will as Noble Lies](https://sofiabelen.github.io/literature/platos-republic-book-3-the-illusion-of-free-will-as-a-noble-lie/)
-- [God Emperor of Dune as Plato’s Philosopher King](https://sofiabelen.github.io/literature/god-emperor-of-dune-as-platos-philosopher-king/) <mark>(Bonus)</mark>
+{{< postcard posts="platos-republic-book-1-plato-vs-tolstoy-on-the-good-life,platos-republic-book-2-intuition-as-an-antidote-against-political-propaganda,platos-republic-book-2-intuition-as-an-antidote-against-political-propaganda,platos-republic-book-3-censorship-or-mindful-consumption,platos-republic-book-3-the-illusion-of-free-will-as-a-noble-lie,god-emperor-of-dune-as-platos-philosopher-king" >}}
 
 ## Guarding the City and the Soul: Danger Within and Without
 <figure>

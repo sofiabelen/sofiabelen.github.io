@@ -1,0 +1,12 @@
+{{ $slugsParam := .Get "posts" }}
+{{ $slugs := split $slugsParam "," }}
+
+<div class="article-list--compact">
+  {{ range $slug := $slugs }}
+    {{ $slug = trim $slug " " }}  <!-- remove extra spaces -->
+    {{ $page := site.GetPage (printf "/literature/%s" $slug) }}
+    {{ if $page }}
+      {{ partial "article-list/compact" $page }}
+    {{ end }}
+{{ end }}
+</div>
