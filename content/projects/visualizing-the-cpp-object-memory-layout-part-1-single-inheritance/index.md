@@ -521,6 +521,8 @@ We get our beautiful vtable:
   </figcaption>
 </figure>
 
+<mark>*Disclaimer:*</mark> *The destructors occupy positions `[0]` and `[1]` in the vtable in this case, but they will be listed in the order they are declared within the class, which may not match `[0]` and `[1]`. So, for example, they might be in positions `[1]` and `[2]` if a virtual function is put before the destructor.*
+
 However, the story is not over yet. For those who like finding hidden treasure, there are two more to be found.
 
 ### Vtable Entries [-1] and [-2]
