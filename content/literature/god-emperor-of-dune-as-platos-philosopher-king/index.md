@@ -2,9 +2,9 @@
 layout: post
 title: "God Emperor of Dune as Plato’s Philosopher King"
 image: 
-    madhu-shesharam-EVZxXuOEk3w-unsplash.jpg
+    neom-kXbit_yx8t4-unsplash-edited.jpg 
 thumbnail: 
-    madhu-shesharam-EVZxXuOEk3w-unsplash-orig.jpg
+    neom-kXbit_yx8t4-unsplash-edited.jpg 
 preview: ""
 description: ""
 date: 2025-10-13
