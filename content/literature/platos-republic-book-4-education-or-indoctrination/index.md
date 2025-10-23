@@ -25,10 +25,10 @@ This post is part of a series of my reflections as I read The Republic, one book
 
 ## Series
 - [Plato’s Republic: Book 1 – Plato vs. Tolstoy on the Good Life](https://sofiabelen.github.io/literature/platos-republic-book-1-plato-vs-tolstoy-on-the-good-life/)
-- [Plato’s Republic: Book 2 – Intuition as an Antidote Against Political Propaganda](https://sofiabelen.github.io/literature/#:~:text=Plato%E2%80%99s%20Republic%3A%20Book%202%20%E2%80%93%20Intuition%20as%20an%20Antidote%20Against%20Political%20Propaganda)
-- [Plato’s Republic: Book 3 – Was Plato Advocating Censorship or Simply Urging Caution in What We Consume?](https://sofiabelen.github.io/literature/#:~:text=Plato%E2%80%99s%20Republic%3A%20Book%203%20%E2%80%93%20Was%20Plato%20Advocating%20Censorship%20or%20Simply%20Urging%20Caution%20in%20What%20We%20Consume%3F)
-- [Plato’s Republic: Book 3 – The Illusions of Self and Free Will as Noble Lies](https://sofiabelen.github.io/literature/#:~:text=Plato%E2%80%99s%20Republic%3A%20Book%203%20%E2%80%93%20The%20Illusions%20of%20Self%20and%20Free%20Will%20as%20Noble%20Lies)
-- [God Emperor of Dune as Plato’s Philosopher King](http://localhost:1313/literature/god-emperor-of-dune-as-platos-philosopher-king/) <mark>(Bonus)</mark>
+- [Plato’s Republic: Book 2 – Intuition as an Antidote Against Political Propaganda](https://sofiabelen.github.io/literature/platos-republic-book-2-intuition-as-an-antidote-against-political-propaganda/)
+- [Plato’s Republic: Book 3 – Was Plato Advocating Censorship or Simply Urging Caution in What We Consume?](https://sofiabelen.github.io/literature/platos-republic-book-3-censorship-or-mindful-consumption/)
+- [Plato’s Republic: Book 3 – The Illusions of Self and Free Will as Noble Lies](https://sofiabelen.github.io/literature/platos-republic-book-3-the-illusion-of-free-will-as-a-noble-lie/)
+- [God Emperor of Dune as Plato’s Philosopher King](https://sofiabelen.github.io/literature/god-emperor-of-dune-as-platos-philosopher-king/) <mark>(Bonus)</mark>
 
 ## Guarding the City and the Soul: Danger Within and Without
 <figure>
