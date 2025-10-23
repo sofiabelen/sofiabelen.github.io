@@ -226,7 +226,7 @@ You can imagine memory alignment like organizing items on shelves: each variable
   </figcaption>
 </figure>
 
-The CPU access memory most efficiently when data is aligned to certain boundaries (for some architectures this is a requirement). For example, a 4-byte integer is typically fastest to read or write when it starts at an address that’s a multiple of 4. If a field would otherwise start at an unaligned address, the compiler adds some unused bytes (padding) to move it to the next properly aligned position.
+The CPU access memory most efficiently when data is aligned to certain boundaries (for some architectures this is actually a requirement). For example, a 4-byte integer is typically fastest to read or write when it starts at an address that’s a multiple of 4. If a field would otherwise start at an unaligned address, the compiler adds some unused bytes (padding) to move it to the next properly aligned position.
 
 With a bit (no pun intended) more pointer arithmetic, we can actually peek at those padding bytes.
 
