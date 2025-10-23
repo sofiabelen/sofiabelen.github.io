@@ -219,6 +219,15 @@ The reason for this is padding: extra bytes the compiler inserts to keep everyth
 
 ### Padding
 
+<figure>
+<img style='height: 50%; width: 50%; object-fit: contain' src="paul-hanaoka-7sSBqLsXUHw-unsplash.jpg" atl="">
+  <figcaption>
+You can imagine memory alignment like organizing items on shelves: each variable has its own shelf size, and it needs to start exactly at the edge of that shelf so the CPU can find and access it properly.
+  </figcaption>
+</figure>
+
+The CPU access memory most efficiently when data is aligned to certain boundaries (for some architectures this is a requirement). For example, a 4-byte integer is typically fastest to read or write when it starts at an address that’s a multiple of 4. If a field would otherwise start at an unaligned address, the compiler adds some unused bytes (padding) to move it to the next properly aligned position.
+
 With a bit (no pun intended) more pointer arithmetic, we can actually peek at those padding bytes.
 
 <pre><code>
@@ -229,6 +238,10 @@ Offset  Size  Field     Bytes
 0x08      4    b_data   01 00 00 00 
 <mark>0x0C      4    padding  31 7f 00 00 </mark>
 </pre></code>
+
+Here you can see that after the 4-byte `b_data` field, there are 4 more bytes that don’t correspond to any real variable, they’re just there to ensure the next part of the object starts at the correct alignment boundary.
+
+Those bytes (`31 7f 00 00`) are effectively garbage data. They might contain leftover memory values, but they’re ignored by the program.
 
 ## Invoking Functions Directly via Vptr
 
