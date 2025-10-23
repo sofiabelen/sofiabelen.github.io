@@ -16,7 +16,7 @@ categories:
 tags:
     - philosophy
 ---
-I love that Socrates reconnects the city metaphor back to the soul, which was the original purpose for building this city. I was beginning to worry Plato might leave abandon us on the task of connecting the dots.
+I love that Socrates reconnects the city metaphor back to the soul, which was the original purpose for building this city. I was beginning to worry Plato might abandon us on the task of connecting the dots.
 
 This book sparked for me internal discussion on different fronts, that's why this post might a bit over the place.
 
