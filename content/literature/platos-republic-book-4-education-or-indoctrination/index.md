@@ -16,9 +16,10 @@ categories:
 tags:
     - philosophy
 ---
+## **Introduction:** Brief overview of Book 4 and its significance.
 I love that Socrates reconnects the city metaphor back to the soul, which was the original purpose for building this city. I was beginning to worry Plato might abandon us on the task of connecting the dots.
 
-This book sparked for me internal discussion on different fronts, that's why this post might a bit over the place.
+This book sparked internal discussion on different fronts, that's why this post might a bit over the place.
 
 This post is part of a series of my reflections as I read The Republic, one book at a time.
  As I've said before, my goal here is not make a scholarly analysis. Instead, I wish to capture my initial reaction to first coming in contact with this work and these concepts. I'm curious as to how my thought process will evolve by the end of the book.
@@ -26,7 +27,7 @@ This post is part of a series of my reflections as I read The Republic, one book
 ## Series
 {{< postcard posts="platos-republic-book-1-plato-vs-tolstoy-on-the-good-life,platos-republic-book-2-intuition-as-an-antidote-against-political-propaganda,platos-republic-book-2-intuition-as-an-antidote-against-political-propaganda,platos-republic-book-3-censorship-or-mindful-consumption,platos-republic-book-3-the-illusion-of-free-will-as-a-noble-lie,god-emperor-of-dune-as-platos-philosopher-king" >}}
 
-## Guarding the City and the Soul: Danger Within and Without
+## **Guarding the City and the Soul:** Discussion on Internal and External Threats
 <figure>
 <img style='height: 100%; width: 100%; object-fit: contain' src="1280px-Adolf_Hirémy-Hirschl_-_Die_Seelen_am_Acheron_-_942_-_Österreichische_Galerie_Belvedere.jpg" atl="">
   <figcaption>
@@ -40,7 +41,7 @@ In terms of our, I like this notion of guarding not just for extreme external vi
 
 For the city, it's "wealth and poverty" that they must guard against. They do have a point. We can only dream of a world without either.
 
-## Plato’s Pedagogy: Philosophy or Indoctrination?
+## **Plato’s Pedagogy:** Philosophy or Indoctrination?
 
 <figure>
 <img style='height: 100%; width: 100%; object-fit: contain' src="960px-The_School_of_Aristotle.jpg" atl="">
@@ -78,7 +79,7 @@ I think the opposite is actually true. Holding on to how you were brought up, no
 
 I do think it's brilliant, though, how Plato understood, even then, how our upbringing conditions us for life. He shows us the type of discourse that those in power might employ to keep us all compliant. He's showing us the very techniques used today, all in the name of justice. How they shape and mold a whole society, setting them up for generations.
 
-## Conclusion
+## **Conclusion:** Personal Reflections and Questions Raised by The Text
 Plato identifies four cardinal virtues: wisdom, courage, moderation and justice. 
 
 After a long and winding search, Socrates and his companions finally settle on a definition of justice, both in the city and in the soul: as each part performing its proper function without interfering with the others. I find this definition compelling when applied to the individual, though I'm less convinced it holds for a city, especially in the context of today's society. AT least speaking for myself, I take joy in taking part in many different "roles," and it'd make me miserable to know I'd have to stick to doing only the one thing I'm best at for the rest of my life.
