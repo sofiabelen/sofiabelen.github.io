@@ -18,9 +18,19 @@ tags:
 ---
 I love that Socrates reconnects the city metaphor back to the soul, which was the original purpose for building this city. I was beginning to worry Plato might leave abandon us on the task of connecting the dots.
 
-This book sparked for me internal discussion on different fronts, that's why this post might a bit over the place. I've tried to capture my reaction to these topics as I came upon them.
+This book sparked for me internal discussion on different fronts, that's why this post might a bit over the place.
 
-### Guarding the City and the Soul: Danger Within and Without
+This post is part of a series of my reflections as I read The Republic, one book at a time.
+ As I've said before, my goal here is not make a scholarly analysis. Instead, I wish to capture my initial reaction to first coming in contact with this work and these concepts. I'm curious as to how my thought process will evolve by the end of the book.
+
+## Series
+- [Plato’s Republic: Book 1 – Plato vs. Tolstoy on the Good Life](https://sofiabelen.github.io/literature/platos-republic-book-1-plato-vs-tolstoy-on-the-good-life/)
+- [Plato’s Republic: Book 2 – Intuition as an Antidote Against Political Propaganda](https://sofiabelen.github.io/literature/#:~:text=Plato%E2%80%99s%20Republic%3A%20Book%202%20%E2%80%93%20Intuition%20as%20an%20Antidote%20Against%20Political%20Propaganda)
+- [Plato’s Republic: Book 3 – Was Plato Advocating Censorship or Simply Urging Caution in What We Consume?](https://sofiabelen.github.io/literature/#:~:text=Plato%E2%80%99s%20Republic%3A%20Book%203%20%E2%80%93%20Was%20Plato%20Advocating%20Censorship%20or%20Simply%20Urging%20Caution%20in%20What%20We%20Consume%3F)
+- [Plato’s Republic: Book 3 – The Illusions of Self and Free Will as Noble Lies](https://sofiabelen.github.io/literature/#:~:text=Plato%E2%80%99s%20Republic%3A%20Book%203%20%E2%80%93%20The%20Illusions%20of%20Self%20and%20Free%20Will%20as%20Noble%20Lies)
+- [God Emperor of Dune as Plato’s Philosopher King](http://localhost:1313/literature/god-emperor-of-dune-as-platos-philosopher-king/) <mark>(Bonus)</mark>
+
+## Guarding the City and the Soul: Danger Within and Without
 <figure>
 <img style='height: 100%; width: 100%; object-fit: contain' src="1280px-Adolf_Hirémy-Hirschl_-_Die_Seelen_am_Acheron_-_942_-_Österreichische_Galerie_Belvedere.jpg" atl="">
   <figcaption>
@@ -34,7 +44,7 @@ In terms of our, I like this notion of guarding not just for extreme external vi
 
 For the city, it's "wealth and poverty" that they must guard against. They do have a point. We can only dream of a world without either.
 
-### Plato’s Pedagogy: Philosophy or Indoctrination?
+## Plato’s Pedagogy: Philosophy or Indoctrination?
 
 <figure>
 <img style='height: 100%; width: 100%; object-fit: contain' src="960px-The_School_of_Aristotle.jpg" atl="">
@@ -61,7 +71,7 @@ I wonder, does such an education promote the kind of thinking and curiosity that
 
 He goes on to talk about how it would be best for everyone to dress the same. He doesn't want people performing different roles. Does the danger lie in the creative power of self-expression, which leads to individual-first thinking as well as creativity? Doesn't creativity foster a rebellious spirit, which is quite the opposite to what he arrives for in his city?  Isn't it also one of those few things we as humans pursuit for its own sake, meaning that it holds inherent value for us? What is the hidden price we pay for living in Socrates' just city? Would we be willing to pay it?
 
-### Obedience Or Creative Thought as a Virtue
+## Obedience Or Creative Thought as a Virtue
 > "I mean," I said, "that courage is a certain kind of preserving."
 >
 > "Just what sort of preserving?"
@@ -72,7 +82,7 @@ I think the opposite is actually true. Holding on to how you were brought up, no
 
 I do think it's brilliant, though, how Plato understood, even then, how our upbringing conditions us for life. He shows us the type of discourse that those in power might employ to keep us all compliant. He's showing us the very techniques used today, all in the name of justice. How they shape and mold a whole society, setting them up for generations.
 
-### Conclusion
+## Conclusion
 Plato identifies four cardinal virtues: wisdom, courage, moderation and justice. 
 
 After a long and winding search, Socrates and his companions finally settle on a definition of justice, both in the city and in the soul: as each part performing its proper function without interfering with the others. I find this definition compelling when applied to the individual, though I'm less convinced it holds for a city, especially in the context of today's society. AT least speaking for myself, I take joy in taking part in many different "roles," and it'd make me miserable to know I'd have to stick to doing only the one thing I'm best at for the rest of my life.
