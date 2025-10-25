@@ -1,0 +1,198 @@
+{{ define "body-class" }}template-books{{ end }}
+
+{{ define "main" }}
+
+<header>
+    {{ partial "article/components/header" . }}
+</header>
+
+<div class="article-subtitle">
+  {{ partial "article/components/content" . }}
+</div>
+
+{{ $booksData := .Site.Data.books }}
+{{ $sortedYears := slice }}
+
+{{ range $year, $_ := $booksData }}
+  {{ $sortedYears = $sortedYears | append $year }}
+{{ end }}
+{{ $sortedYears = sort $sortedYears "value" "desc" }}
+
+{{ if $booksData }}
+  {{ range $sortedYears }}
+    <h3 class="section-title">{{ . }}</h3>
+    <div class="books-grid" data-year="{{ . }}" data-type="books">
+      {{ range index $booksData . }}
+      {{ if .url }}
+        <a href="{{ .url }}" target="_blank" class="book-card-link">
+      {{ end }}
+          <div class="book-card">
+            <div class="book-poster">
+              {{ if .cover }}
+                <img src="{{ .cover | relURL }}" alt="{{ .title }}" loading="lazy">
+              {{ else }}
+                <div class="no-poster">No Poster Available</div>
+              {{ end }}
+            </div>
+            <div class="book-info">
+              <h3 class="book-title">
+                 {{ if .reaction }}
+                 {{ if eq .reaction "adored" }}
+                    ❤️ 
+                 {{ else if eq .reaction "despised" }}
+                    💔
+                 {{ end }}
+                 {{ end }}
+                {{ .title }}
+                {{ if .url }}
+                  <span class="book-link-icon">🔗</span>
+                {{ end }}
+                <span class="book-year">{{ .year }}</span>
+              </h3>
+              <div class="book-meta">
+                {{ if .author }}
+                  <p class="book-author">by {{ .author }}</p>
+                {{ end }}
+                {{ if .status }}
+                  <span class="book-status {{ .status | lower }}">{{ .status | title }}</span>
+                {{ end }}
+              </div>
+            </div>
+          </div>
+      {{ if .url }}
+        </a>
+      {{ end }}
+      {{ end }}
+    </div>
+  {{ end }}
+{{ end }}
+
+<style>
+  .section-title {
+      margin: 2rem 0 1rem 0;
+      font-size: 1.8rem;
+      color: var(--card-text-color-main);
+  }
+
+  .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1rem;
+      padding: 0 0 2rem 0;
+  }
+
+  @media (min-width: 768px) {
+      .books-grid {
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+          gap: 1.2rem;
+      }
+  }
+
+  .book-card {
+      background: var(--card-background);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: transform 0.2s;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .book-card-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+  }
+
+  .book-card:hover {
+      transform: translateY(-2px);
+  }
+
+  .book-poster {
+      position: relative;
+      padding-top: 130%;
+      background: #2a2a2a;
+  }
+
+  .book-poster img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+  }
+
+  .no-poster {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #888;
+      font-size: 0.9rem;
+  }
+
+  .book-info {
+      padding: 0.8rem;
+  }
+
+  .book-title {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.4rem;
+      line-height: 1.3;
+      font-weight: 600;
+      color: var(--card-text-color-main);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+
+  .book-year {
+      font-size: 1.2rem;
+      color: var(--card-text-color-secondary);
+      font-weight: 600;
+  }
+
+  .book-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.2rem;
+      color: var(--card-text-color-secondary);
+  }
+
+  .book-status {
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-left: 0.5rem;
+      text-transform: capitalize;
+  }
+  
+  /* Color coding */
+  .book-status.read {
+      background-color: #8ea885;   /* green */
+      color: white;
+  }
+  .book-status.reading {
+      background-color: #df7988;   /* blue */
+      color: white;
+  }
+  .book-status.abandoned {
+      background-color: #ffb900;   /* red */
+      color: white;
+  }
+
+  .rating {
+      font-weight: 500;
+  }
+
+  .book-author {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--card-text-color-secondary);
+  }
+
+</style>
+
+{{ partialCached "footer/footer" . }}
+{{ end }}

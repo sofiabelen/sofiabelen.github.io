@@ -1,0 +1,160 @@
+2025:
+  - title: "White Nights"
+    cover: "/images/white-nights.jpg"
+    author: "Fyodor Dostoyevsky"
+    year: 2023
+    status: reading
+    reaction: adored
+
+  - title: "The Republic"
+    cover: "/images/the-republic.jpg"
+    author: "Plato, Allan Bloom (Translator)"
+    year: 2016
+    status: reading
+
+  - title: "Metamorphoses"
+    cover: "/images/metamorphoses.jpg"
+    author: "Ovid, McCarter (Translator)"
+    year: 2023
+    status: reading
+
+  - title: "God Emperor of Dune"
+    cover: "/images/god-emperor-dune.jpg"
+    author: "Frank Herbert"
+    year: 1981
+    url: https://sofiabelen.github.io/literature/god-emperor-of-dune-as-platos-philosopher-king/
+    status: read
+    reaction: adored
+
+  - title: "Dune Messiah"
+    cover: "/images/dune-messiah.jpg"
+    author: "Frank Herbert"
+    year: 1969
+    status: read
+    reaction: adored
+
+  - title: "Children of Dune"
+    cover: "/images/children-dune.jpg"
+    author: "Frank Herbert"
+    year: 1976
+    status: read
+    reaction: adored
+
+  - title: "The Death of Ivan Ilych"
+    cover: "/images/smert-ivana-il-icha-the-death-of-ivan-ilyich-.jpg"
+    author: "Leo Tolstoy"
+    year: 1886
+    status: read
+    url: https://sofiabelen.github.io/literature/my-emotional-response-to-ivan-iliych/
+    reaction: adored
+
+  - title: "The Sound and the Fury"
+    cover: "/images/The_Sound_and_the_Fury_(1929_1st_ed_dust_jacket).jpg"
+    author: "William Faulkner"
+    year: 1929
+    status: read
+    reaction: adored
+
+  - title: "Paradise Lost"
+    cover: "/images/paradise-lost.jpg"
+    author: "John Milton"
+    year: 1667
+    status: read
+    reaction: adored
+
+  - title: "The Iliad"
+    cover: "/images/the-iliad.jpg"
+    author: "Homer, Emily Wilson (Translator)"
+    year: 2023
+    status: read
+    reaction: adored
+
+  - title: "The Testaments"
+    cover: "/images/the-testaments.jpg"
+    author: "Margaret Atwood"
+    year: 2019
+    status: read
+
+  - title: "Lady Audley's Secret"
+    cover: "/images/lady-audleys-secret.jpg"
+    author: "Mary Elizabeth Braddon"
+    year: 1862
+    status: read
+
+2024:
+  - title: "The Odyssey"
+    cover: "/images/the-odyssey.jpg"
+    author: "Homer, Emily Wilson (Translator)"
+    year: 2017
+    status: read
+    reaction: adored
+
+  - title: "Oryx and Crake"
+    cover: "/images/oryx-and-crake.jpg"
+    author: "Margaret Atwood"
+    year: 2003
+    status: read
+    reaction: adored
+
+  - title: "The Year of the Flood"
+    cover: "/images/the-year-of-the-flood.jpg"
+    author: "Margaret Atwood"
+    year: 2009
+    status: read
+    reaction: adored
+
+  - title: "MaddAddam"
+    cover: "/images/maddaddam.jpg"
+    author: "Margaret Atwood"
+    status: read
+    year: 2013
+    reaction: adored
+
+  - title: "Dune"
+    cover: "/images/dune.jpg"
+    author: "Frank Herbert"
+    year: 1965
+    url: https://sofiabelen.github.io/literature/god-emperor-of-dune-as-platos-philosopher-king/
+    status: read
+    reaction: adored
+
+  - title: "Siddhartha"
+    cover: "/images/siddhartha.jpg"
+    author: "Hermann Hesse"
+    year: 1922
+    status: read
+
+  - title: "Farenheit 451"
+    cover: "/images/farenheit-451.jpg"
+    author: "Ray Bradbury"
+    year: 1953
+    status: abandoned
+
+  - title: "Pride and Prejudice"
+    cover: "/images/pride-and-prejudice.jpg"
+    author: "Jane Austen"
+    year: 1813
+    status: abandoned
+    reaction: despised
+
+2023:
+  - title: "Antigone and Other Tragedies: Antigone, Deianeira, Electra"
+    cover: "/images/antigone.jpg"
+    author: "Sophocles, Oliver Taplin (Translator)"
+    year: 2022
+    status: read
+
+2021:
+  - title: "The Handmaid's Tale"
+    cover: "/images/handmaid.jpg"
+    author: "Margaret Atwood"
+    year: 1985
+    status: read
+    reaction: adored
+
+  - title: "The Metamorphosis"
+    cover: "/images/the-metamorphosis.jpg"
+    author: "Franz Kafka"
+    year: 1915
+    status: read
+    reaction: adored
