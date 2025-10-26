@@ -18,6 +18,12 @@
     year: 2023
     status: reading
 
+  - title: "Anna Karenina"
+    cover: "/images/anna-karenina.jpg"
+    author: "Leo Tolstoy"
+    year: 1878
+    status: reading
+
   - title: "God Emperor of Dune"
     cover: "/images/god-emperor-dune.jpg"
     author: "Frank Herbert"
@@ -25,6 +31,12 @@
     url: https://sofiabelen.github.io/literature/god-emperor-of-dune-as-platos-philosopher-king/
     status: read
     reaction: adored
+
+  - title: "Heretics of Dune"
+    cover: "/images/heretics.jpg"
+    author: "Frank Herbert"
+    year: 1984
+    status: reading
 
   - title: "Dune Messiah"
     cover: "/images/dune-messiah.jpg"
