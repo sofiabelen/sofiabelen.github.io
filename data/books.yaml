@@ -158,3 +158,188 @@
     year: 1915
     status: read
     reaction: adored
+
+  - title: "Lolita"
+    cover: "/images/lolita.jpg"
+    author: "Vladimir Nabokov"
+    year: 1955
+    status: abandoned
+
+from my teens:
+  - title: "The Perks of Being a Wallflower"
+    cover: "/images/perks.jpg"
+    author: "Stephen Chbosky"
+    year: 1999
+    status: read
+    reaction: adored
+
+  - title: "The Diary of a Young Girl"
+    cover: "/images/anne-frank.jpg"
+    author: "Anne Frank"
+    year: 1947
+    status: read
+
+  - title: "The Tell-Tale Heart"
+    cover: "/images/the-tell-tale-heart.jpg"
+    author: "Edgar Allan Poe"
+    year: 1843
+    status: read
+    reaction: adored
+
+  - title: "Interview with the Vampire"
+    cover: "/images/interview-with-the-vampire.jpg"
+    author: "Anne Rice"
+    year: 1976
+    status: read
+    reaction: adored
+
+  - title: "The Vampire Lestat"
+    cover: "/images/the-vampire-lestat.jpg"
+    author: "Anne Rice"
+    year: 1985
+    status: read
+
+  - title: "The Giver"
+    cover: "/images/the-giver.jpg"
+    author: "Lois Lowry"
+    year: 1993
+    status: read
+    reaction: adored
+
+  - title: "Gathering Blue"
+    cover: "/images/gathering-blue.jpg"
+    author: "Lois Lowry"
+    year: 2000
+    status: read
+
+  - title: "Messenger"
+    cover: "/images/messenger.jpg"
+    author: "Lois Lowry"
+    year: 2004
+    status: read
+
+  - title: "Number the Stars"
+    cover: "/images/number-the-stars.jpg"
+    author: "Lois Lowry"
+    year: 1989
+    status: read
+
+  - title: "The Book Thief"
+    cover: "/images/the-book-thief.jpg"
+    author: "Markus Zusak"
+    year: 2005
+    status: read
+
+  - title: "Tom Sawyer"
+    cover: "/images/tom-sawyer.jpg"
+    author: "Mark Twain"
+    year: 1876
+    status: read
+    reaction: despised
+
+  - title: "Huckleberry Finn"
+    cover: "/images/huckleberry-finn.jpg"
+    author: "Mark Twain"
+    year: 1885
+    status: read
+    reaction: despised
+
+  - title: "North of Beautiful"
+    cover: "/images/north-of-beautiful.jpg"
+    author: "Justina Chen"
+    year: 2009
+    status: read
+
+  - title: "The Hunger Games"
+    cover: "/images/hunger-games.jpg"
+    author: "Suzanne Collins"
+    year: 2008
+    status: read
+    reaction: adored
+
+  - title: "Catching Fire"
+    cover: "/images/catching-fire.jpg"
+    author: "Suzanne Collins"
+    year: 2009
+    status: read
+
+  - title: "Mockingjay"
+    cover: "/images/mockingjay.jpg"
+    author: "Suzanne Collins"
+    year: 2010
+    status: read
+
+  - title: "The Host"
+    cover: "/images/the-host.jpg"
+    author: "Stephenie Meyer"
+    year: 2008
+    status: read
+    reaction: adored
+
+  - title: "Twilight"
+    cover: "/images/twilight.jpg"
+    author: "Stephenie Meyer"
+    year: 2005
+    status: read
+
+  - title: "New Moon"
+    cover: "/images/new-moon.jpg"
+    author: "Stephenie Meyer"
+    year: 2006
+    status: read
+
+  - title: "Eclipse"
+    cover: "/images/eclipse.jpg"
+    author: "Stephenie Meyer"
+    year: 2007
+    status: read
+
+  - title: "Breaking Dawn"
+    cover: "/images/breaking-dawn.jpg"
+    author: "Stephenie Meyer"
+    year: 2008
+    status: read
+
+  - title: "Delirium"
+    cover: "/images/delirium.jpg"
+    author: "Lauren Oliver"
+    year: 2011
+    status: read
+
+  - title: "Divergence"
+    cover: "/images/divergence.jpg"
+    author: "Veronica Roth"
+    year: 2011
+    status: read
+
+  - title: "Insurgent"
+    cover: "/images/insurgent.jpg"
+    author: "Veronica Roth"
+    year: 2012
+    status: read
+
+  - title: "Allegiant"
+    cover: "/images/allegiant.jpg"
+    author: "Veronica Roth"
+    year: 2013
+    status: read
+
+  - title: "Four"
+    cover: "/images/four.jpg"
+    author: "Veronica Roth"
+    year: 2014
+    status: read
+
+  - title: "Oedipus Rex"
+    cover: "/images/oedipus-rex.jpg"
+    author: "Sophocles"
+    year: 430
+    status: read
+
+  - title: "Stargirl"
+    cover: "/images/stargirl.jpg"
+    author: "Jerry Spinelli"
+    year: 2000
+    status: read
+    reaction: despised
+
