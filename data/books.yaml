@@ -1,3 +1,17 @@
+2026:
+  - title: "Chapterhouse: Dune"
+    cover: "/images/chapterhouse.jpg"
+    author: "Frank Herbert"
+    year: 1985
+    status: read
+    url: https://sofiabelen.github.io/literature/heretics-of-dune-as-platos-republic-reimagined/
+
+  - title: "The Fellowship of the Ring"
+    cover: "/images/fellowship.webp"
+    author: "J.R.R. Tolkien"
+    year: 1954
+    status: reading
+
 2025:
   - title: "White Nights"
     cover: "/images/white-nights.jpg"
@@ -10,7 +24,8 @@
     cover: "/images/the-republic.jpg"
     author: "Plato, Allan Bloom (Translator)"
     year: 2016
-    status: reading
+    status: read
+    url: https://sofiabelen.github.io/literature/platos-republic-book-1-plato-vs-tolstoy-on-the-good-life/
 
   - title: "Metamorphoses"
     cover: "/images/metamorphoses.jpg"
@@ -36,7 +51,8 @@
     cover: "/images/heretics.jpg"
     author: "Frank Herbert"
     year: 1984
-    status: reading
+    reaction: adored
+    status: read
 
   - title: "Dune Messiah"
     cover: "/images/dune-messiah.jpg"
