@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Creating Anki Flashcards with MathJax and Images Using Vim"
-categories: blog
 image: Screenshot-Anki2.png
 thumbnail: Screenshot-Anki2.png
 description: "Make anki cards worth studying. Increase your productivity with vim and UltiSnips. Typeset beautiful math using MathJax."

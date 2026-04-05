@@ -3,7 +3,6 @@ layout: post
 title: "Beginnings Hide Behind Ends: Leaving Russia Because of War"
 image: moscow.jpg
 thumbnail: moscow.jpg
-categories: blog
 description: "Life feels surreal today. Only a few days ago my biggest worry was not being able to meet university deadlines, now I wake up everyday to terrifying videos and news of people in Ukraine being attacked, whole cities destroyed, lives torn apart."
 date: 2022-03-02
 categories:

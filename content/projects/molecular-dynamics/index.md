@@ -1,6 +1,6 @@
 ---
 title: Molecular Dynamics Simulation using Lennard-Jones Potential
-thumbnail: cover.jpg
+cover: cover.jpg
 thumbnail: molecular-dynamics-simulation-optimized.gif
 hideCover: false
 description: "Simulation code in C++, analysis in Python."

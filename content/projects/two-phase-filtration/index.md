@@ -4,7 +4,6 @@ title: "Hydrodynamics Solver: Nitrogen and Pentane Filtration"
 image: 2phase-filtration.png
 thumbnail: 2phase-filtration.png
 description: "First time coding a CFD solver from scratch."
-thumbnail: 2phase-filtration.png
 category: projects
 categories:
     - Computational Physics
