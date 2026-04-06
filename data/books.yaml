@@ -1,4 +1,24 @@
 2026:
+
+  - title: "The Aeneid"
+    cover: "/images/the-aeneid.jpg"
+    author: "Virgil"
+    status: reading
+
+  - title: "Project Hail Mary"
+    cover: "/images/phm.jpg"
+    author: "Andy Weir"
+    year: 2021
+    status: read
+    reaction: adored
+    url: https://sofiabelen.github.io/literature/project-hail-mary/
+
+  - title: "Hamlet"
+    cover: "/images/hamlet.jpg"
+    author: "William Shakespeare"
+    year: 1601
+    status: read
+
   - title: "Chapterhouse: Dune"
     cover: "/images/chapterhouse.jpg"
     author: "Frank Herbert"
@@ -16,21 +36,18 @@
   - title: "White Nights"
     cover: "/images/white-nights.jpg"
     author: "Fyodor Dostoyevsky"
-    year: 2023
-    status: reading
+    status: read
     reaction: adored
 
   - title: "The Republic"
     cover: "/images/the-republic.jpg"
     author: "Plato, Allan Bloom (Translator)"
-    year: 2016
     status: read
     url: https://sofiabelen.github.io/literature/platos-republic-book-1-plato-vs-tolstoy-on-the-good-life/
 
   - title: "Metamorphoses"
     cover: "/images/metamorphoses.jpg"
     author: "Ovid, McCarter (Translator)"
-    year: 2023
     status: reading
 
   - title: "Anna Karenina"
@@ -196,7 +213,7 @@
 
 from my teens:
   - title: "The Perks of Being a Wallflower"
-    cover: "/images/perks.jpg"
+    cover: "/images/perks.webp"
     author: "Stephen Chbosky"
     year: 1999
     status: read
