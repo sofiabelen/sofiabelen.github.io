@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Project Hail Mary: a Cathartic  Reading Experience"
+title: "Project Hail Mary: A Cathartic Reading Experience"
 image: 
     nasa-CpHNKNRwXps-unsplash.jpg
 thumbnail: 
