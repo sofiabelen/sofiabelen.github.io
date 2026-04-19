@@ -7,7 +7,7 @@ thumbnail:
     benjamin-child-6msS8vT5pzw-unsplash.jpg
 preview: ""
 description: ""
-date: 2026-04-18
+date: 2026-04-19
 publishDate: 2026-04-18
 featured: true
 categories:
@@ -20,7 +20,7 @@ tags:
 
 Such a rich work, the reading experience was rollercoaster of ideas and shifts in perspective. This book has met me at a transition time in my life revolving around the theme of coming home. Like Shevek, I have been on a constant journey seeking home. I feel that everywhere I've been, I've found pieces of what I would call home. What I mean by this is that different aspects of 'me' have felt at home in the different 'realms' I've inhabited. Each time, I was overjoyed; each time, I thought, I have finally found it. Each time, though, I learned to realize that other parts of me were left without a home.
 
-Shevek's journey mirrors mine. In a sense, I got drunk on the promise of a foreign world, only after which I understood what I truly yearned for was to come home. The home I am coming back to is not somewhere I have ever lived.
+Shevek's journey mirrors mine. In a sense, I got drunk on the promise of a foreign world, only after which I understood what I truly yearned for was to come home. The home I am coming back to is not somewhere I have been before.
 
 This is a topic for another post though. For now, The Dispossessed has left me with many ideas and symbolisms I wish to unpack.
 
