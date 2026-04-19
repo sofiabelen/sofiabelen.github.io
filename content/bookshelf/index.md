@@ -1,5 +1,5 @@
 ---
-title: My Bookshelf
+title: Bookshelf
 slug: bookshelf
 layout: bookshelf
 readingTime: false
