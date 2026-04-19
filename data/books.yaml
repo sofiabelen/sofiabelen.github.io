@@ -1,5 +1,12 @@
 2026:
 
+  - title: "The Dispossessed"
+    cover: "/images/the-dispossessed.jpeg"
+    author: "Ursula Le Guin"
+    reaction: adored
+    status: read
+    url: https://sofiabelen.github.io/literature/the-dispossessed/
+
   - title: "The Aeneid"
     cover: "/images/the-aeneid.jpg"
     author: "Virgil"
