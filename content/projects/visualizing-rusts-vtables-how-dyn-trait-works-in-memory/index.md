@@ -24,6 +24,35 @@ By the way, the thumbnail image is a photo of the rust fungus, to which we owe R
 
 You can find all the code and experiments on [GitHub](https://github.com/sofiabelen/rust-vtables-for-cpp-programmers).
 
-## Introduction
+## Introduction: The Crux of the Matter
 
+What we're trying to achieve is quite simple. Let's say we have a bunch of shapes: circles, squares, triangles, and we want to call `draw()` on each one.  
 
+### C++ Approach #1: Virtual Functions
+
+The first way to do this that comes to mind in C++ is through virtual functions, which makes use of runtime polymorphism. The vtable pointer lives inside the object, virtual dispatch happens automatically.
+
+```cpp
+std::vector<Shape*> shapes = { new Circle(), new Square() };
+for (auto* s : shapes)
+    s->draw();
+```
+
+Rust's equivalent would be `dyn Trait`, which is what we ultimately want to understand. But first, let's take a look at another way we could solve this in C++.
+
+### C++ Approach #2: CRTP
+
+One could also go the CRTP (Curiously Recurring Template Pattern) route, which is essentially compile time polymorphism. If you're interested, this awesome [talk](https://www.youtube.com/watch?v=pmdwAf6hCWg) by Klaus Iglberger is what helped this concept finally click for me.
+
+```cpp
+template<typename Derived>
+struct Shape {
+    void draw() {
+        static_cast<Derived*>(this)->draw();
+    }
+};
+```
+
+Essentially, there are no vtables and it's resolved at compile time, sacrificing readability (it really is a mouthful).
+
+Rust offers a much more straightforward and simple equivalent to CRTP, namely monomorphization. This is the approach we'll dig into first to start constructing our mental model of what Rust has to offer.
