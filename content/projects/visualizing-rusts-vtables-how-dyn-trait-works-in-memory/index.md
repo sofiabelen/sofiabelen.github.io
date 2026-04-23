@@ -56,3 +56,126 @@ struct Shape {
 Essentially, there are no vtables and it's resolved at compile time, sacrificing readability (it really is a mouthful).
 
 Rust offers a much more straightforward and simple equivalent to CRTP, namely monomorphization. This is the approach we'll dig into first to start constructing our mental model of what Rust has to offer.
+
+## Static Dispatch
+
+- static dispatch, also known as generics
+- the compiler creates separate copies for each concrete time
+- zero runtime cost
+- types must be known at compile time
+- when does a problem arise?
+
+Comparisons to c++:
+- if you used templates in C++, the template would take any type T that implements draw
+- (with concepts you can narrow down)
+- in rust, the types accepted are explicitely what you specified
+- more intentional
+
+```rust
+trait Draw {
+    fn draw(&self) -> &str;
+}
+
+struct Circle;
+struct Square;
+
+impl Draw for Circle {
+    fn draw(&self) -> &str {
+        "Drawing a circle"
+    }
+}
+
+impl Draw for Square {
+    fn draw(&self) -> &str {
+        "Drawing a square"
+    }
+}
+
+fn draw_shape<T: Draw>(shape: T) {
+    println!("{}", shape.draw());
+}
+
+fn main() {
+    let circle = Circle;
+    let square = Square;
+    draw_shape(circle);
+    draw_shape(square);
+}
+```
+
+### Side Quest: Rust's Zero-Sized Types
+
+I tried to look at the size of `Circle` and `Square` without thinking much of it, but the result left me puzzled at first. In C++, the standard mandates that everyobject has a size of at least 1 byte, even if empty. This is so that two distinc objects always have distinct address, meaning `&obj1' must be different from `&obj2`. This is ingrained in my mind as a fact of nature, so seeing that rust returns `0` as the size of those structs stopped me in my tracks. This is the little moments that bring me so much joy as I'm exploring Rust because it deconstructs my mental model and opens my mind to alternative philosophies.
+
+```rust
+println!("{}", std::mem::size_of::<Circle>()); // 0 WHAT???
+println!("{}", std::mem::size_of::<Square>()); // 0
+```
+
+This is how I discovered that Rust handles the unique address guarantee differently. Zero-sized types (ZST) are structs that don't contain any fields, therefore there's no need to allocate any memory. Rust track identity through owndership, not addresses. Every value has exactly one owner at a time, this is enforced at compile time by our friend,the borrow-checker.
+
+In C++, we might do this to check if two pointers refeer to the same object:
+
+```cpp
+if (&a == &b) { // same object }
+```
+
+In Rust, that question is answered by the borrow-checker before the program even runs:
+
+```rust
+// the borrow checker already knows these are different bindings
+// you don't need to compare addresses to tell them apart
+let a = Circle;
+let b = Circle;
+```
+
+The compiler tracks `a` and `b` as distinct names with distinct owners.
+
+After learning about this, my question was, what happens then if we take the address of of a zst? Let's try it.
+
+```rust
+let a = Circle;
+let b = Circle;
+
+println!("{:p}", &a as *const Circle);
+println!("{:p}", &b as *const Circle);
+```
+
+```
+0x7ffdda99aece
+0x7ffdda99aecf
+```
+
+Strange... so they are getting distinct stack addresses 1 byte apart (`ce` and `cf` in hex). This means the compiler allocated 1 byte each for them, just like C++ would. This is just the compiler being pragmatic though. It turns out the compiler gives ZSTs a small stack slot anyway so that the debugger can refer to them meaningfully.
+
+If we try this in release mode, however, we get different behavior:
+
+```
+cargo run --release --bin 01_static_dispatch
+```
+
+The addresses do indeed collapse for me:
+
+```
+0x7ffdf74afa6f
+0x7ffdf74afa6f
+```
+
+My take away from this is that the compiler makes no guarantees about ZST addresses, and identity is tracked by the borrow checker through ownership, not memory addresses.
+
+## Dynamic Dispatch
+
+To continue on our main quest, let's explore an scenario where static dispatch can't help us. If we wanted to create a `Vec<T>` containing a mix of both `Square`'s and `Circle`'s, we hit a wall with generics alone. This is the reason of being for dynamic dispatch, aka `dyn Trait`.
+
+Let's see how it would look like with our simple example:
+
+```rust
+```
+
+A key distinction from C++ philosophy is that in C++, the choice is made at the class level. The moment you mark a method `virtual`, that class always uses dynamic dispatch. You can't opt out.
+
+In Rust, the choice is made at the *call site.* `Circle` is just `Circle`, it knows nothing about dispatch. You decide whether to use static or dynamic dispatch depending on how you refer to it: `&Circle` for static, `&dyn Draw` for dynamic.
+
+## Wide Pointers
+
+
