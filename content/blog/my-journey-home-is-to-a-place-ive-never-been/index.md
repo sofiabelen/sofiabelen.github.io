@@ -64,4 +64,4 @@ Why do I say then that I am returning home, when I'm going to a place I've never
 
 However, after being abroad for +10 years, I've come to love my own native language, my own native culture. I've learned to recognize its beauty by being away and noticing what is missing from my life. Each place holds its own wonder and its own weight. Through knowing myself better, I've come to understand which weight I can carry and which wonder I am not willing to live without.
 
- It might sound contradictory, but that's how I've made sense of it. I am seeking familiarlity within the unfamiliar, in my own terms.
+It might sound contradictory, but that's how I've made sense of it. I am seeking familiarlity within the unfamiliar, in my own terms.
