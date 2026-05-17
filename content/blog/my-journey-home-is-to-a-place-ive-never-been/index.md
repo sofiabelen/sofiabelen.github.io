@@ -60,7 +60,7 @@ I am not Dante, but
 
 ## Coming Home
 
-Why do I say then that I am returning home, when I'm going to a place I've never been? The best way to try to answer this question for myself is by first realizing that where my journey started is a place I can no longer call home. Neigher the place nor I are the same as when I've left. I've taken with me little pieces of everywhere I've been, until little by little, they've morphed into part of my being. Like a puzzle piece that's been away too long, bent and squeezed to fit other shapes, so that it can no longer fit in its original spot, I can't fully identify with one place.
+Why do I say then that I am returning home, when I'm going to a place I've never been? The best way to try to answer this question for myself is by first realizing that where my journey started is a place I can no longer call home. Neigher the place nor I are the same as when I've left. I've taken with me little pieces of everywhere I've been, until little by little, they've morphed into part of my being. Like a puzzle piece that's been away too long, bent and and reshaped to fit elsewhere, so that it can no longer fit in its original spot, I can't fully identify with one place. Not that the piece ever did fit, hence the reason for my quest.
 
 However, after being abroad for +10 years, I've come to love my own native language, my own native culture. I've learned to recognize its beauty by being away and noticing what is missing from my life. Each place holds its own wonder and its own weight. Through knowing myself better, I've come to understand which weight I can carry and which wonder I am not willing to live without.
 
