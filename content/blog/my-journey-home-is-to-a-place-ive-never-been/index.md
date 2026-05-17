@@ -18,7 +18,7 @@ draft: true
 
 > You shall not go down twice to the same river, nor can you go home again.
 > You _can_ go home again, so long as you understand that home is a place where you have never been.
-> --- The Dispossessed by Ursula Le Guin
+> --- Ursula Le Guin, The Dispossessed
 
 What I've found in literature is a refuge, an antidote to feeling unique and, in turn, to loneliness. The journey I want to write about is one that started for me more than 10 years ago when I left my home country, Argentina, to study in Russia. It seems nearly poetic that that's how long Odysseus spent at sea on his return home. Am I finally coming home then? The journey I want to talk about clearly involves physical, geographical displacement, but the greatest distance travelled takes place inside of me.
 
@@ -33,7 +33,10 @@ I am in a transitional period in my life, that involves leaving Germany for Spai
 </figure>
 
 > I not Aeneas am, I am not Paul,
+>
 > Nor I, nor others, think me worthy of it.
+>
+> --- Dante Alighieri, Inferno
 
 As Dante said, I am not Aeneas, but... I have seen myself reflected in his struggles, as an immigrant sailing through foreign lands, in search of what every living being on Earth most yearns for, a place to call home. He takes off, Troy behind in flames, his father on his back, though where he's going, it's not a place his father or mother will get to see. Isn't that scene alone enough to bring anyone to their knees in tears with just well it describes the human condition? One who leaves their place of birth, be it a country or their parent's house, to face the world and discover life, and whose greatest yearning is to share the spoils of the promised land with those who raised them. Doesn't everyone just wish they could have their parents see life through their eyes, to show them what you've seen, to take them where you've been?
 
@@ -47,9 +50,17 @@ However, I found much of what I had initially set out to attain.  My alma mater,
 
 ## My Little Troy
 
+> First Gravedigger: Why, because he was mad. He shall recover his wits there; or if he do not, it's no great matter there.
+>
+> Hamlet: Why?
+>
+> First Gravedigger: 'Twill not be seen in him. There the men are as mad as he.
+>
+> --- William Shakespeare, Hamlet
+
 Though, as fate wills it, the journey must go on. With half my heart still in Russia, and having had to leave due to the war, my next stop was Germany. Just as when Aeneas landed on Sicily, where they were welcomed by King Acestes, of Trojan blood, so did I feel embraced by such a beautiful country and culture. This was my little Troy. I had my first job here and had my first experience of truly feeling like an adult. I found pieces of myself here and truly embraced it as my home. 
 
-Just like the Trojan women did while the men were feasting, part of me set fire to the galleys. I was exhausted of wandering, every bone of my body begging to settle down. I was ready to begin rebuilding Troy here.
+Just like the Trojan women did while the men were feasting, part of me set fire to the galleys. I was exhausted of wandering, every bone of my body begging to settle down. I was ready to begin rebuilding here.
 
 With time, however, that same weight I mentioned earlier so innately tied to the immigrant experience grew heavier and heavier. It was my husband who first felt weary of this burden, and identified its source. After many late night talks, we decided it was time to reconstruct those galleys.
 
@@ -58,8 +69,12 @@ It wasn't easy, these types of entreprise never really are. So much is at stake,
 ## Vising the Underworld
 
 > MIDWAY upon the journey of our life
+>
 > I found myself within a forest dark,
+>
 > For the straightforward pathway had been lost.
+>
+> --- Dante Alighieri, Inferno
 
 I am not Dante, but I have, like every human being, gone to bed and wondered what the hell I'm doing with my life. Am I doing this right? There most likely is no one answer, but for me, it's in the simplest of moments that I've come to find true meaning. These are the moments that give everything else meaning, and they usually involve friends and family. Why then wouldn't I prioritize these relationships, these moments?
 
@@ -68,6 +83,18 @@ For me, a trip to the underworld symbolizes thinking about what would truly matt
 I've done much introspective work throughout these last couple of years, which has helped me redefine priorities and, perhaps most importantly, free myself from old narratives and fears that had been holding me back from experiences that truly matter. All of this vital in realizing what the next step should be.
 
 ## Arriving in Latium
+
+> ‘Son, when you’re carried to an unknown shore, food is lacking,
+>
+> and you’re forced to eat the tables, then look for a home
+>
+> in your weariness: and remember first thing to set your hand
+>
+> on a site there, and build your houses behind a rampart.’
+>
+> --- Virgil, The Aeneid, Book VII
+
+
 
 Why do I say then that I am returning home, when I'm going to a place I've never been? The best way to try to answer this question for myself is by first realizing that where my journey started is a place I can no longer call home. Neigher the place nor I are the same as when I've left. I've taken with me little pieces of everywhere I've been, until little by little, they've morphed into part of my being. Like a puzzle piece that's been away too long, bent and and reshaped to fit elsewhere, so that it can no longer fit in its original spot, I can't fully identify with one place. Not that the piece ever did fit, hence the reason for my quest.
 
