@@ -1,0 +1,66 @@
+{{- $isDict := reflect.IsMap . -}}
+{{- $page := . -}}
+{{- $isSingle := false -}}
+{{- if $isDict -}}
+    {{- $page = .page -}}
+    {{- $isSingle = .isSingle -}}
+{{- end -}}
+<div class="article-details">
+    {{ if $page.Params.categories }}
+    <header class="article-category">
+        {{ range ($page.GetTerms "categories") }}
+            <a href="{{ .RelPermalink }}" {{ with .Params.style }}style="background-color: {{ .background }}; color: {{ .color }};"{{ end }}>
+                {{ .LinkTitle }}
+            </a>
+        {{ end }}
+    </header>
+    {{ end }}
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="{{ $page.RelPermalink }}">
+                {{- $page.Title -}}
+            </a>
+        </h2>
+    
+        {{ if not $isSingle }}
+        {{ with $page.Params.description }}
+        <h3 class="article-subtitle">
+            {{ . }}
+        </h3>
+        {{ end }}
+        {{ end }}
+    </div>
+    {{ $showReadingTime := $page.Params.readingTime | default ($page.Site.Params.article.readingTime) }}
+    {{ $showDate := not $page.Date.IsZero }}
+    {{ $showFooter := or $showDate $showReadingTime }}
+    {{ if $showFooter }}
+    <footer class="article-time">
+        {{ if $showDate }}
+            <div>
+                {{ partial "helper/icon" "date" }}
+                <time class="article-time--published">
+                    {{- $page.Date | time.Format (or $page.Site.Params.dateFormat.published "Jan 02, 2006") -}}
+                </time>
+            </div>
+        {{ end }}
+        {{ if $showReadingTime }}
+            <div>
+                {{ partial "helper/icon" "clock" }}
+                <time class="article-time--reading">
+                    {{ T "article.readingTime" $page.ReadingTime }}
+                </time>
+            </div>
+        {{ end }}
+    </footer>
+    {{ end }}
+    {{ if $page.IsTranslated }}
+        <footer class="article-translations">
+            {{ partial "helper/icon" "language" }}
+            <div>
+                {{ range $page.Translations }}
+                    <a href="{{ .Permalink }}" class="link">{{ .Language.LanguageName }}</a>
+                {{ end }}
+            </div>
+        </footer>
+    {{ end }}
+</div>

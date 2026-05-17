@@ -1,0 +1,39 @@
+<header class="article-header">
+{{- $isDict := reflect.IsMap . -}}
+{{- $page := . -}}
+{{- $isSingle := false -}}
+{{- if $isDict -}}
+    {{- $page = .page -}}
+    {{- $isSingle = .isSingle -}}
+{{- end -}}
+    {{- $image := partialCached "helper/image" (dict "Context" $page "Type" "article") $page.RelPermalink "article" -}}
+    {{ if (and $image.exists (not $page.Params.hideCover)) }}
+        <div class="article-image">
+            <a href="{{ $page.RelPermalink }}">
+                {{ if $image.resource }}
+                    {{- $Permalink := $image.resource.RelPermalink -}}
+                    {{- $Width := $image.resource.Width -}}
+                    {{- $Height := $image.resource.Height -}}
+                    {{- $Srcset := "" -}}
+                    {{- if (default true $page.Site.Params.imageProcessing.cover.enabled) -}}
+                        {{- $thumbnail := $image.resource.Resize "800x" -}}
+                        {{- $thumbnailRetina := $image.resource.Resize "1600x" -}}
+                        {{- $Srcset = printf "%s 800w, %s 1600w" $thumbnail.RelPermalink $thumbnailRetina.RelPermalink -}}
+                        {{- $Permalink = $thumbnail.RelPermalink -}}
+                        {{- $Width = $thumbnail.Width -}}
+                        {{- $Height = $thumbnail.Height -}}
+                    {{- end -}}
+                    <img src="{{ $Permalink }}"
+                        {{ with $Srcset }}srcset="{{ . }}"{{ end }}
+                        width="{{ $Width }}" 
+                        height="{{ $Height }}" 
+                        loading="lazy"
+                        alt="Featured image of post {{ $page.Title }}" />
+                {{ else }}
+                    <img src="{{ $image.permalink }}" loading="lazy" alt="Featured image of post {{ $page.Title }}" />
+                {{ end }}
+            </a>
+        </div>
+    {{ end }}
+    {{ partial "article/components/details" (dict "page" $page "isSingle" $isSingle) }}
+</header>
