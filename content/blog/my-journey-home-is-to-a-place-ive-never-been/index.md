@@ -45,18 +45,25 @@ This weight I carried didn't mean I wanted to go back. It's not so straightforwa
 
 However, I found much of what I had initially set out to attain.  My alma mater, the Moscow Institute of Physics and Technology, was my Dido. She is the one who gave me refuge, through her I found exactly what I had been missing from my life. That's how it felt like at the moment. She gave me much. Through her I felt I proved myself and what I was capable of. I discovered much of myself in Nizhny Novgorod, in Moscow, in the university halls and through the sleepless nights of exam season. 
 
-
-## My Little Troy
-
-
 ## Vising the Underworld
 
-What is my hell?
 > MIDWAY upon the journey of our life
 > I found myself within a forest dark,
 > For the straightforward pathway had been lost.
 
-I am not Dante, but 
+I am not Dante, but I have, like every human being, gone to bed and wondered what the hell I'm doing with my life. Am I doing this right? There most likely is no one answer, but for me, it's in the simplest of moments that I've come to find true meaning. These are the moments that give everything else meaning, and they usually involve your friends and family. Why then wouldn't I prioritize these relationships, these moments?
+
+For me, a trip to the underworld symbolizes thinking about what would truly matter to me on my deathbed, just because the thought experiment gives a different perspective. (Should this perpective hold more weight or not is a topic I explore a bit more one this post).
+
+## My Little Troy
+
+Though, as fate wills it, the journey must go on. With half my heart still in Russia, and having had to leave due to the war, my next stop was Germany. Just as when Aeneas landed on Sicily, where they were welcomed by King Acestes, of Trojan blood, so did I feel embraced by such a beautiful country and culture. This was my little Troy. I had my first job here and had my first experience of truly feeling like an adult. I found pieces of myself here and truly embraced it as my home. 
+
+Just like the Trojan women did while the men were feasting, part of me set fire to the galleys. I was exhausted of wandering, every bone of my body begging to settle down. I was ready to begin rebuilding Troy here.
+
+With time, however, that same weight I mentioned earlier so innately tied to the immigrant experience grew heavier and heavier. It was my husband who first felt weary of this burden, and identified its source. After many late night talks, we decided it was time to reconstruct those galleys.
+
+It wasn't easy, these types of entreprise never really are. So much is at stake, a stable present and future, and so much effort is needed. But we knew it was the right choice.
 
 ## Arriving in Latium
 
@@ -64,4 +71,4 @@ Why do I say then that I am returning home, when I'm going to a place I've never
 
 However, after being abroad for +10 years, I've come to love my own native language, my own native culture. I've learned to recognize its beauty by being away and noticing what is missing from my life. Each place holds its own wonder and its own weight. Through knowing myself better, I've come to understand which weight I can carry and which wonder I am not willing to live without.
 
-It might sound contradictory, but that's how I've made sense of it. If home is where your roots take hold and your family and friends are, then I am heading back to just that, bringing my own family along with me. I hope we find the tables tasty, then we'll know we're truly home.
+It might sound contradictory, but that's how I've made sense of it. If home is where your roots take hold and your family and friends are, then I am heading back to just that, bringing my own family along with me. It's a weird feeling actually, arriving somewhere that will become home, not because it already feels like one, but because that is where your people are and where roots are meant to grow. I hope we find the tables tasty, then we'll know we've truly found it.
