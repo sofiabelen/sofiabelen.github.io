@@ -1,9 +1,10 @@
 ---
 layout: post
 title: "My Journey Home Is to a Place I’ve Never Been"
-image: 
-thumbnail: 
+image: smithsonian-AdfD1cB0PUM-unsplash.jpg
+thumbnail: smithsonian-AdfD1cB0PUM-unsplash.jpg
 description: "You shall not go down twice to the same river, nor can you go home again. You can go home again, so long as you understand that home is a place where you have never been."
+subtitle: ""
 date: 2026-05-16
 publishDate: 2026-05-15
 categories:
@@ -18,6 +19,7 @@ draft: true
 
 > You shall not go down twice to the same river, nor can you go home again.
 > You _can_ go home again, so long as you understand that home is a place where you have never been.
+>
 > --- Ursula Le Guin, The Dispossessed
 
 What I've found in literature is a refuge, an antidote to feeling unique and, in turn, to loneliness. The journey I want to write about is one that started for me more than 10 years ago when I left my home country, Argentina, to study in Russia. It seems nearly poetic that that's how long Odysseus spent at sea on his return home. Am I finally coming home then? The journey I want to talk about clearly involves physical, geographical displacement, but the greatest distance travelled takes place inside of me.
