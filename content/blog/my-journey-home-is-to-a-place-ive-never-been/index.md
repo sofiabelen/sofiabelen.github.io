@@ -53,7 +53,9 @@ However, I found much of what I had initially set out to attain.  My alma mater,
 
 I am not Dante, but I have, like every human being, gone to bed and wondered what the hell I'm doing with my life. Am I doing this right? There most likely is no one answer, but for me, it's in the simplest of moments that I've come to find true meaning. These are the moments that give everything else meaning, and they usually involve your friends and family. Why then wouldn't I prioritize these relationships, these moments?
 
-For me, a trip to the underworld symbolizes thinking about what would truly matter to me on my deathbed, just because the thought experiment gives a different perspective. (Should this perpective hold more weight or not is a topic I explore a bit more one this post).
+For me, a trip to the underworld symbolizes thinking about what would truly matter to me on my deathbed, just because the thought experiment gives a different perspective. The Death of Ivan Ilyich was a very reflective read for me, which I explore more deeply on this [post](https://sofiabelen.github.io/literature/my-emotional-response-to-ivan-iliych/).
+
+I've done much introspective work throughout these last couple of years, which has helped me redefine priorities and, perhaps most importantly, free myself from fears that had been holding me back from experiences that truly matter.
 
 ## My Little Troy
 
