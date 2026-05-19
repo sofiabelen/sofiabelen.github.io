@@ -30,7 +30,7 @@ comments: true
 >
 > --- Ursula Le Guin, The Dispossessed
 
-What I've found in literature is a refuge, an antidote to feeling unique and, in turn, to loneliness. The journey I want to write about is one that started for me more than 10 years ago when I left my home country, Argentina, to study in Russia. It seems nearly poetic that that's how long Odysseus spent at sea on his return home. Am I finally coming home then? The journey I want to talk about clearly involves physical, geographical displacement, but the greatest distance travelled takes place inside of me.
+What I've found in literature is a refuge, an antidote to feeling unique and, in turn, to loneliness. The journey I want to write about is one that started for me around 10 years ago when I left my home country, Argentina, to study in Russia. It seems nearly poetic that that's how long Odysseus spent at sea on his return home. Am I finally coming home then? The journey I want to talk about clearly involves physical, geographical displacement, but the greatest distance travelled takes place inside of me.
 
 I am in a transitional period in my life, that involves leaving Germany for Spain. Although theses type of stories never end while one keeps living, I feel I have gone full circle, in a sense, and am coming home. Home is for me, however, as only Le Guin can so beautifully express it, a place I have never before been. As I tell my story, I will be unapologetically leaning on literature to help express myself, as it has been my inspiration and guide in this path.
 
@@ -51,11 +51,15 @@ Federico Barocci, Public domain, via Wikimedia Commons
 
 As Dante said, I am not Aeneas, but... I have seen myself reflected in his struggles, as an immigrant sailing through foreign lands, in search of what every living being on Earth most yearns for, a place to call home. He takes off, Troy behind in flames, his father on his back, though where he's going, it's not a place his father or mother will get to see. Isn't that scene alone enough to bring anyone to their knees in tears with just how well it describes the human condition? One who leaves their place of birth, be it a country or their parents' house, to face the world and discover life, and who so wishes they could share everything with those who raised them. Doesn't everyone just wish they could have their parents see life through their eyes, to show them what you've seen, to take them where you've been?
 
-So, I left my parent's house, the country of my birth. What was I looking for? Was I chasing a dream or running away from a city in ruins? It happened that I was evidently running toward something and away from something at the same time, though at the time I could only the dream ahead of me. Leaving was inevitable.
+So, I left my parent's house, the country of my birth. What was I looking for? Was I chasing a dream or running away from a city in ruins? It happened that I was evidently running toward something and away from something at the same time, though at the time I could only see the dream ahead of me. Leaving was inevitable.
 
-In Russia, it was our, my partner's and mine, first time living on our own, the gods know how many kilometers away from our support network. It wasn't just the academic challenges, we were confronted with a unique set of struggles that any immigrant must face and that end up shaping you as a person. Before departing, I thought the greatest of which must surely be the learning of a new language to study your degree in. If I had to reflect back, though, I would say the heaviest weight to carry, and the one that got heavier instead of lighter as time passed, was navigating a world where you'd always be an outsider. No matter how fluent you became, how good your grades were, how much of an effort you made in trying to "adapt" to the food, the culture, the values. In the end, the most meaningful and beautiful friendships I made were in my native tongue, with those of my own culture, with other immigrants from Latin America.
+In Russia, it was our, my partner's and mine, first time living on our own, the gods know how many kilometers away from our support network. It wasn't just the academic challenges, we were confronted with a unique set of struggles that any immigrant must face and that end up shaping you as a person. Before departing, I thought the greatest of which must surely be the learning of a new language to study your degree in. If I had to reflect back, though, I would say the heaviest weight to carry, and the one that got heavier instead of lighter as time passed, was navigating a world where you'd always be an outsider. No matter how fluent you became, how good your grades were, how much of an effort you made in trying to "adapt" to the food, the culture, the values.
 
-This weight I carried didn't mean I wanted to go back. It's not so straightforward. What was there for me to come back to? The person who had left those shores no longer existed, and I wasn't sure the shores would recognize her either. Home, I'm afraid, was not something I could find where I last saw it.
+My first Russian winter, learning to walk on ice without slipping. Taking a night train from the soviet era from Moscow to Nizhny when we first arrived in the country. Life in an obsheshitie (student dormitory) with shared kitchens, open showers and a 'mama' in charge of every floor that could barge into your room without knocking at any time. Riding a marschrutka (mini-bus) for the first time, getting yelled at by a grandma to pass the money to the driver. I'll cherish every single moment and first-time experience, seemingly mundane to the locals but not to us.
+
+I've met wonderful people from all over and learned that in the end we're all human, with the same fears, struggles and joys. There are cultural barriers to communication, which are usually dismantled after prolonged contact. However, in everyday life it's easy to feel at times invisible and others stick out unwillingly, for being a foreigner. This can cause lingering feelings of 'otherness.' Admitting this to myself wasn't easy, but it's led to a deeper appreciation for my own culture, my native language, and my people in general. Every culture has its own charm, but I'd be lying to myself if I didn't recognize how deeply the culture I grew up in has shaped who I am. I didn't really know my own culture until I stepped outside.
+
+This weight I carried didn't mean I wanted to go back. It's not so simple. Where would I go back to, and to what? The person who had left those shores no longer existed, and I wasn't sure the shores would recognize her either. Home, I'm afraid, was not something I could find where I last saw it.
 
 <figure>
 <img style='height: 70%; width: 70%; object-fit: contain' src="Antonio_Zucchi-Dido_and_Aeneas.jpg" atl="">
@@ -64,7 +68,7 @@ Dido and Aeneas, Antonio Zucchi, Public domain, via Wikimedia Commons
   </figcaption>
 </figure>
 
-However, I found much of what I had initially set out to attain.  My alma mater, the Moscow Institute of Physics and Technology, was my Dido. She is the one who gave me refuge, through her I found exactly what I had been missing from my life. That's how it felt like at the moment. Through her I felt I proved myself and what I was capable of. I discovered much of myself in Nizhny Novgorod, in Moscow, in the university halls and through the sleepless nights of exam season. It wasn't just about passing exams, it was about self discovery. I had found a place where I could see myself thriving. I had the opportunity to just about dip my toes into the academia life, and though so much of it was calling to me, I realized it was not quite right for me. The best way I can put it is that in order to truly excel in any one area, you must give it your all, to the detriment of all else. It's not a tradeoff I was willing to make.
+However, I found much of what I had initially set out to attain.  My alma mater, the Moscow Institute of Physics and Technology, was my Dido. She is the one who gave me refuge, through her I found exactly what I had been missing from my life. That's how it felt at the moment. Through her I felt I proved myself and what I was capable of. I discovered much of myself in Nizhny Novgorod, in Moscow, in the university halls and through the sleepless nights of exam season. It wasn't just about passing exams, it was about self discovery. I had found a place where I could see myself thriving. I had the opportunity to just about dip my toes into the academia life, and though so much of it was calling to me, I realized it was not quite right for me. The best way I can put it is that in order to truly excel in any one area, you must give it your all, to the detriment of all else. It's not a tradeoff I was willing to make.
 
 ## My Little Troy
 
@@ -89,7 +93,7 @@ Just like the Trojan women did while the men were feasting, part of me set fire 
 
 With time, however, that same weight I mentioned earlier so innately tied to the immigrant experience grew heavier and heavier. It was my husband who first grew weary of this burden, and identified its source. After many late night talks, we decided it was time to reconstruct those galleys.
 
-It wasn't easy, these types of enterprise never really are. So much is at stake, a stable present and future, and so much effort is needed. But we knew it was the right choice.
+It wasn't easy, those types of enterprise never really are. So much is at stake, a stable present and future, and so much effort is needed. But we knew it was the right choice.
 
 ## Visiting the Underworld
 
@@ -110,7 +114,11 @@ Peter Paul Rubens - Aeneas in the Underworld
 
 I am not Dante, but I have, like every human being, gone to bed and wondered what the hell I'm doing with my life. Am I doing this right? There most likely is no one answer, but for me, it's in the simplest of moments that I've come to find true meaning. These are the moments that give everything else meaning, and they usually involve friends and family. Why then wouldn't I prioritize these relationships, these moments?
 
-I've done much introspective work throughout these last couple of years, which has helped me redefine priorities and, perhaps most importantly, free myself from old narratives and fears that had been holding me back from experiences that truly matter. All of this was vital in realizing what the next step should be.
+From the Christmases and New Years spent away from my family, to the countless Sundays we'd watch the locals leave the city to get together with theirs, only a short ride away. The once-a-year visits home. Having little to no support network during rough times, as well as the weight of being away when our people needed us. Wondering if this lifestyle is how we imagined ourselves growing old.
+
+I've done much introspective work throughout these last couple of years, which has helped me redefine priorities and, perhaps most importantly, free myself from old narratives and fears that had been holding me back from experiences that truly matter.
+
+All of this was vital in planning the next step and actually taking it.
 
 ## Arriving in Latium
 
