@@ -32,7 +32,7 @@ comments: true
 
 What I've found in literature is a refuge, an antidote to feeling unique and, in turn, to loneliness. The journey I want to write about is one that started for me around 10 years ago when I left my home country, Argentina, to study in Russia. It seems nearly poetic that that's how long Odysseus spent at sea on his return home. Am I finally coming home then? The journey I want to talk about clearly involves physical, geographical displacement, but the greatest distance travelled takes place inside of me.
 
-I am in a transitional period in my life, that involves leaving Germany for Spain. Although theses type of stories never end while one keeps living, I feel I have gone full circle, in a sense, and am coming home. Home is for me, however, as only Le Guin can so beautifully express it, a place I have never before been. As I tell my story, I will be unapologetically leaning on literature to help express myself, as it has been my inspiration and guide in this path.
+I am in a transitional period in my life, that involves leaving Germany for Spain. Although these types of stories never end while one keeps living, I feel I have gone full circle, in a sense, and am coming home. Home is for me, however, as only Le Guin can so beautifully express it, a place I have never before been. As I tell my story, I will be unapologetically leaning on literature to help express myself, as it has been my inspiration and guide in this path.
 
 ## Leaving Troy
 
@@ -68,7 +68,7 @@ Dido and Aeneas, Antonio Zucchi, Public domain, via Wikimedia Commons
   </figcaption>
 </figure>
 
-However, I found much of what I had initially set out to attain.  My alma mater, the Moscow Institute of Physics and Technology, was my Dido. She is the one who gave me refuge, through her I found exactly what I had been missing from my life. That's how it felt at the moment. Through her I felt I proved myself and what I was capable of. I discovered much of myself in Nizhny Novgorod, in Moscow, in the university halls and through the sleepless nights of exam season. It wasn't just about passing exams, it was about self discovery. I had found a place where I could see myself thriving. I had the opportunity to just about dip my toes into the academia life, and though so much of it was calling to me, I realized it was not quite right for me. The best way I can put it is that in order to truly excel in any one area, you must give it your all, to the detriment of all else. It's not a tradeoff I was willing to make.
+However, I found much of what I had initially set out to attain.  My alma mater, the Moscow Institute of Physics and Technology, was my Dido. She is the one who gave me refuge, through her I found exactly what I had been missing from my life. That's how it felt at the moment. Through her I felt I proved myself and what I was capable of. I discovered much of myself in Nizhny Novgorod, in Moscow, in the university halls and through the sleepless nights of exam season. It wasn't just about passing exams, it was about self-discovery. I had found a place where I could see myself thriving. I had the opportunity to just about dip my toes into the academia life, and though so much of it was calling to me, I realized it was not quite right for me. The best way I can put it is that in order to truly excel in any one area, you must give it your all, to the detriment of all else. It's not a tradeoff I was willing to make.
 
 ## My Little Troy
 
@@ -89,11 +89,11 @@ The Trojan Women setting Fire to their Fleet, Claude Lorrain.
 
 As fate wills it, the journey must go on. With half my heart still in Moscow, having uprooted my life there due to the war, my next stop was Germany. Just as when Aeneas landed on Sicily, where they were welcomed by King Acestes, of Trojan blood, so did I feel embraced by such a beautiful country and culture. This was my little Troy. I had my first job here and had my first experience of truly feeling like an adult. I found pieces of myself here and truly embraced it as my home. 
 
-Just like the Trojan women did while the men were feasting, part of me set fire to the galleys. I was exhausted of the wandering, every bone of my body begging to settle down. I was ready to begin rebuilding here.
+Just like the Trojan women did while the men were feasting, part of me set fire to the galleys. I was exhausted by the wandering, every bone of my body begging to settle down. I was ready to begin rebuilding here.
 
 With time, however, that same weight I mentioned earlier so innately tied to the immigrant experience grew heavier and heavier. It was my husband who first grew weary of this burden, and identified its source. After many late night talks, we decided it was time to reconstruct those galleys.
 
-It wasn't easy, those types of enterprise never really are. So much is at stake, a stable present and future, and so much effort is needed. But we knew it was the right choice.
+It wasn't easy, those types of enterprises never really are. So much is at stake, a stable present and future, and so much effort is needed. But we knew it was the right choice.
 
 ## Visiting the Underworld
 
@@ -116,9 +116,9 @@ I am not Dante, but I have, like every human being, gone to bed and wondered wha
 
 From the Christmases and New Years spent away from my family, to the countless Sundays we'd watch the locals leave the city to get together with theirs, only a short ride away. The once-a-year visits home. Having little to no support network during rough times, as well as the weight of being away when our people needed us. Wondering if this lifestyle is how we imagined ourselves growing old.
 
-I've done much introspective work throughout these last couple of years, which has helped me redefine priorities and, perhaps most importantly, free myself from old narratives and fears that had been holding me back from experiences that truly matter.
+I imagine what could be my reality instead. Dropping by my sister's announced on a random Saturday to go grab ice cream. Playing magic the gathering in person with my friends instead of online. Getting to see my parents every month instead of twice a year. Heck, ordering food without worrying if I'm using the right grammar.
 
-All of this was vital in planning the next step and actually taking it.
+I've done much introspective work throughout these last couple of years, which has helped me redefine priorities and, perhaps most importantly, free myself from old narratives and fears that had been holding me back from experiences that truly matter. All of this was vital in planning the next step and actually taking it.
 
 ## Arriving in Latium
 
