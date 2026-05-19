@@ -32,7 +32,7 @@ comments: true
 
 What I've found in literature is a refuge, an antidote to feeling unique and, in turn, to loneliness. The journey I want to write about is one that started for me more than 10 years ago when I left my home country, Argentina, to study in Russia. It seems nearly poetic that that's how long Odysseus spent at sea on his return home. Am I finally coming home then? The journey I want to talk about clearly involves physical, geographical displacement, but the greatest distance travelled takes place inside of me.
 
-I am in a transitional period in my life, that involves leaving Germany for Spain. Although these type of stories never end while one keeps living, I feel I have gone full in circle, in a sense, and am coming home. Home is for me, however, as only Le Guin can so beautifully express it, a place I have never before been. As I tell my story, I will be unapologetically leaning on literature to help express myself, as it has been my inspiration and guide in this path.
+I am in a transitional period in my life, that involves leaving Germany for Spain. Although theses type of stories never end while one keeps living, I feel I have gone full circle, in a sense, and am coming home. Home is for me, however, as only Le Guin can so beautifully express it, a place I have never before been. As I tell my story, I will be unapologetically leaning on literature to help express myself, as it has been my inspiration and guide in this path.
 
 ## Leaving Troy
 
@@ -49,11 +49,11 @@ Federico Barocci, Public domain, via Wikimedia Commons
 >
 > --- Dante Alighieri, Inferno
 
-As Dante said, I am not Aeneas, but... I have seen myself reflected in his struggles, as an immigrant sailing through foreign lands, in search of what every living being on Earth most yearns for, a place to call home. He takes off, Troy behind in flames, his father on his back, though where he's going, it's not a place his father or mother will get to see. Isn't that scene alone enough to bring anyone to their knees in tears with just well it describes the human condition? One who leaves their place of birth, be it a country or their parent's house, to face the world and discover life, and who so wishes they could share everything with those who raised them. Doesn't everyone just wish they could have their parents see life through their eyes, to show them what you've seen, to take them where you've been?
+As Dante said, I am not Aeneas, but... I have seen myself reflected in his struggles, as an immigrant sailing through foreign lands, in search of what every living being on Earth most yearns for, a place to call home. He takes off, Troy behind in flames, his father on his back, though where he's going, it's not a place his father or mother will get to see. Isn't that scene alone enough to bring anyone to their knees in tears with just how well it describes the human condition? One who leaves their place of birth, be it a country or their parents' house, to face the world and discover life, and who so wishes they could share everything with those who raised them. Doesn't everyone just wish they could have their parents see life through their eyes, to show them what you've seen, to take them where you've been?
 
 So, I left my parent's house, the country of my birth. What was I looking for? Was I chasing a dream or running away from a city in ruins? I did leave in pursuit of a dream. Troy was, evidently, in flames as well, which prompted the inevitability of my departure. 
 
-In Russia, it was our, my partner's and mine, first time living on our own, the gods know how many kilometers away from our support network. It wasn't just the academic challenges, we were confronted with unique set of struggles that any immigrant must face and that end up shaping you as a person. Before departing, I thought the greatest of which must surely be the learning of a new language to study your degree in. If I had to reflect back, though, I would say the heaviest weight to carry, and the one that got heavier instead of lighter with the passing of time, was navigating a world where you'd always be an outsider. No matter how fluent you became, how good your grades were, how much of an effort you made in trying to "adapt" to the food, the culture, the values. In the end, the most meaningful and beautiful friendships I made were in my native tongue, with those of my own culture, with other immigrants from Latin America.
+In Russia, it was our, my partner's and mine, first time living on our own, the gods know how many kilometers away from our support network. It wasn't just the academic challenges, we were confronted with a unique set of struggles that any immigrant must face and that end up shaping you as a person. Before departing, I thought the greatest of which must surely be the learning of a new language to study your degree in. If I had to reflect back, though, I would say the heaviest weight to carry, and the one that got heavier instead of lighter as time passed, was navigating a world where you'd always be an outsider. No matter how fluent you became, how good your grades were, how much of an effort you made in trying to "adapt" to the food, the culture, the values. In the end, the most meaningful and beautiful friendships I made were in my native tongue, with those of my own culture, with other immigrants from Latin America.
 
 This weight I carried didn't mean I wanted to go back. It's not so straightforward. What was there for me to come back to? Troy was still in ruins, and I wasn't the same person who left those shores years ago. Home, I'm afraid, was not something I could find where I last saw it.
 
@@ -64,14 +64,14 @@ Dido and Aeneas, Antonio Zucchi, Public domain, via Wikimedia Commons
   </figcaption>
 </figure>
 
-However, I found much of what I had initially set out to attain.  My alma mater, the Moscow Institute of Physics and Technology, was my Dido. She is the one who gave me refuge, through her I found exactly what I had been missing from my life. That's how it felt like at the moment. Through her I felt I proved myself and what I was capable of. I discovered much of myself in Nizhny Novgorod, in Moscow, in the university halls and through the sleepless nights of exam season. It wasn't just about passing exams, it was about self discovery. I had found a place where I could see myself thriving. I had the opportunity to just about dip my toes into the acamedia life, and though so much of it was calling to me, I realized it was not quite right for me. The best way I can put it is that in order to truly excell in any one area, you must give it your all, to detriment of all else. It's not a tradeoff I was willing to make.
+However, I found much of what I had initially set out to attain.  My alma mater, the Moscow Institute of Physics and Technology, was my Dido. She is the one who gave me refuge, through her I found exactly what I had been missing from my life. That's how it felt like at the moment. Through her I felt I proved myself and what I was capable of. I discovered much of myself in Nizhny Novgorod, in Moscow, in the university halls and through the sleepless nights of exam season. It wasn't just about passing exams, it was about self discovery. I had found a place where I could see myself thriving. I had the opportunity to just about dip my toes into the academia life, and though so much of it was calling to me, I realized it was not quite right for me. The best way I can put it is that in order to truly excel in any one area, you must give it your all, to the detriment of all else. It's not a tradeoff I was willing to make.
 
 ## My Little Troy
 
 <figure>
 <img src="960px-Metropolitan_Lorrain_Tempest.jpg" atl="">
   <figcaption>
-The Trojan Women setting Fire to their Fleet, Claude Lorrain
+The Trojan Women setting Fire to their Fleet, Claude Lorrain.
 
 <a href="https://commons.wikimedia.org/wiki/File:Metropolitan_Lorrain_Tempest.jpg">Foto Ad Meskens</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via Wikimedia Commons
   </figcaption>
@@ -90,11 +90,11 @@ As fate wills it, the journey must go on. With half my heart still in Moscow, ha
 
 Just like the Trojan women did while the men were feasting, part of me set fire to the galleys. I was exhausted of the wandering, every bone of my body begging to settle down. I was ready to begin rebuilding here.
 
-With time, however, that same weight I mentioned earlier so innately tied to the immigrant experience grew heavier and heavier. It was my husband who first gregrew weary of this burden, and identified its source. After many late night talks, we decided it was time to reconstruct those galleys.
+With time, however, that same weight I mentioned earlier so innately tied to the immigrant experience grew heavier and heavier. It was my husband who first grew weary of this burden, and identified its source. After many late night talks, we decided it was time to reconstruct those galleys.
 
-It wasn't easy, these types of entreprise never really are. So much is at stake, a stable present and future, and so much effort is needed. But we knew it was the right choice.
+It wasn't easy, these types of enterprise never really are. So much is at stake, a stable present and future, and so much effort is needed. But we knew it was the right choice.
 
-## Vising the Underworld
+## Visiting the Underworld
 
 <figure>
 <img style='height: 70%; width: 70%; object-fit: contain' src="960px-Peter_Paul_Rubens_-_Aeneas_in_the_Underworld.jpg" atl="">
@@ -135,7 +135,7 @@ Landscape with the Arrival of Aeneas in Latium, by Claude Lorrain, 1650, oil on 
 >
 > --- Virgil, The Aeneid, Book VII
 
-Why do I say then that I am returning home, when I'm going to a place I've never been? The best way to try to answer this question for myself is by first realizing that where my journey started is a place I can no longer call home. Neigher the place nor I are the same as when I left. I've taken with me little pieces of everywhere I've been, until little by little, they've morphed into part of me. Like a puzzle piece that's been away too long, bent and and reshaped to fit elsewhere, so that it can no longer fit in its original spot, I can't fully identify with one place. Not that the piece ever did fit, hence the origin of my quest.
+Why do I say then that I am returning home, when I'm going to a place I've never been? The best way to try to answer this question for myself is by first realizing that where my journey started is a place I can no longer call home. Neither the place nor I are the same as when I left. I've taken with me little pieces of everywhere I've been, until little by little, they've morphed into part of me. Like a puzzle piece that's been away too long, bent and reshaped to fit elsewhere, so that it can no longer fit in its original spot, I can't fully identify with one place. Not that the piece ever did fit, hence the origin of my quest.
 
 However, after being abroad for +10 years, I've come to love my own native language, my own native culture. I've learned to recognize its beauty by being away and noticing what is missing from my life. Each place holds its own wonder and its own weight. Through knowing myself better, I've come to understand which weight I can carry and which wonder I am not willing to live without.
 
