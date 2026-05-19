@@ -26,7 +26,7 @@ comments: true
 
 > You shall not go down twice to the same river, nor can you go home again.
 >
-> You _can_ go home again, so long as you understand that home is a place where you have never been.
+> You can go home again, so long as you understand that home is a place where you have never been.
 >
 > --- Ursula Le Guin, The Dispossessed
 
@@ -51,11 +51,11 @@ Federico Barocci, Public domain, via Wikimedia Commons
 
 As Dante said, I am not Aeneas, but... I have seen myself reflected in his struggles, as an immigrant sailing through foreign lands, in search of what every living being on Earth most yearns for, a place to call home. He takes off, Troy behind in flames, his father on his back, though where he's going, it's not a place his father or mother will get to see. Isn't that scene alone enough to bring anyone to their knees in tears with just how well it describes the human condition? One who leaves their place of birth, be it a country or their parents' house, to face the world and discover life, and who so wishes they could share everything with those who raised them. Doesn't everyone just wish they could have their parents see life through their eyes, to show them what you've seen, to take them where you've been?
 
-So, I left my parent's house, the country of my birth. What was I looking for? Was I chasing a dream or running away from a city in ruins? I did leave in pursuit of a dream. Troy was, evidently, in flames as well, which prompted the inevitability of my departure. 
+So, I left my parent's house, the country of my birth. What was I looking for? Was I chasing a dream or running away from a city in ruins? It happened that I was evidently running toward something and away from something at the same time, though at the time I could only the dream ahead of me. Leaving was inevitable.
 
 In Russia, it was our, my partner's and mine, first time living on our own, the gods know how many kilometers away from our support network. It wasn't just the academic challenges, we were confronted with a unique set of struggles that any immigrant must face and that end up shaping you as a person. Before departing, I thought the greatest of which must surely be the learning of a new language to study your degree in. If I had to reflect back, though, I would say the heaviest weight to carry, and the one that got heavier instead of lighter as time passed, was navigating a world where you'd always be an outsider. No matter how fluent you became, how good your grades were, how much of an effort you made in trying to "adapt" to the food, the culture, the values. In the end, the most meaningful and beautiful friendships I made were in my native tongue, with those of my own culture, with other immigrants from Latin America.
 
-This weight I carried didn't mean I wanted to go back. It's not so straightforward. What was there for me to come back to? Troy was still in ruins, and I wasn't the same person who left those shores years ago. Home, I'm afraid, was not something I could find where I last saw it.
+This weight I carried didn't mean I wanted to go back. It's not so straightforward. What was there for me to come back to? The person who had left those shores no longer existed, and I wasn't sure the shores would recognize her either. Home, I'm afraid, was not something I could find where I last saw it.
 
 <figure>
 <img style='height: 70%; width: 70%; object-fit: contain' src="Antonio_Zucchi-Dido_and_Aeneas.jpg" atl="">
@@ -77,14 +77,11 @@ The Trojan Women setting Fire to their Fleet, Claude Lorrain.
   </figcaption>
 </figure>
 
-
-> First Gravedigger: Why, because he was mad. He shall recover his wits there; or if he do not, it's no great matter there.
+> Proceeding on, another Troy I see,
 >
-> Hamlet: Why?
+> Or, in less compass, Troy’s epitome.
 >
-> First Gravedigger: 'Twill not be seen in him. There the men are as mad as he.
->
-> --- William Shakespeare, Hamlet
+> --- Virgil, The Aeneid, Book III
 
 As fate wills it, the journey must go on. With half my heart still in Moscow, having uprooted my life there due to the war, my next stop was Germany. Just as when Aeneas landed on Sicily, where they were welcomed by King Acestes, of Trojan blood, so did I feel embraced by such a beautiful country and culture. This was my little Troy. I had my first job here and had my first experience of truly feeling like an adult. I found pieces of myself here and truly embraced it as my home. 
 
