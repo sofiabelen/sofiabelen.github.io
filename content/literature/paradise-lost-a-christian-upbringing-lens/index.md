@@ -78,7 +78,7 @@ This read almost like a family dynamic I recognized. Milton's God, the Father, c
 >
 > Not mee. [...]
 
-It's a quite narcissistic narrative, it seems. Not only does Milton's God seek constant self-sacrificing and obedient love and praise; he wants it to be done out of free will. This means that he wouldn't be satisfied with creating beings who have no choice but to serve him. He wants something which is essentially impossible. He creates beings who are bound to fail his standards due to their very nature, but still expects from them the impossible.
+There is something almost self-defeating in what Milton's God asks for. Not only does He seek constant self-sacrificing and obedient love and praise; he wants it to be done out of free will. This means that he wouldn't be satisfied with creating beings who have no choice but to serve him. He wants something which is essentially impossible. He creates beings who are bound to fail his standards due to their very nature, but still expects from them the impossible.
 
 Why does God favor some humans over others? Why 'hard be hardened, blind be blinded more'? Isn't this a reflection of our current justice system where criminals are punished but not rehabilitated? Isn't this what Socrates referred to when he said that harming the unjust person leads more injustice because someone who is hurt is more likely to act more unjustly? Can a just being call themselves just if they are fostering injustice in others?
 
