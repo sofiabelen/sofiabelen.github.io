@@ -56,7 +56,7 @@ Illustration for John Milton’s “Paradise Lost“ by Gustave Doré, 1866.
 
 > Behold me, then: me for him, life for life, I offer; on me let thine anger fall;
 
-This read almost like a family dynamic I recognized. Milton's God, the Father, comes across as someone who needs somwhere to put his wrath. The Son put himself in danger and submitted himself to his father's wrath in order to save man. It's like a kid putting himself in between his abusive father and his pet because he'd rather suffer himself than let his dear pet, whose greatest sin was disobeying a command he had no comprehension of, be hurt. Self control for the father was never an option. The Father needed a punching bag, an outlet to release his emotions.
+This read almost like a family dynamic I recognized. Milton's God, the Father, comes across as someone who needs somwhere to put his wrath. The Son put himself in danger and submitted himself to his father's wrath in order to save man. It's like a kid putting himself in between his abusive father and his pet because he'd rather suffer himself than let his dear pet, whose greatest sin was disobeying a command he had no comprehension of, be hurt. Self control for the father was never an option. The Father needed an outlet to release his emotions.
 
 > Freely they stood who stood, and fell who fell.
 >
