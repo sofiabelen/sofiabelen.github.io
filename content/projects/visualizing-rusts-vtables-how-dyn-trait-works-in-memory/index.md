@@ -1,8 +1,8 @@
 ---
 layout: project
 title: "Visualizing Rust's Vtables: How dyn Trait Works In Memory"
-thumbnail: Puccinia_graminis_149593622.jpg
-image: Puccinia_graminis_149593622.jpg
+thumbnail: Rust_fungus_-_Flickr_-_gailhampshire.jpg
+image: Rust_fungus_-_Flickr_-_gailhampshire.jpg
 preview: ""
 description: "A follow-along series of coding experiments as I explore Rust's peculiarities, from a C++ developer's perspective."
 date: 2026-09-04
@@ -21,7 +21,8 @@ I'm venturing into Rust and it's both satisfying and mind-boggling at the same t
 
 That said, I believe there is merit in poking around and coming to understand the *why*. So, if you're like me and need to know *what exactly is happening in memory,* in order to feel like you truly understand the concepts, hopefully you'll find this post useful :)
 
-By the way, the thumbnail image is a photo of the rust fungus, to which we owe Rust's name. ([Puccinia graminis](https://commons.wikimedia.org/wiki/File:Puccinia_graminis_149593622.jpg) by [bjoerns](https://www.inaturalist.org/users/188406) is licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/))
+By the way, the thumbnail image is a photo of the rust fungus, to which we owe Rust's name. 
+Credit: <a href="https://commons.wikimedia.org/wiki/File:Rust_fungus_-_Flickr_-_gailhampshire.jpg">gailhampshire from Cradley, Malvern, U.K</a>, <a href="https://creativecommons.org/licenses/by/2.0">CC BY 2.0</a>, via Wikimedia Commons.
 
 You can find all the code and experiments on [GitHub](https://github.com/sofiabelen/rust-vtables-for-cpp-programmers).
 
