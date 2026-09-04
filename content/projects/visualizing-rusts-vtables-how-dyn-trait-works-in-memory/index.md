@@ -17,7 +17,7 @@ featured: true
 comments: true
 ---
 
-I'm venturing into Rust and it's both satisfying and mind-boggling at the same time. So far I've been learning from [the book](https://doc.rust-lang.org/book/) and [Mara Bos' books](https://mara.nl/atomics/), but I got the itch to do some dissecting myself. My initial goal of these experiments was to compare Rust's approach to polymorphism with C++'s. Ultimately, however, as I've come to realize, it's a bit of a trap when trying to understand a new language through another one to try to draw 1:1 parallels. It might seem like it helps, but at the end of the day, we can't treat Rust as C++ with different syntax. If that were the case, there'd be nothing revolutionary about it.
+I'm venturing into Rust and it's both satisfying and mind-boggling at the same time. So far I've been learning from [the book](https://doc.rust-lang.org/book/) and [Mara Bos' book](https://mara.nl/atomics/), but I got the itch to do some dissecting myself. My initial goal of these experiments was to compare Rust's approach to polymorphism with C++'s. Ultimately, however, as I've come to realize, it's a bit of a trap when trying to understand a new language through another one to try to draw 1:1 parallels. It might seem like it helps, but at the end of the day, we can't treat Rust as C++ with different syntax. If that were the case, there'd be nothing revolutionary about it.
 
 That said, I believe there is merit in poking around and coming to understand the *why*. So, if you're like me and need to know *what exactly is happening in memory,* in order to feel like you truly understand the concepts, hopefully you'll find this post useful :)
 
