@@ -10,7 +10,7 @@ tags:
     - monte carlo
 usemathjax: true
 date: 2021-05-01
-featured: true
+featured: false
 comments: true
 ---
 Check out the [git repo!](https://github.com/sofiabelen/Monte-Carlo-Simulation)

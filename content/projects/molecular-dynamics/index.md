@@ -11,7 +11,7 @@ categories:
     - Python
 tags:
 date: 2020-06-01
-featured: true
+featured: false
 comments: true
 ---
 Check out the [git repo!](https://github.com/sofiabelen/Molecular-Dynamics-Lennard-Jones)

@@ -13,7 +13,7 @@ tags:
     - CFD
 usemathjax: true
 date: 2021-07-09
-featured: true
+featured: false
 comments: true
 ---
 
