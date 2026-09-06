@@ -55,9 +55,9 @@ struct Shape {
 };
 ```
 
-Essentially, there are no vtables and it's resolved at compile time, sacrificing readability (it really is a mouthful).
+Essentially, there are no vtables and it's resolved at compile time, sacrificing readability (it really is a mouthful). 
 
-Rust offers a much more straightforward and simple equivalent to CRTP, namely monomorphization. This is the approach we'll dig into first to start constructing our mental model of what Rust has to offer.
+Rust offers a native equivalent to CRTP, namely monomorphization. This is the approach we'll dig into first to start constructing our mental model of what Rust has to offer.
 
 ## Static Dispatch
 
@@ -104,6 +104,16 @@ fn main() {
 
 Under the hood, the compiler generates two separate functions: `draw_shape::<Circle>` and `draw_shape::<Square>`.
 
+Curiously (no pun intended), with introduction of "deducing this" in C++23, now CRTP can be written in a similar, and much nicer, fashion:
+
+```cpp
+struct Shape {
+    void draw_shape(this auto&& self) {
+        self.draw();
+    }
+}
+```
+
 ### How does this compare to C++'s templates?
 
 The difference here is the philosophy. C++ makes the constraints implicit, a
@@ -129,7 +139,7 @@ println!("{}", std::mem::size_of::<Circle>()); // 0 WHAT???
 println!("{}", std::mem::size_of::<Square>()); // 0
 ```
 
-This is how I discovered that Rust handles the unique address guarantee differently. Zero-sized types (ZST) are structs that don't contain any fields, therefore there's no need to allocate any memory. Rust tracks identity through ownership, not addresses. Every value has exactly one owner at a time, this is enforced at compile time by our friend, the borrow-checker.
+This is how I discovered that Rust handles the unique address guarantee differently. Zero-sized types (ZST) are structs that don't contain any fields (or rather they *could* contain fields, as long as those fields are zero-sized), therefore there's no need to allocate any memory. Rust tracks identity through ownership, not addresses. Every value has exactly one owner at a time, this is enforced at compile time by our friend, the borrow-checker.
 
 In C++, we might do this to check if two pointers refer to the same object:
 
@@ -381,6 +391,8 @@ Since it returns `Self`, it means that the caller needs to know the concrete typ
 
 C++ doesn't have this problem at all, since virtual dispatch always goes through pointers and return types are always pointers too. Rust works with values directly, so when you return `Self` by value, you need to know the size.
 
+For the sake of correctness (thanks [kind redditor](https://www.reddit.com/r/rust/comments/1w7tute/comment/p7zzshc/?screen_view_count=3) for the catch), it turns out you *can* have a method returning `Self` on a `dyn`-compatible trait. What you would need to do is bound it: `where Self: Sized`. This tells the compiler to exclude that specific method from the vtable, making it available only on concrete types. Check out the [Rust Reference on dyn compatibility](https://doc.rust-lang.org/reference/items/traits.html#dyn-compatibility) for the full list of requirements.
+
 ### Methods Can't Have Generic Parameters
 
 ```
@@ -435,3 +447,11 @@ in Spain now, and a life update post is coming soon. On the Rust side, I'm
 diving into concurrency and lock-free programming,
 with the goal of eventually contributing to open source. And I plan to document
 that journey here too :)
+
+## Resources for Further Reading
+
+- [C++ Design Patterns - The Most Common Misconceptions (2 of N) - Klaus Iglberger - CppCon 2024](https://www.youtube.com/watch?v=pmdwAf6hCWg)
+- [Logan Smith: Two Ways To Do Dynamic Dispatch](https://www.youtube.com/watch?v=wU8hQvU8aKM)
+    - I watched this after writing this article, really enjoyed it, adds more depth to the C++/Rust philosophies comparison.
+- [Rust Reference on Dyn Compatibility](https://doc.rust-lang.org/reference/items/traits.html#dyn-compatibility)
+
