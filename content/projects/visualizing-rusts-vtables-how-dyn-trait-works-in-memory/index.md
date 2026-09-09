@@ -364,7 +364,7 @@ We can marvel again at how the size of `Duck` is `0` because it's a ZST. We also
   </figcaption>
 </figure>
 
-This reinforces our core idea: the vtable is not embedded in the object (like C++), it's external static data that gets paired with the object when you ask for dynamic dispatch. A `Duck` stays a `Duck` no matter if it swims or flies, or how many traits it implements.
+This reinforces our core idea: the **vtable pointer** is not embedded in the object (like C++), it's external static data that gets paired with the object when you ask for dynamic dispatch. A `Duck` stays a `Duck` no matter if it swims or flies, or how many traits it implements.
 
 ## Object Safety: Why Not Every Trait Can Be Dyn
 
