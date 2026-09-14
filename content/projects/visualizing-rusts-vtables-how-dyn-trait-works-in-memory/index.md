@@ -448,10 +448,10 @@ diving into concurrency and lock-free programming,
 with the goal of eventually contributing to open source. And I plan to document
 that journey here too :)
 
-## Resources for Further Reading
+## Resources & Discussions
 
-- [C++ Design Patterns - The Most Common Misconceptions (2 of N) - Klaus Iglberger - CppCon 2024](https://www.youtube.com/watch?v=pmdwAf6hCWg)
-- [Logan Smith: Two Ways To Do Dynamic Dispatch](https://www.youtube.com/watch?v=wU8hQvU8aKM)
+- **Talk:** [C++ Design Patterns - The Most Common Misconceptions (2 of N) - Klaus Iglberger - CppCon 2024](https://www.youtube.com/watch?v=pmdwAf6hCWg)
+- **Talk:** [Logan Smith: Two Ways To Do Dynamic Dispatch](https://www.youtube.com/watch?v=wU8hQvU8aKM)
     - I watched this after writing this article, really enjoyed it, adds more depth to the C++/Rust philosophies comparison.
-- [Rust Reference on Dyn Compatibility](https://doc.rust-lang.org/reference/items/traits.html#dyn-compatibility)
-
+- **Docs:** [Rust Reference on Dyn Compatibility](https://doc.rust-lang.org/reference/items/traits.html#dyn-compatibility)
+- **Discussions:** [Hacker News](https://news.ycombinator.com/item?id=49576343) | [Reddit (r/rust)](https://www.reddit.com/r/rust/comments/1w7tute/visualizing_rusts_vtables_how_dyn_trait_works_in/)
