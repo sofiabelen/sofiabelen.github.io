@@ -20,7 +20,7 @@ tags:
     - Ursula K. Le Guin
     - Virgil
     - Dante
-featured: true
+featured: false
 comments: true
 ---
 

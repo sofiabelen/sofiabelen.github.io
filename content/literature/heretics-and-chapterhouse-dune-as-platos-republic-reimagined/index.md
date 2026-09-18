@@ -9,7 +9,7 @@ preview: ""
 description: ""
 date: 2026-01-24
 publishDate: 2026-01-23
-featured: true
+featured: false
 categories:
     - literature
     - philosophy
