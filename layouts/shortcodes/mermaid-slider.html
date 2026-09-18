@@ -1,0 +1,195 @@
+{{ $id := printf "mermaid-slider-%d" .Ordinal }}
+{{ $targetId := printf "mermaidTarget-%d" .Ordinal }}
+
+{{/* Optional overrides — omit any of these to keep the default pink theme */}}
+{{ $primaryColor := .Get "primaryColor" | default "#fcdbe2" }}
+{{ $primaryBorderColor := .Get "primaryBorderColor" | default "#d97d90" }}
+{{ $primaryTextColor := .Get "primaryTextColor" | default "#333333" }}
+{{ $lineColor := .Get "lineColor" | default "#d97d90" }}
+{{ $tertiaryColor := .Get "tertiaryColor" | default "#fff0f3" }}
+{{ $btnBg := .Get "btnBg" | default "#f8c1cc" }}
+{{ $btnBorder := .Get "btnBorder" | default "#e8a7b5" }}
+{{ $btnHover := .Get "btnHover" | default "#e8a7b5" }}
+{{ $canvasHeight := .Get "height" | default "520px" }}
+
+{{/* Slides come from the shortcode's inner content, separated by a line containing only %%% */}}
+{{ $rawSlides := split .Inner "%%%" }}
+{{ $slides := slice }}
+{{ range $rawSlides }}
+  {{ $trimmed := trim . "\n\r\t " }}
+  {{ if $trimmed }}
+    {{ $slides = $slides | append $trimmed }}
+  {{ end }}
+{{ end }}
+
+<style>
+  #{{ $id }}.mermaid-slider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: transparent;
+    padding: 10px;
+    width: 100%;
+  }
+
+  #{{ $id }} .m-canvas {
+    width: 100%;
+    height: {{ $canvasHeight }};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  #{{ $id }} .m-canvas svg {
+    width: auto !important;
+    height: 100% !important;
+    max-height: 480px !important;
+    min-height: 380px !important;
+    transform: scale(1.15);
+    transform-origin: center center;
+  }
+
+  #{{ $id }} .m-controls {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  #{{ $id }} .m-controls button {
+    padding: 6px 18px;
+    background: {{ $btnBg }};
+    color: #333333;
+    border: 1px solid {{ $btnBorder }};
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.2s ease;
+  }
+
+  #{{ $id }} .m-controls button:hover:not(:disabled) {
+    background: {{ $btnHover }};
+  }
+
+  #{{ $id }} .m-controls button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  #{{ $id }} .mermaid .node rect,
+  #{{ $id }} .mermaid .node circle,
+  #{{ $id }} .mermaid .node polygon {
+    fill: {{ $primaryColor }} !important;
+    stroke: {{ $primaryBorderColor }} !important;
+    stroke-width: 2px !important;
+  }
+
+  #{{ $id }} .mermaid .cluster rect {
+    fill: {{ $tertiaryColor }} !important;
+    stroke: {{ $primaryBorderColor }} !important;
+    stroke-width: 2px !important;
+  }
+
+  #{{ $id }} .mermaid .edgePath .path {
+    stroke: {{ $lineColor }} !important;
+    stroke-width: 3px !important;
+  }
+
+  #{{ $id }} .mermaid marker,
+  #{{ $id }} .mermaid marker path,
+  #{{ $id }} .mermaid [id*="flowchart-pointEnd"] {
+    fill: {{ $lineColor }} !important;
+    stroke: {{ $lineColor }} !important;
+  }
+
+  #{{ $id }} .mermaid text,
+  #{{ $id }} .mermaid .cluster-label {
+    fill: {{ $primaryTextColor }} !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    font-family: inherit !important;
+  }
+
+  #{{ $id }} .mermaid .flowchartTitleText {
+    fill: {{ $primaryBorderColor }} !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+  }
+</style>
+
+<div id="{{ $id }}" class="mermaid-slider">
+  <div id="{{ $targetId }}" class="m-canvas"></div>
+  <div class="m-controls">
+    <button class="prevBtn" disabled>Prev</button>
+    <button class="nextBtn">Next</button>
+  </div>
+</div>
+
+<script>
+(function() {
+  function loadMermaid(callback) {
+    if (window.mermaid) {
+      callback();
+      return;
+    }
+    if (document.getElementById('mermaid-js-script')) {
+      document.getElementById('mermaid-js-script').addEventListener('load', callback);
+      return;
+    }
+    const script = document.createElement('script');
+    script.id = 'mermaid-js-script';
+    script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';
+    script.onload = callback;
+    document.head.appendChild(script);
+  }
+
+  loadMermaid(function() {
+    if (!window.mermaidInitialized) {
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        themeVariables: {
+          primaryColor: '{{ $primaryColor }}',
+          primaryBorderColor: '{{ $primaryBorderColor }}',
+          primaryTextColor: '{{ $primaryTextColor }}',
+          lineColor: '{{ $lineColor }}',
+          tertiaryColor: '{{ $tertiaryColor }}'
+        }
+      });
+      window.mermaidInitialized = true;
+    }
+
+    const container = document.getElementById("{{ $id }}");
+    const target = document.getElementById("{{ $targetId }}");
+    const prevBtn = container.querySelector(".prevBtn");
+    const nextBtn = container.querySelector(".nextBtn");
+
+    const diagrams = {{ $slides | jsonify | safeJS }};
+
+    let currentIdx = 0;
+
+    async function render() {
+      target.innerHTML = `<div class="mermaid">${diagrams[currentIdx].trim()}</div>`;
+
+      const el = target.querySelector('.mermaid');
+      el.removeAttribute('data-processed');
+
+      await mermaid.run({ nodes: [el] });
+
+      prevBtn.disabled = currentIdx === 0;
+      nextBtn.disabled = currentIdx === diagrams.length - 1;
+    }
+
+    function step(dir) {
+      currentIdx = Math.max(0, Math.min(diagrams.length - 1, currentIdx + dir));
+      render();
+    }
+
+    prevBtn.addEventListener("click", () => step(-1));
+    nextBtn.addEventListener("click", () => step(1));
+
+    render();
+  });
+})();
+</script>
