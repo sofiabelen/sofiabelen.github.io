@@ -9,7 +9,7 @@ preview:
 description: "It reminded me of us, humans, who know we're going to die, yet strive to live. We seek purpose and meaning, even though we know there probably is none."
 date: 2026-06-21
 publishDate: 2026-06-20
-featured: true
+featured: false
 categories:
     - literature
 tags:

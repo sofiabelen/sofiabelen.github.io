@@ -1,0 +1,282 @@
+{{ $id := printf "mermaid-diagram-%d" .Ordinal }}
+{{ $targetId := printf "mermaidTarget-%d" .Ordinal }}
+{{ $modalId := printf "mermaidModal-%d" .Ordinal }}
+
+{{/* Optional overrides — omit any of these to keep the default pink theme */}}
+{{ $primaryColor := .Get "primaryColor" | default "#fcdbe2" }}
+{{ $primaryBorderColor := .Get "primaryBorderColor" | default "#d97d90" }}
+{{ $primaryTextColor := .Get "primaryTextColor" | default "#333333" }}
+{{ $lineColor := .Get "lineColor" | default "#d97d90" }}
+{{ $tertiaryColor := .Get "tertiaryColor" | default "#fff0f3" }}
+{{ $canvasHeight := .Get "height" | default "480px" }}
+
+{{ $diagram := trim .Inner "\n\r\t " }}
+
+<style>
+  #{{ $id }}.mermaid-diagram {
+    display: flex;
+    justify-content: center;
+    background: transparent;
+    padding: 10px;
+    width: 100%;
+  }
+
+  /* Desktop */
+  #{{ $id }} .m-canvas {
+    width: 100%;
+    height: {{ $canvasHeight }};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: auto;
+    cursor: zoom-in;
+    position: relative;
+  }
+
+  #{{ $id }} .m-canvas::after {
+    content: "🔍 Expand";
+    position: absolute;
+    bottom: 8px;
+    right: 12px;
+    font-size: 11px;
+    background: rgba(255, 255, 255, 0.85);
+    color: {{ $primaryTextColor }};
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: 1px solid {{ $primaryBorderColor }};
+    pointer-events: none;
+    font-family: inherit;
+    font-weight: 500;
+  }
+
+  #{{ $id }} .m-canvas svg {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: {{ $canvasHeight }} !important;
+    min-height: 340px !important;
+    min-width: 450px !important;
+    transform: scale(1.20);
+    transform-origin: center center;
+  }
+
+  /* Mobile Overrides */
+  @media (max-width: 768px) {
+    #{{ $id }} .m-canvas {
+      height: auto !important;
+    }
+
+    #{{ $id }} .m-canvas svg {
+      height: auto !important;
+      min-height: unset !important;
+      min-width: unset !important;
+      transform: none !important;
+    }
+  }
+
+  /* Styles for SVG Elements */
+  #{{ $id }} .mermaid .node rect,
+  #{{ $id }} .mermaid .node circle,
+  #{{ $id }} .mermaid .node polygon,
+  #{{ $modalId }} .mermaid .node rect,
+  #{{ $modalId }} .mermaid .node circle,
+  #{{ $modalId }} .mermaid .node polygon {
+    fill: {{ $primaryColor }} !important;
+    stroke: {{ $primaryBorderColor }} !important;
+    stroke-width: 2px !important;
+  }
+
+  #{{ $id }} .mermaid .cluster rect,
+  #{{ $modalId }} .mermaid .cluster rect {
+    fill: {{ $tertiaryColor }} !important;
+    stroke: {{ $primaryBorderColor }} !important;
+    stroke-width: 2px !important;
+  }
+
+  #{{ $id }} .mermaid .edgePath .path,
+  #{{ $modalId }} .mermaid .edgePath .path {
+    stroke: {{ $lineColor }} !important;
+    stroke-width: 3px !important;
+  }
+
+  #{{ $id }} .mermaid marker,
+  #{{ $id }} .mermaid marker path,
+  #{{ $id }} .mermaid [id*="flowchart-pointEnd"],
+  #{{ $modalId }} .mermaid marker,
+  #{{ $modalId }} .mermaid marker path,
+  #{{ $modalId }} .mermaid [id*="flowchart-pointEnd"] {
+    fill: {{ $lineColor }} !important;
+    stroke: {{ $lineColor }} !important;
+  }
+
+  #{{ $id }} .mermaid text,
+  #{{ $id }} .mermaid .cluster-label,
+  #{{ $modalId }} .mermaid text,
+  #{{ $modalId }} .mermaid .cluster-label {
+    fill: {{ $primaryTextColor }} !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    font-family: inherit !important;
+  }
+
+  #{{ $id }} .mermaid .flowchartTitleText,
+  #{{ $modalId }} .mermaid .flowchartTitleText {
+    fill: {{ $primaryBorderColor }} !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+  }
+
+  /* Fullscreen Lightbox Modal */
+  #{{ $modalId }}.mermaid-modal {
+    display: none;
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(4px);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.25s ease-in-out;
+  }
+
+  #{{ $modalId }}.mermaid-modal.active {
+    display: flex;
+    opacity: 1;
+  }
+
+  #{{ $modalId }} .mermaid-modal-content {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90vw;
+    height: 85vh;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+  }
+
+  #{{ $modalId }} .mermaid-modal-content svg {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+  }
+
+  #{{ $modalId }} .mermaid-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #555;
+    cursor: pointer;
+    background: none;
+    border: none;
+    line-height: 1;
+    z-index: 100;
+  }
+
+  #{{ $modalId }} .mermaid-modal-close:hover {
+    color: #000;
+  }
+</style>
+
+<div id="{{ $id }}" class="mermaid-diagram">
+  <div id="{{ $targetId }}" class="m-canvas"></div>
+</div>
+
+<!-- Modal Overlay -->
+<div id="{{ $modalId }}" class="mermaid-modal">
+  <div class="mermaid-modal-content">
+    <button class="mermaid-modal-close" aria-label="Close modal">&times;</button>
+    <div class="modal-svg-container" style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  function loadMermaid(callback) {
+    if (window.mermaid) {
+      callback();
+      return;
+    }
+    if (document.getElementById('mermaid-js-script')) {
+      document.getElementById('mermaid-js-script').addEventListener('load', callback);
+      return;
+    }
+    const script = document.createElement('script');
+    script.id = 'mermaid-js-script';
+    script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';
+    script.onload = callback;
+    document.head.appendChild(script);
+  }
+
+  loadMermaid(function() {
+    if (!window.mermaidInitialized) {
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        themeVariables: {
+          primaryColor: '{{ $primaryColor }}',
+          primaryBorderColor: '{{ $primaryBorderColor }}',
+          primaryTextColor: '{{ $primaryTextColor }}',
+          lineColor: '{{ $lineColor }}',
+          tertiaryColor: '{{ $tertiaryColor }}'
+        }
+      });
+      window.mermaidInitialized = true;
+    }
+
+    const target = document.getElementById("{{ $targetId }}");
+    const diagram = {{ $diagram | jsonify | safeJS }};
+
+    target.innerHTML = `<div class="mermaid">${diagram}</div>`;
+
+    const el = target.querySelector('.mermaid');
+    el.removeAttribute('data-processed');
+
+    mermaid.run({ nodes: [el] }).then(() => {
+      // Lightbox Modal Logic
+      const modal = document.getElementById("{{ $modalId }}");
+      const modalContainer = modal.querySelector(".modal-svg-container");
+      const closeBtn = modal.querySelector(".mermaid-modal-close");
+
+      // Open Modal on Canvas Click
+      target.addEventListener("click", function() {
+        const svg = target.querySelector("svg");
+        if (svg) {
+          modalContainer.innerHTML = svg.outerHTML;
+          modal.classList.add("active");
+          document.body.style.overflow = "hidden"; // Block page scroll
+        }
+      });
+
+      // Close Functions
+      function closeModal() {
+        modal.classList.remove("active");
+        document.body.style.overflow = ""; // Restore page scroll
+      }
+
+      closeBtn.addEventListener("click", closeModal);
+
+      modal.addEventListener("click", function(e) {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+
+      document.addEventListener("keydown", function(e) {
+        if (e.key === "Escape" && modal.classList.contains("active")) {
+          closeModal();
+        }
+      });
+    });
+  });
+})();
+</script>

@@ -9,7 +9,7 @@ preview: ""
 description: ""
 date: 2026-04-06
 publishDate: 2026-04-05
-featured: true
+featured: false
 categories:
     - literature
 tags:
