@@ -415,7 +415,7 @@ unsafe impl<T: Send> Sync for Stack<T> {}
 
 We can conclude our final picture of what it looks like it in memory:
 
-{{< mermaid-diagram height="1000px" >}}
+{{< mermaid-diagram height="900px" >}}
 ---
 title: "Memory Layout"
 ---
@@ -431,19 +431,23 @@ flowchart TB
     end
 
     subgraph heap["heap"]
-        subgraph stack_obj["Stack＜T＞"]
-            head["head: AtomicPtr＜Node＜T＞＞"]
+        subgraph arc_inner["ArcInner＜Stack＜T＞＞"]
+            metadata["strong_count: 2<br/>weak_count: 0"]
+
+            subgraph stack_obj["Stack＜T＞"]
+                head["head: AtomicPtr＜Node＜T＞＞"]
+            end
         end
 
         subgraph nodes["linked nodes"]
             n1["Node A (head)<br/>value: T<br/>next: *mut Node＜T＞"]
-            n2["Node B<br/>value: T<br/>next: *mut Node＜T＞;"]
+            n2["Node B<br/>value: T<br/>next: *mut Node＜T＞"]
             n3["Node C<br/>value: T<br/>next: null"]
         end
     end
 
-    arc1 -->|"&self shared ref"| stack_obj
-    arc2 -->|"&self shared ref"| stack_obj
+    arc1 -->|"&self shared ref"| arc_inner
+    arc2 -->|"&self shared ref"| arc_inner
 
     head -->|"raw ptr (*mut)"| n1
 
