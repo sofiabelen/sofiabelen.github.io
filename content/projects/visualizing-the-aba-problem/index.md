@@ -3,25 +3,27 @@ layout: project
 title: "Visualizing The ABA Problem: Your Pointer is Not Really Your Pointer"
 thumbnail: Janus-statue-and-his-two-faces-past-and-future.webp
 image: Janus-statue-and-his-two-faces-past-and-future.webp
-preview: ""
-description: ""
-date: 2026-09-09
-publishDate: 
+preview: "Visualizing lock-free concurrency in rust: reproducing the aba problem to begin understanding crossbeam. I promise lots of diagrams!"
+description: "Visualizing lock-free concurrency in rust: reproducing the aba problem to begin understanding crossbeam. I promise lots of diagrams!"
+date: 2026-09-18
+publishDate: 2026-09-17
 tags:
     - Rust
     - tutorial
     - lock-free-programming
     - concurrency
+    - crossbeam
 categories:
     - Rust
     - tutorial
     - lock-free-programming
     - concurrency
+    - crossbeam
 featured: true
 comments: true
 ---
 
-As a newly-Rust convert (Rustacean?) coming from C++, it can be all too tempting to believe Rust's ownership model is the panacea, the cure of all our ailments. While it is truly groundbreaking, I'm beginning to learn about the cases where it can't really save us. But there's hope, let's not panic!
+As a newly-Rust convert (Rustacean?) coming from C++, it can be all too tempting to believe Rust's ownership model is the panacea, the cure of all our problems. While it is truly groundbreaking, I'm beginning to learn about the cases where it can't really save us. But there's hope, let's not panic!
 
 Ever since I watched [Fedor Pikus talk on atomics](https://www.youtube.com/watch?v=ZQFzMfHIxng) (highly recommend!), I've had an interest in lock-free programming. I played around with implementing my own SPMC queue in C++, and have since started (and not finished) some books, trying specially hard to wrap my head around memory ordering. But I've come to realize I've been a bit stuck in tutorial hell, so this post is the beginning of me getting unstuck.
 
@@ -66,7 +68,7 @@ fn increment(counter: &AtomicUsize) {
         let new = current + 1;
 
         if counter
-            .compare_exchange(current, new, Ordering::Release, Ordering::Relaxed)
+            .compare_exchange_weak(current, new, Ordering::Release, Ordering::Relaxed)
             .is_ok()
         {
             break;
@@ -89,26 +91,35 @@ To build a bit of suspense, let's first look at a similar bug, which helped me t
 Imagine we want to use a lock-free stack. Consider how we'd implement the `pop()` operation. The naive way would look something like this:
 
 ```rust
-pub unsafe fn pop(&self) -> Option<T> {
+fn pop(&self) -> Option<T> {
+    let mut current_head = self.head.load(Ordering::Acquire);
+
     loop {
-        let head_ptr = self.head.load(Ordering::Acquire); // 1. Read Head
-        if head_ptr.is_null() { return None; }
-        
-        let next_ptr = (*head_ptr).next; // 2. Dereference Head!
-        
-        if self.head.compare_exchange(head_ptr, next_ptr, ...).is_ok() {
-            // 3. Popped successfully!
-            let value = ptr::read(&(*head_ptr).value);
+        if current_head.is_null() { return None; }
+
+        let new_head = unsafe { (*current_head).next };
+
+        match self.head.compare_exchange_weak(
+            current_head,
+            new_head, 
+            Ordering::AcqRel, 
+            Ordering::Acquire) {
             
-            // If we drop/free head_ptr HERE, any other thread paused at Step 2
-            // will crash when it wakes up and tries to read (*head_ptr).next!
-            deallocate(head_ptr); 
-            return Some(value);
+            Ok(_) => {
+                let node = unsafe { Box::from_raw(current_head) };
+
+                // If we drop here, any other thread paused at step 2
+                // will crash when it wakes up and tries to read (*current_head).next
+
+                return Some(node.value); // our ptr gets dropped as the Box goes out of scope
+            },
+            Err(actual_head) => {
+                current_head = actual_head;
+            }
         }
     }
 }
 ```
-
 
 This creates a conflict though. Let's imagine the following scenario:
 
@@ -120,6 +131,147 @@ This creates a conflict though. Let's imagine the following scenario:
     3. Succesfully executes CAS: `head` nos points to Node B.
 4. Thread 2 runs `drop()` for Node A. Since thread 2 "owns" the popped Node A, it immediately calls `drops()`. Node A's destructor runs, and its memory at `0x1000` is returned to the allocator.
 5. Thread 1 resumes and attempts to now read `Node A.next`, so it tries to dereference pointer `0x1000`.
+
+{{< mermaid-slider >}}
+---
+title: "Initial state"
+---
+flowchart TB
+    head(("head"))
+
+    subgraph nodea["node A"]
+        direction TB
+        na_value["value: 1"]
+        na_memory["memory: 0x1000"]
+    end
+
+    subgraph nodeb["node B"]
+        direction TB
+        nb_value["value: 2"]
+        nb_memory["memory: 0x2000"]
+    end
+
+    head --> nodea
+    nodea --> nodeb
+%%%
+---
+title: "Step 1: Thread 1 starts pop() and reads head"
+---
+flowchart TB
+    head(("head"))
+
+    subgraph nodea["node A"]
+        direction TB
+        na_value["value: 1"]
+        na_memory["memory: 0x1000"]
+    end
+
+    subgraph nodeb["node B"]
+        direction TB
+        nb_value["value: 2"]
+        nb_memory["memory: 0x2000"]
+    end
+
+    t1["Thread 1<br/>head: 0x1000<br/>next: (not read yet)"]
+
+    head --> nodea
+    nodea --> nodeb
+    t1 -.->|reads| nodea
+%%%
+---
+title: "Step 2: Thread 1 context-switched before reading A.next"
+---
+flowchart TB
+    head(("head"))
+
+    subgraph nodea["node A"]
+        direction TB
+        na_value["value: 1"]
+        na_memory["memory: 0x1000"]
+    end
+
+    subgraph nodeb["node B"]
+        direction TB
+        nb_value["value: 2"]
+        nb_memory["memory: 0x2000"]
+    end
+
+    t1["Thread 1 (PAUSED)<br/>head: 0x1000<br/>next: ???"]
+
+    head --> nodea
+    nodea --> nodeb
+    t1 -.-> nodea
+%%%
+---
+title: "Step 3: Thread 2 executes pop() successfully"
+---
+flowchart TB
+    head(("head"))
+
+    subgraph nodeb["node B"]
+        direction TB
+        nb_value["value: 2"]
+        nb_memory["memory: 0x2000"]
+    end
+
+    t1["Thread 1 (PAUSED)<br/>head: 0x1000<br/>next: ???"]
+
+    subgraph nodea["node A (popped by T2)"]
+        direction TB
+        na_value["value: 1"]
+        na_memory["memory: 0x1000"]
+    end
+
+    head --> nodeb
+    nodeb ~~~ t1
+    t1 -.-> nodea
+%%%
+---
+title: "Step 4: Thread 2 drops Node A and frees memory at 0x1000"
+---
+flowchart TB
+    head(("head"))
+
+    subgraph nodeb["node B"]
+        direction TB
+        nb_value["value: 2"]
+        nb_memory["memory: 0x2000"]
+    end
+
+    t1["Thread 1 (PAUSED)<br/>head: 0x1000<br/>next: ?"]
+
+    subgraph nodea["freed memory (0x1000)"]
+        direction TB
+        na_status["[deallocated]"]
+    end
+
+    head --> nodeb
+    nodeb ~~~ t1
+    t1 -.->|dangling reference| nodea
+%%%
+---
+title: "Step 5: Thread 1 resumes and attempts use-after-free read"
+---
+flowchart TB
+    head(("head"))
+
+    subgraph nodeb["node B"]
+        direction TB
+        nb_value["value: 2"]
+        nb_memory["memory: 0x2000"]
+    end
+
+    t1["Thread 1 resumes<br/>tries to read (0x1000).next<br/>use-after-free"]
+
+    subgraph nodea["freed memory (0x1000)"]
+        direction TB
+        na_status["[deallocated]"]
+    end
+
+    head --> nodeb
+    nodeb ~~~ t1
+    t1 ==> |fails to dereference!| nodea
+{{< /mermaid-slider >}}
 
 **Result:** Memory at `0x1000`  has already been freed or repurposed, which leads to undefined behaviour or segmentation fault (use-after-free).
 
@@ -151,7 +303,14 @@ The worst thing about this bug is that it's very easy to miss. It needs precise 
 
 ## Reproducing The ABA Problem
 
-I had opened a can of worms. I still didn't understand how come it was the first time in my career hearing about this strange type of bugs. Needless to say, I was intrigued, I felt the urge to try to reproduce it myself, hoping that maybe that'd help build my intuition for detecting this kind of bugs that weren't under my radar before.
+<figure style="text-align: center;">
+  <img src="Shipwreck_of_the_Minotaur_William_Turner.jpg" alt="J. M. W. Turner: The Wreck of a Transport Ship" style="display: block; margin: 0 auto;">
+  <caption>
+    J. M. W. Turner: The Wreck of a Transport Ship
+  </caption>
+</figure>
+
+I had opened a can of worms. I still didn't understand how come it was the first time in my career hearing about this strange type of bugs. Needless to say, I was intrigued, I felt the urge to try to reproduce it myself, hoping that maybe that'd help build my intuition for detecting this kind of bugs that weren't under my radar before. It turned out to be harder than I expected.
 
 These next few sections are me hitting my head against a wall until I got the basics down. Feel free to skip if you're familiar with these concepts already :)
 
@@ -190,6 +349,13 @@ let new_head = Box::into_raw(node);
 
 ### Why Passing &self is Enough
 
+<figure style="text-align: center;">
+  <img src="Echo_and_Narcissus_-_John_William_Waterhouse.jpg" alt="John William Waterhouse: Echo and Narcissus" style="display: block; margin: 0 auto;">
+  <caption>
+    John William Waterhouse: Echo and Narcissus
+  </caption>
+</figure>
+
 My first instinct when typing out the `pop` and `push` methods was to use `&mut self`. This made sense at first, since in both cases we'd be modifying the stack. However, I soon realized that if I wanted to pass a reference of the same stack to multiple threads, it'd have to be a shared reference. It sounds obvious in retrospect, I mean, that's the whole point of what we're trying to achieve!
 
 The reason why `&self` is enough is because atomics (`AtomicPtr`) handle thread synchronization internally at the hardware level, essentially bypassing the compiler's borrow rules. They can be mutated behind a shared (`&self`) reference using atomic instructions, like CAS.
@@ -227,18 +393,18 @@ impl<T> Stack<T> {
     }
 
     fn push(&self, value: T) {
-        let mut current_head = self.head.load(Ordering::Relaxed);
+        let mut current_head = self.head.load(Ordering::Acquire);
         let node = Box::new(Node::new(value));
         let new_head = Box::into_raw(node);
 
         loop {
             unsafe { (*new_head).next  = current_head };
 
-            match self.head.compare_exchange(
+            match self.head.compare_exchange_weak(
                 current_head,
                 new_head, 
                 Ordering::AcqRel, 
-                Ordering::Relaxed
+                Ordering::Acquire
             ) {
                 Ok(_) => break,
                 Err(actual_head) => {
@@ -257,7 +423,7 @@ impl<T> Stack<T> {
             // Safety: how do we know no other read is modifying this?
             let new_head = unsafe { (*current_head).next };
 
-            match self.head.compare_exchange(
+            match self.head.compare_exchange_weak(
                 current_head,
                 new_head, 
                 Ordering::AcqRel, 
@@ -280,6 +446,10 @@ impl<T> Stack<T> {
 ```
 
 ### Reproducing It (Why No SegFault?)
+
+<figure style="text-align: center;">
+  <img src="Boxer_at_rest.jpg" alt="Boxer at Rest" style="display: block; margin: 0 auto;">
+</figure>
 
 Now for the moment we've all been waiting for. I've made use of some `thread::sleep`s to trigger the (un)desired order of operations.
 
@@ -343,7 +513,157 @@ Final pop: [None]
 ```
 Essentially, this is what happens:
 
-{{< mermaid_slider data="aba_visualizer" >}}
+{{< mermaid-slider >}}
+---
+title: "Initial state"
+---
+flowchart TB
+    head(("head"))
+
+    subgraph nodea["node 'A'"]
+        direction TB
+        na_value["value: 1"]
+        na_memory["memory: A"]
+    end
+
+    subgraph nodeb["node 'B'"]
+        direction TB
+        nb_value["value: 2"]
+        nb_memory["memory: B"]
+    end
+
+    head --> nodea
+    nodea --> nodeb
+%%%
+---
+title: "Thread 1 reads head"
+---
+flowchart TB
+    head(("head"))
+
+    subgraph nodea["node 'A'"]
+        direction TB
+        na_value["value: 1"]
+        na_memory["memory: A"]
+    end
+
+    subgraph nodeb["node 'B'"]
+        direction TB
+        nb_value["value: 2"]
+        nb_memory["memory: B"]
+    end
+
+    t1["Thread 1<br/>head: A<br/>next: B"]
+
+    head --> nodea
+    nodea --> nodeb
+    t1 --> nodea
+%%%
+---
+title: "Thread 2 pops node 'A'"
+---
+flowchart TB
+    head(("head"))
+
+    subgraph nodeb["node 'B'"]
+        direction TB
+        nb_value["value: 2"]
+        nb_memory["memory: B"]
+    end
+
+    t1["Thread 1<br/>head: A<br/>next: B"]
+
+    subgraph nodea["node 'A' (popped)"]
+        direction TB
+        na_value["value: 1"]
+        na_memory["memory: A"]
+    end
+
+    head --> nodeb
+    nodeb ~~~ t1
+    t1 --> nodea
+%%%
+---
+title: "Thread 2 pops node 'B'"
+---
+flowchart TB
+    head(("head (null)"))
+
+    t1["Thread 1<br/>head: A<br/>next: B"]
+
+    subgraph nodea["node 'A' (freed)"]
+        direction TB
+        na_value["value: 1"]
+        na_memory["memory: A"]
+    end
+
+    head ~~~ t1
+    t1 --> nodea
+%%%
+---
+title: "Thread 2 pushes node 'C' (address A)"
+---
+flowchart TB
+    head(("head"))
+
+    subgraph nodec["node 'C'"]
+        direction TB
+        nc_value["value: 3"]
+        nc_memory["memory: A"]
+    end
+
+    t1["Thread 1<br/>head: A<br/>next: B"]
+
+    head --> nodec
+    nodec ~~~ t1
+    t1 --> nodec
+%%%
+---
+title: "Thread 1 CAS succeeds: ABA bug triggered *happy noises*"
+---
+flowchart TB
+    head(("head"))
+
+    subgraph nodec["node 'C'"]
+        direction TB
+        nc_value["value: 3"]
+        nc_memory["memory: A"]
+    end
+
+    t1["Thread 1 CAS<br/>head == A? true<br/>set head = B"]
+
+    subgraph nodeb["node 'B' (freed)"]
+        direction TB
+        nb_value["value: 2"]
+        nb_memory["memory: B"]
+    end
+
+    head --> nodec
+    nodec ~~~ t1
+    t1 --> nodec
+    t1 ~~~ nodeb
+%%%
+---
+title: "Final state (dangling head)"
+---
+flowchart TB
+    head(("head (dangling)"))
+
+    subgraph nodeb["node 'B' (freed)"]
+        direction TB
+        nb_value["value: 2"]
+        nb_memory["memory: B"]
+    end
+
+    subgraph nodec["node 'C' (popped)"]
+        direction TB
+        nc_value["value: 3"]
+        nc_memory["memory: A"]
+    end
+
+    head --> nodeb
+    nodeb ~~~ nodec
+{{< /mermaid-slider >}}
 
 But... 
 
@@ -351,7 +671,7 @@ The output is a bit anticlimatic, isn't it? I was expecting explosions or a segf
 
 If we didn't know what we were looking for, we might see the output and believe it's completely normal and all is well. What actually happens is undefined behaviour (UB). Why not segfault necessarily? Well, because in this scenario the memory behind the freed object is most likely still mapped, meaning it still belongs to the process, so the OS doesn't complain.
 
-However, there's still hope!
+However, if you want to see chaos, there's still hope!
 
 ### Miri
 
@@ -523,7 +843,7 @@ There is still much to learn about Miri, like what exactly is a **"retag"** oper
 
 ## The fix 
 
-The big question now is, okay, what do we do about it? I won't go into detail in this post, but some of the techniques are:
+The big question now is, okay, what do we do about it? I won't go into detail in this post, but some of the techniques include:
 
 - Tagged pointers: adding a tag to the pointer, that is incremented every time the pointer changes.
 - Hazard pointers: threads use hazard pointers to mark the objects they are working on so they don't get dropped.
@@ -535,4 +855,4 @@ The big question now is, okay, what do we do about it? I won't go into detail in
 
 It was a fun experiment trying to reproduce this and seeing first hand how non-trivial it actually is to catch.
 
-This is my takeaway: If it was so tricky to reproduce knowing from the start what we're looking for, imagine how hard it'd be to detect in production code, if we're not vigilant?
+My takeaway: If it was so tricky to reproduce knowing from the start what we're looking for, imagine how hard it'd be to detect in production code, if we're not vigilant?
