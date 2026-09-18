@@ -1,0 +1,147 @@
+{{ $id := printf "mermaid-diagram-%d" .Ordinal }}
+{{ $targetId := printf "mermaidTarget-%d" .Ordinal }}
+
+{{/* Optional overrides — omit any of these to keep the default pink theme */}}
+{{ $primaryColor := .Get "primaryColor" | default "#fcdbe2" }}
+{{ $primaryBorderColor := .Get "primaryBorderColor" | default "#d97d90" }}
+{{ $primaryTextColor := .Get "primaryTextColor" | default "#333333" }}
+{{ $lineColor := .Get "lineColor" | default "#d97d90" }}
+{{ $tertiaryColor := .Get "tertiaryColor" | default "#fff0f3" }}
+{{ $canvasHeight := .Get "height" | default "480px" }}
+
+{{ $diagram := trim .Inner "\n\r\t " }}
+
+<style>
+  #{{ $id }}.mermaid-diagram {
+    display: flex;
+    justify-content: center;
+    background: transparent;
+    padding: 10px;
+    width: 100%;
+  }
+
+  /* Desktop */
+  #{{ $id }} .m-canvas {
+    width: 100%;
+    height: {{ $canvasHeight }};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: auto;
+  }
+
+  #{{ $id }} .m-canvas svg {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: {{ $canvasHeight }} !important;
+    min-height: 340px !important;
+    min-width: 450px !important;
+    transform: scale(1.15);
+    transform-origin: center center;
+  }
+
+  /* Mobile Overrides (Applies ONLY on screens 768px wide or smaller) */
+  @media (max-width: 768px) {
+    #{{ $id }} .m-canvas {
+      height: auto !important;
+    }
+
+    #{{ $id }} .m-canvas svg {
+      height: auto !important;
+      min-height: unset !important;
+      min-width: unset !important;
+      transform: none !important; /* Removes scale zoom so text isn't cut off on narrow screens */
+    }
+  }
+
+  #{{ $id }} .mermaid .node rect,
+  #{{ $id }} .mermaid .node circle,
+  #{{ $id }} .mermaid .node polygon {
+    fill: {{ $primaryColor }} !important;
+    stroke: {{ $primaryBorderColor }} !important;
+    stroke-width: 2px !important;
+  }
+
+  #{{ $id }} .mermaid .cluster rect {
+    fill: {{ $tertiaryColor }} !important;
+    stroke: {{ $primaryBorderColor }} !important;
+    stroke-width: 2px !important;
+  }
+
+  #{{ $id }} .mermaid .edgePath .path {
+    stroke: {{ $lineColor }} !important;
+    stroke-width: 3px !important;
+  }
+
+  #{{ $id }} .mermaid marker,
+  #{{ $id }} .mermaid marker path,
+  #{{ $id }} .mermaid [id*="flowchart-pointEnd"] {
+    fill: {{ $lineColor }} !important;
+    stroke: {{ $lineColor }} !important;
+  }
+
+  #{{ $id }} .mermaid text,
+  #{{ $id }} .mermaid .cluster-label {
+    fill: {{ $primaryTextColor }} !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    font-family: inherit !important;
+  }
+
+  #{{ $id }} .mermaid .flowchartTitleText {
+    fill: {{ $primaryBorderColor }} !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+  }
+</style>
+
+<div id="{{ $id }}" class="mermaid-diagram">
+  <div id="{{ $targetId }}" class="m-canvas"></div>
+</div>
+
+<script>
+(function() {
+  function loadMermaid(callback) {
+    if (window.mermaid) {
+      callback();
+      return;
+    }
+    if (document.getElementById('mermaid-js-script')) {
+      document.getElementById('mermaid-js-script').addEventListener('load', callback);
+      return;
+    }
+    const script = document.createElement('script');
+    script.id = 'mermaid-js-script';
+    script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';
+    script.onload = callback;
+    document.head.appendChild(script);
+  }
+
+  loadMermaid(function() {
+    if (!window.mermaidInitialized) {
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        themeVariables: {
+          primaryColor: '{{ $primaryColor }}',
+          primaryBorderColor: '{{ $primaryBorderColor }}',
+          primaryTextColor: '{{ $primaryTextColor }}',
+          lineColor: '{{ $lineColor }}',
+          tertiaryColor: '{{ $tertiaryColor }}'
+        }
+      });
+      window.mermaidInitialized = true;
+    }
+
+    const target = document.getElementById("{{ $targetId }}");
+    const diagram = {{ $diagram | jsonify | safeJS }};
+
+    target.innerHTML = `<div class="mermaid">${diagram}</div>`;
+
+    const el = target.querySelector('.mermaid');
+    el.removeAttribute('data-processed');
+
+    mermaid.run({ nodes: [el] });
+  });
+})();
+</script>

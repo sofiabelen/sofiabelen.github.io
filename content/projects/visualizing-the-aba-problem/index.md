@@ -1,6 +1,6 @@
 ---
 layout: project
-title: "Visualizing The ABA Problem: Your Pointer is Not Really Your Pointer"
+title: "Visualizing The ABA Problem: What crossbeam-epoch Solves"
 thumbnail: Janus-statue-and-his-two-faces-past-and-future.webp
 image: Janus-statue-and-his-two-faces-past-and-future.webp
 preview: "Visualizing lock-free concurrency in rust: reproducing the aba problem to begin understanding crossbeam. I promise lots of diagrams!"
@@ -29,9 +29,11 @@ Ever since I watched [Fedor Pikus talk on atomics](https://www.youtube.com/watch
 
 My goal is to poke at the [crossbeam crate](https://github.com/crossbeam-rs/crossbeam), with the hopes of gaining a better understanding of a real-world usecase and hopefully gain some insight which might help me contribute something back.
 
-Let's start from the beginning, exploring what is (one of) the problem(s) that crossbeam tackles.
+Let's start from the beginning, exploring what is one of the problems that crossbeam-epoch tackles.
 
-Side note: the two-faced statue in the thumbnail is the Roman god Janus, who looks toward the past and future simultaneously. In a moment you'll see what this has to do with our pointers in the ABA problem.
+See all the code and experiments over at my [GitHub](https://github.com/sofiabelen/visualizing-crossbeam-epoch).
+
+> Side note: the two-faced statue in the thumbnail is the Roman god Janus, who looks toward the past and future simultaneously. In a moment you'll see what this has to do with our pointers in the ABA problem.
 
 ## The Question of When to drop() in Lock-Free Code
 
@@ -82,6 +84,7 @@ What if I told there's an scenario when this promise isn't enough and our intuit
 
 My first time hearing about this, I was in utter disbelief. I had a hard time imagining, in pure mathematical/abstract terms, why in the world would it matter that the value has changed, if it's ultimately been "restored" to the same value? Surely our previous assumptions still hold and we're free to continue with our operation...
 
+<!--
 ## The Use-After-Free Race Condition
 
 Maybe you've guessed that the case where our normal intuition starts falling apart is when we working not with values directly but with pointers. How does the old saying go? All problems in computer science are caused by adding a level of indirection? The important thing to understand is that a pointer can point to the same memory but that memory may not be the same.
@@ -285,12 +288,15 @@ Photo by <a href="https://unsplash.com/@williamdmytrow?utm_source=unsplash&utm_m
 The fundamental question is:
 
 > How do we defer `drop()` until Thread A is no longer reading it, without adding extra overhead in the form of locks or atomic reference counter updates on every single read?
+-->
 
-## The ABA Problem
+## What is The ABA Problem
 
-Now that we've built an intuition about the strange type of bugs that come up when working with pointers in lock-free code, what is the ABA bug?
+Maybe you’ve guessed that the case where our normal intuition starts falling apart is when we working not with values directly but with pointers. How does the old saying go? All problems in computer science are caused by adding a level of indirection? The important thing to understand is that a pointer can point to the same memory but that memory may not be the same.
 
-Let's picture a similar scenario:
+<!--Now that we've built an intuition about the strange type of bugs that come up when working with pointers in lock-free code, what is the ABA bug?-->
+
+Let's picture this scenario:
 
 0. Current shape of our stack `[A, B]`.
 1. Thread 1 reads `head = A`, reads that `A.next = B`, then gets descheduled *right before* the CAS loop.
@@ -299,18 +305,25 @@ Let's picture a similar scenario:
 4. Thread 2 allocates a new node object at the newly freed memory with address `A`, and pushes `A` to the stack. `A.next` is therefore set to null (the stack is now just `[A]`).
 5. Thread 1 resumes. Its `compare_exchange(expected = A, new = B)` succeeds, because `head` is in fact `A` again. However, it should've failed because it's not the *same* A. Thread 1 had no way of knowing this though. The CAS sets `head = B`, but `B` was already popped and deallocated in step 3. Now the stack's head is a dangling pointer to freed memory.
 
-The worst thing about this bug is that it's very easy to miss. It needs precise conditions to be met: the interleaving of the two threads as well as the allocator to actually reuse the recently freed address. (stick with me, diagram promised below).
+The worst thing about this bug is that it's very easy to miss. It needs precise conditions to be met: the interleaving of the two threads as well as the allocator to actually reuse the recently freed address. (stick with me, **promised diagram** coming up).
 
 ## Reproducing The ABA Problem
 
-<figure style="text-align: center;">
+<figure>
+<img src="william-dmytrow-pS6GsfrQZDk-unsplash.jpg" alt="">
+<caption>
+Photo by <a href="https://unsplash.com/@williamdmytrow?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">William Dmytrow</a> on <a href="https://unsplash.com/photos/winged-victory-of-samothrace-marble-statue-on-a-ship-prow-pS6GsfrQZDk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+</caption>
+</figure>
+<!--<figure style="text-align: center;">
   <img src="Shipwreck_of_the_Minotaur_William_Turner.jpg" alt="J. M. W. Turner: The Wreck of a Transport Ship" style="display: block; margin: 0 auto;">
   <caption>
     J. M. W. Turner: The Wreck of a Transport Ship
   </caption>
 </figure>
+-->
 
-I had opened a can of worms. I still didn't understand how come it was the first time in my career hearing about this strange type of bugs. Needless to say, I was intrigued, I felt the urge to try to reproduce it myself, hoping that maybe that'd help build my intuition for detecting this kind of bugs that weren't under my radar before. It turned out to be harder than I expected.
+I had opened a can of worms. I still didn't understand how come it was the first time in my career hearing about this strange kind of bug. Needless to say, I was intrigued, I felt the urge to try to reproduce it myself, hoping that maybe that'd help build my intuition for detecting this kind of bugs that weren't under my radar before. It turned out to be harder than I expected.
 
 These next few sections are me hitting my head against a wall until I got the basics down. Feel free to skip if you're familiar with these concepts already :)
 
@@ -362,6 +375,30 @@ The reason why `&self` is enough is because atomics (`AtomicPtr`) handle thread 
 
 ### Sharing Across Threads
 
+{{< mermaid-diagram >}}
+---
+title: "Arc shared across threads"
+---
+flowchart TB
+    subgraph heap["heap"]
+        stack["Stack＜T＞"]
+    end
+
+    subgraph t1["thread 1"]
+        arc1["Arc＜Stack＜T＞＞"]
+    end
+
+    subgraph t2["thread 2"]
+        arc2["Arc＜Stack＜T＞＞"]
+    end
+
+    arc1 -->|points to| stack
+    arc2 -->|points to| stack
+
+    t1 -. "pop" .-> stack
+    t2 -. "push" .-> stack
+{{< /mermaid-diagram >}}
+
 By wrapping our stack in an `Arc`, each thread gets a cloned shared handle pointing to the same stack memory address, allowing concurrent calls to `pop(&self)` and `push(&self, value: T)`.
 
 However, one thing is still missing. It turns out that Rust automatically **disables** `Send` and `Sync` for any type containing raw pointers.
@@ -376,69 +413,102 @@ unsafe impl<T: Send> Send for Stack<T> {}
 unsafe impl<T: Send> Sync for Stack<T> {}
 ```
 
-### Naive Lock-Free Stack
+We can conclude our final picture of what it looks like it in memory:
 
-So, this is what the naive implementation of a lock-free stack would look like (or what I came up with at least):
+{{< mermaid-diagram height="1000px" >}}
+---
+title: "Memory Layout"
+---
+flowchart TB
+    subgraph threads["What each thread views"]
+        subgraph t1["thread 1 call stack"]
+            arc1["Arc＜Stack＜T＞＞"]
+        end
+
+        subgraph t2["thread 2 call stack"]
+            arc2["Arc＜Stack＜T＞＞"]
+        end
+    end
+
+    subgraph heap["heap"]
+        subgraph stack_obj["Stack＜T＞"]
+            head["head: AtomicPtr＜Node＜T＞＞"]
+        end
+
+        subgraph nodes["linked nodes"]
+            n1["Node A (head)<br/>value: T<br/>next: *mut Node＜T＞"]
+            n2["Node B<br/>value: T<br/>next: *mut Node＜T＞;"]
+            n3["Node C<br/>value: T<br/>next: null"]
+        end
+    end
+
+    arc1 -->|"&self shared ref"| stack_obj
+    arc2 -->|"&self shared ref"| stack_obj
+
+    head -->|"raw ptr (*mut)"| n1
+
+    n1 -->|next| n2
+    n2 -->|next| n3
+
+    t1 -. "pop" .-> head
+    t2 -. "push" .-> head
+{{< /mermaid-diagram >}}
+
+### Buggy Lock-Free Stack
+
+So, for my naive implementation of a lock-free stack, this is what `push` turned out like:
 
 ```rust
-struct Stack<T> {
-    head: AtomicPtr<Node<T>>,
+fn push(&self, value: T) {
+    let mut current_head = self.head.load(Ordering::Acquire);
+    let node = Box::new(Node::new(value));
+    let new_head = Box::into_raw(node);
+
+    loop {
+        unsafe { (*new_head).next  = current_head };
+
+        match self.head.compare_exchange_weak(
+            current_head,
+            new_head, 
+            Ordering::AcqRel, 
+            Ordering::Acquire
+        ) {
+            Ok(_) => break,
+            Err(actual_head) => {
+                current_head = actual_head;
+            },
+        }
+    }
 }
+```
 
-impl<T> Stack<T> {
-    fn new() -> Self {
-        Self {
-            head: AtomicPtr::new(std::ptr::null_mut())
-        }
-    }
+And `pop`:
 
-    fn push(&self, value: T) {
-        let mut current_head = self.head.load(Ordering::Acquire);
-        let node = Box::new(Node::new(value));
-        let new_head = Box::into_raw(node);
+```rust
+fn pop(&self) -> Option<T> {
+    let mut current_head = self.head.load(Ordering::Relaxed);
 
-        loop {
-            unsafe { (*new_head).next  = current_head };
+    loop {
+        if current_head.is_null() { return None; }
 
-            match self.head.compare_exchange_weak(
-                current_head,
-                new_head, 
-                Ordering::AcqRel, 
-                Ordering::Acquire
-            ) {
-                Ok(_) => break,
-                Err(actual_head) => {
-                    current_head = actual_head;
-                },
-            }
-        }
-    }
-    
-    fn pop(&self) -> Option<T> {
-        let mut current_head = self.head.load(Ordering::Relaxed);
+        // Safety: how do we know no other read is modifying this?
+        let new_head = unsafe { (*current_head).next };
 
-        loop {
-            if current_head.is_null() { return None; }
+        match self.head.compare_exchange_weak(
+            current_head,
+            new_head, 
+            Ordering::AcqRel, 
+            Ordering::Relaxed) {
+            
+            Ok(_) => {
+                // Safety: as I'm writing this, rusts forces me to think about the safety of the unsafe operations,
+                // and the fact that I can't write a safety statement should be a red flag
+                let node = unsafe { Box::from_raw(current_head) };
 
-            // Safety: how do we know no other read is modifying this?
-            let new_head = unsafe { (*current_head).next };
-
-            match self.head.compare_exchange_weak(
-                current_head,
-                new_head, 
-                Ordering::AcqRel, 
-                Ordering::Relaxed) {
-                
-                Ok(_) => {
-                    // Safety: as I'm writing this, rusts forces me to think about the safety of the unsafe operations,
-                    // and the fact that I can't write a safety statement should be a red flag
-                    let node = unsafe { Box::from_raw(current_head) };
-
-                    return Some(node.value); // our ptr gets dropped as the Box goes out of scope
-                },
-                Err(actual_head) => {
-                    current_head = actual_head;
-                }
+                return Some(node.value); // our ptr gets dropped as the Box goes out of scope
+            },
+            Err(actual_head) => {
+                current_head = actual_head;
             }
         }
     }
@@ -453,56 +523,62 @@ impl<T> Stack<T> {
 
 Now for the moment we've all been waiting for. I've made use of some `thread::sleep`s to trigger the (un)desired order of operations.
 
-```rust
-    #[test]
-    fn aba() {
-        let stack = Arc::new(Stack::<i32>::new());
-        let stack_clone = stack.clone();
-        stack.push(2);
-        stack.push(1);
-        // stack at this point: head -> [1] -> [2] -> nullptr
+<details>
+<summary>Expand to view the aba test</summary>
 
-        thread::scope(|s| {
+{{< highlight rust >}}
+#[test]
+fn aba() {
+    let stack = Arc::new(Stack::<i32>::new());
+    let stack_clone = stack.clone();
+    stack.push(2);
+    stack.push(1);
+    // stack at this point: head -> [1] -> [2] -> nullptr
 
-            // This thread pops, but with a delay between reading head and the CAS loop
-            // By the time it enters the CAS loop, the second thread has essentially
-            // replaced the head, [1], with [3] that shares the same memory address as [1]
-            // original: head -> [1] -> [2]
-            // now     : head -> [3] -> nullptr
-            s.spawn(|| {
-                println!("thread 1 starts pop operation");
-                let node = stack.pop_with_delay();
+    thread::scope(|s| {
 
-                // If this pop shows up as [3] this means the CAS succeeded,
-                // and we were able to reproduce the bug, yay!
-                println!("thread 1 pop: {:?}", node);
-            });
+        // This thread pops, but with a delay between reading head and the CAS loop
+        // By the time it enters the CAS loop, the second thread has essentially
+        // replaced the head, [1], with [3] that shares the same memory address as [1]
+        // original: head -> [1] -> [2]
+        // now     : head -> [3] -> nullptr
+        s.spawn(|| {
+            println!("thread 1 starts pop operation");
+            let node = stack.pop_with_delay();
 
-            // During the first thread's delay window:
-            // 1. This thread pops [1]
-            // 2. Then pops [2]
-            // 3. Pushes a new node [3], with the same address as [1]
-            s.spawn(|| {
-                // We wait a little to make sure the first thread gets a head (no pun intended) start
-                thread::sleep(Duration::from_millis(20));
-
-                println!("thread 2 pops: [{}]", stack_clone.pop().unwrap());
-                println!("thread 2 pops: [{}]", stack_clone.pop().unwrap());
-
-                // Let's hope the system heap allocator reuses the memory that was just freed
-                // Stack now: head -> [3] -> nullptr
-                stack_clone.push(3);
-                println!("thread 2 pushes [3]");
-            });
-
-            thread::sleep(Duration::from_millis(500));
-            // Current stack: head -> [2 (freed)]
-            println!("Final pop: [{:?}]", stack.pop());
+            // If this pop shows up as [3] this means the CAS succeeded,
+            // and we were able to reproduce the bug, yay!
+            println!("thread 1 pop: {:?}", node);
         });
-    }
-```
 
-The output:
+        // During the first thread's delay window:
+        // 1. This thread pops [1]
+        // 2. Then pops [2]
+        // 3. Pushes a new node [3], with the same address as [1]
+        s.spawn(|| {
+            // We wait a little to make sure the first thread gets a head (no pun intended) start
+            thread::sleep(Duration::from_millis(20));
+
+            println!("thread 2 pops: [{}]", stack_clone.pop().unwrap());
+            println!("thread 2 pops: [{}]", stack_clone.pop().unwrap());
+
+            // Let's hope the system heap allocator reuses the memory that was just freed
+            // Stack now: head -> [3] -> nullptr
+            stack_clone.push(3);
+            println!("thread 2 pushes [3]");
+        });
+
+        thread::sleep(Duration::from_millis(500));
+        // Current stack: head -> [2 (freed)]
+        println!("Final pop: [{:?}]", stack.pop());
+    });
+}
+{{< /highlight >}}
+
+</details>
+
+The output, surprinsingly:
+
 ```
 thread 1 starts pop operation
 thread 2 pops: [1]
@@ -511,7 +587,7 @@ thread 2 pushes [3]
 thread 1 pop: Some(3)
 Final pop: [None]
 ```
-Essentially, this is what happens:
+Essentially, we've shown that this is what happens:
 
 {{< mermaid-slider >}}
 ---
@@ -849,7 +925,7 @@ The big question now is, okay, what do we do about it? I won't go into detail in
 - Hazard pointers: threads use hazard pointers to mark the objects they are working on so they don't get dropped.
 - Deferred reclamation
     - garbage collection
-    - epoch-based reclamation (EBR) --> what crossbeam provides :) stay tuned for the next post exploring this!
+    - epoch-based reclamation (EBR) --> what **crossbeam-epoch** provides :) stay tuned for the next post exploring this!
 
 ## Conclusion
 
