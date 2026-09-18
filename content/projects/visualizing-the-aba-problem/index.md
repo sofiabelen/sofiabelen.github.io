@@ -931,8 +931,12 @@ The big question now is, okay, what do we do about it? I won't go into detail in
     - garbage collection
     - epoch-based reclamation (EBR) --> what **crossbeam-epoch** provides :) stay tuned for the next post exploring this!
 
+Check out this [post](https://aturon.github.io/blog/2015/08/27/epoch/) by the creator of crossbeam for a very detailed and easy to follow deep dive into how epoch-based reclamation works.
+
 ## Conclusion
 
 It was a fun experiment trying to reproduce this and seeing first hand how non-trivial it actually is to catch.
 
 My takeaway: If it was so tricky to reproduce knowing from the start what we're looking for, imagine how hard it'd be to detect in production code, if we're not vigilant?
+
+My plan for the future is to continue learning how crossbeam works and hopefully create a second post dissecting `crossbeam-epoch`. Thank you so much for reading, hope you enjoyed it as much as I enjoyed writing it!
