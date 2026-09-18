@@ -3,8 +3,8 @@ layout: project
 title: "Visualizing The ABA Problem: What crossbeam-epoch Solves"
 thumbnail: Janus-statue-and-his-two-faces-past-and-future.webp
 image: Janus-statue-and-his-two-faces-past-and-future.webp
-preview: "Visualizing lock-free concurrency in rust: reproducing the aba problem to begin understanding crossbeam. I promise lots of diagrams!"
-description: "Visualizing lock-free concurrency in rust: reproducing the aba problem to begin understanding crossbeam. I promise lots of diagrams!"
+preview: "Visualizing lock-free concurrency in Rust: reproducing the aba problem to begin understanding crossbeam. I promise lots of diagrams!"
+description: "Visualizing lock-free concurrency in Rust: reproducing the aba problem to begin understanding crossbeam. I promise lots of diagrams!"
 date: 2026-09-18
 publishDate: 2026-09-17
 tags:
@@ -23,11 +23,11 @@ featured: true
 comments: true
 ---
 
-As a newly-Rust convert (Rustacean?) coming from C++, it can be all too tempting to believe Rust's ownership model is the panacea, the cure of all our problems. While it is truly groundbreaking, I'm beginning to learn about the cases where it can't really save us. But there's hope, let's not panic!
+As a new Rust convert (Rustacean?) coming from C++, it can be all too tempting to believe Rust's ownership model is the panacea, the cure for all our problems. While it is truly groundbreaking, I'm beginning to learn about the cases where it can't really save us. But there's hope, let's not panic!
 
 Ever since I watched [Fedor Pikus talk on atomics](https://www.youtube.com/watch?v=ZQFzMfHIxng) (highly recommend!), I've had an interest in lock-free programming. I played around with implementing my own SPMC queue in C++, and have since started (and not finished) some books, trying specially hard to wrap my head around memory ordering. But I've come to realize I've been a bit stuck in tutorial hell, so this post is the beginning of me getting unstuck.
 
-My goal is to poke at the [crossbeam crate](https://github.com/crossbeam-rs/crossbeam), with the hopes of gaining a better understanding of a real-world usecase and hopefully gain some insight which might help me contribute something back.
+My goal is to poke at the [crossbeam crate](https://github.com/crossbeam-rs/crossbeam), with the hopes of gaining a better understanding of a real-world use case and hopefully gain some insight which might help me contribute something back.
 
 Let's start from the beginning, exploring what is one of the problems that crossbeam-epoch tackles.
 
@@ -39,9 +39,9 @@ See all the code and experiments over at my [GitHub](https://github.com/sofiabel
 
 It turns out, one of the cases where Rust's ownership model isn't enough is lock-free code.
 
-Normally, every value has a single owner, and when that owner goes out of scope, Rust calls `drop()` to first execute its desctructor and then free its memory. If we're using a `Mutex`, we can rest assured that while one thread is mutating or destroying a node in our data structure, no other thread can hold a reference to it. 
+Normally, every value has a single owner, and when that owner goes out of scope, Rust calls `drop()` to first execute its destructor and then free its memory. If we're using a `Mutex`, we can rest assured that while one thread is mutating or destroying a node in our data structure, no other thread can hold a reference to it. 
 
-If we want to do this the lock-free way, we'd use a CAS (Compare-And-Swap) loop instead of a Mutex. This way, multiple threads could read and modify different nodes in data structure simultaneously, without waiting for one another.
+If we want to do this the lock-free way, we'd use a CAS (Compare-And-Swap) loop instead of a Mutex. This way, multiple threads could read and modify different nodes in the data structure simultaneously, without waiting for one another.
 
 ## What CAS Guarantees
 
@@ -57,16 +57,16 @@ fn compare_exchange(
 ) -> Result<T, T>;
 ```
 
-In simple terms, what is says is: "if the current value equals `current`, swap it for the new one, atomically." The intuition is that we usually want to modify a variable based on what it currently holds. If, in between reading it and attempting to change it, another thread has modified it from under our feet, we'd need to update our notion of *what's the current value* before we can change it. This is the usual usecase for the CAS loop.
+In simple terms, what this says is: "if the current value equals `current`, swap it for the new one, atomically." The intuition is that we usually want to modify a variable based on what it currently holds. If, in between reading it and attempting to change it, another thread has modified it from under our feet, we'd need to update our notion of *what's the current value* before we can change it. This is the usual usecase for the CAS loop.
 
-Here's the simplest example, of incremeting a counter using a CAS loop:
+Here's the simplest example, of incrementing a counter using a CAS loop:
 
 ```rust
 use std::sync::atomic::{AtomicUsize, Ordering};
 
 fn increment(counter: &AtomicUsize) {
     loop {
-        let current = counter.load(Ordering::Acquire);
+        let current = counter.load(Ordering::Relaxed);
         let new = current + 1;
 
         if counter
@@ -80,14 +80,14 @@ fn increment(counter: &AtomicUsize) {
 }
 ```
 
-What if I told there's an scenario when this promise isn't enough and our intuition can betray us into a false sense of correcteness? When the A we saw first is not the same as current A, even though the value is exactly the same? When A ≠ A?
+What if I told you there's a scenario when this promise isn't enough and our intuition can betray us into a false sense of correctness? When the A we saw first is not the same as the current A, even though the value is exactly the same? When A ≠ A?
 
 My first time hearing about this, I was in utter disbelief. I had a hard time imagining, in pure mathematical/abstract terms, why in the world would it matter that the value has changed, if it's ultimately been "restored" to the same value? Surely our previous assumptions still hold and we're free to continue with our operation...
 
 <!--
 ## The Use-After-Free Race Condition
 
-Maybe you've guessed that the case where our normal intuition starts falling apart is when we working not with values directly but with pointers. How does the old saying go? All problems in computer science are caused by adding a level of indirection? The important thing to understand is that a pointer can point to the same memory but that memory may not be the same.
+Maybe you've guessed that the case where our normal intuition starts falling apart is when we are working not with values directly but with pointers. How does the old saying go? All problems in computer science are caused by adding a level of indirection? The important thing to understand is that a pointer can point to the same memory but that memory may not be the same.
 
 To build a bit of suspense, let's first look at a similar bug, which helped me to build the intuition for understanding the ABA problem.
 
@@ -95,7 +95,7 @@ Imagine we want to use a lock-free stack. Consider how we'd implement the `pop()
 
 ```rust
 fn pop(&self) -> Option<T> {
-    let mut current_head = self.head.load(Ordering::Acquire);
+    let mut current_head = self.head.load(Ordering::Relaxed);
 
     loop {
         if current_head.is_null() { return None; }
@@ -106,7 +106,7 @@ fn pop(&self) -> Option<T> {
             current_head,
             new_head, 
             Ordering::AcqRel, 
-            Ordering::Acquire) {
+            Ordering::Relaxed) {
             
             Ok(_) => {
                 let node = unsafe { Box::from_raw(current_head) };
@@ -131,7 +131,7 @@ This creates a conflict though. Let's imagine the following scenario:
 3. Thread 2 runs `pop()`:
     1. Reads `head` (`0x1000`, Node A).
     2. Reads `Node A.next` (`0x2000`, Node B).
-    3. Succesfully executes CAS: `head` nos points to Node B.
+    3. Succesfully executes CAS: `head` now points to Node B.
 4. Thread 2 runs `drop()` for Node A. Since thread 2 "owns" the popped Node A, it immediately calls `drops()`. Node A's destructor runs, and its memory at `0x1000` is returned to the allocator.
 5. Thread 1 resumes and attempts to now read `Node A.next`, so it tries to dereference pointer `0x1000`.
 
@@ -292,7 +292,7 @@ The fundamental question is:
 
 ## What is The ABA Problem
 
-Maybe you’ve guessed that the case where our normal intuition starts falling apart is when we working not with values directly but with pointers. How does the old saying go? All problems in computer science are caused by adding a level of indirection? The important thing to understand is that a pointer can point to the same memory but that memory may not be the same.
+Maybe you’ve guessed that the case where our normal intuition starts falling apart is when we are working not with values directly but with pointers. How does the old saying go? All problems in computer science are caused by adding a level of indirection? The important thing to understand is that a pointer can point to the same memory but that memory may not be the same.
 
 <!--Now that we've built an intuition about the strange type of bugs that come up when working with pointers in lock-free code, what is the ABA bug?-->
 
@@ -323,7 +323,7 @@ Photo by <a href="https://unsplash.com/@williamdmytrow?utm_source=unsplash&utm_m
 </figure>
 -->
 
-I had opened a can of worms. I still didn't understand how come it was the first time in my career hearing about this strange kind of bug. Needless to say, I was intrigued, I felt the urge to try to reproduce it myself, hoping that maybe that'd help build my intuition for detecting this kind of bugs that weren't under my radar before. It turned out to be harder than I expected.
+I had opened a can of worms. I still didn't understand why it was the first time in my career hearing about this strange kind of bug. Needless to say, I was intrigued, I felt the urge to try to reproduce it myself, hoping that maybe that'd help build my intuition for detecting this kind of bugs that weren't under my radar before. It turned out to be harder than I expected.
 
 These next few sections are me hitting my head against a wall until I got the basics down. Feel free to skip if you're familiar with these concepts already :)
 
@@ -406,14 +406,14 @@ However, one thing is still missing. It turns out that Rust automatically **disa
 - `Send`: Safe to transfer ownership to another thread.
 - `Sync`: Safe to share references (`&Stack<T>`) across multiple threads simultaneously.
 
-So we need to explictily implement those traits (though technically we only need `Sync` for our example):
+So we need to explicitly implement those traits (though technically we only need `Sync` for our example):
 
 ```rust
 unsafe impl<T: Send> Send for Stack<T> {}
 unsafe impl<T: Send> Sync for Stack<T> {}
 ```
 
-We can conclude our final picture of what it looks like it in memory:
+We can conclude our final picture of what it looks like in memory:
 
 {{< mermaid-diagram height="900px" >}}
 ---
@@ -464,7 +464,7 @@ So, for my naive implementation of a lock-free stack, this is what `push` turned
 
 ```rust
 fn push(&self, value: T) {
-    let mut current_head = self.head.load(Ordering::Acquire);
+    let mut current_head = self.head.load(Ordering::Relaxed);
     let node = Box::new(Node::new(value));
     let new_head = Box::into_raw(node);
 
@@ -475,7 +475,7 @@ fn push(&self, value: T) {
             current_head,
             new_head, 
             Ordering::AcqRel, 
-            Ordering::Acquire
+            Ordering::Relaxed
         ) {
             Ok(_) => break,
             Err(actual_head) => {
@@ -505,7 +505,7 @@ fn pop(&self) -> Option<T> {
             Ordering::Relaxed) {
             
             Ok(_) => {
-                // Safety: as I'm writing this, rusts forces me to think about the safety of the unsafe operations,
+                // Safety: as I'm writing this, rust forces me to think about the safety of the unsafe operations,
                 // and the fact that I can't write a safety statement should be a red flag
                 let node = unsafe { Box::from_raw(current_head) };
 
@@ -560,7 +560,7 @@ fn aba() {
         // 2. Then pops [2]
         // 3. Pushes a new node [3], with the same address as [1]
         s.spawn(|| {
-            // We wait a little to make sure the first thread gets a head (no pun intended) start
+            // We wait a little to make sure the first thread gets a head-start (pun intended)
             thread::sleep(Duration::from_millis(20));
 
             println!("thread 2 pops: [{}]", stack_clone.pop().unwrap());
@@ -581,7 +581,7 @@ fn aba() {
 
 </details>
 
-The output, surprinsingly:
+The output, surprisingly:
 
 ```
 thread 1 starts pop operation
@@ -747,9 +747,9 @@ flowchart TB
 
 But... 
 
-The output is a bit anticlimatic, isn't it? I was expecting explosions or a segfault at least.
+The output is a bit anticlimactic, isn't it? I was expecting explosions or a segfault at least.
 
-If we didn't know what we were looking for, we might see the output and believe it's completely normal and all is well. What actually happens is undefined behaviour (UB). Why not segfault necessarily? Well, because in this scenario the memory behind the freed object is most likely still mapped, meaning it still belongs to the process, so the OS doesn't complain.
+If we didn't know what we were looking for, we might see the output and believe it's completely normal and all is well. What actually happens is undefined behaviour (UB). Why not segfault necessarily? Well, because in this scenario the memory behind the freed object is most likely still mapped, meaning that because it still belongs to the process, the OS doesn't raise a segmentation fault.
 
 However, if you want to see chaos, there's still hope!
 
@@ -919,7 +919,7 @@ note: the last function in that backtrace got called indirectly due to this code
      | |______________^
 </code></pre>
 
-There is still much to learn about Miri, like what exactly is a **"retag"** operation, but for now, we can be happy that that it helped us detect our bug.
+There is still much to learn about Miri, like what exactly is a **"retag"** operation, but for now, we can be happy that it helped us detect our bug.
 
 ## The fix 
 
