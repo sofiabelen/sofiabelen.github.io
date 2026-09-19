@@ -313,4 +313,4 @@ This answers our second question, let's now tackle the first one:
 
 ## Memory Inspection: Tracking a Node's Lifecycle (Answers Question 1: Part B)
 
-## 
+## Conclusion
