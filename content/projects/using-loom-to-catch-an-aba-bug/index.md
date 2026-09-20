@@ -397,9 +397,9 @@ RUSTFLAGS="--cfg loom" RUST_BACKTRACE=1 cargo test --release aba_problem
 ## Big Reveal \*\*happy noises\*\* (or maybe I celebrated too early)
 
 <figure>
-<img style='object-fit: contain' src="abhijeet-gourav-N3ZnE-wNVrY-unsplash.jpg" atl="">
+<img style='object-fit: contain' src="viktor-forgacs-WHusHiMMx6s-unsplash.jpg" atl="">
   <figcaption>
-Photo by <a href="https://unsplash.com/@abhijeet_gourav?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">abhijeet gourav</a> on <a href="https://unsplash.com/photos/woman-in-pink-long-sleeve-shirt-with-blue-and-green-powder-on-her-face-N3ZnE-wNVrY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+Photo by <a href="https://unsplash.com/@sonance?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Viktor Forgacs</a> on <a href="https://unsplash.com/photos/a-red-and-blue-fireworks-display-WHusHiMMx6s?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   </figcaption>
 </figure>
 
@@ -514,9 +514,9 @@ failures:
 
 Soooo... the test fails with an `index out of bounds`. I looked into what this means, and in loom's runtime engine, every atomic, `UnsafeCell`, thread and allocation is assigned a small *object id*. In this case, the valid ones are from 0 to 6, so this huge index basically doesn't belong to any of the objects that loom is tracking.
 
-However, this doesn't yet prove that we've managed to hit the ABA path yet, it's just a use-after-free case.
+However, this doesn't yet prove that we've managed to hit the ABA path yet. After printing printing the addresses, it turns out it's just a use-after-free case. I tried running it a few more times but no luck.
 
-What an use-after-free scenario could look like:
+Essentially, what an use-after-free scenario could look like:
 
 {{< mermaid-slider >}}
 ---
