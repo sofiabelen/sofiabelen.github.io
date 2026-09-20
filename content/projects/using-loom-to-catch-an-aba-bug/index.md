@@ -24,7 +24,9 @@ comments: true
 
 This is a follow-up to [my previous post](https://sofiabelen.github.io/projects/visualizing-the-aba-problem/), where we reproduced the ABA problem in a lock-free stack by manually sleeping the threads to achieve the desired scheduling. This is, however, an undeniably unviable strategy for testing and finding bugs in real life. To quote the docs, [Loom](https://docs.rs/loom/latest/loom/) offers a way to "run tests many times, permuting the possible concurrent executions of each test according to what constitutes valid executions under the C11 memory model."
 
-My goal of this post is to explore the usage of loom and apply it to our broken lock-free stack, to see if it can detect the aba bug. It's my first time working with this tool, so it should be exciting!
+My goal for this post is to explore the usage of loom and apply it to our broken lock-free stack, to see if it can detect the aba bug. It's my first time working with this tool, so it should be exciting!
+
+The code can be found on my [github](https://github.com/sofiabelen/visualizing-crossbeam-epoch)!
 
 ## ABA Scenario Recap
 
@@ -184,14 +186,14 @@ flowchart TB
 
 ## Loom Setup
 
-### Shim For Using Loom Primives
+### Shim For Using Loom Primitives
 
 <figure>
 <img style='object-fit: contain' src="robert-ruggiero-oY6774he6GQ-unsplash.jpg" atl="">
   <figcaption>
 Photo by <a href="https://unsplash.com/@robert2301?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Robert Ruggiero</a> on <a href="https://unsplash.com/photos/a-pile-of-different-colored-washers-sitting-on-top-of-a-table-oY6774he6GQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 
-As a non-native speaker, it's my first seeing this workd o.O So I looked it up.
+As a non-native speaker, it's my first seeing this word o.O So I looked it up.
 
 From <a href="https://en.wikipedia.org/wiki/Shim_(computing)">wikipedia</a>: a shim is a library that transparently intercepts API calls and changes the arguments passed, handles the operation itself or redirects the operation elsewhere. It's also that thing in the picture ^^
   </figcaption>
@@ -246,11 +248,11 @@ Photo by <a href="https://unsplash.com/@hocza?utm_source=unsplash&utm_medium=ref
   </figcaption>
 </figure>
 
-This is somethign I didn't realize until later and didn't understand why the loom tests passed for the broken stack ;)
+This is something I didn't realize until later and didn't understand why the loom tests passed for the broken stack ;)
 
-We need to wrap the fields that get unsafely read or written to accross threads in `loom::cell::UnsafeCell`. This gives loom visibility over the memory that it needs to track for conflicting accesses.
+We need to wrap the fields that get unsafely read or written to across threads in `loom::cell::UnsafeCell`. This gives loom visibility over the memory that it needs to track for conflicting accesses.
 
-Since the API for `UnsafeCell` in `std` and `loom` are a bit difference, the (docs)[] recommends adding:
+Since the API for `UnsafeCell` in `std` and `loom` are a bit different, the (docs)[https://docs.rs/loom/latest/loom/#handling-loom-api-differences] recommends adding:
 
 ```rust
 #![cfg(not(loom))]
@@ -284,7 +286,7 @@ pub struct Node<T> {
 }
 ```
 
-For the `push` I've replace
+For the `push` I've replaced
 
 ```rust
 unsafe { (*new_head).next  = current_head };
