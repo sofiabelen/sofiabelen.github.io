@@ -404,16 +404,7 @@ Photo by <a href="https://unsplash.com/@sonance?utm_source=unsplash&utm_medium=r
 </figure>
 
 <style>
-  body {
-    margin: 0;
-    padding: 16px;
-    background-color: #11111b;
-  }
-  @media (prefers-color-scheme: light) {
-    body { background-color: #ffffff; }
-  }
-
-  .output {
+  .loom-output {
     --bg-color: #181825;
     --border-color: #313244;
     --text-color: #cdd6f4;
@@ -429,6 +420,9 @@ Photo by <a href="https://unsplash.com/@sonance?utm_source=unsplash&utm_medium=r
     --t1-color: #89b4fa;
     --t2-color: #f38ba8;
 
+    --details-border: #45475a;
+    --details-hover: #ffffff;
+
     background-color: var(--bg-color);
     color: var(--text-color);
     font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
@@ -440,7 +434,7 @@ Photo by <a href="https://unsplash.com/@sonance?utm_source=unsplash&utm_medium=r
   }
 
   @media (prefers-color-scheme: light) {
-    .output {
+    .loom-output {
       --bg-color: #f8f9fa;
       --border-color: #dcdfe6;
       --text-color: #24292e;
@@ -455,61 +449,88 @@ Photo by <a href="https://unsplash.com/@sonance?utm_source=unsplash&utm_medium=r
       --badge-bg: #e1e4e8;
       --t1-color: #0366d6;
       --t2-color: #d73a49;
+
+      --details-border: #d1d5da;
+      --details-hover: #000000;
     }
   }
 
-  .err-title { color: var(--err-color); font-weight: bold; }
-  .highlight { background-color: var(--err-bg); padding: 1px 4px; border-radius: 3px; }
-  .help { color: var(--help-color); }
-  .location { color: var(--location-color); font-weight: 500; }
-  .code { color: var(--code-color); }
+  .loom-err-title { color: var(--err-color); font-weight: bold; }
+  .loom-highlight { background-color: var(--err-bg); padding: 1px 4px; border-radius: 3px; }
+  .loom-help { color: var(--help-color); }
+  .loom-location { color: var(--location-color); font-weight: 500; }
+  .loom-code { color: var(--code-color); }
 
-  .noise {
+  .loom-noise {
     opacity: 0.45;
     transition: opacity 0.2s ease;
   }
-  .noise:hover {
+  .loom-noise:hover {
     opacity: 0.9;
   }
 
-  .badge {
+  .loom-badge {
     background-color: var(--badge-bg);
     padding: 1px 6px;
     border-radius: 4px;
     font-weight: bold;
     text-transform: uppercase;
   }
-  .badge-thread1 { color: var(--t1-color); }
+  .loom-badge-thread1 { color: var(--t1-color); }
 
-  .fail { color: var(--err-color); font-weight: bold; }
-  .pass-count { color: var(--code-color); }
+  .loom-fail { color: var(--err-color); font-weight: bold; }
+  .loom-pass-count { color: var(--code-color); }
+
+  .loom-backtrace {
+    margin: 8px 0;
+    color: var(--dim-color);
+  }
+  .loom-backtrace summary {
+    cursor: pointer;
+    color: var(--dim-color);
+    user-select: none;
+    font-weight: 500;
+  }
+  .loom-backtrace summary:hover {
+    color: var(--details-hover);
+  }
+  .loom-backtrace-content {
+    opacity: 0.55;
+    padding-left: 12px;
+    border-left: 2px solid var(--details-border);
+    margin-top: 4px;
+  }
 </style>
-</head>
-<body>
-<pre class="output"><code><span class="noise">running 1 test</span>
-<span class="noise">test naive_lock_free_stack::loom_tests::aba_problem ... </span><span class="fail">FAILED</span>
-[...]
-<span class="badge badge-thread1">(25841) thread `naive_lock_free_stack::loom_tests::aba_problem`</span> panicked at <span class="location">loom-0.7.2/src/rt/object.rs:286:38</span>:
-<span class="err-title highlight">index out of bounds: the len is 7 but the index is 34091991057</span>
 
-<span class="noise">     = note: stack backtrace:
+<pre class="loom-output"><code><span class="loom-noise">running 1 test</span>
+<span class="loom-noise">test naive_lock_free_stack::loom_tests::aba_problem ... </span><span class="loom-fail">FAILED</span>
+[...]
+<span class="loom-badge loom-badge-thread1">(25841) thread `naive_lock_free_stack::loom_tests::aba_problem`</span> panicked at <span class="loom-location">loom-0.7.2/src/rt/object.rs:286:38</span>:
+<span class="loom-err-title loom-highlight">index out of bounds: the len is 7 but the index is 34091991057</span>
+
+<details class="loom-backtrace">
+  <summary>[ Click to expand full backtrace ]</summary>
+  <div class="loom-backtrace-content">
+     = note: stack backtrace:
              0: __rustc::rust_begin_unwind
              1: core::panicking::panic_fmt
              2: core::panicking::panic_bounds_check
-             3: &lt;scoped_tls::ScopedKey&lt;core::cell::RefCell&lt;loom::rt::scheduler::State&gt;&gt;&gt;::with::&lt;&lt;loom::rt::scheduler::Scheduler&gt;::with_state&lt;&lt;loom::rt::scheduler::Scheduler&gt;::with_execution&lt;loom::rt::synchronize&lt;&lt;loom::rt::cell::Cell&gt;::start_write::{closure#0}, loom::rt::cell::Writing&gt;::{closure#0}, loom::rt::cell::Writing&gt;::{closure#0}, loom::rt::cell::Writing&gt;::{closure#0}, loom::rt::cell::Writing&gt;</span>
-             4: <span class="help">&lt;loom::rt::cell::Cell&gt;::start_write</span>
-             5: <span class="highlight code">&lt;[...]::naive_lock_free_stack::Stack&lt;i32&gt;&gt;::pop</span>
-<span class="noise">             6: &lt;loom::rt::spawn&lt;loom::thread::spawn_internal&lt;visualizing_crossbeam_epoch::naive_lock_free_stack::loom_tests::aba_problem::{closure#0}::{closure#1}, ()&gt;::{closure#0}&gt;::{closure#1} as core::ops::function::FnOnce&lt;()&gt;&gt;::call_once::{shim:vtable#0}
+             3: &lt;scoped_tls::ScopedKey&lt;core::cell::RefCell&lt;loom::rt::scheduler::State&gt;&gt;&gt;::with::&lt;&lt;loom::rt::scheduler::Scheduler&gt;::with_state&lt;&lt;loom::rt::scheduler::Scheduler&gt;::with_execution&lt;loom::rt::synchronize&lt;&lt;loom::rt::cell::Cell&gt;::start_write::{closure#0}, loom::rt::cell::Writing&gt;::{closure#0}, loom::rt::cell::Writing&gt;::{closure#0}, loom::rt::cell::Writing&gt;::{closure#0}, loom::rt::cell::Writing&gt;
+             4: <span class="loom-help">&lt;loom::rt::cell::Cell&gt;::start_write</span>
+             5: <span class="loom-highlight loom-code">&lt;[...]::naive_lock_free_stack::Stack&lt;i32&gt;&gt;::pop</span>
+             6: &lt;loom::rt::spawn&lt;loom::thread::spawn_internal&lt;visualizing_crossbeam_epoch::naive_lock_free_stack::loom_tests::aba_problem::{closure#0}::{closure#1}, ()&gt;::{closure#0}&gt;::{closure#1} as core::ops::function::FnOnce&lt;()&gt;&gt;::call_once::{shim:vtable#0}
              7: &lt;generator::stack::StackBox&lt;&lt;generator::gen_impl::GeneratorImpl&lt;core::option::Option&lt;alloc::boxed::Box&lt;dyn core::ops::function::FnOnce&lt;(), Output = ()&gt;&gt;&gt;, ()&gt;&gt;::init_code&lt;loom::rt::scheduler::spawn_thread::{closure#0}&gt;::{closure#0}&gt;&gt;::call_once
              8: generator::detail::gen::gen_init_impl
-             9: generator::detail::asm::gen_init</span>
-<span class="noise">note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.</span>
+             9: generator::detail::asm::gen_init
+  </div>
+</details>
+<span class="loom-noise">note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.</span>
 
 
 failures:
-    <span class="help">naive_lock_free_stack::loom_tests::aba_problem</span>
+    <span class="loom-help">naive_lock_free_stack::loom_tests::aba_problem</span>
 
-<span class="noise">test result: </span><span class="fail">FAILED</span><span class="noise">. </span><span class="pass-count">0</span><span class="noise"> passed; </span><span class="pass-count">1</span><span class="noise"> failed; </span><span class="pass-count">0</span><span class="noise"> ignored; </span><span class="pass-count">0</span><span class="noise"> measured; </span><span class="pass-count">0</span><span class="noise"> filtered out; finished in 0.00s</span>
+<span class="loom-noise">test result: </span><span class="loom-fail">FAILED</span><span class="loom-noise">. </span><span class="loom-pass-count">0</span><span class="loom-noise"> passed; </span><span class="loom-pass-count">1</span><span class="loom-noise"> failed; </span><span class="loom-pass-count">0</span><span class="loom-noise"> ignored; </span><span class="loom-pass-count">0</span><span class="loom-noise"> measured; </span><span class="loom-pass-count">0</span><span class="loom-noise"> filtered out; finished in 0.00s</span>
 </code></pre>
 
 Soooo... the test fails with an `index out of bounds`. I looked into what this means, and in loom's runtime engine, every atomic, `UnsafeCell`, thread and allocation is assigned a small *object id*. In this case, the valid ones are from 0 to 6, so this huge index basically doesn't belong to any of the objects that loom is tracking.
