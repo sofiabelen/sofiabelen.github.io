@@ -1,6 +1,6 @@
 ---
 layout: project
-title: "Using Loom to Catch an ABA Bug in Lock-Free Rust"
+title: "Using Loom to (Try To) Catch an ABA Bug in Lock-Free Rust"
 thumbnail: Laurits_Andersen_Ring_Johanne_WIlde_at_Her_Loom-1892.JPG
 image: Laurits_Andersen_Ring_Johanne_WIlde_at_Her_Loom-1892.JPG
 preview: "I'm exploring Loom for the first time! My goal test our broken lock-free stack with loom, to see if it can detect the ABA bug. It's my first time working with this tool, so I'm excited!"
@@ -138,7 +138,7 @@ flowchart TB
     t1 --> nodec
 %%%
 ---
-title: "Thread 1 CAS succeeds: ABA bug triggered *happy noises*"
+title: "Thread 1 CAS succeeds: ABA bug triggered"
 ---
 flowchart TB
     head(("head"))
@@ -255,10 +255,11 @@ We need to wrap the fields that get unsafely read or written to across threads i
 Since the API for `UnsafeCell` in `std` and `loom` are a bit different, the (docs)[https://docs.rs/loom/latest/loom/#handling-loom-api-differences] recommends adding:
 
 ```rust
-#![cfg(not(loom))]
+#[cfg(not(loom))]
 #[derive(Debug)]
 pub(crate) struct UnsafeCell<T>(std::cell::UnsafeCell<T>);
 
+#[cfg(not(loom))]
 impl<T> UnsafeCell<T> {
     pub(crate) fn new(data: T) -> UnsafeCell<T> {
         UnsafeCell(std::cell::UnsafeCell::new(data))
@@ -343,7 +344,7 @@ with
 
 ```rust
 let new_head = unsafe {
-    (*current_head).next.with_mut(|next_ptr| *next_ptr)
+    (*current_head).next.with(|next_ptr| *next_ptr)
 };
 ```
 
@@ -393,7 +394,7 @@ Running the test:
 RUSTFLAGS="--cfg loom" RUST_BACKTRACE=1 cargo test --release aba_problem
 ```
 
-## Big Reveal \*\*happy noises\*\*
+## Big Reveal \*\*happy noises\*\* (or maybe I celebrated too early)
 
 <figure>
 <img style='object-fit: contain' src="abhijeet-gourav-N3ZnE-wNVrY-unsplash.jpg" atl="">
@@ -511,10 +512,159 @@ failures:
 <span class="noise">test result: </span><span class="fail">FAILED</span><span class="noise">. </span><span class="pass-count">0</span><span class="noise"> passed; </span><span class="pass-count">1</span><span class="noise"> failed; </span><span class="pass-count">0</span><span class="noise"> ignored; </span><span class="pass-count">0</span><span class="noise"> measured; </span><span class="pass-count">0</span><span class="noise"> filtered out; finished in 0.00s</span>
 </code></pre>
 
-Soooo... the test fails with an `index out of bounds`. I looked into what this means, and in loom's runtime engine, every atomic, `UnsafeCell`, thread and allocation is assigned a small *object id*. In this case, the valid ones are from 0 to 6, so this huge index basically doesn't belong to any of the objects that loom is tracking. This is exactly what we were looking for, the ABA race means that the thread reads a pointer to freed memory!!
+Soooo... the test fails with an `index out of bounds`. I looked into what this means, and in loom's runtime engine, every atomic, `UnsafeCell`, thread and allocation is assigned a small *object id*. In this case, the valid ones are from 0 to 6, so this huge index basically doesn't belong to any of the objects that loom is tracking.
 
-We can also see that it happens on `pop`, which is what we'd expect :)
+However, this doesn't yet prove that we've managed to hit the ABA path yet, it's just a use-after-free case.
+
+What an use-after-free scenario could look like:
+
+{{< mermaid-slider >}}
+---
+title: "Initial state"
+---
+flowchart TB
+    head(("head"))
+
+    subgraph nodea["node A"]
+        direction TB
+        na_value["value: 1"]
+        na_memory["memory: 0x1000"]
+    end
+
+    subgraph nodeb["node B"]
+        direction TB
+        nb_value["value: 2"]
+        nb_memory["memory: 0x2000"]
+    end
+
+    head --> nodea
+    nodea --> nodeb
+%%%
+---
+title: "Step 1: Thread 1 starts pop() and reads head"
+---
+flowchart TB
+    head(("head"))
+
+    subgraph nodea["node A"]
+        direction TB
+        na_value["value: 1"]
+        na_memory["memory: 0x1000"]
+    end
+
+    subgraph nodeb["node B"]
+        direction TB
+        nb_value["value: 2"]
+        nb_memory["memory: 0x2000"]
+    end
+
+    t1["Thread 1<br/>head: 0x1000<br/>next: (not read yet)"]
+
+    head --> nodea
+    nodea --> nodeb
+    t1 -.->|reads| nodea
+%%%
+---
+title: "Step 2: Thread 1 context-switched before reading A.next"
+---
+flowchart TB
+    head(("head"))
+
+    subgraph nodea["node A"]
+        direction TB
+        na_value["value: 1"]
+        na_memory["memory: 0x1000"]
+    end
+
+    subgraph nodeb["node B"]
+        direction TB
+        nb_value["value: 2"]
+        nb_memory["memory: 0x2000"]
+    end
+
+    t1["Thread 1 (PAUSED)<br/>head: 0x1000<br/>next: ???"]
+
+    head --> nodea
+    nodea --> nodeb
+    t1 -.-> nodea
+%%%
+---
+title: "Step 3: Thread 2 executes pop() successfully"
+---
+flowchart TB
+    head(("head"))
+
+    subgraph nodeb["node B"]
+        direction TB
+        nb_value["value: 2"]
+        nb_memory["memory: 0x2000"]
+    end
+
+    t1["Thread 1 (PAUSED)<br/>head: 0x1000<br/>next: ???"]
+
+    subgraph nodea["node A (popped by T2)"]
+        direction TB
+        na_value["value: 1"]
+        na_memory["memory: 0x1000"]
+    end
+
+    head --> nodeb
+    nodeb ~~~ t1
+    t1 -.-> nodea
+%%%
+---
+title: "Step 4: Thread 2 drops Node A and frees memory at 0x1000"
+---
+flowchart TB
+    head(("head"))
+
+    subgraph nodeb["node B"]
+        direction TB
+        nb_value["value: 2"]
+        nb_memory["memory: 0x2000"]
+    end
+
+    t1["Thread 1 (PAUSED)<br/>head: 0x1000<br/>next: ?"]
+
+    subgraph nodea["freed memory (0x1000)"]
+        direction TB
+        na_status["[deallocated]"]
+    end
+
+    head --> nodeb
+    nodeb ~~~ t1
+    t1 -.->|dangling reference| nodea
+%%%
+---
+title: "Step 5: Thread 1 resumes and attempts use-after-free read"
+---
+flowchart TB
+    head(("head"))
+
+    subgraph nodeb["node B"]
+        direction TB
+        nb_value["value: 2"]
+        nb_memory["memory: 0x2000"]
+    end
+
+    t1["Thread 1 resumes<br/>tries to read (0x1000).next<br/>use-after-free"]
+
+    subgraph nodea["freed memory (0x1000)"]
+        direction TB
+        na_status["[deallocated]"]
+    end
+
+    head --> nodeb
+    nodeb ~~~ t1
+    t1 ==> |fails to dereference!| nodea
+{{< /mermaid-slider >}}
+
+Soooo.. if we did want to reproduce the exact ABA scenario, we'd need to interfere with the timing ourselves, like in the [previous post](https://sofiabelen.github.io/projects/visualizing-the-aba-problem/), which I believe doesn't add any more value at this point.
 
 ## Conclusion
+
+While it is a bit dissapointing that we couldn't catch the actual ABA bug, the *why* we couldn't helped me better understand what loom actually does. Since it runs different permutations until it panics, the first time it encounters a typical use-after-free, it stops there. It did prove, however, that loom does detect that our stack is indeed broken, which is the most important thing.
+
+Originally, I had written a section discussing the use-after-free bug on my previous post, which I removed because it added too much complexity to the structure of the article without much extra benefit. So, here, I used that diagram that I had created before, so that's something :)
 
 Thank you so much for tagging along! Any feedback is appreciated as I'm just dipping my toes in these tools.
