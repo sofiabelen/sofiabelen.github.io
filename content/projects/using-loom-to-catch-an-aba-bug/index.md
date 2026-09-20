@@ -1,0 +1,518 @@
+---
+layout: project
+title: "Using Loom to Catch an ABA Bug in Lock-Free Rust"
+thumbnail: Laurits_Andersen_Ring_Johanne_WIlde_at_Her_Loom-1892.JPG
+image: Laurits_Andersen_Ring_Johanne_WIlde_at_Her_Loom-1892.JPG
+preview: "I'm exploring Loom for the first time! My goal test our broken lock-free stack with loom, to see if it can detect the ABA bug. It's my first time working with this tool, so I'm excited!"
+description: "I'm exploring Loom for the first time! My goal test our broken lock-free stack with loom, to see if it can detect the ABA bug. It's my first time working with this tool, so I'm excited!"
+date: 2026-09-20
+publishDate: 2026-09-19
+tags:
+    - Rust
+    - tutorial
+    - lock-free-programming
+    - concurrency
+    - loom
+categories:
+    - Rust
+    - tutorial
+    - lock-free-programming
+    - concurrency
+    - loom
+comments: true
+---
+
+This is a follow-up to [my previous post](https://sofiabelen.github.io/projects/visualizing-the-aba-problem/), where we reproduced the ABA problem in a lock-free stack by manually sleeping the threads to achieve the desired scheduling. This is, however, an undeniably unviable strategy for testing and finding bugs in real life. To quote the docs, [Loom](https://docs.rs/loom/latest/loom/) offers a way to "run tests many times, permuting the possible concurrent executions of each test according to what constitutes valid executions under the C11 memory model."
+
+My goal of this post is to explore the usage of loom and apply it to our broken lock-free stack, to see if it can detect the aba bug. It's my first time working with this tool, so it should be exciting!
+
+## ABA Scenario Recap
+
+Here's a diagram for a quick recap of the ABA scenario:
+
+{{< mermaid-slider >}}
+---
+title: "Initial state"
+---
+flowchart TB
+    head(("head"))
+
+    subgraph nodea["node 'A'"]
+        direction TB
+        na_value["value: 1"]
+        na_memory["memory: A"]
+    end
+
+    subgraph nodeb["node 'B'"]
+        direction TB
+        nb_value["value: 2"]
+        nb_memory["memory: B"]
+    end
+
+    head --> nodea
+    nodea --> nodeb
+%%%
+---
+title: "Thread 1 reads head"
+---
+flowchart TB
+    head(("head"))
+
+    subgraph nodea["node 'A'"]
+        direction TB
+        na_value["value: 1"]
+        na_memory["memory: A"]
+    end
+
+    subgraph nodeb["node 'B'"]
+        direction TB
+        nb_value["value: 2"]
+        nb_memory["memory: B"]
+    end
+
+    t1["Thread 1<br/>head: A<br/>next: B"]
+
+    head --> nodea
+    nodea --> nodeb
+    t1 --> nodea
+%%%
+---
+title: "Thread 2 pops node 'A'"
+---
+flowchart TB
+    head(("head"))
+
+    subgraph nodeb["node 'B'"]
+        direction TB
+        nb_value["value: 2"]
+        nb_memory["memory: B"]
+    end
+
+    t1["Thread 1<br/>head: A<br/>next: B"]
+
+    subgraph nodea["node 'A' (popped)"]
+        direction TB
+        na_value["value: 1"]
+        na_memory["memory: A"]
+    end
+
+    head --> nodeb
+    nodeb ~~~ t1
+    t1 --> nodea
+%%%
+---
+title: "Thread 2 pops node 'B'"
+---
+flowchart TB
+    head(("head (null)"))
+
+    t1["Thread 1<br/>head: A<br/>next: B"]
+
+    subgraph nodea["node 'A' (freed)"]
+        direction TB
+        na_value["value: 1"]
+        na_memory["memory: A"]
+    end
+
+    head ~~~ t1
+    t1 --> nodea
+%%%
+---
+title: "Thread 2 pushes node 'C' (address A)"
+---
+flowchart TB
+    head(("head"))
+
+    subgraph nodec["node 'C'"]
+        direction TB
+        nc_value["value: 3"]
+        nc_memory["memory: A"]
+    end
+
+    t1["Thread 1<br/>head: A<br/>next: B"]
+
+    head --> nodec
+    nodec ~~~ t1
+    t1 --> nodec
+%%%
+---
+title: "Thread 1 CAS succeeds: ABA bug triggered *happy noises*"
+---
+flowchart TB
+    head(("head"))
+
+    subgraph nodec["node 'C'"]
+        direction TB
+        nc_value["value: 3"]
+        nc_memory["memory: A"]
+    end
+
+    t1["Thread 1 CAS<br/>head == A? true<br/>set head = B"]
+
+    subgraph nodeb["node 'B' (freed)"]
+        direction TB
+        nb_value["value: 2"]
+        nb_memory["memory: B"]
+    end
+
+    head --> nodec
+    nodec ~~~ t1
+    t1 --> nodec
+    t1 ~~~ nodeb
+%%%
+---
+title: "Final state (dangling head)"
+---
+flowchart TB
+    head(("head (dangling)"))
+
+    subgraph nodeb["node 'B' (freed)"]
+        direction TB
+        nb_value["value: 2"]
+        nb_memory["memory: B"]
+    end
+
+    subgraph nodec["node 'C' (popped)"]
+        direction TB
+        nc_value["value: 3"]
+        nc_memory["memory: A"]
+    end
+
+    head --> nodeb
+    nodeb ~~~ nodec
+{{< /mermaid-slider >}}
+
+## Loom Setup
+
+### Shim For Using Loom Primives
+
+<figure>
+<img style='object-fit: contain' src="robert-ruggiero-oY6774he6GQ-unsplash.jpg" atl="">
+  <figcaption>
+Photo by <a href="https://unsplash.com/@robert2301?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Robert Ruggiero</a> on <a href="https://unsplash.com/photos/a-pile-of-different-colored-washers-sitting-on-top-of-a-table-oY6774he6GQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+
+As a non-native speaker, it's my first seeing this workd o.O So I looked it up.
+
+From <a href="https://en.wikipedia.org/wiki/Shim_(computing)">wikipedia</a>: a shim is a library that transparently intercepts API calls and changes the arguments passed, handles the operation itself or redirects the operation elsewhere. It's also that thing in the picture ^^
+  </figcaption>
+</figure>
+
+The way loom tests our code essentially is by replacing the `std` primitives with its own:
+
+| `std` | `loom` |
+| :--- | :--- |
+| `std::thread` | `loom::thread` |
+| `std::sync::Arc` | `loom::sync::Arc` |
+| `std::cell::UnsafeCell` | `loom::cell::UnsafeCell` |
+| `std::sync::atomic::*` | `loom::sync::atomic::*` |
+| `std::thread::scope` | *Not supported* (use `loom::thread::spawn` + `Arc`) |
+
+What we want is to be able to use the `std` types normally and only replace them when compiling with the `loom` flag.
+
+So, for running the loom tests, we pass `RUSTFLAGS="--cfg loom"`.
+
+In order to toggle the loom types, we can add a shim to our `lib.rs` file:
+
+```rust
+#[cfg(not(loom))]
+pub use std::sync::atomic::{AtomicPtr, Ordering};
+
+#[cfg(loom)]
+pub use loom::sync::atomic::{AtomicPtr, Ordering};
+```
+
+I'm just demonstrating the usecase, but we'd need to do this for all of types we want to replace (check out the complete [lib.rs](https://github.com/sofiabelen/visualizing-crossbeam-epoch/blob/main/src/lib.rs) for this demo).
+
+### Cargo.toml
+
+Then, we want to add loom to our project, but gated behind a config flag, so that it doesn't bloat our production builds. I added this my `Cargo.toml`:
+
+```rust
+// tells cargo to only include when compiling with --cfg loom
+[target.'cfg(loom)'.dependencies]
+loom = "0.7"
+
+// registers loom as custom configuration flag (gets rid of compiler warnings)
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(loom)'] }
+```
+
+### Wrapping Raw Pointers In UnsafeCell
+
+<figure>
+<img style='object-fit: contain' src="jozsef-hocza-yBtRl173PWA-unsplash.jpg" atl="">
+  <figcaption>
+Photo by <a href="https://unsplash.com/@hocza?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Jozsef Hocza</a> on <a href="https://unsplash.com/photos/black-cat-wrapped-in-maroon-and-grey-plaid-textile-yBtRl173PWA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  </figcaption>
+</figure>
+
+This is somethign I didn't realize until later and didn't understand why the loom tests passed for the broken stack ;)
+
+We need to wrap the fields that get unsafely read or written to accross threads in `loom::cell::UnsafeCell`. This gives loom visibility over the memory that it needs to track for conflicting accesses.
+
+Since the API for `UnsafeCell` in `std` and `loom` are a bit difference, the (docs)[] recommends adding:
+
+```rust
+#![cfg(not(loom))]
+#[derive(Debug)]
+pub(crate) struct UnsafeCell<T>(std::cell::UnsafeCell<T>);
+
+impl<T> UnsafeCell<T> {
+    pub(crate) fn new(data: T) -> UnsafeCell<T> {
+        UnsafeCell(std::cell::UnsafeCell::new(data))
+    }
+
+    pub(crate) fn with<R>(&self, f: impl FnOnce(*const T) -> R) -> R {
+        f(self.0.get())
+    }
+
+    pub(crate) fn with_mut<R>(&self, f: impl FnOnce(*mut T) -> R) -> R {
+        f(self.0.get())
+    }
+}
+```
+
+Tldr; `loom::cell::UnsafeCell` uses `.with` and `.with_mut` to track reads and writes, whereas `std::cell::UnsafeCell` just uses `.get`, so we need to work around this a bit.
+
+Node becomes:
+
+```rust
+pub struct Node<T> {
+    value: T,
+    //next: *mut Node<T>,
+    next: UnsafeCell<*mut Node<T>>,
+}
+```
+
+For the `push` I've replace
+
+```rust
+unsafe { (*new_head).next  = current_head };
+```
+
+with 
+
+```rust
+unsafe {
+    (*new_head).next.with_mut(|next_ptr| {
+    *next_ptr = current_head;
+    });
+}
+```
+
+Let's break this down:
+
+<pre><code>
+<mark>(*new_head).next</mark>
+│          │
+│          └── retrieves next, which is of type UnsafeCell<*mut Node>
+│
+└── dereference
+       navigates through the new_head raw pointer to get the actual Node struct
+
+
+        <mark>.with_mut( |next_ptr| { ... } )</mark>
+        │          │
+        │          └── closure arg: next_ptr
+        │                 the closure receives next_ptr, which is a pointer-to-the-pointer:
+        │                 type: `*mut (*mut Node)`
+        │                 think of this as: "a pointer targeting the inner pointer slot"
+        │
+        └── Calls .with_mut() on the UnsafeCell
+               - cfg(loom): loom sees that a thread is writing
+               - cfg(not(loom)): standard raw access
+        
+        
+            <mark>*next_ptr = current_head;</mark>
+            │         │
+            │         └──  set the value inside the slot to point to current_head
+            │
+            └── dereference and write
+                   *next_ptr dereferences the outer pointer to reach the inner pointer slot
+</code></pre>
+
+For the `pop`, I need to replace
+
+```rust
+let new_head = unsafe { (*current_head).next };
+```
+
+with 
+
+```rust
+let new_head = unsafe {
+    (*current_head).next.with_mut(|next_ptr| *next_ptr)
+};
+```
+
+## ABA Loom Test
+
+We are now ready to write our loom test (separte from the normal `#[test]`s). We wrap everything in a `loom::model`. And... I had to rewrite this a bit because loom doesn't have `std::thread::scope`. The reason for this, from what I could understand, is that `std::thread::scope` works with standard OS scheduling that loom cannot intercept.
+
+With that out of the way, so the way this works is that loom runs the `loom::model(|| { ... })` closure many times, each time with a different schedule and thread-interleaving permutation.
+
+```rust
+#[cfg(test)]
+#[cfg(loom)]
+mod loom_tests {
+    use super::*;
+    use crate::thread;
+    use crate::Arc;
+    use loom::model;
+
+    #[test]
+    fn aba_problem() {
+        model(|| {
+            let stack = Arc::new(Stack::<i32>::new());
+            let s2 = stack.clone();
+            stack.push(1);
+            stack.push(2);
+            stack.push(3);
+
+            let t1 = thread::spawn(move || {
+                stack.pop();
+            });
+
+            let t2 = thread::spawn(move || {
+                s2.pop();
+                s2.pop();
+                s2.push(4);
+            });
+
+            t1.join().unwrap();
+            t2.join().unwrap();
+        });
+    }
+}
+```
+
+Running the test:
+```
+RUSTFLAGS="--cfg loom" RUST_BACKTRACE=1 cargo test --release aba_problem
+```
+
+## Big Reveal \*\*happy noises\*\*
+
+<figure>
+<img style='object-fit: contain' src="abhijeet-gourav-N3ZnE-wNVrY-unsplash.jpg" atl="">
+  <figcaption>
+Photo by <a href="https://unsplash.com/@abhijeet_gourav?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">abhijeet gourav</a> on <a href="https://unsplash.com/photos/woman-in-pink-long-sleeve-shirt-with-blue-and-green-powder-on-her-face-N3ZnE-wNVrY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  </figcaption>
+</figure>
+
+<style>
+  body {
+    margin: 0;
+    padding: 16px;
+    background-color: #11111b;
+  }
+  @media (prefers-color-scheme: light) {
+    body { background-color: #ffffff; }
+  }
+
+  .output {
+    --bg-color: #181825;
+    --border-color: #313244;
+    --text-color: #cdd6f4;
+
+    --err-color: #f38ba8;
+    --err-bg: rgba(243, 139, 168, 0.18);
+    --help-color: #89b4fa;
+    --location-color: #e5c890;
+    --code-color: #a6e3a1;
+    --dim-color: #6c7086;
+
+    --badge-bg: #313244;
+    --t1-color: #89b4fa;
+    --t2-color: #f38ba8;
+
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+    line-height: 1.5;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    overflow-x: auto;
+  }
+
+  @media (prefers-color-scheme: light) {
+    .output {
+      --bg-color: #f8f9fa;
+      --border-color: #dcdfe6;
+      --text-color: #24292e;
+
+      --err-color: #d73a49;
+      --err-bg: rgba(215, 58, 73, 0.12);
+      --help-color: #0366d6;
+      --location-color: #b05a00;
+      --code-color: #1b7c2b;
+      --dim-color: #6a737d;
+
+      --badge-bg: #e1e4e8;
+      --t1-color: #0366d6;
+      --t2-color: #d73a49;
+    }
+  }
+
+  .err-title { color: var(--err-color); font-weight: bold; }
+  .highlight { background-color: var(--err-bg); padding: 1px 4px; border-radius: 3px; }
+  .help { color: var(--help-color); }
+  .location { color: var(--location-color); font-weight: 500; }
+  .code { color: var(--code-color); }
+
+  .noise {
+    opacity: 0.45;
+    transition: opacity 0.2s ease;
+  }
+  .noise:hover {
+    opacity: 0.9;
+  }
+
+  .badge {
+    background-color: var(--badge-bg);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .badge-thread1 { color: var(--t1-color); }
+
+  .fail { color: var(--err-color); font-weight: bold; }
+  .pass-count { color: var(--code-color); }
+</style>
+</head>
+<body>
+<pre class="output"><code><span class="noise">running 1 test</span>
+<span class="noise">test naive_lock_free_stack::loom_tests::aba_problem ... </span><span class="fail">FAILED</span>
+[...]
+<span class="badge badge-thread1">(25841) thread `naive_lock_free_stack::loom_tests::aba_problem`</span> panicked at <span class="location">loom-0.7.2/src/rt/object.rs:286:38</span>:
+<span class="err-title highlight">index out of bounds: the len is 7 but the index is 34091991057</span>
+
+<span class="noise">     = note: stack backtrace:
+             0: __rustc::rust_begin_unwind
+             1: core::panicking::panic_fmt
+             2: core::panicking::panic_bounds_check
+             3: &lt;scoped_tls::ScopedKey&lt;core::cell::RefCell&lt;loom::rt::scheduler::State&gt;&gt;&gt;::with::&lt;&lt;loom::rt::scheduler::Scheduler&gt;::with_state&lt;&lt;loom::rt::scheduler::Scheduler&gt;::with_execution&lt;loom::rt::synchronize&lt;&lt;loom::rt::cell::Cell&gt;::start_write::{closure#0}, loom::rt::cell::Writing&gt;::{closure#0}, loom::rt::cell::Writing&gt;::{closure#0}, loom::rt::cell::Writing&gt;::{closure#0}, loom::rt::cell::Writing&gt;</span>
+             4: <span class="help">&lt;loom::rt::cell::Cell&gt;::start_write</span>
+             5: <span class="highlight code">&lt;[...]::naive_lock_free_stack::Stack&lt;i32&gt;&gt;::pop</span>
+<span class="noise">             6: &lt;loom::rt::spawn&lt;loom::thread::spawn_internal&lt;visualizing_crossbeam_epoch::naive_lock_free_stack::loom_tests::aba_problem::{closure#0}::{closure#1}, ()&gt;::{closure#0}&gt;::{closure#1} as core::ops::function::FnOnce&lt;()&gt;&gt;::call_once::{shim:vtable#0}
+             7: &lt;generator::stack::StackBox&lt;&lt;generator::gen_impl::GeneratorImpl&lt;core::option::Option&lt;alloc::boxed::Box&lt;dyn core::ops::function::FnOnce&lt;(), Output = ()&gt;&gt;&gt;, ()&gt;&gt;::init_code&lt;loom::rt::scheduler::spawn_thread::{closure#0}&gt;::{closure#0}&gt;&gt;::call_once
+             8: generator::detail::gen::gen_init_impl
+             9: generator::detail::asm::gen_init</span>
+<span class="noise">note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.</span>
+
+
+failures:
+    <span class="help">naive_lock_free_stack::loom_tests::aba_problem</span>
+
+<span class="noise">test result: </span><span class="fail">FAILED</span><span class="noise">. </span><span class="pass-count">0</span><span class="noise"> passed; </span><span class="pass-count">1</span><span class="noise"> failed; </span><span class="pass-count">0</span><span class="noise"> ignored; </span><span class="pass-count">0</span><span class="noise"> measured; </span><span class="pass-count">0</span><span class="noise"> filtered out; finished in 0.00s</span>
+</code></pre>
+
+Soooo... the test fails with an `index out of bounds`. I looked into what this means, and in loom's runtime engine, every atomic, `UnsafeCell`, thread and allocation is assigned a small *object id*. In this case, the valid ones are from 0 to 6, so this huge index basically doesn't belong to any of the objects that loom is tracking. This is exactly what we were looking for, the ABA race means that the thread reads a pointer to freed memory!!
+
+We can also see that it happens on `pop`, which is what we'd expect :)
+
+## Conclusion
+
+Thank you so much for tagging along! Any feedback is appreciated as I'm just dipping my toes in these tools.
