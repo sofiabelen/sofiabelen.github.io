@@ -513,6 +513,7 @@ Now that we have our `Shared<'a, T>` we can play around with it, changing the ta
 ```
 
 Let's run it:
+
 <pre><code>
 Initial tag: 0
 Initial tag: 0
