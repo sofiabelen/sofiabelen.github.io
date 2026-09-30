@@ -8,14 +8,16 @@ description: ""
 date: 2026-09-29
 publishDate: 2026-09-28
 tags:
+    - C++
     - Rust
     - tutorial
     - pointers
 categories:
+    - C++
     - Rust
     - tutorial
+    - pointers
 featured: false
-draft: true
 comments: true
 ---
 
@@ -23,11 +25,9 @@ I've been exploring Rust, and one topic that got me intrigued is pointer provena
 
 For getting a feel of vtables, what I wanted was to look at the actualy memory, to see what it really looked like and prove that I could in fact call these functions through their respective function pointers. With provenance, I wanted to take it apart the same way, but it turns out it's not so straightforward. This only got me more intrigued, so let's see what we can find!
 
-My first time hearing about provenance, I wondered why I hadn't heard about it before? It seems so crucial, yet a bit obscure of a concept.
+My first time hearing about provenance, I wondered why I hadn't heard about it before? It seems so crucial, yet a bit of an obscure concept.
 
-## What is Provenance
-
-## Pointers are not just ints
+## What is Provenance: Pointers Are Not Just Glorified Ints
 
 Let's start by taking a good look at this snippet. It's short, but our intuition can trick us if it's the first time coming across this concept. `void opaque(int*)` is forwared declared here, so for it's a black box. It could, for example, dereference `p` and write to memory.
 
@@ -279,10 +279,12 @@ note: some details are omitted, run with `MIRIFLAGS=-Zmiri-backtrace=full` for a
 error: aborting due to 1 previous error
 </code></pre>
 
-## miri vs ASan
+## Miri vs ASan
 
 ## Recap
 
-Provenance, in short, is a hidden piece of information tracking "which allocation" a pointer originates from, which LLVM uses for optimizations. In C++, `uintptr_t` casts force the optimizer to prepare for the worst case by disabling optimizations.
+Provenance, in short, is a hidden piece of information tracking "which allocation" a pointer originates from, which LLVM uses for optimizations. In C++, `uintptr_t` casts force the optimizer to prepare for the worst case by disabling some optimizations.
 
+In Rust, `addr()`, `with_addr()` and `without_provenance()` allow you to communicate your intent with the compiler, allowing it to optimize when possible, and catching bugs that stem from unintended usage.
 
+## Resources
