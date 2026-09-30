@@ -1,8 +1,8 @@
 ---
 layout: project
 title: "Pointer Provenance in Rust vs C++"
-thumbnail: 
-image: 
+thumbnail: grace-tetley-uphv_ziJaLA-unsplash.jpg
+image: grace-tetley-uphv_ziJaLA-unsplash.jpg
 preview: ""
 description: ""
 date: 2026-09-29
@@ -56,7 +56,7 @@ The question is, how does it know that `int* p` doesn't point to the same memory
 
 The compiler assumes `p` can't equal `&x` because `p` wasn't *derived* from `x`. When I first heard about this, I thought it was a bit of a strange concept. What does it mean that something is *derived* from something?
 
-I mean, if pointers were just numbers, `p` could theoretically happen to hold the same memory address of `x`'s allocation on the stack. Good thing they're not just numbers :)
+I mean, if pointers were just numbers (memory addresses), `p` could theoretically happen to hold the same memory address of `x`'s allocation on the stack. Good thing they're not just numbers :)
 
 Let us follow the white rabbit.
 
@@ -69,7 +69,7 @@ Photo by <a href="https://unsplash.com/@sincerelymedia?utm_source=unsplash&utm_m
   </figcaption>
 </figure>
 
-This brings us to the core of provenance. That "*derived from*" relation is **provenance**: for every pointer, the compiler keeps track of which allocation it may touch.
+This brings us to the core of provenance. That "*derived from*" relation is **provenance**: for every pointer, the compiler keeps track of which allocation it belongs to and may, therefore, touch.
 
 I tried to find a way to print this mysterious provenance, but it turns out that it's purely a compiler abstraction. It does not exist as an actual data field stored alongside the memory address.
 
@@ -78,8 +78,6 @@ I tried to find a way to print this mysterious provenance, but it turns out that
 So what can we do to inspect it? If the compiler knows about then it must exist somewhere. If so, there must be a way to *see* it.
 
 This is how I learned about LLVM IR (intermediate representation), which is essentially a low-level programming language that acts as a bridge between high-level languages (like Rust, C++, etc) and machine code.
-
-We can use the `-emit-llvm` flag on godbolt to see this.
 
 Let's try it for this code instead, where we pass `&x` to `opaque` to see what happens when the compiler doesn't optimize that part away:
 
@@ -92,6 +90,8 @@ int f() {
     return x;
 }
 ```
+
+We can use the `-emit-llvm` flag on godbolt to see this the LLVM IR:
 
 <pre><code>
 define dso_local noundef i32 @f(int*)(ptr noundef <mark>%0</mark>) local_unnamed_addr #0 !dbg !14 {
@@ -124,14 +124,29 @@ What the compiler does is construct a DAG (direct acyclic graph), to answer the 
 
 If the root origins don't match, LLVM can guarantee that writing through `%0` will never alter the value stored at `%3` or `%2`.
 
-```
-[ Root: External Allocation ]              [ Root: Stack Slot #1 ]
-             │                                        │
-            %0                                       %2
-                                                      │
-                                                      ▼
-                                                     %3
-```
+{{< mermaid-slider >}}
+---
+title: "Allocation Tree for x"
+---
+graph TD
+    direction TB
+    R2["Root: Stack Slot #1"]
+    P2["%2 (alloca)"]
+    P3["%3 (getelementptr)"]
+    
+    R2 --> P2
+    P2 --> P3
+%%%
+---
+title: "Allocation Tree for p"
+---
+graph TD
+    direction TB
+    R1["Root: External Allocation (belongs to caller)"]
+    P0["%0 (Parameter)"]
+    
+    R1 --> P0
+{{< /mermaid-slider >}}
 
 There is much more to explore here that it's hard not to get carried away because it's truly fascinating. However, my original goal was to compare how C++ and Rust handle this, so let's continue.
 
