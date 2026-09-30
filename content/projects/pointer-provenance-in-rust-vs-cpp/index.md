@@ -1,8 +1,8 @@
 ---
 layout: project
 title: "Pointer Provenance in Rust vs C++"
-thumbnail: grace-tetley-uphv_ziJaLA-unsplash.jpg
-image: grace-tetley-uphv_ziJaLA-unsplash.jpg
+thumbnail: yves-alarie-MmZet_7mzMY-unsplash.jpg
+image: yves-alarie-MmZet_7mzMY-unsplash.jpg
 preview: ""
 description: ""
 date: 2026-09-29
