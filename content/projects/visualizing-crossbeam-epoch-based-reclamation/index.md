@@ -3,8 +3,8 @@ layout: project
 title: "Visualizing crossbeam Epoch Based Reclamation"
 thumbnail: savannah-rohleder-zzuaz2s6vi0-unsplash.jpg
 image: savannah-rohleder-zzuaz2s6vi0-unsplash.jpg
-preview: ""
-description: ""
+preview: "Continue the lock-free adventure by exploring the internals of crossbeam-epoch to answer two fundamental questions: 1. How do we know when it's safe to drop? 2. How do we atomically update both a pointer and a state flag in a single CAS instruction? This second question stems from the two-step process needed for deleting a node in a lock-free linked list."
+description: "Continue the lock-free adventure by exploring the internals of crossbeam-epoch to answer two fundamental questions: 1. How do we know when it's safe to drop? 2. How do we atomically update both a pointer and a state flag in a single CAS instruction? This second question stems from the two-step process needed for deleting a node in a lock-free linked list."
 date: 2026-10-01
 publishDate: 2026-10-01
 tags:
@@ -775,7 +775,7 @@ As some already know, I'm currently unemployed, so finding meaning and community
 
 **Epoch-based reclamation**
 - Keir Fraser, [*Practical lock-freedom*](https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-579.pdf) (PhD thesis, University of Cambridge, 2004): where EBR was introduced.
-- Aaron Turon, [*Lock-freedom without garbage collection*](https://aturon.github.io/blog/2015/08/27/epoch/#atomic): the clearest walkthrough of the algorithm, and the origin of `crossbeam-epoch`.
+- Aaron Turon, [*Lock-freedom without garbage collection*](https://aturon.github.io/blog/2015/08/27/epoch/#atomic): the clearest walkthrough of the algorithm, and the origin of `crossbeam-epoch`. Check it out for a lock-free stack implementation using crossbeam-epoch to conclude the stack journey :)
 
 **Using `crossbeam-epoch`**
 - [Learning Rust: crossbeam-epoch](https://codeandbitters.com/learning-rust-crossbeam-epoch/)
