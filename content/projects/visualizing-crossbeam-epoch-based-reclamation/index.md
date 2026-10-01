@@ -765,17 +765,17 @@ The first part of this post, I wrote it and was very happy with how it turned ou
 
 As for the second part, however, I went through many attempts. I didn't want to just repeat explanations that already exist, but I wanted to give enough context to make my experiment idea clear, so I had to find a balance. I also went back and forth between different experiment ideas. I then realized I had at some point lost my plot and was overcomplating things. So, I opted for a simpler demonstration that shows the concept of EBR in practice and how it relates to our original problem of a lock-free stack.
 
-My goal always with these posts is to test and cement my understanding of a topic by trying to explain it and show it to others. My hope is that my path for understanding new concepts, which usually involves tinkering and lots of diagrams, resonates with someone else, that's why I post publicly.
+The reason why I like writing this posts is to test my understanding of a topic by trying to explain it cohesively, and demonstrating it through code. This makes the concept feel more *real* to me and helps me to make sure I got it. I also love and need lots of diagrams, which might also be useful for someone else, that's why I post publicly.
 
 This one in particular wasn't so straightforward to write. One post turned into 3, essentially, each with its own challenges. But it was extremely rewarding! I also enjoyed the feedback I've gotten from the community along the way. Some of the chats I've had made me feel like a scientist in the 20th century, writing each letters back and forth, discussing their findings. This is the sense of community I strive for, so I consider this all worth the effort!
 
-As some already know, I'm currently unemployed, so finding meaning and community through what I'm doing means so much more for me in these times! Thank you so much for reading and I hope you enjoyed it as well!
+As some already know, I'm currently unemployed, so finding meaning and community through what I'm doing means so much more for me in these times. Thank you so much for reading and I hope you enjoyed it as well!
 
 ## Resources
 
 **Epoch-based reclamation**
 - Keir Fraser, [*Practical lock-freedom*](https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-579.pdf) (PhD thesis, University of Cambridge, 2004): where EBR was introduced.
-- Aaron Turon, [*Lock-freedom without garbage collection*](https://aturon.github.io/blog/2015/08/27/epoch/#atomic): the clearest walkthrough of the algorithm, and the origin of `crossbeam-epoch`. Check it out for a lock-free stack implementation using crossbeam-epoch to conclude the stack journey :)
+- Aaron Turon, [*Lock-freedom without garbage collection*](https://aturon.github.io/blog/2015/08/27/epoch/#atomic): the clearest walkthrough of the algorithm, and the origin of `crossbeam-epoch`. Check it out for a lock-free stack implementation using crossbeam-epoch to conclude the stack journey.
 
 **Using `crossbeam-epoch`**
 - [Learning Rust: crossbeam-epoch](https://codeandbitters.com/learning-rust-crossbeam-epoch/)
