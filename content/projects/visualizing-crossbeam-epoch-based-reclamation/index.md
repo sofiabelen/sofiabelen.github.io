@@ -480,7 +480,7 @@ Now that we have our `Shared<'a, T>` we can play around with it, changing the ta
 
  let shared_ptr = atomic_ptr.load(Ordering::Acquire, guard);
 
- // 1. Initial State (Tag 0)
+ // 1. Initial state: tag 0
  println!("Initial tag: {}", shared_ptr.tag());
  println!("Initial address: {:#018x}        --> last byte: {:08b}", shared_ptr.as_raw() as usize, shared_ptr.as_raw() as usize & 0xFF);
  println!("----------------------------------");
@@ -504,7 +504,7 @@ Now that we have our `Shared<'a, T>` we can play around with it, changing the ta
  println!("tagged_ptr_3.as_raw(): {:#018x}", tagged_ptr_3.as_raw() as usize);
  println!("----------------------------------");
 
- // 4. Verify Dereference Ignores Tag Bits
+ // 4. Verify dereference ignores tag bits
  let node_ref: &Node = unsafe { tagged_ptr_3.deref() };
  let physical_addr = (node_ref as *const Node) as usize;
 
@@ -537,8 +537,202 @@ This answers our second question, let's now tackle the first one:
 >
 > 2. ~~How do we atomically update both a pointer and a state flag in a single CAS instruction, without a double-word atomic write?~~
 
-## Q1: The Global & Local Clockwork: How Epochs Move
+## Q1: 
 
-## Q1: Memory Inspection: Tracking a Node's Lifecycle
+Now for the first question: how does `crossbeam-epoch` delay `drop()` until no thread is reading the node.
+
+The idea of epoch-based reclamation was first introduced by .. in his thesis. The crossbeam first implementation of crossbeam-epoch was written by Aaron Turon and the approach is described beautifully in his [blog post](https://aturon.github.io/blog/2015/08/27/epoch/#atomic). Please check that out beforehand if it's your first time exploring this concept.
+
+---
+give a short explanation of how ebr works
+3 bins, why we need 3 bins?
+
+---
+
+### Custom Collector
+
+For visualizing how exactly it looks like in action, we can use a custom collector. Normally, every 128th call to `pin()` on a thread automatically triggers a garbage collection attempt (`try_advance()`). However, in order to control when this happens, we can use a custom colletor and explicitly call `.flush()`.
+
+For EBR, a "thread" is just a a registered handle. Handles aren't even required to live on different OS threads, so we can play T1 and T2 from a single thread, just for demonstration purposes.
+
+We can create a custom type that flips a flag when it is droppped. (This flag lives in an Arc, and our object holds a clone to that Arc, so we can still access the flag once the object dies).
+
+```rust
+struct DropTracker {
+    flag: Arc<AtomicBool>,
+}
+
+impl Drop for DropTracker {
+    fn drop(&mut self) {
+        self.flag.store(true, Ordering::SeqCst);
+    }
+}
+```
+
+We create a custom collector and register two handles, which simulate threads, T1 and T2.
+
+```rust
+let collector = Collector::new();
+let (t1, t2) = (collector.register(), collector.register());
+```
+
+Create instances of the `DropTracker` holding an Arc containing the flag.
+
+```rust
+let dropped = Arc::new(AtomicBool::new(false));
+
+let tracker = Atomic::new(DropTracker {
+    flag: dropped.clone()
+});
+```
+
+T1 pins, receiving a `Guard`:
+
+```rust
+let guard1 = t1.pin();
+```
+
+T2 unlinks the value and retires it. If we go back to our stack situation, this would be analogous to when T2 pops node `A` and then drops it. With EBR, instead of dropping it right away, it goes into T2's garbage bag. It can't be cleaned up while T1's guard is still alive. By holding this guard, it stops the global epoch from advancing. The bag only expires once the epoch has moved on.
+
+This only protects threads reading `tracker` who pinned it before it was unlinked (`swap`ed out). What happens if a thread pins afterward? In this case, that thread cannot see this node anymore because we've already unlinked it from our data structure (or `swap`ed it out, in this case).
+
+```rust
+{
+    let guard2 = t2.pin();
+    let old = tracker.swap(Shared::null(), Ordering::AcqRel, &guard2);
+
+    // defer_destroy is unsafe because the compiler can't
+    // verify that nodoby can still reach the pointer
+    // Safety: we know nobody can reach the pointer anymore
+    /// because we've "unlinked" it from our data structure
+    unsafe { guard2.defer_destroy(old) };
+} // guard2 gets dropped
+```
+
+Now, while T1's `Guard` is still alive, we try to manually trigger the garbage collection by calling `.flush()` a couple of times:
+
+```rust
+let mut flushes = 0;
+
+while !flag.load(Ordering::SeqCst) && flushes < 5 {
+    // why do we need a fresh pin every time?
+    t2.pin().flush();
+
+    flushes += 1;
+    println!("flush #{flushes}: flag = {}", flag.load(Ordering::SeqCst));
+}
+```
+
+> Side node: Why we need a fresh pin every time for T2?
+>
+> We need a fresh `pin()` for T2 every time we try this because `Guard` records the epoch it was pinned at, and that is the value that `try_advance` checks. If T2 were to keep one guard alive across flushes, T2 itself becomes the lagging thread blocking the epoch.
+
+We'll see that until we don't drop T1's `Guard`, our `tracker` doesn't get dropped, no matter how many times we try to `flush()`.
+
+```
+flush #1: flag = false
+flush #2: flag = false
+flush #3: flag = false
+flush #4: flag = false
+flush #5: flag = false
+```
+
+Let's drop it and try to flush again:
+
+```rust
+if !flag.load(Ordering::SeqCst) {
+    drop(g1);
+    println!("-- T1 unpins --");
+
+    while !flag.load(Ordering::SeqCst) && flushes < 10 {
+        t2.pin().flush();
+        flushes += 1;
+        println!("flush #{}: flag = {}", flushes, flag.load(Ordering::SeqCst));
+    }
+}
+```
+
+We see that the drop doesn't happen on the first flush, even though nobody is pinned. The reason for this is the rule from Turon's post: a bag sealed at epoch `e` may only be freed once the global epoch has reached `e + 2`. Each flush advances the epoch by at most one step, so it takes two flushes.
+
+```
+-- T1 unpins --
+flush #6: flag = false
+flush #7: flag = true
+```
+
+<figure>
+{{< mermaid-slider >}}
+---
+title: "T1 pins at epoch 0"
+---
+flowchart TB
+g(("global epoch: 0"))
+t1["T1<br/>pinned at 0"]
+t2["T2<br/>unpinned"]
+q["global queue<br/>(empty)"]
+g ~~~ t1
+g ~~~ t2
+t1 ~~~ q
+t2 ~~~ q
+%%%
+---
+title: "T2 retires the node into its local bag"
+---
+flowchart TB
+g(("global epoch: 0"))
+t1["T1<br/>pinned at 0"]
+t2["T2<br/>unpinned<br/>local bag: [node]"]
+q["global queue<br/>(empty)"]
+g ~~~ t1
+g ~~~ t2
+t1 ~~~ q
+t2 ~~~ q
+%%%
+---
+title: "Flush #1: bag sealed at 0, epoch advances (everyone pinned is at 0)"
+---
+flowchart TB
+g(("global epoch: 1"))
+t1["T1<br/>pinned at 0"]
+t2["T2<br/>unpinned"]
+q["global queue<br/>[bag sealed at 0]<br/>needs epoch ≥ 2"]
+g ~~~ t1
+g ~~~ t2
+t1 ~~~ q
+t2 ~~~ q
+%%%
+---
+title: "Flush #2: advance blocked, T1 is still pinned at 0 ≠ 1"
+---
+flowchart TB
+g(("global epoch: 1"))
+t1["T1<br/>pinned at 0<br/>(lagging!)"]
+t2["T2<br/>pinned at 1"]
+q["global queue<br/>[bag sealed at 0]<br/>needs epoch ≥ 2"]
+t1 -. "blocks advance" .-> g
+g ~~~ t2
+t1 ~~~ q
+t2 ~~~ q
+%%%
+---
+title: "T1 unpins. Flush #6: epoch advances to 2, the bag expires"
+---
+
+flowchart TB
+g(("global epoch: 2"))
+t1["T1<br/>unpinned"]
+t2["T2<br/>pinned at 2"]
+q["global queue<br/>(empty)<br/>DropTracker::drop() ran"]
+g ~~~ t1
+g ~~~ t2
+t1 ~~~ q
+t2 ~~~ q
+{{< /mermaid-slider >}}
+
+<figcaption> A single lagging reader stops the epoch from advancing, so the retired node can't be freed. </figcaption> </figure>
 
 ## Conclusion
+
+## Resources
+
+
