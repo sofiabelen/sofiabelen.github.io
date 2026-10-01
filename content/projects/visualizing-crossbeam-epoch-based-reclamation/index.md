@@ -1,12 +1,12 @@
 ---
 layout: project
 title: "Visualizing crossbeam Epoch Based Reclamation"
-thumbnail: thomas-tygreat-9cyrW-OH04A-unsplash.jpg
-image: thomas-tygreat-9cyrW-OH04A-unsplash.jpg
+thumbnail: savannah-rohleder-zzuaz2s6vi0-unsplash.jpg
+image: savannah-rohleder-zzuaz2s6vi0-unsplash.jpg
 preview: ""
 description: ""
-date: 2026-09-21
-publishDate: 2026-09-20
+date: 2026-10-01
+publishDate: 2026-10-01
 tags:
     - Rust
     - tutorial
@@ -537,25 +537,40 @@ This answers our second question, let's now tackle the first one:
 >
 > 2. ~~How do we atomically update both a pointer and a state flag in a single CAS instruction, without a double-word atomic write?~~
 
-## Q1: 
+## Q1: Visualizing When a Node Gets Dropped
 
-Now for the first question: how does `crossbeam-epoch` delay `drop()` until no thread is reading the node.
+Now for the first and most awaited question: how does `crossbeam-epoch` delay `drop()` until no thread is reading the node?
 
-The idea of epoch-based reclamation was first introduced by .. in his thesis. The crossbeam first implementation of crossbeam-epoch was written by Aaron Turon and the approach is described beautifully in his [blog post](https://aturon.github.io/blog/2015/08/27/epoch/#atomic). Please check that out beforehand if it's your first time exploring this concept.
+The idea of epoch-based reclamation was first introduced by Keir Fraser in his [PhD thesis](https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-579.pdf), and what a beautiful concept it is! The crossbeam first implementation of crossbeam-epoch was written by Aaron Turon and the approach is described beautifully in his [blog post](https://aturon.github.io/blog/2015/08/27/epoch/#atomic). Please check that out beforehand if it's your first time exploring this concept, since I don't go too deep with my recap.
 
----
-give a short explanation of how ebr works
-3 bins, why we need 3 bins?
+### Epoch-Based Reclamation Quick Recap
 
----
+To recap, the global epoch is a counter that is mod 3. When a thread wants to access memory, it "pins" itself to the current epoch (it essentially records the epoch it saw when it was pinned). The epoch can advance from `e` to `e + 1` if every pinned thread has already "observerd" `e`. When a thread retires a node (unlinks it from the data structure), it goes into a "bin" labeled with the current epoch.
 
-### Custom Collector
+#### Why we only need 3 "bins"? 
+
+<figure>
+<img src="claudio-schwarz-QrbmrCnJxQE-unsplash.jpg" alt="">
+<caption>
+Photo by <a href="https://unsplash.com/@purzlbaum?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Claudio Schwarz</a> on <a href="https://unsplash.com/photos/three-yellow-trash-cans-lined-up-against-a-wall-QrbmrCnJxQE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+</caption>
+</figure>
+
+My first question when reading about this was "why only 3 epochs"? And the explanation is actually extremely elegant, very clever.
+
+- Bin `e` (current): Unsafe to free. Threads pinned at `e` may have loaded the pointer just before it was unlinked and could still be reading it.
+- Bin `e - 1`: Unsafe to free. Threads can be pinned at `e - 1` still, since the epoch advanced once everyone had observed `e - 1`. This check didn't require them to have moved on. This means that such threads could still hold a pointer to something unlinked in `e - 1`.
+- Bin `e - 2`: Safe to free. For the epoch to get from `e - 2` to `e`, it had to pass from `e - 1` to `e`, which required that every pined thread be at `e - 1` or later. This guarantees that nobody is still at `e - 2`. Anyone who could have had a pointer to the node (pinned at `e - 2` or earlier, since it was unlinked at `e - 2`) has since unpinned or re-pinned, and can't hold that pointer.
+
+This is the theorical explanation. As for `crossbeam`, it doesn't literally keep 3 bins. Each thread has a local bag. "Sealed" bags go into a global queue marked with the corresponding epoch. A bag is freed once the global epoch is at least two ahead of the bag's mark.
+
+### Experiment #1: Pinned Thread Prevents Drop
 
 For visualizing how exactly it looks like in action, we can use a custom collector. Normally, every 128th call to `pin()` on a thread automatically triggers a garbage collection attempt (`try_advance()`). However, in order to control when this happens, we can use a custom colletor and explicitly call `.flush()`.
 
 For EBR, a "thread" is just a a registered handle. Handles aren't even required to live on different OS threads, so we can play T1 and T2 from a single thread, just for demonstration purposes.
 
-We can create a custom type that flips a flag when it is droppped. (This flag lives in an Arc, and our object holds a clone to that Arc, so we can still access the flag once the object dies).
+We can create a custom type that flips a flag when it is droppped. (This flag lives in an `Arc`, and our object holds a clone to that `Arc`, so we can still access the flag once the object dies).
 
 ```rust
 struct DropTracker {
@@ -576,7 +591,7 @@ let collector = Collector::new();
 let (t1, t2) = (collector.register(), collector.register());
 ```
 
-Create instances of the `DropTracker` holding an Arc containing the flag.
+Create instances of the `DropTracker` holding an `Arc` containing the flag.
 
 ```rust
 let dropped = Arc::new(AtomicBool::new(false));
@@ -660,6 +675,19 @@ flush #6: flag = false
 flush #7: flag = true
 ```
 
+### Experiment #2: No Pinned Threads
+
+We can try the same experiment but without T1 holding a guard, to verify that it was indeed that guard that was keeping the epoch from advancing, and, in turn, keeping the node from getting dropped.
+
+```
+flush #1: flag = false
+flush #2: flag = true
+```
+
+We see that the first flush doesn't yet trigger a `drop()`. Instead, what happens with that first flush, is that the "sealed bag" is passed to the global queue, for it to be dropped the next time the epoch advances.
+
+### Visualization
+
 <figure>
 {{< mermaid-slider >}}
 ---
@@ -695,21 +723,21 @@ flowchart TB
 g(("global epoch: 1"))
 t1["T1<br/>pinned at 0"]
 t2["T2<br/>unpinned"]
-q["global queue<br/>[bag sealed at 0]<br/>needs epoch ≥ 2"]
+q["global queue<br/>[bag sealed at 0] --> needs epoch ≥ 2 for drop"]
 g ~~~ t1
 g ~~~ t2
 t1 ~~~ q
 t2 ~~~ q
 %%%
 ---
-title: "Flush #2: advance blocked, T1 is still pinned at 0 ≠ 1"
+title: "Flush #2: advance blocked, T1 is still pinned at 0"
 ---
 flowchart TB
 g(("global epoch: 1"))
-t1["T1<br/>pinned at 0<br/>(lagging!)"]
+t1["T1<br/>pinned at 0<br/>(lagging)"]
 t2["T2<br/>pinned at 1"]
 q["global queue<br/>[bag sealed at 0]<br/>needs epoch ≥ 2"]
-t1 -. "blocks advance" .-> g
+t1 -. "blocks try_advance" .-> g
 g ~~~ t2
 t1 ~~~ q
 t2 ~~~ q
@@ -733,6 +761,31 @@ t2 ~~~ q
 
 ## Conclusion
 
+The first part of this post, I wrote it and was very happy with how it turned out, mainly because I found the idea of reclaimining those "unused" bits so simple yet so elegant.
+
+As for the second part, however, I went through many attempts. I didn't want to just repeat explanations that already exist, but I wanted to give enough context to make my experiment idea clear, so I had to find a balance. I also went back and forth between different experiment ideas. I then realized I had at some point lost my plot and was overcomplating things. So, I opted for a simpler demonstration that shows the concept of EBR in practice and how it relates to our original problem of a lock-free stack.
+
+My goal always with these posts is to test and cement my understanding of a topic by trying to explain it and show it to others. My hope is that my path for understanding new concepts, which usually involves tinkering and lots of diagrams, resonates with someone else, that's why I post publicly.
+
+This one in particular wasn't so straightforward to write. One post turned into 3, essentially, each with its own challenges. But it was extremely rewarding! I also enjoyed the feedback I've gotten from the community along the way. Some of the chats I've had made me feel like a scientist in the 20th century, writing each letters back and forth, discussing their findings. This is the sense of community I strive for, so I consider this all worth the effort!
+
+As some already know, I'm currently unemployed, so finding meaning and community through what I'm doing means so much more for me in these times! Thank you so much for reading and I hope you enjoyed it as well!
+
 ## Resources
 
+**Epoch-based reclamation**
+- Keir Fraser, [*Practical lock-freedom*](https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-579.pdf) (PhD thesis, University of Cambridge, 2004): where EBR was introduced.
+- Aaron Turon, [*Lock-freedom without garbage collection*](https://aturon.github.io/blog/2015/08/27/epoch/#atomic): the clearest walkthrough of the algorithm, and the origin of `crossbeam-epoch`.
 
+**Using `crossbeam-epoch`**
+- [Learning Rust: crossbeam-epoch](https://codeandbitters.com/learning-rust-crossbeam-epoch/)
+- [`crossbeam-epoch` documentation](https://docs.rs/crossbeam-epoch)
+- [Crossbeam source code](https://github.com/crossbeam-rs/crossbeam)
+
+**Lock-free linked lists**
+- Timothy Harris, [*A Pragmatic Implementation of Non-Blocking Linked-Lists*](https://timharris.uk/papers/2001-disc.pdf) (DISC 2001).
+
+**This series**
+- Part 1: [Visualizing The ABA Problem: What crossbeam-epoch Solves](https://sofiabelen.github.io/projects/visualizing-the-aba-problem/)
+- Part 2: [Using Loom to (Try To) Catch an ABA Bug in Lock-Free Rust](https://sofiabelen.github.io/projects/using-loom-to-catch-an-aba-bug/)
+- [Code for this post](https://github.com/sofiabelen/visualizing-crossbeam-epoch)
