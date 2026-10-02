@@ -19,7 +19,7 @@ featured: true
 comments: true
 ---
 
-This might be one of the hardest posts to write thus far. My previous one was very optimistic, full of hope. I felt I had given good battle and it was time to rest and enjoy. But as it so often happens, we mortals can't count on the fates to loom the threads of destiny the way we want. But it might also surprise us!
+This might be one of the hardest posts to write thus far. My previous one was quie optimistic. I felt I had given good battle and it was time to rest and enjoy. Though as it so often happens, we mortals can't count on the fates to loom the threads of destiny the way we want. But it might also surprise us!
 
 A few months ago, my husband and I decided to move to Spain and start over. The reason is, as it most always is in cases like this, not simple. You can read about it in my previous post if you're interested, but the core of what we set out to seek is community, being closer to our family, friends and culture. This decision involved trading stability for a chance at a new beginning.
 
