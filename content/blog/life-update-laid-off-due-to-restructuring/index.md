@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Life Update: Laid Off Due to Restructuring, Next Steps"
+title: "Moving to Spain, a Layoff, and Starting Again as a C++/Rust Developer"
 image: piero-istrice-_eoVfSStvh8-unsplash.jpg
 thumbnail: piero-istrice-_eoVfSStvh8-unsplash.jpg
 description: ""
@@ -60,7 +60,7 @@ You can imagine how overjoyed I was to receive a job offer for a C++ & Rust posi
 
 Moving out was full of so many emotions. Munich and Germany will forever hold a special place in my heart, part of my story. Every other time I left a place, it felt like it was rushed, and I feel as if I didn't really get the chance to properly say goodbye.
 
-Moving from Argentina to Russia:  we had been planning it for almost a year, but, long story short, when the final confirmation that we could go (invitation letter from the university) arrived, we had only a week to pack, make final arrangements and say goodbye. Until that moment, it wasn't a certainty that we'd go, and didn't, therefore, felt truly real. I have a clear memory of cracking open a suitcase and going through my room and just throwing stuff in. Only a week to mentally prepare for the biggest change in my life so far.
+[Moving from Argentina to Russia:](https://sofiabelen.github.io/blog/why-russia/)  we had been planning it for almost a year, but, long story short, when the final confirmation that we could go (invitation letter from the university) arrived, we had only a week to pack, make final arrangements and say goodbye. Until that moment, it wasn't a certainty that we'd go, and didn't, therefore, felt truly real. I have a clear memory of cracking open a suitcase and going through my room and just throwing stuff in. Only a week to mentally prepare for the biggest change in my life so far.
 
 <figure>
   <img style="width: 70%; height: auto; object-fit: contain;" src="photo_5296324116770137001_y.jpg" alt="">
