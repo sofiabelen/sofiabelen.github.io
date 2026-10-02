@@ -25,8 +25,6 @@ A few months ago, my husband and I decided to move to Spain and start over. The 
 
 Long story short, we are both now unemployed. In this post I will talk about what has happened since, and how we got to this point. 
 
-> I'm open to work as a C++/Rust systems programmer in Spain or remote within Europe. Reach me on [LinkedIn](https://www.linkedin.com/in/sofiabelenlopezvicens/).
-
 I could try to write a cohesive, nicely packed, narrative with a clear beginning, middle and end. The truth is that life is messy, and I won't try to pretend otherwise. Maybe if I had it all figured out already it'd be easier to write this in such a fashion, but I'm really writing as I process everything that has happened in the last couple of months.
 
 > Disclaimer: literary aside, feel free to skip this paragraph.
