@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Moving to Spain, a Layoff, and Starting Again as a C++/Rust Developer"
+title: "Moving to Spain, a Layoff and Starting Again as a C++/Rust Developer"
 image: piero-istrice-_eoVfSStvh8-unsplash.jpg
 thumbnail: piero-istrice-_eoVfSStvh8-unsplash.jpg
 description: ""
