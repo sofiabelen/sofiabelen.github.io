@@ -3,8 +3,8 @@ layout: post
 title: "Moving to Spain, a Layoff and Starting Again as a C++/Rust Developer"
 image: piero-istrice-_eoVfSStvh8-unsplash.jpg
 thumbnail: piero-istrice-_eoVfSStvh8-unsplash.jpg
-description: ""
-subtitle: ""
+description: "I moved to Spain for a C++/Rust role and was affected by a restructuring. Here's what happened and what's next."
+subtitle: "I moved to Spain for a C++/Rust role and was affected by a restructuring. Here's what happened and what's next."
 date: 2026-10-02
 publishDate: 2026-10-01
 categories:
@@ -112,7 +112,7 @@ Moving is never easy, as I've already mentioned, but planning the logistics, eac
 
 Things were beginning to settle. A week before Santiago and Pampu were due to arrive here, a company-wide restructuring was announced, and my position was affected.
 
-I took a risk by making this leap, and I have no regrets. Life always has a way of surprising you in the end.
+I took a risk by making this leap, and I have no regrets. The fear of uncertainty is real, but life always has a way of surprising you in the end.
 
 ## Cut Back to the Present
 
