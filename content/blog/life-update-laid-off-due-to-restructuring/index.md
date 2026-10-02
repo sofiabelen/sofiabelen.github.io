@@ -3,8 +3,8 @@ layout: post
 title: "Moving to Spain, a Layoff and Starting Again as a C++/Rust Developer"
 image: piero-istrice-_eoVfSStvh8-unsplash.jpg
 thumbnail: piero-istrice-_eoVfSStvh8-unsplash.jpg
-description: "I moved to Spain for a C++/Rust role and was affected by a restructuring. Here's what happened and what's next."
-subtitle: "I moved to Spain for a C++/Rust role and was affected by a restructuring. Here's what happened and what's next."
+description: "I moved to Spain for a C++/Rust role and was affected by a restructuring. I write about what happened and what's next."
+subtitle: "I moved to Spain for a C++/Rust role and was affected by a restructuring. I writte about what happened and what's next."
 date: 2026-10-02
 publishDate: 2026-10-01
 categories:
