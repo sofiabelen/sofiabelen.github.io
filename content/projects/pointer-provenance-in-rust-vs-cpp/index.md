@@ -1,7 +1,7 @@
 ---
 layout: project
 title: "Pointer Provenance in Rust vs C++"
-thumbnail: yves-alarie-MmZet_7mzMY-unsplash.jpg
+thumbnail: yves-alarie-MmZet_7mzMY-unsplash-cropped.jpg
 image: yves-alarie-MmZet_7mzMY-unsplash.jpg
 preview: ""
 description: ""
@@ -29,7 +29,16 @@ My first time hearing about provenance, I wondered why I hadn't heard about it b
 
 ## What is Provenance: Pointers Are Not Just Glorified Ints
 
-Let's start by taking a good look at this snippet. It's short, but our intuition can trick us if it's the first time coming across this concept. `void opaque(int*)` is forwared declared here, so for it's a black box. It could, for example, dereference `p` and write to memory.
+<figure>
+<img src="chuttersnap-Fy7guhZfmAM-unsplash.jpg" atl="">
+  <figcaption>
+Victoria crowned pigeon: some will say it's just a pigeon.
+
+Photo by <a href="https://unsplash.com/@chuttersnap?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">CHUTTERSNAP</a> on <a href="https://unsplash.com/photos/red-and-blue-bird-with-white-wings-Fy7guhZfmAM?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  </figcaption>
+</figure>
+
+Let's start by taking a good look at this snippet. It's short, but our intuition can trick us if it's the first time coming across this concept. `void opaque(int*)` is forwared declared here, so for us it's a black box. Neither we nor the compiler could deny that this function could, for example, dereference `p` and write to memory.
 
 ```cpp
 void opaque(int*);
@@ -41,8 +50,11 @@ int f(int* p) {
 }
 ```
 
-If we compile this with `-O2`, Clang optimizes this to return 1. Let's try this on godbolt.
+If we compile this with `-O2`, Clang optimizes this to return 1. Let's try this on godbolt:
 
+<iframe width="800px" height="200px" src="https://godbolt.org/e?hideEditorToolbars=true#g:!((g:!((g:!((h:codeEditor,i:(filename:'1',fontScale:14,fontUsePx:'0',j:1,lang:c%2B%2B,selection:(endColumn:1,endLineNumber:8,positionColumn:1,positionLineNumber:8,selectionStartColumn:1,selectionStartLineNumber:8,startColumn:1,startLineNumber:8),source:'void+opaque(int*)%3B%0A%0Aint+f(int*+p)+%7B%0A++++int+x+%3D+1%3B%0A++++opaque(p)%3B%0A++++return+x%3B%0A%7D%0A'),l:'5',n:'0',o:'C%2B%2B+source+%231',t:'0')),k:44.33887569279493,l:'4',n:'0',o:'',s:0,t:'0'),(g:!((h:compiler,i:(compiler:clang2310,filters:(b:'0',binary:'1',binaryObject:'1',commentOnly:'0',debugCalls:'1',demangle:'0',directives:'0',execute:'1',intel:'0',libraryCode:'0',trim:'1',verboseDemangling:'0'),flagsViewOpen:'1',fontScale:14,fontUsePx:'0',j:1,lang:c%2B%2B,libs:!(),options:'-O2',overrides:!(),selection:(endColumn:1,endLineNumber:1,positionColumn:1,positionLineNumber:1,selectionStartColumn:1,selectionStartLineNumber:1,startColumn:1,startLineNumber:1),source:1),l:'5',n:'0',o:'+x86-64+clang+23.1.0+(Editor+%231)',t:'0')),k:55.66112430720507,l:'4',n:'0',o:'',s:0,t:'0')),l:'2',n:'0',o:'',t:'0')),version:4"></iframe>
+
+<!--
 ```assembly
 f(int*):
         sub     rsp, 8
@@ -51,27 +63,30 @@ f(int*):
         add     rsp, 8
         ret
 ```
+-->
 
 The question is, how does it know that `int* p` doesn't point to the same memory address where `x` lives, meaning that `opaque(p)` could end up modifying `x`?
 
-The compiler assumes `p` can't equal `&x` because `p` wasn't *derived* from `x`. When I first heard about this, I thought it was a bit of a strange concept. What does it mean that something is *derived* from something?
+The compiler assumes `p` can't equal `&x` because `p` wasn't *derived* from `x`.
 
-I mean, if pointers were just numbers (memory addresses), `p` could theoretically happen to hold the same memory address of `x`'s allocation on the stack. Good thing they're not just numbers :)
+When I first heard about this, I thought it was a bit of a strange concept. What does it mean that something is *derived* from something?
+
+I mean, if pointers were just numbers (memory addresses), `p` could theoretically happen to hold the same memory address of `x`'s allocation on the stack. Good thing they're not just numbers!
 
 Let us follow the white rabbit.
 
 <figure>
 <img src="sincerely-media-2yL77QTLCq4-unsplash.jpg" atl="">
   <figcaption>
-Yes, I've been trying to get more rabbits on my page. Somehow, only cats seemed to make the cut. This one reminds me of my childhood pet, Kaisie, honary mention.
+Yes, I've been trying to get more rabbits on my page. Somehow, only cats seemed to make the cut. This one reminds me of my childhood pet, Kaisie (honary mention).
 
 Photo by <a href="https://unsplash.com/@sincerelymedia?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Sincerely Media</a> on <a href="https://unsplash.com/photos/white-and-black-rabbit-2yL77QTLCq4?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   </figcaption>
 </figure>
 
-This brings us to the core of provenance. That "*derived from*" relation is **provenance**: for every pointer, the compiler keeps track of which allocation it belongs to and may, therefore, touch.
+This brings us to the core of provenance. <mark>That "*derived from*" relation is **provenance**: for every pointer, the compiler keeps track of which allocation it belongs to and may, therefore, touch.</mark>
 
-I tried to find a way to print this mysterious provenance, but it turns out that it's purely a compiler abstraction. It does not exist as an actual data field stored alongside the memory address.
+I tried to find a way to print this mysterious provenance, but it turns out that it's purely a compiler abstraction. It does not exist as an actual data field stored alongside the memory address. (There are exceptions though: feel free to look up CHERI architecture to go down another rabbit hole).
 
 ## Inspecting Provenance: LLVM IR
 
@@ -91,7 +106,7 @@ int f() {
 }
 ```
 
-We can use the `-emit-llvm` flag on godbolt to see this the LLVM IR:
+We can use the `-emit-llvm` flag on godbolt to [see this the LLVM IR](https://godbolt.org/#g:!((g:!((g:!((h:codeEditor,i:(filename:'1',fontScale:14,fontUsePx:'0',j:1,lang:c%2B%2B,selection:(endColumn:2,endLineNumber:7,positionColumn:2,positionLineNumber:7,selectionStartColumn:2,selectionStartLineNumber:7,startColumn:2,startLineNumber:7),source:'void+opaque(int*)%3B%0A%0Aint+f()+%7B%0A++++int+x+%3D+1%3B%0A++++opaque(%26x)%3B%0A++++return+x%3B%0A%7D'),l:'5',n:'0',o:'C%2B%2B+source+%231',t:'0')),k:44.33887569279493,l:'4',n:'0',o:'',s:0,t:'0'),(g:!((h:compiler,i:(compiler:clang2310,filters:(b:'0',binary:'1',binaryObject:'1',commentOnly:'0',debugCalls:'1',demangle:'0',directives:'0',execute:'1',intel:'0',libraryCode:'0',trim:'1',verboseDemangling:'0'),flagsViewOpen:'1',fontScale:14,fontUsePx:'0',j:1,lang:c%2B%2B,libs:!(),options:'-O2++-emit-llvm',overrides:!(),selection:(endColumn:1,endLineNumber:16,positionColumn:1,positionLineNumber:16,selectionStartColumn:1,selectionStartLineNumber:16,startColumn:1,startLineNumber:16),source:1),l:'5',n:'0',o:'+x86-64+clang+23.1.0+(Editor+%231)',t:'0')),k:55.66112430720507,l:'4',n:'0',o:'',s:0,t:'0')),l:'2',n:'0',o:'',t:'0')),version:4):
 
 <pre><code>
 define dso_local noundef i32 @f(int*)(ptr noundef <mark>%0</mark>) local_unnamed_addr #0 !dbg !14 {
@@ -170,6 +185,9 @@ int f(int* p) {
 
 The result is that it gives up the optimization:
 
+<iframe width="800px" height="200px" src="https://godbolt.org/e?hideEditorToolbars=true#g:!((g:!((g:!((h:codeEditor,i:(filename:'1',fontScale:14,fontUsePx:'0',j:1,lang:c%2B%2B,selection:(endColumn:2,endLineNumber:11,positionColumn:2,positionLineNumber:11,selectionStartColumn:2,selectionStartLineNumber:11,startColumn:2,startLineNumber:11),source:'%23include+%3Ccstdint%3E%0A%0Avoid+g(std::uintptr_t)%3B%0Avoid+opaque(int*)%3B%0A%0Aint+f(int*+p)+%7B%0A++++int+x+%3D+1%3B%0A++++g(reinterpret_cast%3Cstd::uintptr_t%3E(%26x))%3B+//+address+of+x+is+now+!'exposed!'%0A++++opaque(p)%3B%0A++++return+x%3B%0A%7D'),l:'5',n:'0',o:'C%2B%2B+source+%231',t:'0')),k:44.33887569279493,l:'4',n:'0',o:'',s:0,t:'0'),(g:!((h:compiler,i:(compiler:clang2310,filters:(b:'0',binary:'1',binaryObject:'1',commentOnly:'0',debugCalls:'1',demangle:'0',directives:'0',execute:'1',intel:'0',libraryCode:'0',trim:'1',verboseDemangling:'0'),flagsViewOpen:'1',fontScale:14,fontUsePx:'0',j:1,lang:c%2B%2B,libs:!(),options:'-O2+',overrides:!(),selection:(endColumn:1,endLineNumber:1,positionColumn:1,positionLineNumber:1,selectionStartColumn:1,selectionStartLineNumber:1,startColumn:1,startLineNumber:1),source:1),l:'5',n:'0',o:'+x86-64+clang+23.1.0+(Editor+%231)',t:'0')),k:55.66112430720507,l:'4',n:'0',o:'',s:0,t:'0')),l:'2',n:'0',o:'',t:'0')),version:4"></iframe>
+
+<!--
 ```
 f(int*):
         push    rbx
@@ -185,8 +203,9 @@ f(int*):
         pop     rbx
         ret
 ```
+-->
 
-Which is a pity here because maybe we just wanted to read the address but we never intended to cast it back to a pointer. Wouldn't it be nice if we could communicate this intent with the compiler?
+Which is a pity here because maybe we just wanted to read the address but we never intended to cast it back to a pointer. Wouldn't it be nice if we could communicate this intent to the compiler?
 
 ## Rust: Making Your Intent Explicit
 
@@ -199,7 +218,7 @@ let p: *const u32 = &x;
 let a: usize = p.addr();
 ```
 
-`p.addr()` extracts the raw memory addres integer while telling LLVM:
+`p.addr()` extracts the raw memory address integer while telling LLVM:
 
 > I am reading this numeric address for inspection, but I guarantee I WILL NOT cast it back to a valid pointer.
 
@@ -216,9 +235,9 @@ Photo by <a href="https://unsplash.com/@myers2021?utm_source=unsplash&utm_medium
   </figcaption>
 </figure>
 
-On lock-free data structures, we sometimes need to store status flags in the lower unused bits of a pointer. It's a very cool trick, which left me eyes wide open for a minute when I first read about it. I talk more about this in [this post](). Essentially, due to alignemnt, the lower bits of pointers are "wasted" (always 0), so we can use them to store flags.
+On lock-free data structures, we sometimes need to store status flags in the lower unused bits of a pointer. It's a very cool trick, which left me with my eyes wide open for a minute when I first read about it. I talk more about it in [this post](). Essentially, due to alignemnt, the lower bits of pointers are "wasted" (always 0), so we can use them to store flags.
 
-So, what we need in that case is to cast the pointer to an integer, modify it to hold extra info (flag), and then cast it back to a valid pointer (without the flags). `with_addr` allows us to do just that, while maintaining provenance.
+So, what we need in that case is to cast the pointer to an integer, modify it to hold extra info (flag), and then cast it back to a valid pointer (without the flag). `with_addr` allows us to do just that, while maintaining provenance.
 
 ```rust
 let tagged = p.with_addr(p.addr() | 1); // create the integer holding the pointer value + flag while conserving provenance
@@ -226,7 +245,7 @@ let tagged = p.with_addr(p.addr() | 1); // create the integer holding the pointe
 let revived_ptr = tagged.with_addr(tagged.addr() & !1); // recreate a valid pointer from the integer
 ```
 
-`addr()` reads teh address without exposing provenance.
+`addr()` reads the address without exposing provenance.
 
 `with_addr()` re-attaches the pointer's original provenance.
 
@@ -266,11 +285,20 @@ warning: integer-to-pointer cast
 warning: 1 warning emitted
 ```
 
-Actually, the reason that it runs is also interesting. What happens is similar to the C++ example. `p as usize` exposes the provenance of `p`, and since the reconstructed pointer points to the same allocation, provenance is recovered. Provenance would be lost if we did some pointer arithmetics and landed in a different allocation.
+Actually, the reason that it runs is also interesting. What happens is similar to the C++ example. `p as usize` exposes the provenance of `p`, and since the reconstructed pointer points to the same allocation, provenance is recovered.
+
+Provenance would be lost if we did some pointer arithmetics and landed in a different allocation.
 
 ### Casting Without Exposing Provenance
 
-To see what happens when provenance is **not** exposed, we can use `ptr::without_provenance`, which creates a bare address with no allocation behind it. (It's useful for dangling or sentinel pointers, but it an't be dereferenced).
+<figure>
+<img src="dimitry-b-GNu4g4Z5jN4-unsplash.jpg" atl="">
+  <figcaption>
+Photo by <a href="https://unsplash.com/@dimitry_b?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Dimitry B</a> on <a href="https://unsplash.com/photos/brown-monkey-photograph-GNu4g4Z5jN4?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  </figcaption>
+</figure>
+
+To see what happens when provenance is **not** exposed, we can use `ptr::without_provenance`, which creates a bare address with no allocation behind it. (It's useful for dangling or sentinel pointers, but it can't be dereferenced).
 
 ```rust
 let bare_ptr = std::ptr::without_provenance::<u32>(p.addr());
