@@ -519,7 +519,7 @@ fn pop(&self) -> Option<T> {
 }
 ```
 
-### Reproducing It (Why No SegFault?)
+### Reproducing It (Almost...)
 
 <figure style="text-align: center;">
   <img src="Boxer_at_rest.jpg" alt="Boxer at Rest" style="display: block; margin: 0 auto;">
@@ -591,7 +591,8 @@ thread 2 pushes [3]
 thread 1 pop: Some(3)
 Final pop: [None]
 ```
-Essentially, we've shown that this is what happens:
+
+Essentially, this is what happens:
 
 {{< mermaid-slider >}}
 ---
@@ -753,6 +754,8 @@ If we didn't know what we were looking for, we might see the output and believe 
 
 However, if you want to see chaos, there's still hope!
 
+<blockquote><mark>Edit</mark> (updated Oct 6, 2026): That was what we intended to happen, but thanks to phtown, who left me a comment, I realized I had made a mistake. Instead of reusing `A`, the memory that got reused was `B`, so when `T1` came back from its sleep to continue the pop operation, the CAS simply failed and the stack wasn't corrupted at all. This goes to show just how stealthy this bug is. I'll keep the rest of the article as-is, just for demonstration purposes, and have added the correct reproduction attempt below.</blockquote>
+
 ### Miri
 
 What the crossbeam devs use for testing is [Miri](https://github.com/rust-lang/miri/). Quoting Miri's official repo README:
@@ -774,7 +777,7 @@ Let's try it:
 cargo +nightly miri test aba_problem::tests::aba  
 ```
 
-It caught our bug! Notice how it explicitly mentions "Undefined Behaviour" due to a data race.
+Notice how it explicitly mentions "Undefined Behaviour" due to a data race.
 
 <style>
   .miri-output {
@@ -919,7 +922,90 @@ note: the last function in that backtrace got called indirectly due to this code
      | |______________^
 </code></pre>
 
-There is still much to learn about Miri, like what exactly is a **"retag"** operation, but for now, we can be happy that it helped us detect our bug.
+There is still much to learn about Miri, like what exactly is a **"retag"** operation, but for now, we can be happy that it helped us detect that our program isn't sound.
+
+### Second Attempt: Forcing the Right Address to Get Reused
+*Added Oct 6, 2026*
+
+The mistake I made in my first reproduction attempt was that when `T2` pushes `3`, the memory that got reused was `B` and not `A`. This means that when `T1` came back from sleeping and continued with its pop operation, the CAS simply failed. The next CAS succeeded with the updated `head` and `next`, so no corruption happened. Still, Miri warned us about UB, which is nice because although the bug didn't happen in this particular run, it doesn't mean the stack is bug-free!
+
+This is what the addresses look like:
+
+<pre><code>
+[push] allocated new node at <mark>0x7fc3e4000cc0</mark> --> <mark>B</mark>
+[push] CAS success: head 0x0 -> 0x7fc3e4000cc0
+[push] allocated new node at <mark>0x7fc3e4000ce0</mark> --> <mark>A</mark>
+[push] CAS success: head 0x7fc3e4000cc0 -> 0x7fc3e4000ce0
+---
+
+thread 1 starts pop operation
+[pop] read head 0x7fc3e4000ce0, next: 0x7fc3e4000cc0
+
+---
+[pop] read head 0x7fc3e4000ce0, next: 0x7fc3e4000cc0
+[pop] CAS success: head: 0x7fc3e4000ce0 -> 0x7fc3e4000cc0
+thread 2 pops: [1]
+---
+
+[pop] read head 0x7fc3e4000cc0, next: 0x0
+[pop] CAS success: head: 0x7fc3e4000cc0 -> 0x0
+thread 2 pops: [2]
+---
+
+thread 2 pushes [3]
+[push] allocated new node at <mark>0x7fc3e4000cc0</mark> --> <mark>B</mark> gets reused
+[push] CAS success: head 0x0 -> 0x7fc3e4000cc0
+---
+
+<mark>[pop] CAS fail: expected 0x7fc3e4000ce0, actual_head 0x7fc3e4000cc0</mark>
+[pop] read head 0x7fc3e4000cc0, next: 0x0
+[pop] CAS success: head: 0x7fc3e4000cc0 -> 0x0
+thread 1 continues pop: Some(3)
+---
+
+Final pop: [None]
+</pre></code>
+
+A workaround is to allocate an unrelated node outside of the stack that will take up address `B`. Then, when `T2` pushes `3`, this new node reuses `A`, and the ABA bug is actually reproduced.
+
+<pre><code>
+[push] allocated new node at 0x7fc204000cc0
+[push] CAS success: head 0x0 -> <mark>0x7fc204000cc0</mark> --> <mark>B</mark>
+[push] allocated new node at <mark>0x7fc204000ce0</mark> --> <mark>A</mark>
+[push] CAS success: head 0x7fc204000cc0 -> 0x7fc204000ce0
+---
+
+thread 1 starts pop operation
+[pop] read head 0x7fc204000ce0, next: 0x7fc204000cc0
+
+---
+[pop] read head 0x7fc204000ce0, next: 0x7fc204000cc0
+[pop] CAS success: head: 0x7fc204000ce0 -> 0x7fc204000cc0
+thread 2 pops: [1]
+---
+
+[pop] read head 0x7fc204000cc0, next: 0x0
+[pop] CAS success: head: 0x7fc204000cc0 -> 0x0
+thread 2 pops: [2]
+---
+
+tmp node created at <mark>0x7fc204000cc0</mark> --> <mark>B</mark> gets reused
+
+thread 2 pushes [3]
+[push] allocated new node at <mark>0x7fc204000ce0</mark> --> <mark>A</mark> gets reused
+[push] CAS success: head 0x0 -> 0x7fc204000ce0
+---
+
+<mark>[pop] CAS success: head: 0x7fc204000ce0 (A)-> 0x7fc204000cc0(B)</mark>
+thread 1 continues pop: Some(3)
+---
+
+[pop] read head 0x7fc204000cc0, next: 0x0
+[pop] CAS success: head: 0x7fc204000cc0 -> 0x0
+Final pop: <mark>[Some(43)]</mark>
+</code></pre>
+
+We see `Some(43)` was popped in the final pop. This, as well as examining the addresses, is proof that the ABA bug was reproduced this time!
 
 ## The fix 
 
@@ -929,7 +1015,7 @@ The big question now is, okay, what do we do about it? I won't go into detail in
 - Hazard pointers: threads use hazard pointers to mark the objects they are working on so they don't get dropped.
 - Deferred reclamation
     - garbage collection
-    - epoch-based reclamation (EBR) --> what **crossbeam-epoch** provides :) stay tuned for the next post exploring this!
+    - epoch-based reclamation (EBR) --> what **crossbeam-epoch** provides, stay tuned for the next post exploring this!
 
 Check out this [post](https://aturon.github.io/blog/2015/08/27/epoch/) by Aaron Turon, the creator of crossbeam, for a very detailed and easy to follow deep dive into how epoch-based reclamation works.
 
