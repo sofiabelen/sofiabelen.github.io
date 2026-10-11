@@ -21,13 +21,13 @@ featured: true
 comments: true
 ---
 
-On my [previous post](https://sofiabelen.github.io/projects/visualizing-the-aba-problem/) we experienced first hand the horrors that can occurr when attempting to use lock-free data structures with pointers. We left the question of how to deal with this problem a bit open.
+In my [previous post](https://sofiabelen.github.io/projects/visualizing-the-aba-problem/) we experienced first hand the horrors that can occur when attempting to use lock-free data structures with pointers. We left the question of how to deal with this problem a bit open.
 
-Languages like Java with a Garbage Collector don't have this issue, since the runtime would collect the memory when it's unreachable by all threads. I recently learned that one of the ways to solve this in a deterministic manner in Rust is through a method called **Epoch-Based Reclamation** (EBR), which the crate `crossbeam-epoch` implements. My goal is not to explain the theoretical concepts, [as that endevour has been already accomplished by Aaron Turon, the founder of Crossbeam](https://aturon.github.io/blog/2015/08/27/epoch/#atomic).
+Languages like Java with a garbage collector don't have this issue, since the runtime collects the memory when it's unreachable by all threads. I recently learned that one of the ways to solve this in a deterministic manner in Rust is through a method called **Epoch-Based Reclamation** (EBR), which the crate `crossbeam-epoch` implements. My goal is not to explain the theoretical concepts, [as that endeavour has been already been accomplished by Aaron Turon, the founder of Crossbeam](https://aturon.github.io/blog/2015/08/27/epoch/#atomic).
 
-Instead, as I've done in previous posts, I want to dissect and visualize what exactly is going on. If that sounds fun, you're welcome to stick along for the ride!
+Instead, as I've done in previous posts, I want to dissect and visualize what exactly is going on. If that sounds fun, you're welcome to come along for the ride!
 
-Also, [another pleasant read](https://codeandbitters.com/learning-rust-crossbeam-epoch/) I can recommend for a demonstration of the usage of `crossbeam-epoch`.
+I can also recommend [another pleasant read](https://codeandbitters.com/learning-rust-crossbeam-epoch/) that demonstrates the usage of `crossbeam-epoch`.
 
 You can access the [code](https://github.com/sofiabelen/visualizing-crossbeam-epoch) used in this post.
 
@@ -200,7 +200,7 @@ The fundamental question is:
 
 ## Q2: Updating Pointer and Flag Atomically
 
-Another important question also comes up when removing a node requires two steps. This is the case when working with lock-free linked lists. Check this out [Timothy Harris' Paper](https://timharris.uk/papers/2001-disc.pdf) for a more detailed explanation of this algorithm. Essentially, deleting is done in two parts:
+Another important question also comes up when removing a node requires two steps. This is the case when working with lock-free linked lists. Check out [Timothy Harris' Paper](https://timharris.uk/papers/2001-disc.pdf) for a more detailed explanation of this algorithm. Essentially, deleting is done in two parts:
 
 1. Mark the node as deleted (or more specifically, it's next pointer) so other threads don't try to insert after it.
 2. Physically unlink it via CAS.
@@ -391,7 +391,7 @@ Deleting a node from a lock-free linked list.
 
 ## Motivation and Goal
 
-When I started writing this, I had planned for just one post visualizing the ABA bug and then analyzing how crossbeam solves it. However, I quickly realized it was too much to pack into just one post, and the ABA problem deserved its [own post](https://sofiabelen.github.io/projects/visualizing-the-aba-problem/). Then, as I was writing this continuation, I initially just cared about **Q1**. However, I came across something that I found really awesome (don't want to spoil the next session), and I wondered *why* do we need it... so that's how I came to **Q2**, and I couldn't just leave it out. In the mean time, I was playing around with loom, so that became its own post. So far in the series:
+When I started writing this, I had planned for just one post visualizing the ABA bug and then analyzing how crossbeam solves it. However, I quickly realized it was too much to pack into just one post, and the ABA problem deserved its [own post](https://sofiabelen.github.io/projects/visualizing-the-aba-problem/). Then, as I was writing this continuation, I initially just cared about **Q1**. However, I came across something that I found really awesome (don't want to spoil the next section), and I wondered *why* do we need it... so that's how I came to **Q2**, and I couldn't just leave it out. In the meantime, I was playing around with Loom, so that became its own post. So far in the series:
 
 - **Part 1:** [Visualizing The ABA Problem: What crossbeam-epoch Solves](https://sofiabelen.github.io/projects/visualizing-the-aba-problem/)
 - **Part 2:** [Using Loom to (Try To) Catch an ABA Bug in Lock-Free Rust](https://sofiabelen.github.io/projects/using-loom-to-catch-an-aba-bug/)
@@ -407,14 +407,14 @@ To give a refresher, the building blocks of `crossbeam-epoch` are:
 | :--- | :--- | :--- |
 | `Owned<T>` | `Box<T>` | Unique, non-atomic ownership. |
 | `Atomic<T>` | `AtomicPtr<T>` | Shared, atomic location. |
-| `Shared<'g, T>` | `&'g T` | Borrowed reference tied to a `Guard`.  |
+| `Shared<'a, T>` | `&'g T` | Borrowed reference tied to a `Guard`.  |
 
 
 The `Owned<T>` holds heap allocated data that isn't shared yet. You turn an `Owned` into a `Shared` or store it inside an `Atomic`.
 
 `Atomic<T>` is what you'll use in your data structures. It holds a pointer that can be updated using CAS (Compare-And-Swap) or other atomic operations.
 
-`Shared<'g, T>` is obtained by calling `.load(&guard)` on an `Atomic`. The lifetime `'g` guarantees the pointer cannot be freed by another thread as long as your `pin()` guard is alive. (We'll discuss this later).
+`Shared<'a, T>` is obtained by calling `.load(&guard)` on an `Atomic`. The lifetime `'g` guarantees the pointer cannot be freed by another thread as long as your `pin()` guard is alive. (We'll discuss this later).
 
 
 ### Using Wasted Alignment Bits for Metadata
@@ -426,9 +426,9 @@ Photo by <a href="https://unsplash.com/@edelputte?utm_source=unsplash&utm_medium
 </caption>
 </figure>
 
-Every type has an alignment requirement. We can imagine that memory is organized in "shelves," where each variable must sit. This way, you can't have a variable sitting in between two shelves. Each type has it's own alignment requirement (shelf size). In modern 64-bit architectures, a pointer requires 8-byte alignment.
+Every type has an alignment requirement. We can imagine that memory is organized in "shelves," where each variable must sit. This way, you can't have a variable sitting in between two shelves. Each type has its own alignment requirement (shelf size). In modern 64-bit architectures, a pointer requires 8-byte alignment.
 
-This means that heap memory allocated for that type will start at an address that is an exact multiple of 8. If you look at memory addresses that are multiples of 8 in binary, you can see that the lowest 3 bits are in a sense "wasted." They don't hold any other useful information, since they're guaranteed to be always `000`. 
+For a type `T` with 8-byte alignment, every valid pointer to a `T` is a multiple of 8. If you look at memory addresses that are multiples of 8 in binary, you can see that the lowest 3 bits are in a sense "wasted." They don't hold any other useful information, since they're guaranteed to be always `000`. 
 
 | Decimal Address | Hex Address | 64-bit Binary Address (Lowest Byte) |
 |---|---|---|
@@ -454,7 +454,7 @@ For reading or dereferencing the pointer, crossbeam masks out those bits using b
 Original Address = Raw Pointer & ~ Tag Mask
 ```
 
-This is purely awesome. We can store some metadata that will allow us to verify whether that memory is ready to be deallocated, without having to use a separate variable.
+This is purely awesome. We can store a small piece of metadata, like a "deleted" mark, directly inside the pointer itself. So the pointer and the flag can be updated together in a single CAS, without needing a separate variable.
 
 ### Taking a Look Inside
 
@@ -488,7 +488,7 @@ Now that we have our `Shared<'a, T>` we can play around with it, changing the ta
  let raw_bits_2 = unsafe { std::mem::transmute::<_, usize>(tagged_ptr_2) };
 
  println!("Tag: {}", tagged_ptr_2.tag());
- println!("Tagged address (tag 2): {:#018x} --> last byte: {:08b}", &raw_bits_2, &raw_bits_2 & 0xFF);
+ println!("Tagged address (tag 2): {:#018x} --> last byte: {:08b}", &raw_bits_2, &raw_bits_2);
  println!("tagged_ptr_2.as_raw(): {:#018x}", tagged_ptr_2.as_raw() as usize);
  println!("----------------------------------");
 ```
@@ -518,7 +518,6 @@ Let's run it:
 
 <pre><code>
 Initial tag: 0
-Initial tag: 0
 Initial address: 0x000056065369dd5<mark>0</mark>        --> last byte: 010100<mark>00</mark>
 ----------------------------------
 Tag: 2
@@ -543,13 +542,13 @@ This answers our second question, let's now tackle the first one:
 
 Now for the first and most awaited question: how does `crossbeam-epoch` delay `drop()` until no thread is reading the node?
 
-The idea of epoch-based reclamation was first introduced by Keir Fraser in his [PhD thesis](https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-579.pdf), and what a beautiful concept it is! The crossbeam first implementation of crossbeam-epoch was written by Aaron Turon and the approach is described beautifully in his [blog](https://aturon.github.io/blog/2015/08/27/epoch/#atomic). Please check that out beforehand if it's your first time exploring this concept, since I don't go too deep here, just a recap before jumping into the visualization experiment.
+The idea of epoch-based reclamation was first introduced by Keir Fraser in his [PhD thesis](https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-579.pdf), and what a beautiful concept it is! The first implementation of `crossbeam-epoch` was written by Aaron Turon and the approach is described beautifully in his [blog](https://aturon.github.io/blog/2015/08/27/epoch/#atomic). Please check that out beforehand if it's your first time exploring this concept, since I don't go too deep here, just a recap before jumping into the visualization experiment.
 
 ### Epoch-Based Reclamation Quick Recap
 
-To recap, the global epoch is a **mod 3 counter**. When a thread wants to access memory, it "pins" itself to the current epoch (it essentially records the epoch it saw when it was pinned). The epoch can advance from `e` to `e + 1` if every pinned thread has already "observerd" `e`. When a thread retires a node (unlinks it from the data structure), it goes into a "bin" labeled with the current epoch.
+To recap, the global epoch is a **mod 3 counter**. When a thread wants to access memory, it "pins" itself to the current epoch (it essentially records the epoch it saw when it was pinned). The epoch can advance from `e` to `e + 1` if every pinned thread has already "observed" `e`. When a thread retires a node (unlinks it from the data structure), it goes into a "bin" labeled with the current epoch.
 
-#### Why we only need 3 "bins"? 
+#### Why we need only 3 "bins"? 
 
 <figure>
 <img src="claudio-schwarz-QrbmrCnJxQE-unsplash.jpg" alt="">
@@ -562,9 +561,9 @@ My first question when reading about this was "why only 3 epochs"? And the expla
 
 - Bin `e` (current): Unsafe to free. Threads pinned at `e` may have loaded the pointer just before it was unlinked and could still be reading it.
 - Bin `e - 1`: Unsafe to free. Threads can be pinned at `e - 1` still, since the epoch advanced once everyone had observed `e - 1`. This check didn't require them to have moved on. This means that such threads could still hold a pointer to something unlinked in `e - 1`.
-- Bin `e - 2`: Safe to free. For the epoch to get from `e - 2` to `e`, it had to pass from `e - 1` to `e`, which required that every pined thread be at `e - 1` or later. This guarantees that nobody is still at `e - 2`. Anyone who could have had a pointer to the node (pinned at `e - 2` or earlier, since it was unlinked at `e - 2`) has since unpinned or re-pinned, and can't hold that pointer.
+- Bin `e - 2`: Safe to free. For the epoch to get from `e - 2` to `e`, it had to pass from `e - 1` to `e`, which required that every pinned thread be at `e - 1` or later. This guarantees that nobody is still at `e - 2`. Anyone who could have had a pointer to the node (pinned at `e - 2` or earlier, since it was unlinked at `e - 2`) has since unpinned or re-pinned, and can't hold that pointer.
 
-This is the theoretical explanation. As for `crossbeam`, it doesn't literally keep 3 bins. Each thread has a local bag. "Sealed" bags go into a global queue marked with the corresponding epoch. A bag is freed once the global epoch is at least two ahead of the bag's mark. This makes a lot more sense with the diagram!
+This is the theoretical explanation. As for `crossbeam`, it doesn't literally keep 3 bins. Each thread has a local bag. "Sealed" bags go into a global queue marked with the corresponding epoch. A bag is freed once the global epoch is at least two ahead of the bag's mark. The global epoch itself behaves like a mod 3 counter, but is a plain increasing counter. This makes a lot more sense with the diagram!
 
 ### Experiment #1: Pinned Thread Prevents Drop
 
@@ -575,11 +574,11 @@ Photo by <a href="https://unsplash.com/@boysinbristol_photography?utm_source=uns
 </caption>
 </figure>
 
-For visualizing how exactly it looks like in action, we can use a custom collector. Normally, every 128th call to `pin()` on a thread automatically triggers a garbage collection attempt (`try_advance()`). However, in order to control when this happens, we can use a custom colletor and explicitly call `.flush()`.
+To visualize what exactly it looks like in action, we can use a custom collector. Normally, every 128th call to `pin()` on a thread automatically triggers a garbage collection attempt (`try_advance()`). However, in order to control when this happens, we can use a custom collector and explicitly call `.flush()`.
 
-For EBR, a "thread" is just a a registered handle. Handles aren't even required to live on different OS threads, so we can play T1 and T2 from a single thread, just for demonstration purposes.
+For EBR, a "thread" is just a registered handle. Handles aren't even required to live on different OS threads, so we can play T1 and T2 from a single thread, just for demonstration purposes.
 
-We can create a custom type that flips a flag when it is droppped. (This flag lives in an `Arc`, and our object holds a clone to that `Arc`, so we can still access the flag once the object dies).
+We can create a custom type that flips a flag when it is dropped. (This flag lives in an `Arc`, and our object holds a clone to that `Arc`, so we can still access the flag once the object dies).
 
 ```rust
 struct DropTracker {
@@ -603,17 +602,17 @@ let (t1, t2) = (collector.register(), collector.register());
 Create instances of the `DropTracker` holding an `Arc` containing the flag.
 
 ```rust
-let dropped = Arc::new(AtomicBool::new(false));
+let flag = Arc::new(AtomicBool::new(false));
 
 let tracker = Atomic::new(DropTracker {
-    flag: dropped.clone()
+    flag: flag.clone()
 });
 ```
 
 T1 pins, receiving a `Guard`:
 
 ```rust
-let guard1 = t1.pin();
+let g1 = t1.pin();
 ```
 
 T2 unlinks the value and retires it:
@@ -656,11 +655,11 @@ while !flag.load(Ordering::SeqCst) && flushes < 5 {
 }
 ```
 
-> Side node: Why we need a fresh pin every time for T2?
+> Side note: Why do we need a fresh pin every time for T2?
 >
 > We need a fresh `pin()` for T2 every time we try this because `Guard` records the epoch it was pinned at, and that is the value that `try_advance` checks. If T2 were to keep one guard alive across flushes, T2 itself becomes the lagging thread blocking the epoch.
 
-We'll see that until we don't drop T1's `Guard`, our `tracker` doesn't get dropped, no matter how many times we try to `flush()`.
+We'll see that until we drop T1's `Guard`, our `tracker` doesn't get dropped, no matter how many times we try to `flush()`.
 
 ```
 flush #1: flag = false
@@ -783,11 +782,11 @@ Regarding the first part of this post, I wrote it and was very happy with how it
 
 As for the second part, however, I went through many attempts. I didn't want to just repeat explanations that already exist, but I wanted to give enough context to make the concepts in my experiments clear. I also went back and forth between different experiment ideas. I then realized I had at some point lost my plot and was overcomplicating things. So, I opted for a simpler demonstration that shows the concept of EBR in practice and how it relates to our original problem of a lock-free stack.
 
-The reason why I like writing this posts is to test my understanding of a topic by trying to explain it cohesively, and demonstrating it through code. This makes the concept feel more *real* to me and helps me to make sure I got it. I also love and need lots of diagrams, which might also be useful for someone else.
+The reason I like writing these posts is to test my understanding of a topic by trying to explain it cohesively, and demonstrating it through code. This makes the concept feel more *real* to me and helps me make sure I got it. I also love and need lots of diagrams, which might also be useful for someone else.
 
-This one in particular wasn't so straightforward to write, but it was extremely rewarding! I also enjoyed the feedback I've gotten from the community along the way. Some of the chats I've had made me feel like a scientist in the 20th century, writing eachother letters back and forth, discussing their findings. This is the sense of community I strive for, so I consider this all worth the effort!
+This one in particular wasn't so straightforward to write, but it was extremely rewarding! I also enjoyed the feedback I've gotten from the community along the way. Some of the chats I've had made me feel like a scientist in the 20th century, writing letters back and forth to each other, discussing their findings. This is the sense of community I strive for, so I consider this all worth the effort!
 
-As some already know, I'm currently unemployed, so finding meaning and community through what I'm doing means so much for me. Thank you so much for reading and I hope you enjoyed it as well!
+As some already know, I'm currently unemployed, so finding meaning and community through what I'm doing means so much to me. Thank you so much for reading and I hope you enjoyed it as well!
 
 ## Resources
 
