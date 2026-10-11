@@ -19,7 +19,7 @@ categories:
     - lock-free-programming
     - concurrency
     - crossbeam
-featured: true
+featured: false
 comments: true
 ---
 

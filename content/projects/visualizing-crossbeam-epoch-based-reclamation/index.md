@@ -5,8 +5,8 @@ thumbnail: savannah-rohleder-zzuaz2s6vi0-unsplash.jpg
 image: savannah-rohleder-zzuaz2s6vi0-unsplash.jpg
 preview: "Continue the lock-free adventure by exploring the internals of crossbeam-epoch to answer two fundamental questions: 1. How do we know when it's safe to drop? 2. How do we atomically update both a pointer and a state flag in a single CAS instruction? This second question stems from the two-step process needed for deleting a node in a lock-free linked list."
 description: "Continue the lock-free adventure by exploring the internals of crossbeam-epoch to answer two fundamental questions: 1. How do we know when it's safe to drop? 2. How do we atomically update both a pointer and a state flag in a single CAS instruction? This second question stems from the two-step process needed for deleting a node in a lock-free linked list."
-date: 2026-10-01
-publishDate: 2026-10-01
+date: 2026-10-12
+publishDate: 2026-10-09
 tags:
     - Rust
     - tutorial
@@ -17,14 +17,14 @@ categories:
     - tutorial
     - lock-free-programming
     - concurrency
-featured: false
+featured: true
 draft: true
 comments: true
 ---
 
 On my [previous post](https://sofiabelen.github.io/projects/visualizing-the-aba-problem/) we experienced first hand the horrors that can occurr when attempting to use lock-free data structures with pointers. We left the question of how to deal with this problem a bit open.
 
-Languages like Java with a Garbage Collector don't have this issue, since the runtime would delay collection until the memory address is unreachable by all threads. I recently learned that one of the ways to solve this in a deterministic manner in Rust is through somethting called Epoch-Based Reclamation (EBR), which the crate `crossbeam-epoch` implements. My goal is not to explain the theoretical concepts, [as that endevour has been already accomplished by Aaron Turon, the founder of Crossbeam](https://aturon.github.io/blog/2015/08/27/epoch/#atomic).
+Languages like Java with a Garbage Collector don't have this issue, since the runtime would collect the memory when it's unreachable by all threads. I recently learned that one of the ways to solve this in a deterministic manner in Rust is through a method called **Epoch-Based Reclamation** (EBR), which the crate `crossbeam-epoch` implements. My goal is not to explain the theoretical concepts, [as that endevour has been already accomplished by Aaron Turon, the founder of Crossbeam](https://aturon.github.io/blog/2015/08/27/epoch/#atomic).
 
 Instead, as I've done in previous posts, I want to dissect and visualize what exactly is going on. If that sounds fun, you're welcome to stick along for the ride!
 
@@ -34,7 +34,7 @@ You can access the [code](https://github.com/sofiabelen/visualizing-crossbeam-ep
 
 ## Q1: When to Drop
 
-We looked at the buggy implementation of a lock-free stack and actually managed to reproduce the ABA bug. Here's a diagram for a quick recap:
+We looked at the buggy implementation of a lock-free stack and managed to reproduce the ABA bug. Here's a diagram for a quick recap:
 
 <figure class="diagram-figure">
 
@@ -201,7 +201,7 @@ The fundamental question is:
 
 ## Q2: Updating Pointer and Flag Atomically
 
-Another important question also comes up when removing a node requires two steps. This is case when working with lock-free linked lists. Check this out [Timothy Harris' Paper](https://timharris.uk/papers/2001-disc.pdf) for a more detailed explanation of this algirthm. Essentially, deleting is done in two parts:
+Another important question also comes up when removing a node requires two steps. This is the case when working with lock-free linked lists. Check this out [Timothy Harris' Paper](https://timharris.uk/papers/2001-disc.pdf) for a more detailed explanation of this algorithm. Essentially, deleting is done in two parts:
 
 1. Mark the node as deleted (or more specifically, it's next pointer) so other threads don't try to insert after it.
 2. Physically unlink it via CAS.
@@ -447,7 +447,7 @@ You can believe this was my face when I learned what crossbeam does with this in
   </figcaption>
 </figure>
 
-<mark>What crossbeam does is reclaim those unused low-order bits to store some metadata directly inside the pointer value.</mark>
+<mark>Crossbeam reclaims those unused low-order bits to store some metadata directly inside the pointer value.</mark>
 
 For reading or dereferencing the pointer, crossbeam masks out those bits using bitwise `AND` to reconstruct the valid address:
 
