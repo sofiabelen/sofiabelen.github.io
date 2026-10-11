@@ -5,8 +5,8 @@ thumbnail: savannah-rohleder-zzuaz2s6vi0-unsplash.jpg
 image: savannah-rohleder-zzuaz2s6vi0-unsplash.jpg
 preview: "Continue the lock-free adventure by exploring the internals of crossbeam-epoch to answer two fundamental questions: 1. How do we know when it's safe to drop? 2. How do we atomically update both a pointer and a state flag in a single CAS instruction? This second question stems from the two-step process needed for deleting a node in a lock-free linked list."
 description: "Continue the lock-free adventure by exploring the internals of crossbeam-epoch to answer two fundamental questions: 1. How do we know when it's safe to drop? 2. How do we atomically update both a pointer and a state flag in a single CAS instruction? This second question stems from the two-step process needed for deleting a node in a lock-free linked list."
-date: 2026-10-12
-publishDate: 2026-10-09
+date: 2026-10-11
+publishDate: 2026-10-10
 tags:
     - Rust
     - tutorial
