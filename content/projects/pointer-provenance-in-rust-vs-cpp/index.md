@@ -258,8 +258,8 @@ What we see is that `mov eax, dword ptr [rsp + 12]` reloads `x` after
 as in the C++ case.
 
 Still, we can benefit from using the more expressive API, and not relying on
-exposure semantics. It gives the compiler room to optimize, and, by telling Miri
-explicitly what we mean, it can better help us catch bugs.
+exposure semantics. It gives the compiler room to optimize in the future, and,
+by telling Miri explicitly what we mean, it can better help us catch bugs.
 
 ### Preserving Provenance
 
@@ -281,7 +281,7 @@ post](https://sofiabelen.github.io/projects/visualizing-crossbeam-epoch-based-re
 Essentially, due to alignment, the lower bits of pointers are "wasted" (always
 0), so we can use them to store flags.
 
-What we can do is work with an intermediate pointer type, which will have the
+What we can do is work with an intermediate pointer value, which will have the
 flag bit set BUT that also inherits provenance from the original pointer. This
 is exactly the functionality that `with_addr` provides us. After we're done, we
 can recreate our valid initial pointer.
@@ -389,11 +389,10 @@ disabling some optimizations.
 In Rust, `addr()`, `with_addr()` and `without_provenance()` let you state your
 intent explicitly: you only want the number, or you are deriving a new pointer
 from an existing one. In principle, that gives the compiler room to optimize
-more aggressively. In our experiment, however, the Rust version remains also
-unoptimized: `x` was still reloaded from the stack. Using more expressive
+more aggressively. In our experiment, however, the Rust version is unoptimized
+too: `x` was still reloaded from the stack. Using more expressive
 APIs is still valuable, as Miri can enforce the rules and catch bugs that
-stem from unintended usage, as we saw with the integer-to-pointer cast warning
-and the `without_provenance` error.
+stem from unintended usage.
 
 I had planned to compare what Miri and ASan can catch, but I'll save that for
 another post. It was enough new info as it is and it takes some time to fully
