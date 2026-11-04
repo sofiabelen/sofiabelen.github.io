@@ -1,5 +1,6 @@
 {{ $id := printf "mermaid-slider-%d" .Ordinal }}
 {{ $targetId := printf "mermaidTarget-%d" .Ordinal }}
+{{ $modalId := printf "mermaidModal-%d" .Ordinal }}
 
 {{/* Optional overrides — omit any of these to keep the default pink theme */}}
 {{ $primaryColor := .Get "primaryColor" | default "#fcdbe2" }}
@@ -30,24 +31,38 @@
     background: transparent;
     padding: 10px;
     width: 100%;
+    position: relative;
   }
 
   #{{ $id }} .m-canvas {
     width: 100%;
     height: {{ $canvasHeight }};
     display: flex;
-    justify-content: center;
     align-items: center;
-    overflow: hidden;
+    justify-content: center;
+    overflow-x: auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 6px;
   }
 
   #{{ $id }} .m-canvas svg {
+    flex: none;
+    margin: auto;
     width: auto !important;
-    height: 100% !important;
-    max-height: 480px !important;
-    min-height: 380px !important;
-    transform: scale(1.15);
-    transform-origin: center center;
+    height: 400px !important;
+    zoom: 1.15;
+  }
+
+  #{{ $id }} .m-canvas {
+    scrollbar-width: thin;
+    scrollbar-color: {{ $primaryBorderColor }} transparent;
+  }
+  #{{ $id }} .m-canvas::-webkit-scrollbar { height: 8px; }
+  #{{ $id }} .m-canvas::-webkit-scrollbar-track { background: transparent; }
+  #{{ $id }} .m-canvas::-webkit-scrollbar-thumb {
+    background: {{ $primaryBorderColor }};
+    border-radius: 4px;
   }
 
   #{{ $id }} .m-controls {
@@ -77,52 +92,193 @@
     cursor: not-allowed;
   }
 
+  /* Zoom buttons (inline + modal toolbar) */
+  #{{ $id }} .m-zoom-btn,
+  #{{ $modalId }} .m-tool-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    font-size: 18px;
+    line-height: 1;
+    background: rgba(255, 255, 255, 0.95);
+    color: {{ $primaryTextColor }};
+    border: 1px solid {{ $primaryBorderColor }};
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  #{{ $id }} .m-zoom-btn:hover,
+  #{{ $modalId }} .m-tool-btn:hover {
+    background: {{ $primaryColor }};
+  }
+
+  #{{ $id }} .m-zoom-btn {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    z-index: 100;
+  }
+
+  /* Diagram styling (inline) */
   #{{ $id }} .mermaid .node rect,
   #{{ $id }} .mermaid .node circle,
-  #{{ $id }} .mermaid .node polygon {
+  #{{ $id }} .mermaid .node polygon,
+  #{{ $modalId }} .node rect,
+  #{{ $modalId }} .node circle,
+  #{{ $modalId }} .node polygon {
     fill: {{ $primaryColor }} !important;
     stroke: {{ $primaryBorderColor }} !important;
     stroke-width: 2px !important;
   }
 
-  #{{ $id }} .mermaid .cluster rect {
+  #{{ $id }} .mermaid .cluster rect,
+  #{{ $modalId }} .cluster rect {
     fill: {{ $tertiaryColor }} !important;
     stroke: {{ $primaryBorderColor }} !important;
     stroke-width: 2px !important;
   }
 
-  #{{ $id }} .mermaid .edgePath .path {
+  #{{ $id }} .mermaid .edgePath .path,
+  #{{ $modalId }} .edgePath .path {
     stroke: {{ $lineColor }} !important;
     stroke-width: 3px !important;
   }
 
   #{{ $id }} .mermaid marker,
   #{{ $id }} .mermaid marker path,
-  #{{ $id }} .mermaid [id*="flowchart-pointEnd"] {
+  #{{ $id }} .mermaid [id*="flowchart-pointEnd"],
+  #{{ $modalId }} marker,
+  #{{ $modalId }} marker path,
+  #{{ $modalId }} [id*="flowchart-pointEnd"] {
     fill: {{ $lineColor }} !important;
     stroke: {{ $lineColor }} !important;
   }
 
   #{{ $id }} .mermaid text,
-  #{{ $id }} .mermaid .cluster-label {
+  #{{ $id }} .mermaid .cluster-label,
+  #{{ $modalId }} svg text,
+  #{{ $modalId }} .cluster-label {
     fill: {{ $primaryTextColor }} !important;
     font-size: 14px !important;
     font-weight: 600 !important;
     font-family: inherit !important;
   }
 
-  #{{ $id }} .mermaid .flowchartTitleText {
+  #{{ $id }} .mermaid .flowchartTitleText,
+  #{{ $modalId }} .flowchartTitleText {
     fill: {{ $primaryBorderColor }} !important;
     font-size: 18px !important;
     font-weight: bold !important;
   }
+
+  /* Fullscreen Lightbox Modal */
+  #{{ $modalId }}.mermaid-modal {
+    display: none;
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(4px);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.25s ease-in-out;
+  }
+
+  #{{ $modalId }}.mermaid-modal.active {
+    display: flex;
+    opacity: 1;
+  }
+
+  #{{ $modalId }} .mermaid-modal-content {
+    background: #ffffff;
+    padding: 56px 20px 20px;
+    border-radius: 12px;
+    width: 90vw;
+    height: 85vh;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    position: relative;
+    display: flex;
+    overflow: hidden;
+  }
+
+  /* The container is the scroller. margin:auto on the SVG centers it
+     when it fits and keeps every edge reachable when it overflows. */
+  #{{ $modalId }} .modal-svg-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    overflow: auto;
+  }
+
+  #{{ $modalId }} .modal-svg-container svg {
+    flex: none;
+    margin: auto;
+  }
+
+  #{{ $modalId }} .mermaid-modal-tools {
+    position: absolute;
+    top: 12px;
+    left: 16px;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    z-index: 100;
+  }
+
+  #{{ $modalId }} .m-zoom-level {
+    font-size: 12px;
+    min-width: 44px;
+    text-align: center;
+    color: #555;
+    font-variant-numeric: tabular-nums;
+  }
+
+  #{{ $modalId }} .mermaid-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #555;
+    cursor: pointer;
+    background: none;
+    border: none;
+    line-height: 1;
+    z-index: 100;
+  }
+
+  #{{ $modalId }} .mermaid-modal-close:hover {
+    color: #000;
+  }
 </style>
 
 <div id="{{ $id }}" class="mermaid-slider">
+  <button class="m-zoom-btn" type="button" aria-label="Zoom diagram" title="Zoom">🔍</button>
   <div id="{{ $targetId }}" class="m-canvas"></div>
   <div class="m-controls">
     <button class="prevBtn" disabled>Prev</button>
     <button class="nextBtn">Next</button>
+  </div>
+</div>
+
+<!-- Modal Overlay -->
+<div id="{{ $modalId }}" class="mermaid-modal">
+  <div class="mermaid-modal-content">
+    <div class="mermaid-modal-tools">
+      <button class="m-tool-btn m-zoom-out" type="button" aria-label="Zoom out" title="Zoom out">−</button>
+      <span class="m-zoom-level">100%</span>
+      <button class="m-tool-btn m-zoom-in" type="button" aria-label="Zoom in" title="Zoom in">+</button>
+      <button class="m-tool-btn m-zoom-reset" type="button" aria-label="Reset zoom" title="Reset">⟲</button>
+    </div>
+    <button class="mermaid-modal-close" aria-label="Close modal">&times;</button>
+    <div class="modal-svg-container"></div>
   </div>
 </div>
 
@@ -190,6 +346,78 @@
     nextBtn.addEventListener("click", () => step(1));
 
     render();
+
+    // ---- Zoom lightbox (shows whichever slide is currently displayed) ----
+    const modal = document.getElementById("{{ $modalId }}");
+    const modalContainer = modal.querySelector(".modal-svg-container");
+    const closeBtn = modal.querySelector(".mermaid-modal-close");
+    const openBtn = container.querySelector(".m-zoom-btn");
+    const levelLabel = modal.querySelector(".m-zoom-level");
+
+    const MIN = 0.5, MAX = 6, STEP = 0.25;
+    let scale = 1;
+
+    function applyZoom() {
+      const svg = modalContainer.querySelector("svg");
+      if (!svg) return;
+      const pct = (scale * 100) + "%";
+      svg.style.setProperty("width", pct, "important");
+      svg.style.setProperty("height", pct, "important");
+      svg.style.setProperty("max-width", "none", "important");
+      svg.style.setProperty("max-height", "none", "important");
+      levelLabel.textContent = Math.round(scale * 100) + "%";
+    }
+
+    function setZoom(next) {
+      scale = Math.min(MAX, Math.max(MIN, next));
+      applyZoom();
+    }
+
+    function openModal() {
+      const svg = target.querySelector("svg");
+      if (!svg) return;
+      modalContainer.innerHTML = svg.outerHTML;
+      // drop inline sizing so the modal controls it
+      const copy = modalContainer.querySelector("svg");
+      copy.removeAttribute("style");
+      copy.removeAttribute("width");
+      copy.removeAttribute("height");
+      scale = 1;
+      applyZoom();
+      modalContainer.scrollTo(0, 0);
+      modal.classList.add("active");
+      document.body.style.overflow = "hidden"; // Block page scroll
+    }
+
+    function closeModal() {
+      modal.classList.remove("active");
+      document.body.style.overflow = ""; // Restore page scroll
+    }
+
+    openBtn.addEventListener("click", openModal);
+    closeBtn.addEventListener("click", closeModal);
+    modal.querySelector(".m-zoom-in").addEventListener("click", () => setZoom(scale + STEP));
+    modal.querySelector(".m-zoom-out").addEventListener("click", () => setZoom(scale - STEP));
+    modal.querySelector(".m-zoom-reset").addEventListener("click", () => setZoom(1));
+
+    // Ctrl/⌘ + wheel zooms; a plain wheel still scrolls
+    modalContainer.addEventListener("wheel", function(e) {
+      if (!(e.ctrlKey || e.metaKey)) return;
+      e.preventDefault();
+      setZoom(scale + (e.deltaY < 0 ? STEP : -STEP));
+    }, { passive: false });
+
+    modal.addEventListener("click", function(e) {
+      if (e.target === modal) closeModal();
+    });
+
+    document.addEventListener("keydown", function(e) {
+      if (!modal.classList.contains("active")) return;
+      if (e.key === "Escape") closeModal();
+      if (e.key === "+" || e.key === "=") setZoom(scale + STEP);
+      if (e.key === "-") setZoom(scale - STEP);
+      if (e.key === "0") setZoom(1);
+    });
   });
 })();
 </script>
