@@ -391,7 +391,7 @@ intent explicitly: you only want the number, or you are deriving a new pointer
 from an existing one. In principle, that gives the compiler room to optimize
 more aggressively. In our experiment, however, the Rust version is unoptimized
 too: `x` was still reloaded from the stack. Using more expressive
-APIs is still valuable, as Miri can enforce the rules and catch bugs that
+APIs is still valuable though, as Miri can enforce the rules and catch bugs that
 stem from unintended usage.
 
 I had planned to compare what Miri and ASan can catch, but I'll save that for
