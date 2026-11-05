@@ -17,7 +17,7 @@ categories:
     - Rust
     - tutorial
     - pointers
-featured: false
+featured: true
 comments: true
 ---
 
