@@ -397,3 +397,7 @@ stem from unintended usage.
 I had planned to compare what Miri and ASan can catch, but I'll save that for
 another post. It was enough new info as it is and it takes some time to fully
 wrap my head around it.
+
+I'm currently between jobs and looking for a Rust role, so writing these posts
+keeps me motivated and has helped me find a sense of community. Thank you for
+reading, and I hope you enjoyed it!
