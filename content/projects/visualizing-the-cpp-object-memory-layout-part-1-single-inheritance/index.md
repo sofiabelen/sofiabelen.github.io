@@ -13,7 +13,7 @@ tags:
 categories:
     - C++
     - tutorial
-featured: true
+featured: false
 comments: true
 ---
 
