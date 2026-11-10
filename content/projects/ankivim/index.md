@@ -18,7 +18,7 @@ comments: true
 
 <br/>
 
-Check out this [blog post](https://sofiabelen.github.io/selfstudy/Anki-Vim.html) on how to use this tool and some other tips for adding mathjax (latex) and images to your cards.
+Check out this [blog post](https://sofiabelen.github.io/blog/anki-vim/) on how to use this tool and some other tips for adding mathjax (latex) and images to your cards.
 
 ## Overview
 
